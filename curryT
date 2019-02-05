@@ -1,4 +1,4 @@
-{- A `Type`-level definition of `uncurry`.
+{- A `Type`-level definition of `curry`.
 -}
   λ(a : Kind)
 → λ(b : Kind)
