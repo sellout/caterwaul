@@ -1,12 +1,12 @@
 # Caterwaul
 
-Modeling categories in Dhall.
+Wailing into the primordial ooze of category theory.
 
 This requires either Dhall 1.18 or 1.20+ (it will not work on Dhall 1.19).
 
 ## Documentation
 
-Types as documentation …
+Types as documentation: https://sellout.github.io/caterwaul/ (there actually are _some_ docs there, but pretty minimal at the moment.)
 
 ## Contributing
 
