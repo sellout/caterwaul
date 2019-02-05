@@ -20,7 +20,7 @@ in    λ(object : Kind)
       in    λ(s : object)
           → λ(a : object)
           → λ(f : arrow { _1 = s, _2 = s })
-          → λ(state : State s a)
+          → λ(state : State { _1 = s, _2 = a })
           → semigroupoid.op
             { _1 = s, _2 = product { _1 = s, _2 = a } }
             (   λ(r : Type)

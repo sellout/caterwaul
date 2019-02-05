@@ -13,4 +13,4 @@ in    λ(f : Type → Type)
             → λ(z : b)
             → fFoldable.fold (g a) b (gFoldable.fold a b k) z
         }
-      : Foldable (Compose f g)
+      : Foldable (Compose { _1 = f, _2 = g })

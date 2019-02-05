@@ -17,6 +17,6 @@ in    λ(m : Type → Type)
         }
       : ./../../../Functor/Endo/Star/Type
         Type
-        (./../../../uncurryT Type Type Type ./../../../Function/Type)
+        ./../../../Function/Type
         m
-        (./../../Type a)
+        (λ(b : Type) → ./../../Type { _1 = a, _2 = b })

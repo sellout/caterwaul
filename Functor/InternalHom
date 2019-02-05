@@ -12,6 +12,6 @@ in    λ(object : Kind)
       object
       object
       object
-      (./../uncurryT object object Type (./../Category/Op/Type object arrow))
+      (./../Category/Op/Type object arrow)
       arrow
       arrow

@@ -5,9 +5,4 @@ in  let kProduct = ./../Tuple/Kind
 in    λ(f : kArrow (kProduct Type Type) Type)
     → λ(arrow : ./Type f)
     →   arrow.{ lmap, map, rmap }
-      : ./../Strong/Type
-        Type
-        Type
-        (./../uncurryT Type Type Type ./../Function/Type)
-        (./../uncurryT Type Type Type ./../Function/Type)
-        f
+      : ./../Strong/Type Type Type ./../Function/Type ./../Function/Type f

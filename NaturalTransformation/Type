@@ -7,6 +7,7 @@ in    λ(cObject : Kind)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
     →     let object = kArrow cObject dObject
       
-      in    λ(f : object)
-          → λ(g : object)
-          → ∀(a : cObject) → dArrow { _1 = f a, _2 = g a }
+      in    (   λ(f : { _1 : object, _2 : object })
+              → ∀(a : cObject) → dArrow { _1 = f._1 a, _2 = f._2 a }
+            )
+          : kArrow (kProduct object object) Type

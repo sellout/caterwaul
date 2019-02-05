@@ -8,18 +8,10 @@ in  let kProduct = ./../../../Tuple/Kind
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     →   { arrow =
-            ./../../../uncurryT
-            (kArrow object object)
-            (kArrow object object)
-            Type
-            (./../../../NaturalTransformation/Type object object arrow)
+            ./../../../NaturalTransformation/Type object object arrow
         , identity =
             ./../../../Identity/Type object
         , op =
-            ./../../../uncurryT
-            (kArrow object object)
-            (kArrow object object)
-            (kArrow object object)
-            (./../../../Compose/Type object object object)
+            ./../../../Compose/Type object object object
         }
       : ./../Type kArrow kProduct (kArrow object object)

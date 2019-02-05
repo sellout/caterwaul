@@ -32,40 +32,30 @@ in    λ(object : Kind)
                           arrow { _1 = a._2, _2 = b._2 }
                       }
                     )
-                → λ(st : State a._1 a._2)
+                → λ(st : State a)
                 → semigroupoid.op
-                  { _1 = b._1, _2 = product { _1 = b._1, _2 = b._2 } }
+                  { _1 = b._1, _2 = product b }
                   (   λ(r : Type)
                     → λ ( arrowsOut
                         :   ∀(z : object)
-                          → arrow
-                            { _1 = z, _2 = product { _1 = b._1, _2 = b._2 } }
+                          → arrow { _1 = z, _2 = product b }
                           → arrow { _1 = b._1, _2 = z }
                           → r
                         )
                     → arrowsOut
                       a._1
                       ( semigroupoid.op
-                        { _1 = a._1, _2 = product { _1 = b._1, _2 = b._2 } }
+                        { _1 = a._1, _2 = product b }
                         (   λ(r : Type)
                           → λ ( arrowsOut
                               :   ∀(z : object)
-                                → arrow
-                                  { _1 =
-                                      z
-                                  , _2 =
-                                      product { _1 = b._1, _2 = b._2 }
-                                  }
+                                → arrow { _1 = z, _2 = product b }
                                 → arrow { _1 = a._1, _2 = z }
                                 → r
                               )
                           → arrowsOut
-                            (product { _1 = a._1, _2 = a._2 })
-                            ( bifunctor.map
-                              { _1 = a._1, _2 = a._2 }
-                              { _1 = b._1, _2 = b._2 }
-                              { _1 = f._1._1, _2 = f._2 }
-                            )
+                            (product a)
+                            (bifunctor.map a b { _1 = f._1._1, _2 = f._2 })
                             st
                         )
                       )
@@ -76,12 +66,7 @@ in    λ(object : Kind)
             object
             object
             Type
-            ( ./../uncurryT
-              object
-              object
-              Type
-              (./../Category/Dagger/Type object arrow)
-            )
+            (./../Category/Dagger/Type object arrow)
             arrow
-            (./../uncurryT Type Type Type ./../Function/Type)
-            (./../uncurryT object object Type State)
+            ./../Function/Type
+            State

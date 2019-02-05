@@ -6,4 +6,4 @@ in  let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
-    → ./Type object Type arrow (./../uncurryT Type Type Type ./../Function/Type)
+    → ./Type object Type arrow ./../Function/Type

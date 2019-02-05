@@ -3,18 +3,10 @@
 in  let kProduct = ./../../Tuple/Kind
 
 in    { arrow =
-          ./../../uncurryT Type Type Type ./../../Function/Type
+          ./../../Function/Type
       , additive =
-          { identity =
-              <>
-          , op =
-              ./../../uncurryT Type Type Type ./../../Either/Type
-          }
+          { identity = <>, op = ./../../Either/Type }
       , multiplicative =
-          { identity =
-              {}
-          , op =
-              ./../../uncurryT Type Type Type ./../../Tuple/Type
-          }
+          { identity = {}, op = ./../../Tuple/Type }
       }
     : ./Type kArrow kProduct Type

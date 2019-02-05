@@ -1,9 +1,14 @@
     let kArrow = ./../Function/Kind
 
+in  let kProduct = ./../Tuple/Kind
+
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
     → λ(eObject : Kind)
-    → λ(f : kArrow dObject eObject)
-    → λ(g : kArrow cObject dObject)
-    → λ(a : cObject)
-    → f (g a)
+    →   (   λ(f : { _1 : kArrow dObject eObject, _2 : kArrow cObject dObject })
+          → λ(a : cObject)
+          → f._1 (f._2 a)
+        )
+      : kArrow
+        (kProduct (kArrow dObject eObject) (kArrow cObject dObject))
+        (kArrow cObject eObject)

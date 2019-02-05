@@ -7,13 +7,22 @@ in    λ(cObject : Kind)
     →     let vObject = Type
       
       in    λ(v : ./../Category/Monoidal/Type kArrow kProduct vObject)
-          → λ(f : kArrow cObject vObject)
-          → λ(g : kArrow cObject vObject)
-          → ./../Lan/Type
-            { _1 : cObject, _2 : cObject }
-            cObject
-            c.arrow
-            c.op
-            (   λ(p : { _1 : cObject, _2 : cObject })
-              → v.op { _1 = f p._1, _2 = g p._2 }
-            )
+          →   (   λ ( f
+                    : { _1 :
+                          kArrow cObject vObject
+                      , _2 :
+                          kArrow cObject vObject
+                      }
+                    )
+                → ./../Lan/Type
+                  { _1 : cObject, _2 : cObject }
+                  cObject
+                  c.arrow
+                  c.op
+                  (   λ(p : { _1 : cObject, _2 : cObject })
+                    → v.op { _1 = f._1 p._1, _2 = f._2 p._2 }
+                  )
+              )
+            : kArrow
+              (kProduct (kArrow cObject vObject) (kArrow cObject vObject))
+              (kArrow cObject vObject)

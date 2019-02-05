@@ -5,8 +5,14 @@ in  let Applicative = ./../Applicative/Type cat
 in  let Either = ./../Either/Type
 
 in    λ(a : Type)
-    → λ(eitherApplicative : Applicative (Either a))
+    → λ ( eitherApplicative
+        : Applicative (λ(b : Type) → Either { _1 = a, _2 = b })
+        )
     → λ(m : Type → Type)
     → λ(applicative : Applicative m)
-    →   ./../Compose/applicative m applicative (Either a) eitherApplicative
+    →   ./../Compose/applicative
+        m
+        applicative
+        (λ(b : Type) → Either { _1 = a, _2 = b })
+        eitherApplicative
       : Applicative (./Type a m)

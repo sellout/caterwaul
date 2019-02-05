@@ -9,13 +9,14 @@ in  let eitherF = ./../../../Either/functor/endo/set
 in  let composeF =
           ./../../../Compose/functor
           Type
-          (./../../../uncurryT Type Type Type ./../../../Function/Type)
+          ./../../../Function/Type
           Type
-          (./../../../uncurryT Type Type Type ./../../../Function/Type)
+          ./../../../Function/Type
           Type
-          (./../../../uncurryT Type Type Type ./../../../Function/Type)
+          ./../../../Function/Type
 
 in    λ(a : Type)
     → λ(f : Type → Type)
     → λ(functor : Endofunctor f)
-    → composeF f functor (Either a) (eitherF a) : Endofunctor (EitherT a f)
+    →   composeF f functor (λ(b : Type) → Either { _1 = a, _2 = b }) (eitherF a)
+      : Endofunctor (EitherT a f)

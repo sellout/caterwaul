@@ -11,14 +11,7 @@ in    λ(cObject : Kind)
       in  let dCategory = ./../Function/category
       
       in    λ(f : kArrow cObject dObject)
-          → λ ( functor
-              : ./../Functor/Type
-                cObject
-                dObject
-                cArrow
-                (./../uncurryT dObject dObject Type dArrow)
-                f
-              )
+          → λ(functor : ./../Functor/Type cObject dObject cArrow dArrow f)
           → ./../Lan/lower
             cObject
             cObject

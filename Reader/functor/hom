@@ -46,7 +46,4 @@ in    λ(object : Kind)
                   )
               )
         }
-      : ./../../Functor/Hom
-        object
-        arrow
-        (./../../uncurryT object object Type (./../Type object arrow))
+      : ./../../Functor/Hom object arrow (./../Type object arrow)

@@ -23,7 +23,7 @@ in    λ(cObject : Kind)
                   → λ ( k
                       :   ∀(c : cObject)
                         → cpArrow { _1 = f c, _2 = b }
-                        → dArrow (g c) r
+                        → dArrow { _1 = g c, _2 = r }
                       )
                   → lan
                     r
@@ -45,9 +45,4 @@ in    λ(cObject : Kind)
                         )
                     )
               }
-            : ./../Functor/Type
-              cpObject
-              dObject
-              cpArrow
-              (./../uncurryT dObject dObject Type dArrow)
-              (Lan f g)
+            : ./../Functor/Type cpObject dObject cpArrow dArrow (Lan f g)

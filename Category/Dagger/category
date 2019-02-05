@@ -18,12 +18,16 @@ in    λ(object : Kind)
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
                     :   ∀(r : Type)
-                      → (∀(z : object) → Dagger z a._2 → Dagger a._1 z → r)
+                      → (   ∀(z : object)
+                          → Dagger { _1 = z, _2 = a._2 }
+                          → Dagger { _1 = a._1, _2 = z }
+                          → r
+                        )
                       → r
                     )
                 → { _1 =
                       category.op
-                      { _1 = a._1, _2 = a._2 }
+                      a
                       (   λ(r : Type)
                         → λ ( arrowsOut
                             :   ∀(z : object)
@@ -34,31 +38,29 @@ in    λ(object : Kind)
                         → p
                           r
                           (   λ(z : object)
-                            → λ(f : Dagger z a._2)
-                            → λ(g : Dagger a._1 z)
+                            → λ(f : Dagger { _1 = z, _2 = a._2 })
+                            → λ(g : Dagger { _1 = a._1, _2 = z })
                             → arrowsOut z f._1 g._1
                           )
                       )
                   , _2 =
                       opCategory.op
-                      { _1 = a._1, _2 = a._2 }
+                      a
                       (   λ(r : Type)
                         → λ ( arrowsOut
                             :   ∀(z : object)
-                              → opArrow z a._2
-                              → opArrow a._1 z
+                              → opArrow { _1 = z, _2 = a._2 }
+                              → opArrow { _1 = a._1, _2 = z }
                               → r
                             )
                         → p
                           r
                           (   λ(z : object)
-                            → λ(f : Dagger z a._2)
-                            → λ(g : Dagger a._1 z)
+                            → λ(f : Dagger { _1 = z, _2 = a._2 })
+                            → λ(g : Dagger { _1 = a._1, _2 = z })
                             → arrowsOut z f._2 g._2
                           )
                       )
                   }
             }
-          : ./../Type
-            object
-            (λ(p : { _1 : object, _2 : object }) → Dagger p._1 p._2)
+          : ./../Type object Dagger

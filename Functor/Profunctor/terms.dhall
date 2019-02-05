@@ -10,15 +10,10 @@ in    λ(cObject : Kind)
     → λ(dCategory : ./../../Category/Type dObject dArrow)
     → ./../Bifunctor/terms.dhall
       dObject
-      ( ./../../uncurryT
-        dObject
-        dObject
-        Type
-        (./../../Category/Op/Type dObject dArrow)
-      )
+      (./../../Category/Op/Type dObject dArrow)
       (./../../Category/Op/category dObject dArrow dCategory)
       cObject
       cArrow
       cCategory
       Type
-      (./../../uncurryT Type Type Type ./../../Function/Type)
+      ./../../Function/Type

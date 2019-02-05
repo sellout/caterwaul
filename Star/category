@@ -25,8 +25,8 @@ in    λ(object : Kind)
                       → λ ( p
                           :   ∀(r : Type)
                             → (   ∀(z : object)
-                                → starArrow z a._2
-                                → starArrow a._1 z
+                                → starArrow { _1 = z, _2 = a._2 }
+                                → starArrow { _1 = a._1, _2 = z }
                                 → r
                               )
                             → r
@@ -43,12 +43,10 @@ in    λ(object : Kind)
                           → p
                             r
                             (   λ(z : object)
-                              → λ(f : starArrow z a._2)
-                              → λ(g : starArrow a._1 z)
+                              → λ(f : starArrow { _1 = z, _2 = a._2 })
+                              → λ(g : starArrow { _1 = a._1, _2 = z })
                               → arrowsOut (m z) (bind z a._2 f) g
                             )
                         )
                   }
-                : ./../Category/Type
-                  object
-                  (./../uncurryT object object Type starArrow)
+                : ./../Category/Type object starArrow

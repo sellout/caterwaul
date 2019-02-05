@@ -8,7 +8,7 @@ in    λ(cObject : Kind)
     → λ(cpSemigroupoid : ./../Semigroupoid/Type cpObject cpArrow)
     →     let dObject = Type
       
-      in  let dArrow = ./../uncurryT Type Type Type ./../Function/Type
+      in  let dArrow = ./../Function/Type
       
       in  let Ran = ./Type cObject cpObject cpArrow
       

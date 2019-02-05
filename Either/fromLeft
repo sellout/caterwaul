@@ -3,5 +3,5 @@
 in    λ(a : Type)
     → λ(b : Type)
     → λ(def : a)
-    → λ(e : Either a b)
+    → λ(e : Either { _1 = a, _2 = b })
     → merge { Left = λ(x : a) → x, Right = λ(y : b) → def } e

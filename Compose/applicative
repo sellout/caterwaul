@@ -29,7 +29,15 @@ in    λ(f : kArrow dObject cObject)
             → fApplicative.identity (g a) (gApplicative.identity a x)
         , op =
               λ(i : cObject)
-            → λ(day : Day (Compose f g) (Compose f g) i)
+            → λ ( day
+                : Day
+                  { _1 =
+                      Compose { _1 = f, _2 = g }
+                  , _2 =
+                      Compose { _1 = f, _2 = g }
+                  }
+                  i
+                )
             → day
               (f (g i))
               (   λ(b : { _1 : cObject, _2 : cObject })
@@ -53,4 +61,4 @@ in    λ(f : kArrow dObject cObject)
                   )
               )
         }
-      : Applicative (Compose f g)
+      : Applicative (Compose { _1 = f, _2 = g })

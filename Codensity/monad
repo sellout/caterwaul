@@ -2,7 +2,7 @@
 
 in  let object = Type
 
-in  let arrow = ./../uncurryT Type Type Type ./../Function/Type
+in  let arrow = ./../Function/Type
 
 in    λ(category : ./../Category/Type object arrow)
     →     let Codensity = ./Type object arrow

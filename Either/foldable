@@ -6,7 +6,7 @@ in    λ(a : Type)
             → λ(c : Type)
             → λ(f : c → b → c)
             → λ(z : c)
-            → λ(either : Either a b)
+            → λ(either : Either { _1 = a, _2 = b })
             → merge { Left = λ(_ : a) → z, Right = f z } either
         }
-      : ./../Foldable/Type (Either a)
+      : ./../Foldable/Type (λ(b : Type) → Either { _1 = a, _2 = b })

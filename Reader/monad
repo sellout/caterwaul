@@ -1,6 +1,6 @@
     let object = Type
 
-in  let arrow = ./../uncurryT object object Type ./../Function/Type
+in  let arrow = ./../Function/Type
 
 in  let category = ./../Function/category
 
@@ -11,12 +11,12 @@ in    λ(r : object)
       object
       arrow
       category
-      (Reader r)
+      (λ(b : object) → Reader { _1 = r, _2 = b })
       (λ(a : object) → λ(x : a) → λ(_ : r) → x)
       (   λ(a : object)
         → λ(b : object)
-        → λ(k : a → Reader r b)
-        → λ(fa : Reader r a)
+        → λ(k : a → Reader { _1 = r, _2 = b })
+        → λ(fa : Reader { _1 = r, _2 = a })
         → λ(env : r)
         → k (fa env) env
       )

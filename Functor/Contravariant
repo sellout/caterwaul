@@ -8,12 +8,4 @@ in  let kProduct = ./../Tuple/Kind
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
     → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → ./Type
-      cObject
-      dObject
-      ( ./../uncurryT
-        cObject
-        cObject
-        Type
-        (./../Category/Op/Type cObject cArrow)
-      )
+    → ./Type cObject dObject (./../Category/Op/Type cObject cArrow)

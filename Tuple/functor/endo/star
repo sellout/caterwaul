@@ -1,17 +1,23 @@
-    let Tuple = ./../../Type
+    let kArrow = ./../../../Function/Kind
 
-in    λ(m : Type → Type)
+in  let Tuple = ./../../Type
+
+in    λ(m : kArrow Type Type)
     → λ(functor : ./../../../Functor/Endo/Set m)
     → λ(a : Type)
     →   { map =
               λ(b : Type)
             → λ(c : Type)
             → λ(f : b → m c)
-            → λ(t : Tuple a b)
-            → functor.map c (Tuple a c) (λ(x : c) → t ⫽ { _2 = x }) (f t._2)
+            → λ(t : Tuple { _1 = a, _2 = b })
+            → functor.map
+              c
+              (Tuple { _1 = a, _2 = c })
+              (λ(x : c) → t ⫽ { _2 = x })
+              (f t._2)
         }
       : ./../../../Functor/Endo/Star/Type
         Type
-        (./../../../uncurryT Type Type Type ./../../../Function/Type)
+        ./../../../Function/Type
         m
-        (Tuple a)
+        (λ(b : Type) → Tuple { _1 = a, _2 = b })

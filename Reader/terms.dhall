@@ -1,6 +1,6 @@
     let object = Type
 
-in  let arrow = ./../uncurryT object object Type ./../Function/Type
+in  let arrow = ./../Function/Type
 
 in  let Reader = ./Type object arrow
 
@@ -10,5 +10,5 @@ in    λ(r : Type)
         object
         arrow
         ./../Function/semigroupoid
-        (Reader r)
+        (λ(b : object) → Reader { _1 = r, _2 = b })
         (./monad r)

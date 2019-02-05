@@ -8,6 +8,6 @@ in    λ(f : kArrow (kProduct Type Type) Type)
       : ./../Functor/Profunctor/Type
         Type
         Type
-        (./../uncurryT Type Type Type ./../Function/Type)
-        (./../uncurryT Type Type Type ./../Function/Type)
+        ./../Function/Type
+        ./../Function/Type
         f

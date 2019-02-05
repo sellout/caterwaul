@@ -6,9 +6,4 @@ in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → λ(product : kArrow (kProduct object object) object)
     → λ(m : kArrow object object)
-    → ./../State/Type
-      object
-      (   λ(p : { _1 : object, _2 : object })
-        → ./../Star/Type object arrow m p._1 p._2
-      )
-      product
+    → ./../State/Type object (./../Star/Type object arrow m) product

@@ -1,3 +1,6 @@
     let Either = ./../Either/Type
 
-in  λ(a : Type) → λ(m : Type → Type) → λ(b : Type) → m (Either a b)
+in    λ(a : Type)
+    → λ(m : Type → Type)
+    → λ(b : Type)
+    → m (Either { _1 = a, _2 = b })

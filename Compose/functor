@@ -25,4 +25,4 @@ in    λ(cObject : Kind)
         eObject
         cArrow
         eArrow
-        (./Type cObject dObject eObject f g)
+        (./Type cObject dObject eObject { _1 = f, _2 = g })

@@ -8,6 +8,7 @@ in  let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
-    → λ(a : object)
-    → λ(b : object)
-    → { _1 : arrow { _1 = a, _2 = b }, _2 : arrow { _1 = b, _2 = a } }
+    →   (   λ(a : { _1 : object, _2 : object })
+          → { _1 : arrow a, _2 : arrow { _1 = a._2, _2 = a._1 } }
+        )
+      : kArrow (kProduct object object) Type

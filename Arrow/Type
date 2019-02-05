@@ -22,9 +22,4 @@ in    λ(f : kArrow (kProduct Type Type) Type)
             → f { _1 = a, _2 = { _1 : b, _2 : c } }
         }
       ⩓ ./../Category/Type Type f
-      ⩓ ./../Strong/Type
-        Type
-        Type
-        (./../uncurryT Type Type Type ./../Function/Type)
-        (./../uncurryT Type Type Type ./../Function/Type)
-        f
+      ⩓ ./../Strong/Type Type Type ./../Function/Type ./../Function/Type f

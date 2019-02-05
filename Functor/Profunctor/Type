@@ -14,11 +14,6 @@ in    λ(cObject : Kind)
       dObject
       cObject
       Type
-      ( ./../../uncurryT
-        dObject
-        dObject
-        Type
-        (./../../Category/Op/Type dObject dArrow)
-      )
+      (./../../Category/Op/Type dObject dArrow)
       cArrow
-      (./../../uncurryT Type Type Type ./../../Function/Type)
+      ./../../Function/Type

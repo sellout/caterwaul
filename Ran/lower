@@ -6,7 +6,7 @@ in  let cObject = Type
 
 in  let cpObject = Type
 
-in  let cpArrow = ./../uncurryT Type Type Type ./../Function/Type
+in  let cpArrow = ./../Function/Type
 
 in  let dObject = Type
 

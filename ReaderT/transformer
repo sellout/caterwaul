@@ -2,7 +2,7 @@
 
 in  let object = Type
 
-in  let arrow = ./../uncurryT Type Type Type ./../Function/Type
+in  let arrow = ./../Function/Type
 
 in  let Monad = ./../Monad/Type object arrow
 
@@ -20,4 +20,7 @@ in    λ(r : object)
       : ./../Transformer/Type
         object
         arrow
-        (λ(m : kArrow object object) → ReaderT m r)
+        (   λ(m : kArrow object object)
+          → λ(a : object)
+          → ReaderT m { _1 = r, _2 = a }
+        )

@@ -647,16 +647,14 @@
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
 → ∀(arrow : { _1 : object, _2 : object } → Type)
-→ ∀(a : object)
-→ ∀(b : object)
+→ ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
 → λ(arrow : { _1 : object, _2 : object } → Type)
-→ λ(a : object)
-→ λ(b : object)
-→ { _1 : arrow { _1 = a, _2 = b }, _2 : arrow { _1 = b, _2 = a } }
+→ λ(a : { _1 : object, _2 : object })
+→ { _1 : arrow a, _2 : arrow { _1 = a._2, _2 = a._1 } }
 </pre></dd>
 </dl>
 <h4>category (term)</h4>
@@ -703,11 +701,7 @@
               )
             → r
           )
-      → { _1 :
-            arrow { _1 = a._1, _2 = a._2 }
-        , _2 :
-            arrow { _1 = a._2, _2 = a._1 }
-        }
+      → { _1 : arrow a, _2 : arrow { _1 = a._2, _2 = a._1 } }
   }
 </pre></dd>
 </dl>
@@ -730,15 +724,15 @@
       { identity :
           ∀(a : Type) → Type
       , op :
-          ∀(p : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
+          ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
       }
   , arrow :
-      ∀(p : { _1 : Type → Type, _2 : Type → Type }) → Type
+      ∀(f : { _1 : Type → Type, _2 : Type → Type }) → Type
   , multiplicative :
       { identity :
           ∀(a : Type) → Type
       , op :
-          ∀(p : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
+          ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
       }
   }
 </pre></dd>
@@ -831,11 +825,11 @@
       }
     )
 → { arrow :
-      ∀(p : { _1 : Type → Type, _2 : Type → Type }) → Type
+      ∀(f : { _1 : Type → Type, _2 : Type → Type }) → Type
   , identity :
       ∀(a : Type) → Type
   , op :
-      ∀(p : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
+      ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
   }
 </pre></dd>
 </dl>
@@ -848,11 +842,11 @@
   ∀(object : Kind)
 → ∀(arrow : { _1 : object, _2 : object } → Type)
 → { arrow :
-      ∀(p : { _1 : object → object, _2 : object → object }) → Type
+      ∀(f : { _1 : object → object, _2 : object → object }) → Type
   , identity :
       ∀(a : object) → object
   , op :
-        ∀(p : { _1 : object → object, _2 : object → object })
+        ∀(f : { _1 : object → object, _2 : object → object })
       → ∀(a : object)
       → object
   }
@@ -894,11 +888,11 @@
 <dl>
 <dt>type</dt><dd><pre>
 { arrow :
-    ∀(p : { _1 : Type, _2 : Type }) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , identity :
     Type
 , op :
-    ∀(p : { _1 : Type, _2 : Type }) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 }
 </pre></dd>
 </dl>
@@ -907,11 +901,11 @@
 <dl>
 <dt>type</dt><dd><pre>
 { arrow :
-    ∀(p : { _1 : Type, _2 : Type }) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , identity :
     Type
 , op :
-    ∀(p : { _1 : Type, _2 : Type }) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 }
 </pre></dd>
 </dl>
@@ -985,11 +979,13 @@
   , Compactable :
       ∀(f : Type → Type) → Type
   , Compose :
-      ∀(f : object → object) → ∀(g : object → object) → ∀(a : object) → object
+        ∀(f : { _1 : object → object, _2 : object → object })
+      → ∀(a : object)
+      → object
   , Const :
       ∀(a : object) → object → object
   , Costar :
-      ∀(m : object → object) → ∀(a : object) → ∀(b : object) → Type
+      ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
   , Coyoneda :
       ∀(f : object → Type) → ∀(a : object) → Type
   , Day :
@@ -1002,14 +998,13 @@
                 { _1 : Type, _2 : Type } → Type
             }
           )
-      → ∀(f : object → Type)
-      → ∀(g : object → Type)
+      → ∀(f : { _1 : object → Type, _2 : object → Type })
       → ∀(a : object)
       → Type
   , Density :
       ∀(f : object → Type) → ∀(a : Type) → Type
   , Either :
-      ∀(a : Type) → ∀(b : Type) → Type
+      ∀(a : { _1 : Type, _2 : Type }) → Type
   , EitherT :
       ∀(a : Type) → ∀(m : Type → Type) → ∀(b : Type) → Type
   , Endofunctor :
@@ -1019,7 +1014,7 @@
   , Field :
       ∀(m : object) → Type
   , Function :
-      ∀(a : Type) → ∀(b : Type) → Type
+      ∀(a : { _1 : Type, _2 : Type }) → Type
   , Group :
       ∀(m : object) → Type
   , HomFunctor :
@@ -1033,13 +1028,13 @@
   , Lan :
       ∀(p : object → object) → ∀(f : object → Type) → ∀(a : object) → Type
   , Leibniz :
-      ∀(a : object) → ∀(b : object) → Type
+      ∀(a : { _1 : object, _2 : object }) → Type
   , Monad :
       ∀(m : object → object) → Type
   , Monoid :
       ∀(m : object) → Type
   , NaturalTransformation :
-      ∀(f : object → object) → ∀(g : object → object) → Type
+      ∀(f : { _1 : object → object, _2 : object → object }) → Type
   , OrderedField :
       ∀(m : Type) → Type
   , OrderedGroup :
@@ -1057,9 +1052,9 @@
   , Ran :
       ∀(p : object → object) → ∀(f : object → Type) → ∀(a : object) → Type
   , Reader :
-      ∀(r : object) → ∀(a : object) → Type
+      ∀(a : { _1 : object, _2 : object }) → Type
   , ReaderT :
-      ∀(m : object → object) → ∀(r : object) → ∀(a : object) → Type
+      ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
   , Rig :
       ∀(m : object) → Type
   , Ring :
@@ -1071,11 +1066,11 @@
   , Semiring :
       ∀(m : object) → Type
   , Star :
-      ∀(m : object → object) → ∀(a : object) → ∀(b : object) → Type
+      ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
   , State :
-      ∀(s : object) → ∀(a : object) → Type
+      ∀(a : { _1 : object, _2 : object }) → Type
   , StateT :
-      ∀(m : object → object) → ∀(s : object) → ∀(a : object) → Type
+      ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
   , Strong :
       ∀(f : { _1 : object, _2 : object } → Type) → Type
   , Transformer :
@@ -1083,7 +1078,7 @@
   , Traversable :
       ∀(m : object → object) → ∀(f : object → object) → Type
   , Tuple :
-      ∀(a : Type) → ∀(b : Type) → Type
+      ∀(a : { _1 : Type, _2 : Type }) → Type
   , Yoneda :
       ∀(f : object → Type) → ∀(a : object) → Type
   }
@@ -1096,16 +1091,14 @@
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
 → ∀(arrow : { _1 : object, _2 : object } → Type)
-→ ∀(a : object)
-→ ∀(b : object)
+→ ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
 → λ(arrow : { _1 : object, _2 : object } → Type)
-→ λ(a : object)
-→ λ(b : object)
-→ arrow { _1 = b, _2 = a }
+→ λ(a : { _1 : object, _2 : object })
+→ arrow { _1 = a._2, _2 = a._1 }
 </pre></dd>
 </dl>
 <h4>category (term)</h4>
@@ -1254,8 +1247,13 @@
 → ∀(dObject : Kind)
 → ∀(cArrow : { _1 : cObject, _2 : cObject } → Type)
 → ∀(dArrow : { _1 : dObject, _2 : dObject } → Type)
-→ ∀(a : { _1 : cObject, _2 : dObject })
-→ ∀(b : { _1 : cObject, _2 : dObject })
+→ ∀ ( a
+    : { _1 :
+          { _1 : cObject, _2 : dObject }
+      , _2 :
+          { _1 : cObject, _2 : dObject }
+      }
+    )
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
@@ -1263,9 +1261,18 @@
 → λ(dObject : Kind)
 → λ(cArrow : { _1 : cObject, _2 : cObject } → Type)
 → λ(dArrow : { _1 : dObject, _2 : dObject } → Type)
-→ λ(a : { _1 : cObject, _2 : dObject })
-→ λ(b : { _1 : cObject, _2 : dObject })
-→ { _1 : cArrow { _1 = a._1, _2 = b._1 }, _2 : dArrow { _1 = a._2, _2 = b._2 } }
+→ λ ( a
+    : { _1 :
+          { _1 : cObject, _2 : dObject }
+      , _2 :
+          { _1 : cObject, _2 : dObject }
+      }
+    )
+→ { _1 :
+      cArrow { _1 = a._1._1, _2 = a._2._1 }
+  , _2 :
+      dArrow { _1 = a._1._2, _2 = a._2._2 }
+  }
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Rig</h3>
@@ -1274,11 +1281,11 @@
 <dl>
 <dt>type</dt><dd><pre>
 { additive :
-    { identity : Type, op : ∀(p : { _1 : Type, _2 : Type }) → Type }
+    { identity : Type, op : ∀(a : { _1 : Type, _2 : Type }) → Type }
 , arrow :
-    ∀(p : { _1 : Type, _2 : Type }) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , multiplicative :
-    { identity : Type, op : ∀(p : { _1 : Type, _2 : Type }) → Type }
+    { identity : Type, op : ∀(a : { _1 : Type, _2 : Type }) → Type }
 }
 </pre></dd>
 </dl>
@@ -1597,11 +1604,11 @@
 , Compactable :
     ∀(f : Type → Type) → Type
 , Compose :
-    ∀(f : Type → Type) → ∀(g : Type → Type) → ∀(a : Type) → Type
+    ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
 , Const :
     ∀(a : Type) → Type → Type
 , Costar :
-    ∀(m : Type → Type) → ∀(a : Type) → ∀(b : Type) → Type
+    ∀(m : Type → Type) → ∀(a : { _1 : Type, _2 : Type }) → Type
 , Coyoneda :
     ∀(f : Type → Type) → ∀(a : Type) → Type
 , Day :
@@ -1614,14 +1621,13 @@
               { _1 : Type, _2 : Type } → Type
           }
         )
-    → ∀(f : Type → Type)
-    → ∀(g : Type → Type)
+    → ∀(f : { _1 : Type → Type, _2 : Type → Type })
     → ∀(a : Type)
     → Type
 , Density :
     ∀(f : Type → Type) → ∀(a : Type) → Type
 , Either :
-    ∀(a : Type) → ∀(b : Type) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , EitherT :
     ∀(a : Type) → ∀(m : Type → Type) → ∀(b : Type) → Type
 , Endofunctor :
@@ -1631,7 +1637,7 @@
 , Field :
     ∀(m : Type) → Type
 , Function :
-    ∀(a : Type) → ∀(b : Type) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , Group :
     ∀(m : Type) → Type
 , HomFunctor :
@@ -1645,13 +1651,13 @@
 , Lan :
     ∀(p : Type → Type) → ∀(f : Type → Type) → ∀(a : Type) → Type
 , Leibniz :
-    ∀(a : Type) → ∀(b : Type) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , Monad :
     ∀(m : Type → Type) → Type
 , Monoid :
     ∀(m : Type) → Type
 , NaturalTransformation :
-    ∀(f : Type → Type) → ∀(g : Type → Type) → Type
+    ∀(f : { _1 : Type → Type, _2 : Type → Type }) → Type
 , OrderedField :
     ∀(m : Type) → Type
 , OrderedGroup :
@@ -1669,9 +1675,9 @@
 , Ran :
     ∀(p : Type → Type) → ∀(f : Type → Type) → ∀(a : Type) → Type
 , Reader :
-    ∀(r : Type) → ∀(a : Type) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , ReaderT :
-    ∀(m : Type → Type) → ∀(r : Type) → ∀(a : Type) → Type
+    ∀(m : Type → Type) → ∀(a : { _1 : Type, _2 : Type }) → Type
 , Rig :
     ∀(m : Type) → Type
 , Ring :
@@ -1683,11 +1689,11 @@
 , Semiring :
     ∀(m : Type) → Type
 , Star :
-    ∀(m : Type → Type) → ∀(a : Type) → ∀(b : Type) → Type
+    ∀(m : Type → Type) → ∀(a : { _1 : Type, _2 : Type }) → Type
 , State :
-    ∀(s : Type) → ∀(a : Type) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , StateT :
-    ∀(m : Type → Type) → ∀(s : Type) → ∀(a : Type) → Type
+    ∀(m : Type → Type) → ∀(a : { _1 : Type, _2 : Type }) → Type
 , Strong :
     ∀(f : { _1 : Type, _2 : Type } → Type) → Type
 , Transformer :
@@ -1695,7 +1701,7 @@
 , Traversable :
     ∀(m : Type → Type) → ∀(f : Type → Type) → Type
 , Tuple :
-    ∀(a : Type) → ∀(b : Type) → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , Yoneda :
     ∀(f : Type → Type) → ∀(a : Type) → Type
 }
@@ -2083,10 +2089,10 @@
 <p></p>
 <dl>
 <dt>kind</dt><dd><pre>
-∀(f : Type → Type) → ∀(g : Type → Type) → ∀(a : Type) → Type
+∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
-λ(f : Type → Type) → λ(g : Type → Type) → λ(a : Type) → f (g a)
+λ(f : { _1 : Type → Type, _2 : Type → Type }) → λ(a : Type) → f._1 (f._2 a)
 </pre></dd>
 </dl>
 <h4>Type (term)</h4>
@@ -2096,8 +2102,7 @@
   ∀(cObject : Kind)
 → ∀(dObject : Kind)
 → ∀(eObject : Kind)
-→ ∀(f : dObject → eObject)
-→ ∀(g : cObject → dObject)
+→ ∀(f : { _1 : dObject → eObject, _2 : cObject → dObject })
 → ∀(a : cObject)
 → eObject
 </pre></dd>
@@ -2373,17 +2378,15 @@
   ∀(object : Kind)
 → ∀(arrow : { _1 : object, _2 : object } → Type)
 → ∀(m : object → object)
-→ ∀(a : object)
-→ ∀(b : object)
+→ ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
 → λ(arrow : { _1 : object, _2 : object } → Type)
 → λ(m : object → object)
-→ λ(a : object)
-→ λ(b : object)
-→ arrow { _1 = m b, _2 = a }
+→ λ(a : { _1 : object, _2 : object })
+→ arrow { _1 = m a._2, _2 = a._1 }
 </pre></dd>
 </dl>
 <h4>category (type)</h4>
@@ -2537,8 +2540,7 @@ Type
           { _1 : Type, _2 : Type } → Type
       }
     )
-→ ∀(f : cObject → Type)
-→ ∀(g : cObject → Type)
+→ ∀(f : { _1 : cObject → Type, _2 : cObject → Type })
 → ∀(a : cObject)
 → Type
 </pre></dd>
@@ -2562,13 +2564,12 @@ Type
           { _1 : Type, _2 : Type } → Type
       }
     )
-→ λ(f : cObject → Type)
-→ λ(g : cObject → Type)
+→ λ(f : { _1 : cObject → Type, _2 : cObject → Type })
 → λ(a : cObject)
 →   ∀(r : Type)
   → (   ∀(b : { _1 : cObject, _2 : cObject })
       → c.arrow { _1 = c.op b, _2 = a }
-      → v.op { _1 = f b._1, _2 = g b._2 }
+      → v.op { _1 = f._1 b._1, _2 = f._2 b._2 }
       → r
     )
   → r
@@ -2972,10 +2973,10 @@ Type
 <p></p>
 <dl>
 <dt>kind</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → Type
+∀(a : { _1 : Type, _2 : Type }) → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
-λ(a : Type) → λ(b : Type) → < Left : a | Right : b >
+λ(a : { _1 : Type, _2 : Type }) → < Left : a._1 | Right : a._2 >
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Either/applicative</h3>
@@ -3191,44 +3192,6 @@ Type
 <dl>
 <dt>type</dt><dd><pre>
 ∀(a : Type) → ∀(b : Type) → ∀(eithers : List < Left : a | Right : b >) → List a
-</pre></dd>
-</dl>
-<h4>mapBoth (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(a : Type)
-→ ∀(b : Type)
-→ ∀(c : Type)
-→ ∀(d : Type)
-→ ∀(f : a → c)
-→ ∀(g : b → d)
-→ ∀(e : < Left : a | Right : b >)
-→ < Left : c | Right : d >
-</pre></dd>
-</dl>
-<h4>mapLeft (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(a : Type)
-→ ∀(b : Type)
-→ ∀(c : Type)
-→ ∀(f : a → c)
-→ ∀(e : < Left : a | Right : b >)
-→ < Left : c | Right : b >
-</pre></dd>
-</dl>
-<h4>mapRight (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(a : Type)
-→ ∀(b : Type)
-→ ∀(d : Type)
-→ ∀(f : b → d)
-→ ∀(e : < Left : a | Right : b >)
-→ < Left : a | Right : d >
 </pre></dd>
 </dl>
 <h4>monad (term)</h4>
@@ -4167,10 +4130,10 @@ Type
 <p></p>
 <dl>
 <dt>kind</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → Type
+∀(a : { _1 : Type, _2 : Type }) → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
-λ(a : Type) → λ(b : Type) → a → b
+λ(a : { _1 : Type, _2 : Type }) → a._1 → a._2
 </pre></dd>
 </dl>
 <h4>arrow (term)</h4>
@@ -6242,17 +6205,15 @@ Type
   ∀(cObject : Kind)
 → ∀(dObject : Kind)
 → ∀(dArrow : { _1 : dObject, _2 : dObject } → Type)
-→ ∀(a : cObject)
-→ ∀(b : cObject)
+→ ∀(a : { _1 : cObject, _2 : cObject })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(cObject : Kind)
 → λ(dObject : Kind)
 → λ(dArrow : { _1 : dObject, _2 : dObject } → Type)
-→ λ(a : cObject)
-→ λ(b : cObject)
-→ { subst : ∀(f : cObject → dObject) → dArrow { _1 = f a, _2 = f b } }
+→ λ(a : { _1 : cObject, _2 : cObject })
+→ { subst : ∀(f : cObject → dObject) → dArrow { _1 = f a._1, _2 = f a._2 } }
 </pre></dd>
 </dl>
 <h4>category (term)</h4>
@@ -6921,17 +6882,15 @@ Type
   ∀(cObject : Kind)
 → ∀(dObject : Kind)
 → ∀(dArrow : { _1 : dObject, _2 : dObject } → Type)
-→ ∀(f : cObject → dObject)
-→ ∀(g : cObject → dObject)
+→ ∀(f : { _1 : cObject → dObject, _2 : cObject → dObject })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(cObject : Kind)
 → λ(dObject : Kind)
 → λ(dArrow : { _1 : dObject, _2 : dObject } → Type)
-→ λ(f : cObject → dObject)
-→ λ(g : cObject → dObject)
-→ ∀(a : cObject) → dArrow { _1 = f a, _2 = g a }
+→ λ(f : { _1 : cObject → dObject, _2 : cObject → dObject })
+→ ∀(a : cObject) → dArrow { _1 = f._1 a, _2 = f._2 a }
 </pre></dd>
 </dl>
 <h4>category (term)</h4>
@@ -7220,16 +7179,14 @@ Type
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
 → ∀(arrow : { _1 : object, _2 : object } → Type)
-→ ∀(r : object)
-→ ∀(a : object)
+→ ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
 → λ(arrow : { _1 : object, _2 : object } → Type)
-→ λ(r : object)
-→ λ(a : object)
-→ arrow { _1 = r, _2 = a }
+→ λ(a : { _1 : object, _2 : object })
+→ arrow { _1 = a._1, _2 = a._2 }
 </pre></dd>
 </dl>
 <h4>applicative (type)</h4>
@@ -7418,17 +7375,15 @@ Type
   ∀(object : Kind)
 → ∀(arrow : { _1 : object, _2 : object } → Type)
 → ∀(m : object → object)
-→ ∀(r : object)
-→ ∀(a : object)
+→ ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
 → λ(arrow : { _1 : object, _2 : object } → Type)
 → λ(m : object → object)
-→ λ(r : object)
-→ λ(a : object)
-→ arrow { _1 = r, _2 = m a }
+→ λ(a : { _1 : object, _2 : object })
+→ arrow { _1 = a._1, _2 = m a._2 }
 </pre></dd>
 </dl>
 <h4>applicative (type)</h4>
@@ -8728,17 +8683,15 @@ Type
   ∀(object : Kind)
 → ∀(arrow : { _1 : object, _2 : object } → Type)
 → ∀(m : object → object)
-→ ∀(a : object)
-→ ∀(b : object)
+→ ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
 → λ(arrow : { _1 : object, _2 : object } → Type)
 → λ(m : object → object)
-→ λ(a : object)
-→ λ(b : object)
-→ arrow { _1 = a, _2 = m b }
+→ λ(a : { _1 : object, _2 : object })
+→ arrow { _1 = a._1, _2 = m a._2 }
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./State</h2>
@@ -8749,17 +8702,15 @@ Type
   ∀(object : Kind)
 → ∀(arrow : { _1 : object, _2 : object } → Type)
 → ∀(product : { _1 : object, _2 : object } → object)
-→ ∀(s : object)
-→ ∀(a : object)
+→ ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
 → λ(arrow : { _1 : object, _2 : object } → Type)
 → λ(product : { _1 : object, _2 : object } → object)
-→ λ(s : object)
-→ λ(a : object)
-→ arrow { _1 = s, _2 = product { _1 = s, _2 = a } }
+→ λ(a : { _1 : object, _2 : object })
+→ arrow { _1 = a._1, _2 = product a }
 </pre></dd>
 </dl>
 <h4>applicative (type)</h4>
@@ -8819,8 +8770,8 @@ Type
                 arrow { _1 = a._2, _2 = b._2 }
             }
           )
-      → ∀(st : arrow { _1 = a._1, _2 = product { _1 = a._1, _2 = a._2 } })
-      → arrow { _1 = b._1, _2 = product { _1 = b._1, _2 = b._2 } }
+      → ∀(st : arrow { _1 = a._1, _2 = product a })
+      → arrow { _1 = b._1, _2 = product b }
   }
 </pre></dd>
 </dl>
@@ -8943,8 +8894,7 @@ Type
 → ∀(arrow : { _1 : object, _2 : object } → Type)
 → ∀(product : { _1 : object, _2 : object } → object)
 → ∀(m : object → object)
-→ ∀(s : object)
-→ ∀(a : object)
+→ ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
@@ -8952,9 +8902,8 @@ Type
 → λ(arrow : { _1 : object, _2 : object } → Type)
 → λ(product : { _1 : object, _2 : object } → object)
 → λ(m : object → object)
-→ λ(s : object)
-→ λ(a : object)
-→ arrow { _1 = s, _2 = m (product { _1 = s, _2 = a }) }
+→ λ(a : { _1 : object, _2 : object })
+→ arrow { _1 = a._1, _2 = m (product a) }
 </pre></dd>
 </dl>
 <h4>applicative (type)</h4>
@@ -9015,8 +8964,8 @@ Type
                 arrow { _1 = a._2, _2 = m b._2 }
             }
           )
-      → ∀(st : arrow { _1 = a._1, _2 = m (product { _1 = a._1, _2 = a._2 }) })
-      → arrow { _1 = b._1, _2 = m (product { _1 = b._1, _2 = b._2 }) }
+      → ∀(st : arrow { _1 = a._1, _2 = m (product a) })
+      → arrow { _1 = b._1, _2 = m (product b) }
   }
 </pre></dd>
 </dl>
@@ -9315,10 +9264,10 @@ Type
 <p></p>
 <dl>
 <dt>kind</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → Type
+∀(a : { _1 : Type, _2 : Type }) → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
-λ(a : Type) → λ(b : Type) → { _1 : a, _2 : b }
+λ(a : { _1 : Type, _2 : Type }) → { _1 : a._1, _2 : a._2 }
 </pre></dd>
 </dl>
 <h4>comonad (term)</h4>

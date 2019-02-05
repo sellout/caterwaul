@@ -21,5 +21,5 @@ in    λ(cObject : Kind)
               cObject
               dObject
               cArrow
-              (./../uncurryT dObject dObject Type dArrow)
+              dArrow
               (./Type cObject cArrow f)

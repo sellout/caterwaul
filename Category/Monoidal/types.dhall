@@ -119,10 +119,7 @@ in    λ(object : Kind)
           , Transformer =
               ./../../Transformer/Type object cat.arrow
           , Traversable =
-                λ(m : kArrow object object)
-              → Endofunctor
-                object
-                (./../../uncurryT object object Type (Star m))
+              λ(m : kArrow object object) → Endofunctor object (Star m)
           , Tuple =
               ./../../Tuple/Type
           , Yoneda =

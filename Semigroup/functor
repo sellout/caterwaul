@@ -14,7 +14,7 @@ in    λ(object : Kind)
       in    { map =
                   λ(a : object)
                 → λ(b : object)
-                → λ(fn : Dagger a b)
+                → λ(fn : Dagger { _1 = a, _2 = b })
                 → λ(fa : Semigroup a)
                 → { op =
                       semigroupoid.op
@@ -57,9 +57,4 @@ in    λ(object : Kind)
                       )
                   }
             }
-          : ./../Functor/Type
-            object
-            Type
-            (./../uncurryT object object Type Dagger)
-            (./../uncurryT Type Type Type ./../Function/Type)
-            Semigroup
+          : ./../Functor/Type object Type Dagger ./../Function/Type Semigroup

@@ -3,11 +3,11 @@
 in  let partition
         :   ∀(a : Type)
           → ∀(b : Type)
-          → List (Either a b)
+          → List (Either { _1 = a, _2 = b })
           → { lefts : List a, rights : List b }
         =   λ(a : Type)
           → λ(b : Type)
-          → λ(eithers : List (Either a b))
+          → λ(eithers : List (Either { _1 = a, _2 = b }))
           →     let left =
                         λ(acc : { lefts : List a, rights : List b })
                       → λ(x : a)
@@ -19,10 +19,10 @@ in  let partition
                       → { lefts = acc.lefts, rights = [ y ] # acc.rights }
             
             in  List/fold
-                (Either a b)
+                (Either { _1 = a, _2 = b })
                 eithers
                 { lefts : List a, rights : List b }
-                (   λ(e : Either a b)
+                (   λ(e : Either { _1 = a, _2 = b })
                   → λ(acc : { lefts : List a, rights : List b })
                   → merge { Left = left acc, Right = right acc } e
                 )

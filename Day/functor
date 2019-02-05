@@ -17,9 +17,9 @@ in    λ(cObject : Kind)
                     λ(a : cObject)
                   → λ(b : cObject)
                   → λ(fn : c.arrow { _1 = a, _2 = b })
-                  → λ(day : Day f g a)
+                  → λ(day : Day { _1 = f, _2 = g } a)
                   → day
-                    (Day f g b)
+                    (Day { _1 = f, _2 = g } b)
                     (   λ(d : { _1 : cObject, _2 : cObject })
                       → λ(fn2 : c.arrow { _1 = c.op d, _2 = a })
                       → λ(e : v.op { _1 = f d._1, _2 = g d._2 })
@@ -42,4 +42,9 @@ in    λ(cObject : Kind)
                         e
                     )
               }
-            : ./../Functor/Type cObject vObject c.arrow v.arrow (Day f g)
+            : ./../Functor/Type
+              cObject
+              vObject
+              c.arrow
+              v.arrow
+              (Day { _1 = f, _2 = g })

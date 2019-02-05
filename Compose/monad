@@ -22,4 +22,7 @@ in    λ(cObject : Kind)
               λ(a : dObject)
             → gFunctor.map (f (g (f a))) (f a) (adjunction.counit (f a))
         }
-      : ./../Monad/Type dObject dArrow (./Type dObject cObject dObject g f)
+      : ./../Monad/Type
+        dObject
+        dArrow
+        (./Type dObject cObject dObject { _1 = g, _2 = f })

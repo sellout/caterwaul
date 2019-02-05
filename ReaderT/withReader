@@ -10,7 +10,7 @@ in    λ(object : Kind)
     → λ(a : object)
     → λ(ePrime : object)
     → λ(f : arrow { _1 = ePrime, _2 = e })
-    → λ(reader : ./Type object arrow m e a)
+    → λ(reader : ./Type object arrow m { _1 = e, _2 = a })
     → semigroupoid.op
       { _1 = ePrime, _2 = m a }
       (   λ(r : Type)

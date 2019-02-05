@@ -1,1 +1,6 @@
-λ(a : Type) → λ(b : Type) → < Left : a | Right : b >
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    (λ(a : { _1 : Type, _2 : Type }) → < Left : a._1 | Right : a._2 >)
+    : kArrow (kProduct Type Type) Type

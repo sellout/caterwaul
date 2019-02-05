@@ -21,7 +21,7 @@ in    λ(semigroupoid : ./../Semigroupoid/Type object cat.arrow)
                   → (./functor object cat semigroupoid f g).map a b
               , identity =
                     λ(a : object)
-                  → λ(day : Day f g a)
+                  → λ(day : Day { _1 = f, _2 = g } a)
                   → day
                     a
                     (   λ(b : { _1 : object, _2 : object })
@@ -36,14 +36,16 @@ in    λ(semigroupoid : ./../Semigroupoid/Type object cat.arrow)
                     )
               , op =
                     λ(a : object)
-                  → λ(day : Day f g a)
+                  → λ(day : Day { _1 = f, _2 = g } a)
                   → day
-                    (Day f g (Day f g a))
+                    (Day { _1 = f, _2 = g } (Day { _1 = f, _2 = g } a))
                     (   λ(b : { _1 : object, _2 : object })
                       → λ(fn : { _1 : b._1, _2 : b._2 } → a)
                       → λ(d : { _1 : f b._1, _2 : g b._2 })
                       → λ(r0 : object)
-                      → λ(day0 : Day/convolution f g (Day f g a) r0)
+                      → λ ( day0
+                          : Day/convolution f g (Day { _1 = f, _2 = g } a) r0
+                          )
                       → day0
                         { _1 = f b._1, _2 = g b._2 }
                         (   λ(p : { _1 : f b._1, _2 : g b._2 })
@@ -58,4 +60,4 @@ in    λ(semigroupoid : ./../Semigroupoid/Type object cat.arrow)
                         }
                     )
               }
-            : Comonad (Day f g)
+            : Comonad (Day { _1 = f, _2 = g })

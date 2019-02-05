@@ -56,4 +56,4 @@ in    { arr =
           → λ(x : b._1)
           → f._2 (fn (f._1 x))
       }
-    : ./../Arrow/Type (./../uncurryT Type Type Type ./Type)
+    : ./../Arrow/Type ./Type

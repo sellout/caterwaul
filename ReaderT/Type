@@ -5,6 +5,4 @@ in  let kProduct = ./../Tuple/Kind
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → λ(m : kArrow object object)
-    → ./../Reader/Type
-      object
-      (./../uncurryT object object Type (./../Star/Type object arrow m))
+    → ./../Reader/Type object (./../Star/Type object arrow m)

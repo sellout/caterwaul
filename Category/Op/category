@@ -13,7 +13,11 @@ in    λ(object : Kind)
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
                     :   ∀(r : Type)
-                      → (∀(z : object) → opArrow z a._2 → opArrow a._1 z → r)
+                      → (   ∀(z : object)
+                          → opArrow { _1 = z, _2 = a._2 }
+                          → opArrow { _1 = a._1, _2 = z }
+                          → r
+                        )
                       → r
                     )
                 → category.op
@@ -28,10 +32,10 @@ in    λ(object : Kind)
                     → p
                       r
                       (   λ(z : object)
-                        → λ(f : opArrow z a._2)
-                        → λ(g : opArrow a._1 z)
+                        → λ(f : opArrow { _1 = z, _2 = a._2 })
+                        → λ(g : opArrow { _1 = a._1, _2 = z })
                         → arrowsOut z g f
                       )
                   )
             }
-          : ./../Type object (./../../uncurryT object object Type opArrow)
+          : ./../Type object opArrow

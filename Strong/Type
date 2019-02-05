@@ -6,22 +6,20 @@ in    λ(cObject : Kind)
     → λ(dObject : Kind)
     → λ(cArrow : kArrow (kProduct cObject cObject) Type)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
-    →     let object = { _1 : dObject, _2 : cObject }
-      
-      in    λ(f : kArrow (kProduct dObject cObject) Type)
-          →   { lmap :
-                    ∀(a : dObject)
-                  → ∀(b : dObject)
-                  → ∀(c : cObject)
-                  → ./../Category/Op/Type dObject dArrow a b
-                  → f { _1 = a, _2 = c }
-                  → f { _1 = b, _2 = c }
-              , rmap :
-                    ∀(a : dObject)
-                  → ∀(b : cObject)
-                  → ∀(c : cObject)
-                  → cArrow { _1 = b, _2 = c }
-                  → f { _1 = a, _2 = b }
-                  → f { _1 = a, _2 = c }
-              }
-            ⩓ ./../Functor/Profunctor/Type cObject dObject cArrow dArrow f
+    → λ(f : kArrow (kProduct dObject cObject) Type)
+    →   { lmap :
+              ∀(a : dObject)
+            → ∀(b : dObject)
+            → ∀(c : cObject)
+            → ./../Category/Op/Type dObject dArrow { _1 = a, _2 = b }
+            → f { _1 = a, _2 = c }
+            → f { _1 = b, _2 = c }
+        , rmap :
+              ∀(a : dObject)
+            → ∀(b : cObject)
+            → ∀(c : cObject)
+            → cArrow { _1 = b, _2 = c }
+            → f { _1 = a, _2 = b }
+            → f { _1 = a, _2 = c }
+        }
+      ⩓ ./../Functor/Profunctor/Type cObject dObject cArrow dArrow f

@@ -19,7 +19,11 @@ in    λ(cObject : Kind)
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
                     :   ∀(r : Type)
-                      → (∀(z : object) → arrow z a._2 → arrow a._1 z → r)
+                      → (   ∀(z : object)
+                          → arrow { _1 = z, _2 = a._2 }
+                          → arrow { _1 = a._1, _2 = z }
+                          → r
+                        )
                       → r
                     )
                 → { _1 =
@@ -35,8 +39,8 @@ in    λ(cObject : Kind)
                         → p
                           r
                           (   λ(z : object)
-                            → λ(f : arrow z a._2)
-                            → λ(g : arrow a._1 z)
+                            → λ(f : arrow { _1 = z, _2 = a._2 })
+                            → λ(g : arrow { _1 = a._1, _2 = z })
                             → arrowsOut z._1 f._1 g._1
                           )
                       )
@@ -53,11 +57,11 @@ in    λ(cObject : Kind)
                         → p
                           r
                           (   λ(z : object)
-                            → λ(f : arrow z a._2)
-                            → λ(g : arrow a._1 z)
+                            → λ(f : arrow { _1 = z, _2 = a._2 })
+                            → λ(g : arrow { _1 = a._1, _2 = z })
                             → arrowsOut z._2 f._2 g._2
                           )
                       )
                   }
             }
-          : ./../Type object (./../../uncurryT object object Type arrow)
+          : ./../Type object arrow
