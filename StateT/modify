@@ -1,0 +1,10 @@
+--     let Monad = ./../Monad/Type Type ./../Function/Type
+
+-- in    λ(s : Type)
+--     → λ(m : Type → Type)
+--     → λ(monad : Monad m)
+--     → λ(f : s → s)
+--     →     let bind = (./monad s m monad).bind
+      
+--       in  bind s {} (λ(state : s) → ./put s m monad (f state)) (./get s m monad)
+<>

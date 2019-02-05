@@ -1,0 +1,22 @@
+    let object = Type
+
+in  let arrow = ./../uncurryT object object Type ./../Function/Type
+
+in  let category = ./../Function/category
+
+in  let Reader = ./Type object arrow
+
+in    λ(r : object)
+    → ./../Monad/fromPureBind
+      object
+      arrow
+      category
+      (Reader r)
+      (λ(a : object) → λ(x : a) → λ(_ : r) → x)
+      (   λ(a : object)
+        → λ(b : object)
+        → λ(k : a → Reader r b)
+        → λ(fa : Reader r a)
+        → λ(env : r)
+        → k (fa env) env
+      )

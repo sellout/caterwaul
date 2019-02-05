@@ -1,0 +1,17 @@
+    let kArrow = ./../Function/Kind
+
+in  let object = Type
+
+in  let arrow = ./../uncurryT Type Type Type ./../Function/Type
+
+in    λ(f : kArrow object object)
+    → λ(comonad : ./../Comonad/Type object arrow f)
+    → ./../Lan/lower
+      object
+      object
+      arrow
+      f
+      (./../Comonad/extractEndofunctor object arrow f comonad)
+      f
+      f
+      comonad.op

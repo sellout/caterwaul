@@ -1,0 +1,46 @@
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(cObject : Kind)
+    → λ(dObject : Kind)
+    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(dCategory : ./../Category/Type dObject dArrow)
+    →     let Leibniz = ./Type cObject dObject dArrow
+      
+      in    { identity =
+                  λ(a : cObject)
+                → { subst =
+                      λ(f : kArrow cObject dObject) → dCategory.identity (f a)
+                  }
+            , op =
+                  λ(a : { _1 : cObject, _2 : cObject })
+                → λ ( p
+                    :   ∀(r : Type)
+                      → (∀(z : cObject) → Leibniz z a._2 → Leibniz a._1 z → r)
+                      → r
+                    )
+                → { subst =
+                        λ(f : kArrow cObject dObject)
+                      → dCategory.op
+                        { _1 = f a._1, _2 = f a._2 }
+                        (   λ(r : Type)
+                          → λ ( arrowsOut
+                              :   ∀(z : dObject)
+                                → dArrow { _1 = z, _2 = f a._2 }
+                                → dArrow { _1 = f a._1, _2 = z }
+                                → r
+                              )
+                          → p
+                            r
+                            (   λ(z : cObject)
+                              → λ(g : Leibniz z a._2)
+                              → λ(h : Leibniz a._1 z)
+                              → arrowsOut (f z) (g.subst f) (h.subst f)
+                            )
+                        )
+                  }
+            }
+          : ./../Category/Type
+            cObject
+            (./../uncurryT cObject cObject Type Leibniz)

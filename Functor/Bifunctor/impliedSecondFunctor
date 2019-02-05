@@ -1,0 +1,29 @@
+    let kArrow = ./../../Function/Kind
+
+in  let kProduct = ./../../Tuple/Kind
+
+in    λ(cObject : Kind)
+    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
+    → λ(cCategory : ./../../Category/Type cObject cArrow)
+    → λ(dObject : Kind)
+    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(eObject : Kind)
+    → λ(eArrow : kArrow (kProduct eObject eObject) Type)
+    → λ(f : kArrow (kProduct cObject dObject) eObject)
+    → λ(bifunctor : ./Type cObject dObject eObject cArrow dArrow eArrow f)
+    → λ(a : cObject)
+    →   { map =
+              λ(b : dObject)
+            → λ(c : dObject)
+            → λ(fn : dArrow { _1 = b, _2 = c })
+            → bifunctor.map
+              { _1 = a, _2 = b }
+              { _1 = a, _2 = c }
+              { _1 = cCategory.identity a, _2 = fn }
+        }
+      : ./../Type
+        dObject
+        eObject
+        dArrow
+        eArrow
+        (λ(b : dObject) → f { _1 = a, _2 = b })

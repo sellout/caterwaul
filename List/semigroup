@@ -1,0 +1,6 @@
+  λ(a : Type)
+→ ./../Monoid/extractSemigroup
+  Type
+  ./../Category/Monoidal/Set/cartesian
+  (List a)
+  (./monoid a)

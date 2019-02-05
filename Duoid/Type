@@ -1,0 +1,16 @@
+{- A duoid (also known as a “united monoid”) is actually a pair of monoids with
+   a shared `identity`. The `additive.op` distributes over the
+  `multiplicative.op` as well.
+-}
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(cat : ./../Category/Monoidal/Type kArrow kProduct object)
+    → λ(m : object)
+    → { additive :
+          ./../Semilattice/Bounded/Type object cat m
+      , multiplicative :
+          ./../Monoid/Type object cat m
+      }

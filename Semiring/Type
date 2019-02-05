@@ -1,0 +1,17 @@
+{- This is different from what is often called a “semiring” as it lacks
+   additive identity, but here we follow the convention described in
+   https://ncatlab.org/nlab/show/rig, using the name “rig” for what would
+   traditionally be a semiring.
+-}
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(cat : ./../Category/Monoidal/Type kArrow kProduct object)
+    → λ(m : object)
+    → { additive :
+          ./../Semigroup/Type object cat.arrow cat.op m
+      , multiplicative :
+          ./../Monoid/Type object cat m
+      }

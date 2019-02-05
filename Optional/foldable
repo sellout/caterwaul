@@ -1,0 +1,12 @@
+
+    let Foldable = ./../Foldable/Type
+
+in    { fold =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(f : b → a → b)
+          → λ(z : b)
+          → λ(ts : Optional a)
+          → Optional/fold a ts b (f z) z
+      }
+    : Foldable Optional

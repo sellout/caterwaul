@@ -1,0 +1,6 @@
+  λ(m : Type)
+→ { additive :
+      ./../../Group/PartiallyOrderedCommutative/Type m
+  , multiplicative :
+      ./../../Group/Commutative/Set m
+  }

@@ -1,0 +1,12 @@
+  λ(arrow : Kind → Kind → Kind)
+→ λ(product : Kind → Kind → Kind)
+→ λ(object : Kind)
+→ λ(rig : ./Type arrow product object)
+→   { arrow =
+        rig.arrow
+    , identity =
+        rig.multiplicative.identity
+    , op =
+        rig.multiplicative.op
+    }
+  : ./../Monoidal/Type arrow product object

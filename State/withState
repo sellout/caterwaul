@@ -1,0 +1,34 @@
+{-  This is basically
+
+        ./bifunctor.map
+        { _1 : s, _2 : a }
+        { _1 : s, _2 : a }
+        { _1 = { _1 = f, _2 = category.id }, _2 = category.id}
+
+    but this implementation is less constrained.
+-}
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(arrow : kArrow (kProduct object object) Type)
+    → λ(product : kArrow (kProduct object object) object)
+    → λ(semigroupoid : ./../Semigroupoid/Type object arrow)
+    →     let State = ./Type object arrow product
+      
+      in    λ(s : object)
+          → λ(a : object)
+          → λ(f : arrow { _1 = s, _2 = s })
+          → λ(state : State s a)
+          → semigroupoid.op
+            { _1 = s, _2 = product { _1 = s, _2 = a } }
+            (   λ(r : Type)
+              → λ ( arrowsOut
+                  :   ∀(z : object)
+                    → arrow { _1 = z, _2 = product { _1 = s, _2 = a } }
+                    → arrow { _1 = s, _2 = z }
+                    → r
+                  )
+              → arrowsOut s state f
+            )

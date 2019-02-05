@@ -1,0 +1,54 @@
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(arrow : kArrow (kProduct object object) Type)
+    → λ(semigroupoid : ./../Semigroupoid/Type object arrow)
+    → λ(m : kArrow object object)
+    →     let starArrow = ./Type object arrow m
+      
+      in    λ(monad : ./../Monad/Type object arrow m)
+          →     let bind =
+                      ( ./../Monad/impliedStarfunctor
+                        object
+                        arrow
+                        semigroupoid
+                        m
+                        monad
+                      ).map
+            
+            in    { identity =
+                      monad.identity
+                  , op =
+                        λ(a : { _1 : object, _2 : object })
+                      → λ ( p
+                          :   ∀(r : Type)
+                            → (   ∀(z : object)
+                                → starArrow z a._2
+                                → starArrow a._1 z
+                                → r
+                              )
+                            → r
+                          )
+                      → semigroupoid.op
+                        { _1 = a._1, _2 = m a._2 }
+                        (   λ(r : Type)
+                          → λ ( arrowsOut
+                              :   ∀(z : object)
+                                → arrow { _1 = z, _2 = m a._2 }
+                                → arrow { _1 = a._1, _2 = z }
+                                → r
+                              )
+                          → p
+                            r
+                            (   λ(z : object)
+                              → λ(f : starArrow z a._2)
+                              → λ(g : starArrow a._1 z)
+                              → arrowsOut (m z) (bind z a._2 f) g
+                            )
+                        )
+                  }
+                : ./../Category/Type
+                  object
+                  (./../uncurryT object object Type starArrow)

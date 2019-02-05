@@ -1,0 +1,10 @@
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(cObject : Kind)
+    →     let dObject = Type
+      
+      in    λ(dArrow : kArrow (kProduct dObject dObject) Type)
+          → λ(m : kArrow cObject dObject)
+          → ./../Ran/Type cObject dObject dArrow m m

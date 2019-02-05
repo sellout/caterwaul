@@ -1,0 +1,4 @@
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(a : Kind)
+→ λ(b : Kind)
+→ { to : kArrow a b, from : kArrow b a }

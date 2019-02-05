@@ -1,0 +1,18 @@
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in  let MonoidalCategory = ./../Category/Monoidal/Type kArrow kProduct
+
+in    λ(cObject : Kind)
+    → λ(c : MonoidalCategory cObject)
+    →     let vObject = Type
+      
+      in    λ(v : MonoidalCategory vObject)
+          → λ(f : kArrow cObject vObject)
+          → λ(g : kArrow cObject vObject)
+          → λ(a : cObject)
+          → λ(r : vObject)
+          →   ∀(b : { _1 : cObject, _2 : cObject })
+            → c.arrow { _1 = c.op b, _2 = a }
+            → v.arrow { _1 = v.op { _1 = f b._1, _2 = g b._2 }, _2 = r }

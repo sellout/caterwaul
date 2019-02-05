@@ -1,0 +1,7 @@
+    let kArrow = ./../../Function/Kind
+
+in  let kProduct = ./../../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(arrow : kArrow (kProduct object object) Type)
+    → ./../Bifunctor/Type object object object arrow arrow arrow

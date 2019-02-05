@@ -1,0 +1,21 @@
+    let Endofunctor = ./../../../Functor/Endo/Set
+
+in  let EitherT = ./../../Type
+
+in  let Either = ./../../../Either/Type
+
+in  let eitherF = ./../../../Either/functor/endo/set
+
+in  let composeF =
+          ./../../../Compose/functor
+          Type
+          (./../../../uncurryT Type Type Type ./../../../Function/Type)
+          Type
+          (./../../../uncurryT Type Type Type ./../../../Function/Type)
+          Type
+          (./../../../uncurryT Type Type Type ./../../../Function/Type)
+
+in    λ(a : Type)
+    → λ(f : Type → Type)
+    → λ(functor : Endofunctor f)
+    → composeF f functor (Either a) (eitherF a) : Endofunctor (EitherT a f)

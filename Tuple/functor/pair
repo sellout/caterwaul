@@ -1,0 +1,13 @@
+    let Tuple = ./../Type
+
+in    { map =
+            λ(a : { _1 : Type, _2 : Type })
+          → λ(b : { _1 : Type, _2 : Type })
+          → λ(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
+          → λ(t : Tuple a._1 a._2)
+          → { _1 = f._1 t._1, _2 = f._2 t._2 }
+      }
+    : ./../../Functor/Pair/Type
+      Type
+      (./../../uncurryT Type Type Type ./../../Function/Type)
+      (./../../uncurryT Type Type Type Tuple)

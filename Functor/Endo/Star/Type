@@ -1,0 +1,19 @@
+{- This is very similar to Haskell’s `Traversable`, except that it can be
+   implemented for an arbitrary `m`, doesn’t necessarily require an
+  `Applicative` instance, and also may be _more_ constrained than `Applicative`.
+-}
+    let kArrow = ./../../../Function/Kind
+
+in  let kProduct = ./../../../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(arrow : kArrow (kProduct object object) Type)
+    → λ(m : kArrow object object)
+    → ./../Type
+      object
+      ( ./../../../uncurryT
+        object
+        object
+        Type
+        (./../../../Star/Type object arrow m)
+      )

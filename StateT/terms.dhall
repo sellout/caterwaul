@@ -1,0 +1,27 @@
+--     let Monad = ./../Monad/Type Type ./../Function/Type
+
+-- in    λ(s : Type)
+--     → λ(m : Type → Type)
+--     → λ(monad : Monad m)
+--     →   { lift =
+--             (./transformer s).lift m monad
+--         , eval =
+--             ./eval s m monad
+--         , exec =
+--             ./exec s m monad
+--         , get =
+--             ./get s m monad
+--         , gets =
+--             ./gets s m monad
+--         , put =
+--             ./put s m monad
+--         , modify =
+--             ./modify s m monad
+--         }
+--       ∧ ./../Monad/package.dhall
+--         Type
+--         ./../Function/Type
+--         ./../Function/semigroupoid
+--         (./Type s m)
+--         (./monad s m monad)
+<>

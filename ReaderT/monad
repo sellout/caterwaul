@@ -1,0 +1,26 @@
+    let kArrow = ./../Function/Kind
+
+in  let object = Type
+
+in  let arrow = ./../uncurryT Type Type Type ./../Function/Type
+
+in  let category = ./../Function/category
+
+in  let ReaderT = ./Type object arrow
+
+in    λ(r : object)
+    → λ(m : kArrow object object)
+    → λ(monad : ./../Monad/Type object arrow m)
+    → ./../Monad/fromPureBind
+      object
+      arrow
+      category
+      (ReaderT m r)
+      (λ(a : object) → λ(x : a) → λ(_ : r) → monad.identity a x)
+      (   λ(a : object)
+        → λ(b : object)
+        → λ(k : a → ReaderT m r b)
+        → λ(fa : ReaderT m r a)
+        → λ(env : r)
+        → monad.op b (monad.map a (m b) (λ(x : a) → k x env) (fa env))
+      )

@@ -1,0 +1,27 @@
+    let cat = ./../../../Category/Monoidal/Set/cartesian
+
+in    λ(m : Type → Type)
+    → λ(applicative : ./../../../Applicative/Type cat m)
+    →   { map =
+              λ(a : Type)
+            → λ(b : Type)
+            → λ(f : a → m b)
+            → λ(fa : Optional a)
+            → Optional/fold
+              a
+              fa
+              (m (Optional b))
+              (   λ(x : a)
+                → (./../../../Applicative/impliedEndofunctor m applicative).map
+                  b
+                  (Optional b)
+                  (λ(y : b) → [ y ] : Optional b)
+                  (f x)
+              )
+              (applicative.identity (Optional b) ([] : Optional b))
+        }
+      : ./../../../Functor/Endo/Star/Type
+        Type
+        (./../../../uncurryT Type Type Type ./../../../Function/Type)
+        m
+        Optional

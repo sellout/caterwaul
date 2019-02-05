@@ -1,0 +1,33 @@
+    let object = Type
+
+in  let cat = ./../../Category/Monoidal/Set/cartesian
+
+in  let Semigroup = ./../../Semigroup/Type object cat.arrow cat.op
+
+in  let Either = ./../Type
+
+in    λ(a : object)
+    → λ(semigroup : Semigroup a)
+    → ./../../Applicative/fromPureAp
+      (Either a)
+      (λ(b : object) → λ(x : b) → < Right = x | Left : a >)
+      (   λ(b : object)
+        → λ(c : object)
+        → λ(g : Either a (b → c))
+        → λ(fa : Either a b)
+        → merge
+          { Left =
+                λ(l : a)
+              → merge
+                { Left =
+                      λ(ll : a)
+                    → < Left = semigroup.op { _1 = l, _2 = ll } | Right : c >
+                , Right =
+                    λ(_ : b) → < Left = l | Right : c >
+                }
+                fa
+          , Right =
+              λ(f : b → c) → (./../functor/endo/set a).map b c f fa
+          }
+          g
+      )

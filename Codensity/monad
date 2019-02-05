@@ -1,0 +1,29 @@
+    let kArrow = ./../Function/Kind
+
+in  let object = Type
+
+in  let arrow = ./../uncurryT Type Type Type ./../Function/Type
+
+in    λ(category : ./../Category/Type object arrow)
+    →     let Codensity = ./Type object arrow
+      
+      in    λ(m : kArrow object object)
+          → ./../Monad/fromPureBind
+            object
+            arrow
+            category
+            (Codensity m)
+            (   λ(a : object)
+              → λ(x : a)
+              → λ(b : object)
+              → λ(k : arrow { _1 = a, _2 = m b })
+              → k x
+            )
+            (   λ(a : object)
+              → λ(b : object)
+              → λ(k : arrow { _1 = a, _2 = Codensity m b })
+              → λ(codensity : Codensity m a)
+              → λ(c : object)
+              → λ(l : arrow { _1 = b, _2 = m c })
+              → codensity c (λ(x : a) → k x c l)
+            )

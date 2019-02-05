@@ -1,0 +1,10 @@
+{- This definition messes up the type parameter order for `map`. -}
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(arrow : kArrow (kProduct object object) Type)
+    → ./../Monad/Type
+      object
+      (./../uncurryT object object Type (./../Category/Op/Type object arrow))

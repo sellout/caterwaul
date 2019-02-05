@@ -1,0 +1,12 @@
+    let cat = ./../Category/Monoidal/Set/cartesian
+
+in  let Applicative = ./../Applicative/Type cat
+
+in  let Either = ./../Either/Type
+
+in    λ(a : Type)
+    → λ(eitherApplicative : Applicative (Either a))
+    → λ(m : Type → Type)
+    → λ(applicative : Applicative m)
+    →   ./../Compose/applicative m applicative (Either a) eitherApplicative
+      : Applicative (./Type a m)

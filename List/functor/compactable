@@ -1,0 +1,16 @@
+  { map =
+        λ(a : Type)
+      → λ(b : Type)
+      → λ(f : a → Optional b)
+      → λ(l : List a)
+      → List/fold
+        a
+        l
+        (List b)
+        (   λ(x : a)
+          → λ(acc : List b)
+          → Optional/fold b (f x) (List b) (λ(y : b) → [ y ] # acc) acc
+        )
+        ([] : List b)
+  }
+: ./../../Functor/Compactable/Type List

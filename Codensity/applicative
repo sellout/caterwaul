@@ -1,0 +1,25 @@
+    let kArrow = ./../Function/Kind
+
+in  let object = Type
+
+in  let arrow = ./../uncurryT Type Type Type ./../Function/Type
+
+in  let Codensity = ./Type object arrow
+
+in    λ(m : kArrow object object)
+    → ./../Applicative/fromPureAp
+      (Codensity m)
+      (   λ(a : object)
+        → λ(x : a)
+        → λ(b : object)
+        → λ(k : arrow { _1 = a, _2 = m b })
+        → k x
+      )
+      (   λ(a : object)
+        → λ(b : object)
+        → λ(f : Codensity m (a → b))
+        → λ(g : Codensity m a)
+        → λ(c : object)
+        → λ(k : arrow { _1 = b, _2 = m c })
+        → f c (λ(h : arrow { _1 = a, _2 = b }) → g c (λ(x : a) → k (h x)))
+      )

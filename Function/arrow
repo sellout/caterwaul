@@ -1,0 +1,59 @@
+    let identity = λ(a : Type) → λ(x : a) → x
+
+in    { arr =
+          λ(a : Type) → λ(b : Type) → identity (a → b)
+      , split =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(c : Type)
+          → λ(d : Type)
+          → λ(f : a → b)
+          → λ(g : c → d)
+          → λ(p : { _1 : a, _2 : c })
+          → { _1 = f p._1, _2 = g p._2 }
+      , fanout =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(c : Type)
+          → λ(f : a → b)
+          → λ(g : a → c)
+          → λ(x : a)
+          → { _1 = f x, _2 = g x }
+      , identity =
+          identity
+      , op =
+            λ(a : { _1 : Type, _2 : Type })
+          → λ(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
+          → p
+            (a._1 → a._2)
+            (   λ(z : Type)
+              → λ(f : z → a._2)
+              → λ(g : a._1 → z)
+              → λ(x : a._1)
+              → f (g x)
+            )
+      , lmap =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(c : Type)
+          → λ(f : b → a)
+          → λ(p : a → c)
+          → λ(x : b)
+          → p (f x)
+      , rmap =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(c : Type)
+          → λ(f : b → c)
+          → λ(p : a → b)
+          → λ(x : a)
+          → f (p x)
+      , map =
+            λ(a : { _1 : Type, _2 : Type })
+          → λ(b : { _1 : Type, _2 : Type })
+          → λ(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+          → λ(fn : a._1 → a._2)
+          → λ(x : b._1)
+          → f._2 (fn (f._1 x))
+      }
+    : ./../Arrow/Type (./../uncurryT Type Type Type ./Type)

@@ -1,0 +1,18 @@
+    let kArrow = ./../Function/Kind
+
+in  let cat = ./../Category/Monoidal/Set/cartesian
+
+in  let cObject = Type
+
+in  let cpObject = Type
+
+in  let cpArrow = ./../uncurryT Type Type Type ./../Function/Type
+
+in  let dObject = Type
+
+in    λ(p : kArrow cObject cpObject)
+    → λ(applicative : ./../Applicative/Type cat p)
+    → λ(f : kArrow cObject dObject)
+    → λ(a : cpObject)
+    → λ(ran : ./Type cObject cpObject cpArrow p f a)
+    → ran a (applicative.identity a)

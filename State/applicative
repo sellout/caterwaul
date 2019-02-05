@@ -1,0 +1,6 @@
+--   λ(s : Type)
+-- → ./../StateT/applicative
+--   s
+--   (./../Identity/Type Type)
+--   (./../Identity/monad Type ./../Function/Type ./../Function/category)
+<>

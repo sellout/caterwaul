@@ -1,0 +1,12 @@
+    let Either = ./Type
+
+in    λ(a : Type)
+    →   { fold =
+              λ(b : Type)
+            → λ(c : Type)
+            → λ(f : c → b → c)
+            → λ(z : c)
+            → λ(either : Either a b)
+            → merge { Left = λ(_ : a) → z, Right = f z } either
+        }
+      : ./../Foldable/Type (Either a)

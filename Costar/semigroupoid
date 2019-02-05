@@ -1,0 +1,10 @@
+--   λ(object : Kind)
+-- → λ(arrow : object → object → Type)
+-- → λ(semigroupoid : ./../Semigroupoid/Type object arrow)
+-- → λ(w : object → object)
+-- → λ(comonad : ./../Comonad/Type object arrow w)
+-- → ./../Category/extractSemigroupoid
+--   object
+--   arrow
+--   (./category object arrow semigroupoid w comonad)
+<>

@@ -1,0 +1,24 @@
+    let kArrow = ./../../Function/Kind
+
+in  let kProduct = ./../../Tuple/Kind
+
+in    λ(cObject : Kind)
+    → λ(dObject : Kind)
+    → λ(eObject : Kind)
+    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
+    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(eArrow : kArrow (kProduct eObject eObject) Type)
+    → λ(f : kArrow (kProduct cObject dObject) eObject)
+    →     let object = { _1 : cObject, _2 : dObject }
+      
+      in  ./../Type
+          object
+          eObject
+          ( ./../../uncurryT
+            object
+            object
+            Type
+            (./../../Category/Product/Type cObject dObject cArrow dArrow)
+          )
+          eArrow
+          f

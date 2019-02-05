@@ -1,0 +1,12 @@
+{- A duoid (also known as a “united monoid”) is actually a pair of monoids with
+   a shared `identity`. The `additive.op` distributes over the
+  `multiplicative.op` as well.
+-}
+  λ(arrow : Kind → Kind → Kind)
+→ λ(product : Kind → Kind → Kind)
+→ λ(m : Kind)
+→ { additive :
+      ./../Semilattice/Bounded/Kind arrow product m
+  , multiplicative :
+      ./../Monoid/Kind arrow product m
+  }

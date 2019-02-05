@@ -1,0 +1,13 @@
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(arrow : kArrow (kProduct object object) Type)
+    → λ(t : kArrow (kArrow object object) (kArrow object object))
+    → { lift :
+            ∀(m : kArrow object object)
+          → ∀(monad : ./../Monad/Type object arrow m)
+          → ∀(a : object)
+          → arrow { _1 = m a, _2 = t m a }
+      }
