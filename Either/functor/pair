@@ -1,7 +1,7 @@
     let Either = ./../Type
 
 in    λ(m : Type → Type)
-    → λ(functor : ./../../Functor/Endo/Set m)
+    → λ(functor : ./../../Functor/Endo/Type Type ./../../Function/Type m)
     →   { map =
               λ(a : { _1 : Type, _2 : Type })
             → λ(b : { _1 : Type, _2 : Type })

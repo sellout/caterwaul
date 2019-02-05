@@ -3,7 +3,7 @@
 in  let Tuple = ./../../Type
 
 in    λ(m : kArrow Type Type)
-    → λ(functor : ./../../../Functor/Endo/Set m)
+    → λ(functor : ./../../../Functor/Endo/Type Type ./../../../Function/Type m)
     → λ(a : Type)
     →   { map =
               λ(b : Type)

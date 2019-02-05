@@ -4,6 +4,7 @@ in  let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
-    → λ(a : object)
-    → λ(b : object)
-    → { to : arrow { _1 = a, _2 = b }, from : arrow { _1 = b, _2 = a } }
+    →   (   λ(a : { _1 : object, _2 : object })
+          → { to : arrow a, from : arrow { _1 = a._2, _2 = a._1 } }
+        )
+      : kArrow (kProduct object object) Type

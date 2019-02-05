@@ -11,7 +11,12 @@ in    λ(a : Type)
         → λ(c : Type)
         → λ(k : b → Either { _1 = a, _2 = c })
         → λ(fa : Either { _1 = a, _2 = b })
-        →     let map = (./functor/endo/set a).map
+        →     let map =
+                    ( ./functor/endo/star
+                      (./../Identity/Type Type)
+                      ./../Identity/applicative
+                      a
+                    ).map
           
           in  merge
               { Left =

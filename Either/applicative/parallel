@@ -27,7 +27,16 @@ in    λ(a : object)
                 }
                 fa
           , Right =
-              λ(f : b → c) → (./../functor/endo/set a).map b c f fa
+                λ(f : b → c)
+              → ( ./../functor/endo/star
+                  (./../../Identity/Type Type)
+                  ./../../Identity/applicative
+                  a
+                ).map
+                b
+                c
+                f
+                fa
           }
           g
       )

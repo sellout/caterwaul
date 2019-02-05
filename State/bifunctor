@@ -23,9 +23,9 @@ in    λ(object : Kind)
                 → λ(b : { _1 : object, _2 : object })
                 → λ ( f
                     : { _1 :
-                          { _1 :
+                          { to :
                               arrow { _1 = a._1, _2 = b._1 }
-                          , _2 :
+                          , from :
                               arrow { _1 = b._1, _2 = a._1 }
                           }
                       , _2 :
@@ -55,11 +55,11 @@ in    λ(object : Kind)
                               )
                           → arrowsOut
                             (product a)
-                            (bifunctor.map a b { _1 = f._1._1, _2 = f._2 })
+                            (bifunctor.map a b { _1 = f._1.to, _2 = f._2 })
                             st
                         )
                       )
-                      f._1._2
+                      f._1.from
                   )
             }
           : ./../Functor/Bifunctor/Type

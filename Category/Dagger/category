@@ -13,7 +13,7 @@ in    λ(object : Kind)
       
       in    { identity =
                   λ(a : object)
-                → { _1 = category.identity a, _2 = opCategory.identity a }
+                → { to = category.identity a, from = opCategory.identity a }
             , op =
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
@@ -25,7 +25,7 @@ in    λ(object : Kind)
                         )
                       → r
                     )
-                → { _1 =
+                → { to =
                       category.op
                       a
                       (   λ(r : Type)
@@ -40,10 +40,10 @@ in    λ(object : Kind)
                           (   λ(z : object)
                             → λ(f : Dagger { _1 = z, _2 = a._2 })
                             → λ(g : Dagger { _1 = a._1, _2 = z })
-                            → arrowsOut z f._1 g._1
+                            → arrowsOut z f.to g.to
                           )
                       )
-                  , _2 =
+                  , from =
                       opCategory.op
                       a
                       (   λ(r : Type)
@@ -58,7 +58,7 @@ in    λ(object : Kind)
                           (   λ(z : object)
                             → λ(f : Dagger { _1 = z, _2 = a._2 })
                             → λ(g : Dagger { _1 = a._1, _2 = z })
-                            → arrowsOut z f._2 g._2
+                            → arrowsOut z f.from g.from
                           )
                       )
                   }

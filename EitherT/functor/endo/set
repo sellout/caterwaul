@@ -1,10 +1,13 @@
-    let Endofunctor = ./../../../Functor/Endo/Set
+    let Endofunctor = ./../../../Functor/Endo/Type Type ./../../../Function/Type
 
 in  let EitherT = ./../../Type
 
 in  let Either = ./../../../Either/Type
 
-in  let eitherF = ./../../../Either/functor/endo/set
+in  let eitherF =
+          ./../../../Either/functor/endo/star
+          (./../../../Identity/Type Type)
+          ./../../../Identity/applicative
 
 in  let composeF =
           ./../../../Compose/functor
