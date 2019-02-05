@@ -1452,21 +1452,6 @@
               ∀(Left : a) → < Left : a | Right : b >
           , Right :
               ∀(Right : b) → < Left : a | Right : b >
-          , fromLeft :
-              ∀(def : a) → ∀(e : < Left : a | Right : b >) → a
-          , fromRight :
-              ∀(def : b) → ∀(e : < Left : a | Right : b >) → b
-          , isLeft :
-              ∀(e : < Left : a | Right : b >) → Bool
-          , isRight :
-              ∀(e : < Left : a | Right : b >) → Bool
-          , lefts :
-              ∀(eithers : List < Left : a | Right : b >) → List a
-          , partition :
-                ∀(eithers : List < Left : a | Right : b >)
-              → { lefts : List a, rights : List b }
-          , rights :
-              ∀(eithers : List < Left : a | Right : b >) → List b
           }
     , pair :
         { map :
@@ -3097,20 +3082,6 @@ Type
   }
 </pre></dd>
 </dl>
-<h4>fromLeft (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → ∀(def : a) → ∀(e : < Left : a | Right : b >) → a
-</pre></dd>
-</dl>
-<h4>fromRight (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → ∀(def : b) → ∀(e : < Left : a | Right : b >) → b
-</pre></dd>
-</dl>
 <h3 style="background-color: #bbb; width: 100%">./Either/functor</h3>
 <h4 style="background-color: #bbb; width: 100%">./Either/functor/endo</h4>
 <h4>set (term)</h4>
@@ -3173,27 +3144,6 @@ Type
   }
 </pre></dd>
 </dl>
-<h4>isLeft (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → ∀(e : < Left : a | Right : b >) → Bool
-</pre></dd>
-</dl>
-<h4>isRight (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → ∀(e : < Left : a | Right : b >) → Bool
-</pre></dd>
-</dl>
-<h4>lefts (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → ∀(eithers : List < Left : a | Right : b >) → List a
-</pre></dd>
-</dl>
 <h4>monad (term)</h4>
 <p></p>
 <dl>
@@ -3212,23 +3162,6 @@ Type
       → ∀(fa : < Left : a@1 | Right : < Left : a@1 | Right : a > >)
       → < Left : a@1 | Right : a >
   }
-</pre></dd>
-</dl>
-<h4>partition (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(a : Type)
-→ ∀(b : Type)
-→ ∀(eithers : List < Left : a | Right : b >)
-→ { lefts : List a, rights : List b }
-</pre></dd>
-</dl>
-<h4>rights (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → ∀(eithers : List < Left : a | Right : b >) → List b
 </pre></dd>
 </dl>
 <h4>terms.dhall (term)</h4>
@@ -3279,21 +3212,6 @@ Type
           ∀(Left : a) → < Left : a | Right : b >
       , Right :
           ∀(Right : b) → < Left : a | Right : b >
-      , fromLeft :
-          ∀(def : a) → ∀(e : < Left : a | Right : b >) → a
-      , fromRight :
-          ∀(def : b) → ∀(e : < Left : a | Right : b >) → b
-      , isLeft :
-          ∀(e : < Left : a | Right : b >) → Bool
-      , isRight :
-          ∀(e : < Left : a | Right : b >) → Bool
-      , lefts :
-          ∀(eithers : List < Left : a | Right : b >) → List a
-      , partition :
-            ∀(eithers : List < Left : a | Right : b >)
-          → { lefts : List a, rights : List b }
-      , rights :
-          ∀(eithers : List < Left : a | Right : b >) → List b
       }
 , pair :
     { map :
@@ -9538,58 +9456,6 @@ Type
 <>
 </pre></dd>
 </dl>
-<h4>curry (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(a : Type)
-→ ∀(b : Type)
-→ ∀(c : Type)
-→ ∀(f : { _1 : a, _2 : b } → c)
-→ ∀(x : a)
-→ ∀(y : b)
-→ c
-</pre></dd>
-</dl>
-<h4>curryT (term)</h4>
-<p>{- A `Type`-level definition of `uncurry`.
--}</p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(a : Kind)
-→ ∀(b : Kind)
-→ ∀(c : Kind)
-→ ∀(f : { _1 : a, _2 : b } → c)
-→ ∀(x : a)
-→ ∀(y : b)
-→ c
-</pre></dd>
-</dl>
 <h2 style="background-color: #bbb; width: 100%">./docs</h2>
 <h2 style="background-color: #bbb; width: 100%">./scripts</h2>
-<h4>uncurry (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(a : Type)
-→ ∀(b : Type)
-→ ∀(c : Type)
-→ ∀(f : a → b → c)
-→ ∀(p : { _1 : a, _2 : b })
-→ c
-</pre></dd>
-</dl>
-<h4>uncurryT (term)</h4>
-<p>{- A `Type`-level definition of `uncurry`.
--}</p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(a : Kind)
-→ ∀(b : Kind)
-→ ∀(c : Kind)
-→ ∀(f : a → b → c)
-→ ∀(p : { _1 : a, _2 : b })
-→ c
-</pre></dd>
-</dl>
 </body></html>
