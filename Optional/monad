@@ -1,5 +1,5 @@
   { identity =
-      λ(a : Type) → λ(x : a) → [ x ] : Optional a
+      λ(a : Type) → λ(x : a) → Some x
   , op =
         λ(a : Type)
       → λ(mma : Optional (Optional a))
@@ -8,6 +8,6 @@
         mma
         (Optional a)
         ((./../Function/category).identity (Optional a))
-        ([] : Optional a)
+        (None a)
   }
 : ./../Monad/Type Type ./../Function/Type Optional

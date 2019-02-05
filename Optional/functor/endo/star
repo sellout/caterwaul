@@ -15,10 +15,10 @@ in    λ(m : Type → Type)
                 → (./../../../Applicative/impliedEndofunctor m applicative).map
                   b
                   (Optional b)
-                  (λ(y : b) → [ y ] : Optional b)
+                  (λ(y : b) → Some y)
                   (f x)
               )
-              (applicative.identity (Optional b) ([] : Optional b))
+              (applicative.identity (Optional b) (None b))
         }
       : ./../../../Functor/Endo/Star/Type
         Type
