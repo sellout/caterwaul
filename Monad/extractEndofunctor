@@ -1,9 +1,0 @@
-    let kArrow = ./../Function/Kind
-
-in  let kProduct = ./../Tuple/Kind
-
-in    λ(object : Kind)
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → λ(m : kArrow object object)
-    → λ(monad : ./Type object arrow m)
-    → monad.{ map } : ./../Functor/Endo/Type object arrow m

@@ -6,48 +6,46 @@ in  let Either = ./../Either/Type
 
 in    λ(a : Type)
     → λ(m : Type → Type)
+    → λ(functor : ./../Functor/Endo/Type Type ./../Function/Type m)
     → λ(monad : Monad m)
-    →     ./functor/endo/set
-          a
-          m
-          (./../Monad/extractEndofunctor Type ./../Function/Type m monad)
-        ∧ { identity =
-                λ(i : Type)
-              → λ(x : i)
-              → monad.identity
-                (Either { _1 = a, _2 = i })
-                < Right = x | Left : a >
-          , op =
-                  let bind =
-                          λ(b : Type)
-                        → λ(c : Type)
-                        → λ(k : b → EitherT a m c)
-                        → ( ./../Monad/terms.dhall
-                            Type
-                            ./../Function/Type
-                            ./../Function/semigroupoid
-                            m
-                            monad
-                          ).bind
-                          (Either { _1 = a, _2 = b })
-                          (Either { _1 = a, _2 = c })
-                          (   λ(either : Either { _1 = a, _2 = b })
-                            → merge
-                              { Left =
-                                    λ(l : a)
-                                  → monad.identity
-                                    (Either { _1 = a, _2 = c })
-                                    < Left = l | Right : c >
-                              , Right =
-                                  k
-                              }
-                              either
-                          )
-              
-              in    λ(b : Type)
-                  → bind
-                    (EitherT a m b)
-                    b
-                    ((./../Function/category).identity (EitherT a m b))
-          }
+    →   { identity =
+              λ(i : Type)
+            → λ(x : i)
+            → monad.identity
+              (Either { _1 = a, _2 = i })
+              < Right = x | Left : a >
+        , op =
+                let bind =
+                        λ(b : Type)
+                      → λ(c : Type)
+                      → λ(k : b → EitherT a m c)
+                      → ( ./../Monad/terms.dhall
+                          Type
+                          ./../Function/Type
+                          ./../Function/semigroupoid
+                          m
+                          functor
+                          monad
+                        ).bind
+                        (Either { _1 = a, _2 = b })
+                        (Either { _1 = a, _2 = c })
+                        (   λ(either : Either { _1 = a, _2 = b })
+                          → merge
+                            { Left =
+                                  λ(l : a)
+                                → monad.identity
+                                  (Either { _1 = a, _2 = c })
+                                  < Left = l | Right : c >
+                            , Right =
+                                k
+                            }
+                            either
+                        )
+            
+            in    λ(b : Type)
+                → bind
+                  (EitherT a m b)
+                  b
+                  ((./../Function/category).identity (EitherT a m b))
+        }
       : Monad (EitherT a m)

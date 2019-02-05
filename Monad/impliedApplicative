@@ -5,6 +5,7 @@ in  let object = Type
 in  let cat = ./../Category/Monoidal/Set/cartesian
 
 in    λ(f : kArrow object object)
+    → λ(functor : ./../Functor/Endo/Type object cat.arrow f)
     → λ(monad : ./Type object cat.arrow f)
     →   { identity =
             monad.identity
@@ -20,11 +21,11 @@ in    λ(f : kArrow object object)
                 → λ(d : { _1 : f b._1, _2 : f b._2 })
                 → monad.op
                   i
-                  ( monad.map
+                  ( functor.map
                     (b._2 → i)
                     (f i)
-                    (λ(fn : b._2 → i) → monad.map b._2 i fn d._2)
-                    ( monad.map
+                    (λ(fn : b._2 → i) → functor.map b._2 i fn d._2)
+                    ( functor.map
                       b._1
                       (b._2 → i)
                       (λ(x : b._1) → λ(y : b._2) → fn { _1 = x, _2 = y })

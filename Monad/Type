@@ -7,9 +7,6 @@ in  let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
-    → λ(m : kArrow object object)
-    →   ./../Functor/Endo/Type object arrow m
-      ⩓ ./../Monoid/Type
-        (kArrow object object)
-        (./../Category/Monoidal/Endofunctor/monadic object arrow)
-        m
+    → ./../Monoid/Type
+      (kArrow object object)
+      (./../Category/Monoidal/Endofunctor/monadic object arrow)

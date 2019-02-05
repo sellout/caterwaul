@@ -5,13 +5,6 @@ in  let object = Type
 in  let arrow = ./../Function/Type
 
 in    λ(f : kArrow object object)
+    → λ(functor : ./../Functor/Endo/Type object arrow f)
     → λ(comonad : ./../Comonad/Type object arrow f)
-    → ./../Lan/lower
-      object
-      object
-      arrow
-      f
-      (./../Comonad/extractEndofunctor object arrow f comonad)
-      f
-      f
-      comonad.op
+    → ./../Lan/lower object object arrow f functor f f comonad.op

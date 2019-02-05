@@ -7,16 +7,10 @@ in    λ(cObject : Kind)
     → λ(dObject : Kind)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
     → λ(f : kArrow dObject cObject)
-    → λ(fFunctor : ./../Functor/Type dObject cObject dArrow cArrow f)
     → λ(g : kArrow cObject dObject)
     → λ(gFunctor : ./../Functor/Type cObject dObject cArrow dArrow g)
     → λ(adjunction : ./../Adjunction/Type cObject dObject cArrow dArrow f g)
-    →   { map =
-              λ(a : dObject)
-            → λ(b : dObject)
-            → λ(fn : dArrow { _1 = a, _2 = b })
-            → gFunctor.map (f a) (f b) (fFunctor.map a b fn)
-        , identity =
+    →   { identity =
             adjunction.unit
         , op =
               λ(a : dObject)

@@ -1,12 +1,14 @@
-    let cat = ./../../../Category/Monoidal/Set/cartesian
+    let kArrow = ./../../../Function/Kind
 
-in    λ(m : Type → Type)
+in  let cat = ./../../../Category/Monoidal/Set/cartesian
+
+in    λ(m : kArrow Type Type)
     → λ(applicative : ./../../../Applicative/Type cat m)
     → λ(a : Type)
     →   { map =
               λ(b : Type)
             → λ(c : Type)
-            → λ(f : b → m c)
+            → λ(f : cat.arrow { _1 = b, _2 = m c })
             → ( ./../pair
                 m
                 (./../../../Applicative/impliedEndofunctor m applicative)

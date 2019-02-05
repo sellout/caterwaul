@@ -8,13 +8,15 @@ in    λ(object : Kind)
     → λ(m : kArrow object object)
     →     let starArrow = ./Type object arrow m
       
-      in    λ(monad : ./../Monad/Type object arrow m)
+      in    λ(functor : ./../Functor/Endo/Type object arrow m)
+          → λ(monad : ./../Monad/Type object arrow m)
           →     let bind =
                       ( ./../Monad/impliedStarfunctor
                         object
                         arrow
                         semigroupoid
                         m
+                        functor
                         monad
                       ).map
             

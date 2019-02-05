@@ -13,6 +13,11 @@ in  { traverse =
           ./../Function/Type
           ./../Function/semigroupoid
           (λ(b : Type) → Either { _1 = a, _2 = b })
+          ( ./functor/endo/star
+            (./../Identity/Type Type)
+            ./../Identity/applicative
+            a
+          )
           (./monad a)
     , ab =
           λ(a : Type)

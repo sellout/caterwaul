@@ -5,5 +5,10 @@ in  let Either = ./../Type
 in    λ(a : Type)
     →   ./../../Monad/impliedApplicative
         (λ(b : Type) → Either { _1 = a, _2 = b })
+        ( ./../functor/endo/star
+          (./../../Identity/Type Type)
+          ./../../Identity/applicative
+          a
+        )
         (./../monad a)
       : ./../../Applicative/Type cat (λ(b : Type) → Either { _1 = a, _2 = b })

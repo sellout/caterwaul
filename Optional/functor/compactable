@@ -3,5 +3,9 @@
   ./../../Function/Type
   ./../../Function/semigroupoid
   Optional
+  ( ./../functor/endo/star
+    (./../../Identity/Type Type)
+    ./../../Identity/applicative
+  )
   ./../monad
 : ./../../Functor/Compactable/type Optional

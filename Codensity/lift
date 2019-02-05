@@ -6,6 +6,7 @@ in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → λ(semigroupoid : ./../Semigroupoid/Type object arrow)
     → λ(f : kArrow object object)
+    → λ(functor : ./../Functor/Endo/Type object arrow f)
     → λ(monad : ./../Monad/Type object arrow f)
     → ./../Ran/lift
       object
@@ -15,7 +16,7 @@ in    λ(object : Kind)
       arrow
       semigroupoid
       f
-      (./../Monad/extractEndofunctor object arrow f monad)
+      functor
       f
       f
       monad.op

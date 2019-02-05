@@ -15,11 +15,7 @@ in    λ(semigroupoid : ./../Semigroupoid/Type object cat.arrow)
           → λ(fComonad : Comonad f)
           → λ(g : kArrow object object)
           → λ(gComonad : Comonad g)
-          →   { map =
-                    λ(b : object)
-                  → λ(a : object)
-                  → (./functor object cat semigroupoid f g).map a b
-              , identity =
+          →   { identity =
                     λ(a : object)
                   → λ(day : Day { _1 = f, _2 = g } a)
                   → day

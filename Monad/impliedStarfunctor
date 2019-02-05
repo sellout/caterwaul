@@ -6,6 +6,7 @@ in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → λ(semigroupoid : ./../Semigroupoid/Type object arrow)
     → λ(m : kArrow object object)
+    → λ(functor : ./../Functor/Endo/Type object arrow m)
     → λ(monad : ./Type object arrow m)
     →   { map =
               λ(a : object)
@@ -20,7 +21,7 @@ in    λ(object : Kind)
                       → arrow { _1 = m a, _2 = z }
                       → r
                     )
-                → arrowsOut (m (m b)) (monad.op b) (monad.map a (m b) f)
+                → arrowsOut (m (m b)) (monad.op b) (functor.map a (m b) f)
               )
         }
       : ./../Functor/Star/Type object arrow m m

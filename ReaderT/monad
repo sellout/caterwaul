@@ -10,6 +10,7 @@ in  let ReaderT = ./Type object arrow
 
 in    λ(r : object)
     → λ(m : kArrow object object)
+    → λ(functor : ./../Functor/Endo/Type object arrow m)
     → λ(monad : ./../Monad/Type object arrow m)
     → ./../Monad/fromPureBind
       object
@@ -22,5 +23,5 @@ in    λ(r : object)
         → λ(k : a → ReaderT m { _1 = r, _2 = b })
         → λ(fa : ReaderT m { _1 = r, _2 = a })
         → λ(env : r)
-        → monad.op b (monad.map a (m b) (λ(x : a) → k x env) (fa env))
+        → monad.op b (functor.map a (m b) (λ(x : a) → k x env) (fa env))
       )
