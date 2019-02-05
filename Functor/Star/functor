@@ -1,0 +1,47 @@
+{- If there is a natural transformation from `n` to `m`, then a m-Star functor
+   can be made into an n-Star functor.
+-}
+    let kArrow = ./../../Function/Kind
+
+in  let kProduct = ./../../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(arrow : kArrow (kProduct object object) Type)
+    → λ(category : ./../../Category/Type object arrow)
+    →     let endoObject = kArrow object object
+      
+      in  let endoArrow = ./../../NaturalTransformation/Type object object arrow
+      
+      in    λ(f : endoObject)
+          →   { map =
+                    λ(m : endoObject)
+                  → λ(n : endoObject)
+                  → λ(natural : endoArrow { _1 = n, _2 = m })
+                  → λ(star : ./Type object arrow m f)
+                  → { map =
+                          λ(a : object)
+                        → λ(b : object)
+                        → λ(fn : arrow { _1 = a, _2 = n b })
+                        → star.map
+                          a
+                          b
+                          ( category.op
+                            { _1 = a, _2 = m b }
+                            (   λ(r : Type)
+                              → λ ( arrowsOut
+                                  :   ∀(z : object)
+                                    → arrow { _1 = z, _2 = m b }
+                                    → arrow { _1 = a, _2 = z }
+                                    → r
+                                  )
+                              → arrowsOut (n b) (natural b) fn
+                            )
+                          )
+                    }
+              }
+            : ./../../Functor/Contravariant
+              endoObject
+              Type
+              endoArrow
+              ./../../Function/Type
+              (λ(a : endoObject) → ./Type object arrow a f)
