@@ -14,4 +14,4 @@ in    λ(object : Kind)
         , op =
             ./../../../Compose/Type object object object
         }
-      : ./../../Monoidal/Type kArrow kProduct (kArrow object object)
+      : ./../../Monoidal/Kind kArrow kProduct (kArrow object object)

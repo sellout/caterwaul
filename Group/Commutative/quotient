@@ -3,7 +3,7 @@
 in  let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
-    → λ(cat : ./../../Category/Monoidal/Type kArrow kProduct object)
+    → λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
     → λ(category : ./../../Category/Type object cat.arrow)
     → λ ( bifunctor
         : ./../../Functor/Bifunctor/Type

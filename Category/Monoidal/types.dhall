@@ -3,7 +3,7 @@
 in  let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
-    → λ(cat : ./../../Category/Monoidal/Type kArrow kProduct object)
+    → λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
     →     let Endofunctor = ./../../Functor/Endo/Type
       
       in  let Star = ./../../Star/Type object cat.arrow

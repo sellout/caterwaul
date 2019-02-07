@@ -3,10 +3,10 @@
 in  let kProduct = ./../Tuple/Kind
 
 in    λ(cObject : Kind)
-    → λ(c : ./../Category/Monoidal/Type kArrow kProduct cObject)
+    → λ(c : ./../Category/Monoidal/Kind kArrow kProduct cObject)
     →     let vObject = Type
       
-      in    λ(v : ./../Category/Monoidal/Type kArrow kProduct vObject)
+      in    λ(v : ./../Category/Monoidal/Kind kArrow kProduct vObject)
           →   (   λ ( f
                     : { _1 :
                           kArrow cObject vObject

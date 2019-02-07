@@ -6,7 +6,7 @@ in  let kProduct = ./../../Tuple/Kind
 
 in  let object = Type
 
-in    λ(cat : ./../../Category/Monoidal/Type kArrow kProduct object)
+in    λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
     →   { arrow =
             ./../../NaturalTransformation/Type object object cat.arrow
         , additive =
@@ -22,4 +22,4 @@ in    λ(cat : ./../../Category/Monoidal/Type kArrow kProduct object)
                 ./../../Compose/Type object object object
             }
         }
-      : ./../Duoidal/Type kArrow kProduct (kArrow object object)
+      : ./../Duoidal/Kind kArrow kProduct (kArrow object object)

@@ -679,7 +679,7 @@
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Duoidal</h3>
-<h4>Type (kind)</h4>
+<h4>Kind (kind)</h4>
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
@@ -825,8 +825,24 @@
   }
 </pre></dd>
 </dl>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+  ∀(kArrow : Kind → Kind → Kind)
+→ ∀(kProduct : Kind → Kind → Kind)
+→ ∀(object : Kind)
+→ Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(object : Kind)
+→ { arrow : kArrow (kProduct object object) Type }
+</pre></dd>
+</dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Monoidal</h3>
-<h4>Type (kind)</h4>
+<h4>Kind (kind)</h4>
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
@@ -1234,7 +1250,7 @@
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Rig</h3>
-<h4>Type (kind)</h4>
+<h4>Kind (kind)</h4>
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>

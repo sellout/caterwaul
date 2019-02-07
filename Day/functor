@@ -3,7 +3,7 @@
 in  let kProduct = ./../Tuple/Kind
 
 in    λ(cObject : Kind)
-    → λ(c : ./../Category/Monoidal/Type kArrow kProduct cObject)
+    → λ(c : ./../Category/Monoidal/Kind kArrow kProduct cObject)
     → λ(semigroupoid : ./../Semigroupoid/Type cObject c.arrow)
     →     let vObject = Type
       

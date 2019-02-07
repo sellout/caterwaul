@@ -4,7 +4,7 @@ in  let kProduct = ./../Tuple/Kind
 
 in  let object = Type
 
-in    λ(cat : ./../Category/Monoidal/Type kArrow kProduct object)
+in    λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)
     → ./../Monoid/Type
       (kArrow object object)
       (./../Category/Endofunctor/monoidal/applicative cat)

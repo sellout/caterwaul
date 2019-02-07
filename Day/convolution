@@ -2,7 +2,7 @@
 
 in  let kProduct = ./../Tuple/Kind
 
-in  let MonoidalCategory = ./../Category/Monoidal/Type kArrow kProduct
+in  let MonoidalCategory = ./../Category/Monoidal/Kind kArrow kProduct
 
 in    λ(cObject : Kind)
     → λ(c : MonoidalCategory cObject)
