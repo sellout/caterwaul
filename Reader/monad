@@ -2,21 +2,15 @@
 
 in  let arrow = ./../Function/Type
 
-in  let category = ./../Function/category
-
 in  let Reader = ./Type object arrow
 
 in    λ(r : object)
-    → ./../Monad/fromPureBind
-      object
-      arrow
-      category
-      (λ(b : object) → Reader { _1 = r, _2 = b })
-      (λ(a : object) → λ(x : a) → λ(_ : r) → x)
-      (   λ(a : object)
-        → λ(b : object)
-        → λ(k : a → Reader { _1 = r, _2 = b })
-        → λ(fa : Reader { _1 = r, _2 = a })
-        → λ(env : r)
-        → k (fa env) env
-      )
+    →   { identity =
+            λ(a : object) → λ(x : a) → λ(_ : r) → x
+        , op =
+              λ(a : object)
+            → λ(fa : Reader { _1 = r, _2 = Reader { _1 = r, _2 = a } })
+            → λ(env : r)
+            → fa env env
+        }
+      : ./../Monad/Type object arrow (λ(a : object) → Reader { _1 = r, _2 = a })

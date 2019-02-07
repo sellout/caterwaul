@@ -4,24 +4,24 @@ in  let object = Type
 
 in  let arrow = ./../Function/Type
 
-in  let category = ./../Function/category
-
 in  let ReaderT = ./Type object arrow
 
 in    λ(r : object)
     → λ(m : kArrow object object)
     → λ(functor : ./../Functor/Endo/Type object arrow m)
     → λ(monad : ./../Monad/Type object arrow m)
-    → ./../Monad/fromPureBind
-      object
-      arrow
-      category
-      (λ(a : object) → ReaderT m { _1 = r, _2 = a })
-      (λ(a : object) → λ(x : a) → λ(_ : r) → monad.identity a x)
-      (   λ(a : object)
-        → λ(b : object)
-        → λ(k : a → ReaderT m { _1 = r, _2 = b })
-        → λ(fa : ReaderT m { _1 = r, _2 = a })
-        → λ(env : r)
-        → monad.op b (functor.map a (m b) (λ(x : a) → k x env) (fa env))
-      )
+    → { identity =
+          λ(a : object) → λ(x : a) → λ(_ : r) → monad.identity a x
+      , op =
+            λ(a : Type)
+          → λ(fa : ReaderT m { _1 = r, _2 = ReaderT m { _1 = r, _2 = a } })
+          → λ(env : r)
+          → monad.op
+            a
+            ( functor.map
+              (ReaderT m { _1 = r, _2 = a })
+              (m a)
+              (λ(x : ReaderT m { _1 = r, _2 = a }) → x env)
+              (fa env)
+            )
+      }

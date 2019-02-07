@@ -2,24 +2,36 @@
 
 in  let object = Type
 
-in  let arrow = ./../Function/Type
+in  let cat = ./../Category/Monoidal/Set/cartesian
 
-in  let Codensity = ./Type object arrow
+in  let Codensity = ./Type object cat.arrow
 
 in    λ(m : kArrow object object)
-    → ./../Applicative/fromPureAp
-      (Codensity m)
-      (   λ(a : object)
-        → λ(x : a)
-        → λ(b : object)
-        → λ(k : arrow { _1 = a, _2 = m b })
-        → k x
-      )
-      (   λ(a : object)
-        → λ(b : object)
-        → λ(f : Codensity m (a → b))
-        → λ(g : Codensity m a)
-        → λ(c : object)
-        → λ(k : arrow { _1 = b, _2 = m c })
-        → f c (λ(h : arrow { _1 = a, _2 = b }) → g c (λ(x : a) → k (h x)))
-      )
+    →   { identity =
+            λ(a : object) → λ(x : a) → λ(b : object) → λ(k : a → m b) → k x
+        , op =
+              λ(i : object)
+            → λ ( day
+                :   ∀(r : Type)
+                  → (   ∀(d : { _1 : object, _2 : object })
+                      → ({ _1 : d._1, _2 : d._2 } → i)
+                      → { _1 : Codensity m d._1, _2 : Codensity m d._2 }
+                      → r
+                    )
+                  → r
+                )
+            → day
+              (∀(b : object) → (i → m b) → m b)
+              (   λ(p : { _1 : object, _2 : object })
+                → λ(fn : { _1 : p._1, _2 : p._2 } → i)
+                → λ(args : { _1 : Codensity m p._1, _2 : Codensity m p._2 })
+                → λ(c : object)
+                → λ(k : i → m c)
+                → args._1
+                  c
+                  (   λ(x : p._1)
+                    → args._2 c (λ(x : p._2) → k (fn { _1 = x@1, _2 = x }))
+                  )
+              )
+        }
+      : ./../Applicative/Type cat (Codensity m)

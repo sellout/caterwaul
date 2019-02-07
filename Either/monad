@@ -1,28 +1,27 @@
     let Either = ./Type
 
 in    λ(a : Type)
-    → ./../Monad/fromPureBind
-      Type
-      ./../Function/Type
-      ./../Function/category
-      (λ(b : Type) → Either { _1 = a, _2 = b })
-      (λ(b : Type) → λ(x : b) → < Right = x | Left : a >)
-      (   λ(b : Type)
-        → λ(c : Type)
-        → λ(k : b → Either { _1 = a, _2 = c })
-        → λ(fa : Either { _1 = a, _2 = b })
-        →     let map =
-                    ( ./functor/endo/star
-                      (./../Identity/Type Type)
-                      ./../Identity/applicative
-                      a
-                    ).map
-          
-          in  merge
+    →   { identity =
+            λ(b : Type) → λ(x : b) → < Right = x | Left : a >
+        , op =
+              λ(b : Type)
+            → λ(fa : Either { _1 = a, _2 = Either { _1 = a, _2 = b } })
+            → merge
               { Left =
-                  λ(l : a) → < Left = l | Right : c >
+                  λ(l : a) → < Left = l | Right : b >
               , Right =
-                  λ(e : Either { _1 = a, _2 = c }) → e
+                  λ(e : < Left : a | Right : b >) → e
               }
-              (map b (Either { _1 = a, _2 = c }) k fa)
-      )
+              ( merge
+                { Left =
+                    λ(x : a) → < Left = x | Right : Either { _1 = a, _2 = b } >
+                , Right =
+                    λ(x : Either { _1 = a, _2 = b }) → < Right = x | Left : a >
+                }
+                fa
+              )
+        }
+      : ./../Monad/Type
+        Type
+        ./../Function/Type
+        (λ(b : Type) → Either { _1 = a, _2 = b })
