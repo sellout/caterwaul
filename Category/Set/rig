@@ -9,4 +9,4 @@ in    { arrow =
       , multiplicative =
           { identity = {}, op = ./../../Tuple/Type }
       }
-    : ./Type kArrow kProduct Type
+    : ./../Rig/Type kArrow kProduct Type

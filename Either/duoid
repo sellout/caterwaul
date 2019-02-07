@@ -2,7 +2,7 @@
 
 in  let object = Type
 
-in  let cat = ./../Category/Monoidal/Set/cartesian
+in  let cat = ./../Category/Set/monoidal/cartesian
 
 in  let CommutativeSemigroup =
           ./../Semigroup/Commutative/Type object cat.arrow cat.op
@@ -16,5 +16,5 @@ in    λ(a : Type)
         }
       : ./../Duoid/Type
         (kArrow object object)
-        (./../Category/Monoidal/Endofunctor/applicative cat)
+        (./../Category/Endofunctor/monoidal/applicative cat)
         (λ(b : Type) → ./Type { _1 = a, _2 = b })

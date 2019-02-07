@@ -1,5 +1,5 @@
 ./../Monoid/extractSemigroup
 Type
-./../Category/Monoidal/Set/cartesian
+./../Category/Set/monoidal/cartesian
 Text
 ./monoid

@@ -1,6 +1,6 @@
     let object = Type
 
-in  let cat = ./../../Category/Monoidal/Set/cartesian
+in  let cat = ./../../Category/Set/monoidal/cartesian
 
 in  let Semigroup = ./../../Semigroup/Type object cat.arrow cat.op
 

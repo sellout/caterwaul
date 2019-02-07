@@ -22,4 +22,4 @@ in    λ(cat : ./../../Category/Monoidal/Type kArrow kProduct object)
                 ./../../Compose/Type object object object
             }
         }
-      : ./Type kArrow kProduct (kArrow object object)
+      : ./../Duoidal/Type kArrow kProduct (kArrow object object)

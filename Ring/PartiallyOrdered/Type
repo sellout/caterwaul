@@ -1,4 +1,4 @@
-    let Set = ./../../Category/Monoidal/Set/cartesian
+    let Set = ./../../Category/Set/monoidal/cartesian
 
 in    λ(m : Type)
     → { additive :

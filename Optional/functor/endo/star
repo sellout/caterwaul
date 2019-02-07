@@ -1,4 +1,4 @@
-    let cat = ./../../../Category/Monoidal/Set/cartesian
+    let cat = ./../../../Category/Set/monoidal/cartesian
 
 in    λ(m : Type → Type)
     → λ(applicative : ./../../../Applicative/Type cat m)

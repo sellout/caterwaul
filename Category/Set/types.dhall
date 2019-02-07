@@ -1,1 +1,1 @@
-./../Monoidal/types.dhall Type ./../Monoidal/Set/cartesian
+./../Monoidal/types.dhall Type ./../Set/monoidal/cartesian

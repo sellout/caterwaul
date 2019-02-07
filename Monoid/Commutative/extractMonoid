@@ -1,6 +1,6 @@
     let object = Type
 
-in  let cat = ./../../Category/Monoidal/Set/cartesian
+in  let cat = ./../../Category/Set/monoidal/cartesian
 
 in    λ(m : object)
     → λ(monoid : ./Set m)

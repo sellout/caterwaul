@@ -2,7 +2,7 @@
 
 in  let object = Type
 
-in  let cat = ./../Category/Monoidal/Set/cartesian
+in  let cat = ./../Category/Set/monoidal/cartesian
 
 in    λ(f : kArrow object object)
     → λ(functor : ./../Functor/Endo/Type object cat.arrow f)

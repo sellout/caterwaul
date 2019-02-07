@@ -9,4 +9,4 @@ in    λ(cat : ./../../Monoidal/Type kArrow kProduct object)
       kArrow
       kProduct
       (kArrow object object)
-      (./../../Duoidal/Endofunctor cat)
+      (./../duoidal cat)

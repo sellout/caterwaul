@@ -9,4 +9,4 @@ in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → ./../Monoid/Type
       (kArrow object object)
-      (./../Category/Monoidal/Endofunctor/monadic object arrow)
+      (./../Category/Endofunctor/monoidal/monadic object arrow)

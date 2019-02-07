@@ -1,6 +1,6 @@
     let kArrow = ./../../../Function/Kind
 
-in  let cat = ./../../../Category/Monoidal/Set/cartesian
+in  let cat = ./../../../Category/Set/monoidal/cartesian
 
 in    λ(m : kArrow Type Type)
     → λ(applicative : ./../../../Applicative/Type cat m)

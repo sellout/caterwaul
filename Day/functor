@@ -7,7 +7,7 @@ in    λ(cObject : Kind)
     → λ(semigroupoid : ./../Semigroupoid/Type cObject c.arrow)
     →     let vObject = Type
       
-      in  let v = ./../Category/Monoidal/Set/cartesian
+      in  let v = ./../Category/Set/monoidal/cartesian
       
       in  let Day = ./Type cObject c v
       

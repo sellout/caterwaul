@@ -679,37 +679,6 @@
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Duoidal</h3>
-<h4>Endofunctor (term)</h4>
-<p>{- NB: `object` is fixed because of `Day/Type`.
--}</p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀ ( cat
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , identity :
-          Type
-      , op :
-          { _1 : Type, _2 : Type } → Type
-      }
-    )
-→ { additive :
-      { identity :
-          ∀(a : Type) → Type
-      , op :
-          ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
-      }
-  , arrow :
-      ∀(f : { _1 : Type → Type, _2 : Type → Type }) → Type
-  , multiplicative :
-      { identity :
-          ∀(a : Type) → Type
-      , op :
-          ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
-      }
-  }
-</pre></dd>
-</dl>
 <h4>Type (kind)</h4>
 <p></p>
 <dl>
@@ -782,8 +751,39 @@
   }
 </pre></dd>
 </dl>
-<h3 style="background-color: #bbb; width: 100%">./Category/Monoidal</h3>
-<h4 style="background-color: #bbb; width: 100%">./Category/Monoidal/Endofunctor</h4>
+<h3 style="background-color: #bbb; width: 100%">./Category/Endofunctor</h3>
+<h4>duoidal (term)</h4>
+<p>{- NB: `object` is fixed because of `Day/Type`.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀ ( cat
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ { additive :
+      { identity :
+          ∀(a : Type) → Type
+      , op :
+          ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
+      }
+  , arrow :
+      ∀(f : { _1 : Type → Type, _2 : Type → Type }) → Type
+  , multiplicative :
+      { identity :
+          ∀(a : Type) → Type
+      , op :
+          ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
+      }
+  }
+</pre></dd>
+</dl>
+<h4 style="background-color: #bbb; width: 100%">./Category/Endofunctor/monoidal</h4>
 <h4>applicative (term)</h4>
 <p></p>
 <dl>
@@ -825,63 +825,7 @@
   }
 </pre></dd>
 </dl>
-<h4>Profunctor (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀(morphism : { _1 : object, _2 : object } → Type)
-→ { arrow :
-        ∀ ( p
-          : { _1 :
-                { _1 : object, _2 : object } → Type
-            , _2 :
-                { _1 : object, _2 : object } → Type
-            }
-          )
-      → Type
-  , identity :
-      { _1 : object, _2 : object } → Type
-  , op :
-        ∀ ( p
-          : { _1 :
-                { _1 : object, _2 : object } → Type
-            , _2 :
-                { _1 : object, _2 : object } → Type
-            }
-          )
-      → ∀(a : { _1 : object, _2 : object })
-      → Type
-  }
-</pre></dd>
-</dl>
-<h4 style="background-color: #bbb; width: 100%">./Category/Monoidal/Set</h4>
-<h4>cartesian (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-{ arrow :
-    ∀(a : { _1 : Type, _2 : Type }) → Type
-, identity :
-    Type
-, op :
-    ∀(a : { _1 : Type, _2 : Type }) → Type
-}
-</pre></dd>
-</dl>
-<h4>cocartesian (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-{ arrow :
-    ∀(a : { _1 : Type, _2 : Type }) → Type
-, identity :
-    Type
-, op :
-    ∀(a : { _1 : Type, _2 : Type }) → Type
-}
-</pre></dd>
-</dl>
+<h3 style="background-color: #bbb; width: 100%">./Category/Monoidal</h3>
 <h4>Type (kind)</h4>
 <p></p>
 <dl>
@@ -1258,20 +1202,38 @@
   }
 </pre></dd>
 </dl>
-<h3 style="background-color: #bbb; width: 100%">./Category/Rig</h3>
-<h4>Set (term)</h4>
+<h3 style="background-color: #bbb; width: 100%">./Category/Profunctor</h3>
+<h4>monoidal (term)</h4>
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-{ additive :
-    { identity : Type, op : ∀(a : { _1 : Type, _2 : Type }) → Type }
-, arrow :
-    ∀(a : { _1 : Type, _2 : Type }) → Type
-, multiplicative :
-    { identity : Type, op : ∀(a : { _1 : Type, _2 : Type }) → Type }
-}
+  ∀(object : Kind)
+→ ∀(morphism : { _1 : object, _2 : object } → Type)
+→ { arrow :
+        ∀ ( p
+          : { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          )
+      → Type
+  , identity :
+      { _1 : object, _2 : object } → Type
+  , op :
+        ∀ ( p
+          : { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          )
+      → ∀(a : { _1 : object, _2 : object })
+      → Type
+  }
 </pre></dd>
 </dl>
+<h3 style="background-color: #bbb; width: 100%">./Category/Rig</h3>
 <h4>Type (kind)</h4>
 <p></p>
 <dl>
@@ -1345,6 +1307,46 @@
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Set</h3>
+<h4 style="background-color: #bbb; width: 100%">./Category/Set/monoidal</h4>
+<h4>cartesian (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+{ arrow :
+    ∀(a : { _1 : Type, _2 : Type }) → Type
+, identity :
+    Type
+, op :
+    ∀(a : { _1 : Type, _2 : Type }) → Type
+}
+</pre></dd>
+</dl>
+<h4>cocartesian (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+{ arrow :
+    ∀(a : { _1 : Type, _2 : Type }) → Type
+, identity :
+    Type
+, op :
+    ∀(a : { _1 : Type, _2 : Type }) → Type
+}
+</pre></dd>
+</dl>
+<h4>rig (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+{ additive :
+    { identity : Type, op : ∀(a : { _1 : Type, _2 : Type }) → Type }
+, arrow :
+    ∀(a : { _1 : Type, _2 : Type }) → Type
+, multiplicative :
+    { identity : Type, op : ∀(a : { _1 : Type, _2 : Type }) → Type }
+}
+</pre></dd>
+</dl>
 <h4>terms.dhall (term)</h4>
 <p>{- These are various operations, grouped by type, specialized to **Set**.
 -}</p>

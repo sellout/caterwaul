@@ -4,4 +4,4 @@
     , multiplicative =
         ./monoid
     }
-  : ./../Duoid/Type Type ./../Category/Monoidal/Set/cartesian Natural
+  : ./../Duoid/Type Type ./../Category/Set/monoidal/cartesian Natural

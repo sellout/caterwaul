@@ -2,7 +2,7 @@
 
 in  let object = Type
 
-in  let cat = ./../Category/Monoidal/Set/cartesian
+in  let cat = ./../Category/Set/monoidal/cartesian
 
 in    λ(semigroupoid : ./../Semigroupoid/Type object cat.arrow)
     →     let Comonad = ./../Comonad/Type object cat.arrow

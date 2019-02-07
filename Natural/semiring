@@ -1,6 +1,6 @@
     let object = Type
 
-in  let cat = ./../Category/Monoidal/Set/cartesian
+in  let cat = ./../Category/Set/monoidal/cartesian
 
 in    { additive =
           { op = λ(t : { _1 : Natural, _2 : Natural }) → t._1 + t._2 }
