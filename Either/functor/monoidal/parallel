@@ -1,0 +1,91 @@
+    let object = Type
+
+in  let cat = ./../../../Category/Set/monoidal/cartesian
+
+in  let category = ./../../../Function/category
+
+in  let Semigroup = ./../../../Semigroup/Type object cat.arrow cat.op
+
+in  let Either = ./../../Type
+
+in    λ(a : object)
+    → λ(semigroup : Semigroup a)
+    →     ./../endo/star
+          (./../../../Identity/Type object)
+          ./../../../Identity/functor/monoidal
+          a
+        ∧ { identity =
+                λ(b : object)
+              → λ(fn : cat.arrow { _1 = cat.identity, _2 = b })
+              → < Right = fn {=} | Left : a >
+          , op =
+                λ(i : object)
+              → λ ( day
+                  :   ∀(r : Type)
+                    → (   ∀(d : { _1 : object, _2 : object })
+                        → cat.arrow { _1 = cat.op d, _2 = i }
+                        → { _1 :
+                              Either { _1 = a, _2 = d._1 }
+                          , _2 :
+                              Either { _1 = a, _2 = d._2 }
+                          }
+                        → r
+                      )
+                    → r
+                  )
+              → day
+                (Either { _1 = a, _2 = i })
+                (   λ(p : { _1 : object, _2 : object })
+                  → λ(fn : cat.arrow { _1 = cat.op p, _2 = i })
+                  → λ ( args
+                      : { _1 :
+                            Either { _1 = a, _2 = p._1 }
+                        , _2 :
+                            Either { _1 = a, _2 = p._2 }
+                        }
+                      )
+                  → merge
+                    { Left =
+                          λ(l : a)
+                        → merge
+                          { Left =
+                                λ(ll : a)
+                              → < Left =
+                                    semigroup.op { _1 = l, _2 = ll }
+                                | Right :
+                                    i
+                                >
+                          , Right =
+                              λ(_ : p._2) → < Left = l | Right : i >
+                          }
+                          args._2
+                    , Right =
+                          λ(f : cat.arrow { _1 = p._2, _2 = i })
+                        → merge
+                          { Left =
+                              λ(x : a) → < Left = x | Right : i >
+                          , Right =
+                              λ(x : p._2) → < Right = f x | Left : a >
+                          }
+                          args._2
+                    }
+                    ( merge
+                      { Left =
+                          λ(x : a) → < Left = x | Right : p._2 → i >
+                      , Right =
+                            λ(x : p._1)
+                          → < Right =
+                                λ(y : p._2) → fn { _1 = x, _2 = y }
+                            | Left :
+                                a
+                            >
+                      }
+                      args._1
+                    )
+                )
+          }
+      : ./../../../Functor/Monoidal/Type
+        object
+        cat
+        cat
+        (λ(b : object) → Either { _1 = a, _2 = b })

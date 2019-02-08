@@ -1,0 +1,12 @@
+    let kArrow = ./../../../Function/Kind
+
+in  let kProduct = ./../../../Tuple/Kind
+
+in  let object = Type
+
+in    λ(cat : ./../../Monoidal/Kind kArrow kProduct object)
+    → ./../../Duoidal/extractAdditive
+      kArrow
+      kProduct
+      (kArrow object object)
+      (./../duoidal cat)

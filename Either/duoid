@@ -7,14 +7,20 @@ in  let cat = ./../Category/Set/monoidal/cartesian
 in  let CommutativeSemigroup =
           ./../Semigroup/Commutative/Type object cat.arrow cat.op
 
-in    λ(a : Type)
+in  let extractMonoid = ./../Functor/Monoidal/extractMonoid object cat cat
+
+in    λ(a : object)
     → λ(semigroup : CommutativeSemigroup a)
     →   { additive =
-            ./applicative/parallel a semigroup
+            extractMonoid
+            (λ(b : object) → ./Type { _1 = a, _2 = b })
+            (./functor/monoidal/parallel a semigroup)
         , multiplicative =
-            ./applicative/sequential a
+            extractMonoid
+            (λ(b : object) → ./Type { _1 = a, _2 = b })
+            (./functor/monoidal/sequential a)
         }
       : ./../Duoid/Type
         (kArrow object object)
-        (./../Category/Endofunctor/monoidal/applicative object cat cat)
-        (λ(b : Type) → ./Type { _1 = a, _2 = b })
+        (./../Category/Endofunctor/monoidal/functor cat)
+        (λ(b : object) → ./Type { _1 = a, _2 = b })

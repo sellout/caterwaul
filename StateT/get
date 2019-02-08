@@ -1,7 +1,0 @@
-    let Monad = ./../Monad/Type Type ./../Function/Type
-
-in    λ(s : Type)
-    → λ(m : Type → Type)
-    → λ(monad : Monad m)
-    → λ(env : s)
-    → monad.identity { val : s, state : s } { val = env, state = env }

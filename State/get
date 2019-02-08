@@ -1,5 +1,0 @@
-  λ(s : Type)
-→ ./../StateT/get
-  s
-  (./../Identity/Type Type)
-  (./../Identity/monad Type ./../Function/Type ./../Function/category)

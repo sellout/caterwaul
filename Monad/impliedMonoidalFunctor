@@ -1,0 +1,43 @@
+    let kArrow = ./../Function/Kind
+
+in  let object = Type
+
+in  let cat = ./../Category/Set/monoidal/cartesian
+
+in    λ(f : kArrow object object)
+    → λ(functor : ./../Functor/Endo/Type object cat.arrow f)
+    → λ(monad : ./Type object cat.arrow f)
+    →   { map =
+            functor.map
+        , identity =
+              λ(a : object)
+            → λ(fn : cat.arrow { _1 = cat.identity, _2 = a })
+            → monad.identity a (fn {=})
+        , op =
+              λ(i : object)
+            → λ ( day
+                : ∀(r : Type) → ./../Day/convolution object cat cat f f i r → r
+                )
+            → day
+              (f i)
+              (   λ(b : { _1 : object, _2 : object })
+                → λ(fn : cat.arrow { _1 = cat.op b, _2 = i })
+                → λ(d : { _1 : f b._1, _2 : f b._2 })
+                → monad.op
+                  i
+                  ( functor.map
+                    (cat.arrow { _1 = b._2, _2 = i })
+                    (f i)
+                    (   λ(fn : cat.arrow { _1 = b._2, _2 = i })
+                      → functor.map b._2 i fn d._2
+                    )
+                    ( functor.map
+                      b._1
+                      (cat.arrow { _1 = b._2, _2 = i })
+                      (λ(x : b._1) → λ(y : b._2) → fn { _1 = x, _2 = y })
+                      d._1
+                    )
+                  )
+              )
+        }
+      : ./../Functor/Monoidal/Type object cat cat f

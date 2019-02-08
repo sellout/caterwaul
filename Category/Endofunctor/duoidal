@@ -13,7 +13,7 @@ in  let kProduct = ./../../Tuple/Kind
 in  let object = Type
 
 in    λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
-    →     let applicative = ./monoidal/applicative object cat cat
+    →     let applicative = ./../Functor/monoidal object cat cat
       
       in  let monadic = ./monoidal/monadic object cat.arrow
       

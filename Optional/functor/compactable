@@ -5,7 +5,7 @@
   Optional
   ( ./../functor/endo/star
     (./../../Identity/Type Type)
-    ./../../Identity/applicative
+    ./../../Identity/functor/monoidal
   )
   ./../monad
 : ./../../Functor/Compactable/type Optional

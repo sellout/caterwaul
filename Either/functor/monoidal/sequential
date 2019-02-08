@@ -1,0 +1,11 @@
+    let Either = ./../../Type
+
+in    λ(a : Type)
+    → ./../../../Monad/impliedMonoidalFunctor
+      (λ(b : Type) → Either { _1 = a, _2 = b })
+      ( ./../endo/star
+        (./../../../Identity/Type Type)
+        ./../../../Identity/functor/monoidal
+        a
+      )
+      (./../../monad a)

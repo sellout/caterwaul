@@ -1,0 +1,12 @@
+    let object = Type
+
+in  let arrow = ./../../Function/Type
+
+in  let category = ./../../Function/category
+
+in  let Identity = ./../Type object
+
+in  ./../../Monad/impliedMonoidalFunctor
+    Identity
+    (./endo object arrow)
+    (./../monad object arrow category)

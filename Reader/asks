@@ -1,2 +1,0 @@
-  λ(r : Type)
-→ ./../ReaderT/asks r (./../Identity/Type Type) ./../Identity/applicative

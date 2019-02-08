@@ -1,5 +1,0 @@
---   λ(s : Type)
--- → λ(m : Type → Type)
--- → λ(monad : ./../Monad/Type Type ./../Function/Type m)
--- → ./../Monad/impliedApplicative (./Type s m) (./monad s m monad)
-<>

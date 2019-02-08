@@ -5,7 +5,7 @@ in  let object = Type
 in  let cat = ./../../../Category/Set/monoidal/cartesian
 
 in    λ(m : kArrow object object)
-    → λ(applicative : ./../../../Applicative/Type object cat cat m)
+    → λ(monoidal : ./../../../Functor/Monoidal/Type object cat cat m)
     → λ(a : object)
     →   { map =
               λ(b : object)
@@ -13,12 +13,18 @@ in    λ(m : kArrow object object)
             → λ(f : cat.arrow { _1 = b, _2 = m c })
             → ( ./../pair
                 m
-                (./../../../Applicative/impliedEndofunctor m applicative)
+                ( ./../../../Functor/Monoidal/extractFunctor
+                  object
+                  cat
+                  cat
+                  m
+                  monoidal
+                )
               ).map
               { _1 = a, _2 = b }
               { _1 = a, _2 = c }
               { _1 =
-                  λ(x : a) → applicative.identity a (λ(_ : cat.identity) → x)
+                  λ(x : a) → monoidal.identity a (λ(_ : cat.identity) → x)
               , _2 =
                   f
               }

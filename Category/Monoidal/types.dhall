@@ -14,8 +14,6 @@ in    λ(object : Kind)
       
       in  { Adjunction =
               ./../../Adjunction/Type object object cat.arrow cat.arrow
-          , Applicative =
-              ./../../Applicative/Type object cat Set
           , Arrow =
               ./../../Arrow/Type
           , Bifunctor =
@@ -52,8 +50,6 @@ in    λ(object : Kind)
               ./../../Density/Type object
           , Either =
               ./../../Either/Type
-          , EitherT =
-              ./../../EitherT/Type
           , Endofunctor =
               Endofunctor object cat.arrow
           , Eq =
@@ -78,6 +74,8 @@ in    λ(object : Kind)
               ./../../Monad/Type object cat.arrow
           , Monoid =
               ./../../Monoid/Type object cat
+          , MonoidalFunctor =
+              ./../../Functor/Monoidal/Type object cat Set
           , NaturalTransformation =
               ./../../NaturalTransformation/Type object object cat.arrow
           , OrderedField =
@@ -96,10 +94,6 @@ in    λ(object : Kind)
               ./../../Functor/Profunctor/Type object object cat.arrow cat.arrow
           , Ran =
               ./../../Ran/Type object object cat.arrow
-          , Reader =
-              ./../../Reader/Type object cat.arrow
-          , ReaderT =
-              ./../../ReaderT/Type object cat.arrow
           , Rig =
               ./../../Rig/Type object cat
           , Ring =
@@ -112,14 +106,8 @@ in    λ(object : Kind)
               ./../../Semiring/Type object cat
           , Star =
               Star
-          , State =
-              ./../../State/Type object cat.arrow cat.op
-          , StateT =
-              ./../../StateT/Type object cat.arrow cat.op
           , Strong =
               ./../../Strong/Type object object cat.arrow cat.arrow
-          , Transformer =
-              ./../../Transformer/Type object cat.arrow
           , Traversable =
               λ(m : kArrow object object) → Endofunctor object (Star m)
           , Tuple =

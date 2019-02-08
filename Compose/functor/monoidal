@@ -1,0 +1,79 @@
+{- NB: Since this is currently forced to be in *Set*, it’s quite possible that
+       some of the uses of _C_ and _D_ are wrong, since the type system can’t
+       distinguish them. So take them with a grain of salt if you’re editing
+       this file.
+-}
+    let kArrow = ./../../Function/Kind
+
+in  let kProduct = ./../../Tuple/Kind
+
+in  let MonoidalFunctor = ./../../Functor/Monoidal/Type
+
+in    λ(cObject : Kind)
+    → λ(c : ./../../Category/Monoidal/Kind kArrow kProduct cObject)
+    →     let dObject = Type
+      
+      in  let d = ./../../Category/Set/monoidal/cartesian
+      
+      in  let eObject = Type
+      
+      in  let e = ./../../Category/Set/monoidal/cartesian
+      
+      in  let Compose = ./../Type cObject dObject eObject
+      
+      in  let Day = ./../../Day/Type cObject c e
+      
+      in  let Day/convolution = ./../../Day/convolution
+      
+      in    λ(f : kArrow dObject eObject)
+          → λ(fMonoidal : MonoidalFunctor dObject d e f)
+          → λ(g : kArrow cObject dObject)
+          → λ(gMonoidal : MonoidalFunctor cObject c d g)
+          →   { map =
+                    λ(a : cObject)
+                  → λ(b : cObject)
+                  → λ(k : c.arrow { _1 = a, _2 = b })
+                  → fMonoidal.map (g a) (g b) (gMonoidal.map a b k)
+              , identity =
+                    λ(a : cObject)
+                  → λ(fn : c.arrow { _1 = c.identity, _2 = a })
+                  → fMonoidal.identity
+                    (g a)
+                    (λ(_ : d.identity) → gMonoidal.identity a fn)
+              , op =
+                    λ(i : cObject)
+                  → λ ( day
+                      : Day
+                        { _1 =
+                            Compose { _1 = f, _2 = g }
+                        , _2 =
+                            Compose { _1 = f, _2 = g }
+                        }
+                        i
+                      )
+                  → day
+                    (f (g i))
+                    (   λ(b : { _1 : cObject, _2 : cObject })
+                      → λ(fn : c.arrow { _1 = c.op b, _2 = i })
+                      → λ(a : { _1 : f (g b._1), _2 : f (g b._2) })
+                      → fMonoidal.op
+                        (g i)
+                        (   λ(fr : eObject)
+                          → λ(fDay : Day/convolution dObject d e f f (g i) fr)
+                          → fDay
+                            { _1 = g b._1, _2 = g b._2 }
+                            (   λ(p : { _1 : g b._1, _2 : g b._2 })
+                              → gMonoidal.op
+                                i
+                                (   λ(gr : dObject)
+                                  → λ ( gDay
+                                      : Day/convolution cObject c d g g i gr
+                                      )
+                                  → gDay b fn p
+                                )
+                            )
+                            a
+                        )
+                    )
+              }
+            : MonoidalFunctor cObject c e (Compose { _1 = f, _2 = g })

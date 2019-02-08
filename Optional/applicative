@@ -1,4 +1,0 @@
-./../Monad/impliedApplicative
-Optional
-(./functor/endo/star (./../Identity/Type Type) ./../Identity/applicative)
-./monad

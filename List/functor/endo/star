@@ -5,7 +5,7 @@ in  let object = Type
 in  let cat = ./../../../Category/Set/monoidal/cartesian
 
 in    λ(m : kArrow object object)
-    → λ(applicative : ./../../../Applicative/Type object cat cat m)
+    → λ(monoidal : ./../../../Functor/Monoidal/Type object cat cat m)
     →   { map =
               λ(a : object)
             → λ(b : object)
@@ -14,7 +14,7 @@ in    λ(m : kArrow object object)
             →     let liftCons =
                           λ(mb : m b)
                         → λ(mlb : m (List b))
-                        → applicative.op
+                        → monoidal.op
                           (List b)
                           (   λ(r : Type)
                             → λ ( day
@@ -38,7 +38,7 @@ in    λ(m : kArrow object object)
                   fa
                   (m (List b))
                   (λ(x : a) → liftCons (f x))
-                  ( applicative.identity
+                  ( monoidal.identity
                     (List b)
                     (λ(_ : cat.identity) → [] : List b)
                   )

@@ -11,8 +11,8 @@ in  let cp = ./../Category/Set/monoidal/cartesian
 in  let dObject = Type
 
 in    λ(p : kArrow cObject cpObject)
-    → λ(applicative : ./../Applicative/Type cObject c cp p)
+    → λ(monoidal : ./../Functor/Monoidal/Type cObject c cp p)
     → λ(f : kArrow cObject dObject)
     → λ(a : cpObject)
     → λ(ran : ./Type cObject cpObject cp.arrow p f a)
-    → ran a (λ(x : a) → applicative.identity a (λ(_ : c.identity) → x))
+    → ran a (λ(x : a) → monoidal.identity a (λ(_ : c.identity) → x))

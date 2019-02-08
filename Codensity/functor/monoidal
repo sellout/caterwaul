@@ -1,0 +1,15 @@
+    let kArrow = ./../../Function/Kind
+
+in  let object = Type
+
+in  let arrow = ./../../Function/Type
+
+in  let category = ./../../Function/category
+
+in  let semigroupoid = ./../../Function/semigroupoid
+
+in    λ(m : kArrow object object)
+    → ./../../Monad/impliedMonoidalFunctor
+      (./../Type object arrow m)
+      (./../../Ran/functor object object arrow semigroupoid m m)
+      (./../monad category m)
