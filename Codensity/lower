@@ -5,5 +5,5 @@ in  let object = Type
 in  let cat = ./../Category/Set/monoidal/cartesian
 
 in    λ(m : kArrow object object)
-    → λ(applicative : ./../Applicative/Type cat m)
+    → λ(applicative : ./../Applicative/Type object cat cat m)
     → ./../Ran/lower m applicative m

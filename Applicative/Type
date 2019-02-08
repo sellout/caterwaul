@@ -2,9 +2,11 @@
 
 in  let kProduct = ./../Tuple/Kind
 
-in  let object = Type
-
-in    λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)
-    → ./../Monoid/Type
-      (kArrow object object)
-      (./../Category/Endofunctor/monoidal/applicative cat)
+in    λ(cObject : Kind)
+    →     let dObject = Type
+      
+      in    λ(c : ./../Category/Monoidal/Kind kArrow kProduct cObject)
+          → λ(d : ./../Category/Monoidal/Kind kArrow kProduct dObject)
+          → ./../Monoid/Type
+            (kArrow cObject dObject)
+            (./../Category/Endofunctor/monoidal/applicative cObject c d)

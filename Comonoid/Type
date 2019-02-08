@@ -4,12 +4,4 @@ in  let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)
-    → ./../Monoid/Type
-      object
-      { arrow =
-          ./../Category/Op/Type object cat.arrow
-      , identity =
-          cat.identity
-      , op =
-          cat.op
-      }
+    → ./../Monoid/Type object (./../Category/Op/monoidal object cat)

@@ -9,13 +9,15 @@ in  let Either = ./../Type
 in    λ(a : object)
     → λ(semigroup : Semigroup a)
     →   { identity =
-            λ(b : object) → λ(x : b) → < Right = x | Left : a >
+              λ(b : object)
+            → λ(fn : cat.arrow { _1 = cat.identity, _2 = b })
+            → < Right = fn {=} | Left : a >
         , op =
               λ(i : object)
             → λ ( day
                 :   ∀(r : Type)
                   → (   ∀(d : { _1 : object, _2 : object })
-                      → ({ _1 : d._1, _2 : d._2 } → i)
+                      → cat.arrow { _1 = cat.op d, _2 = i }
                       → { _1 :
                             Either { _1 = a, _2 = d._1 }
                         , _2 :
@@ -28,7 +30,7 @@ in    λ(a : object)
             → day
               (Either { _1 = a, _2 = i })
               (   λ(p : { _1 : object, _2 : object })
-                → λ(fn : { _1 : p._1, _2 : p._2 } → i)
+                → λ(fn : cat.arrow { _1 = cat.op p, _2 = i })
                 → λ ( args
                     : { _1 :
                           Either { _1 = a, _2 = p._1 }
@@ -52,7 +54,7 @@ in    λ(a : object)
                         }
                         args._2
                   , Right =
-                        λ(f : p._2 → i)
+                        λ(f : cat.arrow { _1 = p._2, _2 = i })
                       → merge
                         { Left =
                             λ(x : a) → < Left = x | Right : i >
@@ -76,4 +78,8 @@ in    λ(a : object)
                   )
               )
         }
-      : ./../../Applicative/Type cat (λ(b : object) → Either { _1 = a, _2 = b })
+      : ./../../Applicative/Type
+        object
+        cat
+        cat
+        (λ(b : object) → Either { _1 = a, _2 = b })

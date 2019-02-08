@@ -1,7 +1,11 @@
-    let cat = ./../Category/Set/monoidal/cartesian
+    let kArrow = ./../Function/Kind
 
-in    λ(f : Type → Type)
-    → λ(applicative : ./Type cat f)
+in  let object = Type
+
+in  let cat = ./../Category/Set/monoidal/cartesian
+
+in    λ(f : kArrow object object)
+    → λ(applicative : ./Type object cat cat f)
     →     let extractFunctor = ./impliedEndofunctor f applicative
       
       in    { ap =
@@ -13,8 +17,4 @@ in    λ(f : Type → Type)
             , extractFunctor =
                 extractFunctor
             }
-          ∧ ./../Functor/Endo/terms.dhall
-            Type
-            ./../Function/Type
-            f
-            extractFunctor
+          ∧ ./../Functor/Endo/terms.dhall object cat.arrow f extractFunctor

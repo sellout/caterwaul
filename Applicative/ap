@@ -1,22 +1,26 @@
-    let cat = ./../Category/Set/monoidal/cartesian
+    let kArrow = ./../Function/Kind
 
-in    λ(f : Type → Type)
-    → λ(applicative : ./Type cat f)
-    → λ(a : Type)
-    → λ(b : Type)
-    → λ(fn : f (a → b))
+in  let object = Type
+
+in  let cat = ./../Category/Set/monoidal/cartesian
+
+in    λ(f : kArrow object object)
+    → λ(applicative : ./Type object cat cat f)
+    → λ(a : object)
+    → λ(b : object)
+    → λ(fn : f (cat.arrow { _1 = a, _2 = b }))
     → λ(fa : f a)
     → applicative.op
       b
       (   λ(r : Type)
         → λ ( day
-            :   ∀(c : { _1 : Type, _2 : Type })
-              → ({ _1 : c._1, _2 : c._2 } → b)
+            :   ∀(c : { _1 : object, _2 : object })
+              → cat.arrow { _1 = cat.op c, _2 = b }
               → { _1 : f c._1, _2 : f c._2 }
               → r
             )
         → day
-          { _1 = a → b, _2 = a }
-          (λ(p : { _1 : a → b, _2 : a }) → p._1 p._2)
+          { _1 = cat.arrow { _1 = a, _2 = b }, _2 = a }
+          (λ(p : { _1 : cat.arrow { _1 = a, _2 = b }, _2 : a }) → p._1 p._2)
           { _1 = fn, _2 = fa }
       )

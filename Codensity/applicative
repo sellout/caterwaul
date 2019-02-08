@@ -8,7 +8,11 @@ in  let Codensity = ./Type object cat.arrow
 
 in    λ(m : kArrow object object)
     →   { identity =
-            λ(a : object) → λ(x : a) → λ(b : object) → λ(k : a → m b) → k x
+              λ(a : object)
+            → λ(fn : cat.arrow { _1 = cat.identity, _2 = a })
+            → λ(b : object)
+            → λ(k : a → m b)
+            → k (fn {=})
         , op =
               λ(i : object)
             → λ ( day
@@ -34,4 +38,4 @@ in    λ(m : kArrow object object)
                   )
               )
         }
-      : ./../Applicative/Type cat (Codensity m)
+      : ./../Applicative/Type object cat cat (Codensity m)

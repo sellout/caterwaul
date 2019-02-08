@@ -5,60 +5,70 @@
 -}
     let kArrow = ./../Function/Kind
 
-in  let cObject = Type
+in  let kProduct = ./../Tuple/Kind
 
-in  let c = ./../Category/Set/monoidal/cartesian
+in  let Applicative = ./../Applicative/Type
 
-in  let dObject = Type
-
-in  let Applicative = ./../Applicative/Type c
-
-in  let Compose = ./Type cObject dObject cObject
-
-in  let Day = ./../Day/Type cObject c c
-
-in  let Day/convolution = ./../Day/convolution cObject c c
-
-in    λ(f : kArrow dObject cObject)
-    → λ(fApplicative : Applicative f)
-    → λ(g : kArrow cObject dObject)
-    → λ(gApplicative : Applicative g)
-    →   { identity =
-              λ(a : cObject)
-            → λ(x : a)
-            → fApplicative.identity (g a) (gApplicative.identity a x)
-        , op =
-              λ(i : cObject)
-            → λ ( day
-                : Day
-                  { _1 =
-                      Compose { _1 = f, _2 = g }
-                  , _2 =
-                      Compose { _1 = f, _2 = g }
-                  }
-                  i
-                )
-            → day
-              (f (g i))
-              (   λ(b : { _1 : cObject, _2 : cObject })
-                → λ(fn : { _1 : b._1, _2 : b._2 } → i)
-                → λ(d : { _1 : f (g b._1), _2 : f (g b._2) })
-                → fApplicative.op
-                  (g i)
-                  (   λ(fr : cObject)
-                    → λ(fDay : Day/convolution f f (g i) fr)
-                    → fDay
-                      { _1 = g b._1, _2 = g b._2 }
-                      (   λ(p : { _1 : g b._1, _2 : g b._2 })
-                        → gApplicative.op
-                          i
-                          (   λ(gr : cObject)
-                            → λ(gDay : Day/convolution g g i gr)
-                            → gDay b fn p
-                          )
+in    λ(cObject : Kind)
+    → λ(c : ./../Category/Monoidal/Kind kArrow kProduct cObject)
+    →     let dObject = Type
+      
+      in  let d = ./../Category/Set/monoidal/cartesian
+      
+      in  let eObject = Type
+      
+      in  let e = ./../Category/Set/monoidal/cartesian
+      
+      in  let Compose = ./Type cObject dObject eObject
+      
+      in  let Day = ./../Day/Type cObject c e
+      
+      in  let Day/convolution = ./../Day/convolution
+      
+      in    λ(f : kArrow dObject eObject)
+          → λ(fApplicative : Applicative dObject d e f)
+          → λ(g : kArrow cObject dObject)
+          → λ(gApplicative : Applicative cObject c d g)
+          →   { identity =
+                    λ(a : cObject)
+                  → λ(fn : c.arrow { _1 = c.identity, _2 = a })
+                  → fApplicative.identity
+                    (g a)
+                    (λ(_ : d.identity) → gApplicative.identity a fn)
+              , op =
+                    λ(i : cObject)
+                  → λ ( day
+                      : Day
+                        { _1 =
+                            Compose { _1 = f, _2 = g }
+                        , _2 =
+                            Compose { _1 = f, _2 = g }
+                        }
+                        i
                       )
-                      d
-                  )
-              )
-        }
-      : Applicative (Compose { _1 = f, _2 = g })
+                  → day
+                    (f (g i))
+                    (   λ(b : { _1 : cObject, _2 : cObject })
+                      → λ(fn : c.arrow { _1 = c.op b, _2 = i })
+                      → λ(a : { _1 : f (g b._1), _2 : f (g b._2) })
+                      → fApplicative.op
+                        (g i)
+                        (   λ(fr : eObject)
+                          → λ(fDay : Day/convolution dObject d e f f (g i) fr)
+                          → fDay
+                            { _1 = g b._1, _2 = g b._2 }
+                            (   λ(p : { _1 : g b._1, _2 : g b._2 })
+                              → gApplicative.op
+                                i
+                                (   λ(gr : dObject)
+                                  → λ ( gDay
+                                      : Day/convolution cObject c d g g i gr
+                                      )
+                                  → gDay b fn p
+                                )
+                            )
+                            a
+                        )
+                    )
+              }
+            : Applicative cObject c e (Compose { _1 = f, _2 = g })

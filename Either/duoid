@@ -16,5 +16,5 @@ in    λ(a : Type)
         }
       : ./../Duoid/Type
         (kArrow object object)
-        (./../Category/Endofunctor/monoidal/applicative cat)
+        (./../Category/Endofunctor/monoidal/applicative object cat cat)
         (λ(b : Type) → ./Type { _1 = a, _2 = b })

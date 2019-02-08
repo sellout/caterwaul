@@ -2,6 +2,6 @@
 
 in    λ(r : Type)
     → λ(m : Type → Type)
-    → λ(applicative : ./../Applicative/Type cat m)
+    → λ(applicative : ./../Applicative/Type Type cat cat m)
     → λ(env : r)
-    → applicative.identity r env
+    → applicative.identity r (λ(_ : {}) → env)

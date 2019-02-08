@@ -1,4 +1,10 @@
-{- NB: `object` is fixed because of `Day/Type`.
+{- NB: This is defined in terms of the monoidal categories instead of the other
+       way around because this is more restrictive than either monoidal
+       category.
+     • Applicative requires that the target category is **Set** and
+     • monadic requires an endofunctor`object`.
+       When you combine these two restrictions, you end up only being able to
+       support endofunctors in **Set**.
 -}
     let kArrow = ./../../Function/Kind
 
@@ -7,19 +13,15 @@ in  let kProduct = ./../../Tuple/Kind
 in  let object = Type
 
 in    λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
-    →   { arrow =
-            ./../../NaturalTransformation/Type object object cat.arrow
-        , additive =
-            { identity =
-                ./../../Identity/Type object
-            , op =
-                ./../../Day/Type object cat cat
+    →     let applicative = ./monoidal/applicative object cat cat
+      
+      in  let monadic = ./monoidal/monadic object cat.arrow
+      
+      in    { arrow =
+                applicative.arrow
+            , additive =
+                { identity = applicative.identity, op = applicative.op }
+            , multiplicative =
+                { identity = monadic.identity, op = monadic.op }
             }
-        , multiplicative =
-            { identity =
-                ./../../Identity/Type object
-            , op =
-                ./../../Compose/Type object object object
-            }
-        }
-      : ./../Duoidal/Kind kArrow kProduct (kArrow object object)
+          : ./../Duoidal/Kind kArrow kProduct (kArrow object object)

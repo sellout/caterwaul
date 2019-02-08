@@ -1,12 +1,20 @@
+{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
+   functor **Set** → 𝒟.
+-}
     let kArrow = ./../../../Function/Kind
 
 in  let kProduct = ./../../../Tuple/Kind
 
-in  let object = Type
-
-in    λ(cat : ./../../Monoidal/Kind kArrow kProduct object)
-    → ./../../Duoidal/extractAdditive
-      kArrow
-      kProduct
-      (kArrow object object)
-      (./../duoidal cat)
+in    λ(cObject : Kind)
+    →     let dObject = Type
+      
+      in    λ(c : ./../../Monoidal/Kind kArrow kProduct cObject)
+          → λ(d : ./../../Monoidal/Kind kArrow kProduct dObject)
+          →   { arrow =
+                  ./../../../NaturalTransformation/Type cObject dObject d.arrow
+              , identity =
+                  λ(x : cObject) → c.arrow { _1 = c.identity, _2 = x }
+              , op =
+                  ./../../../Day/Type cObject c d
+              }
+            : ./../../Monoidal/Kind kArrow kProduct (kArrow cObject dObject)

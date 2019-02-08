@@ -4,7 +4,9 @@ in  let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
-    →     let Endofunctor = ./../../Functor/Endo/Type
+    →     let Set = ./../../Category/Set/monoidal/cartesian
+      
+      in  let Endofunctor = ./../../Functor/Endo/Type
       
       in  let Star = ./../../Star/Type object cat.arrow
       
@@ -13,7 +15,7 @@ in    λ(object : Kind)
       in  { Adjunction =
               ./../../Adjunction/Type object object cat.arrow cat.arrow
           , Applicative =
-              ./../../Applicative/Type
+              ./../../Applicative/Type object cat Set
           , Arrow =
               ./../../Arrow/Type
           , Bifunctor =

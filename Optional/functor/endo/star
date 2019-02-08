@@ -1,11 +1,15 @@
-    let cat = ./../../../Category/Set/monoidal/cartesian
+    let kArrow = ./../../../Function/Kind
 
-in    λ(m : Type → Type)
-    → λ(applicative : ./../../../Applicative/Type cat m)
+in  let object = Type
+
+in  let cat = ./../../../Category/Set/monoidal/cartesian
+
+in    λ(m : kArrow object object)
+    → λ(applicative : ./../../../Applicative/Type object cat cat m)
     →   { map =
-              λ(a : Type)
-            → λ(b : Type)
-            → λ(f : a → m b)
+              λ(a : object)
+            → λ(b : object)
+            → λ(f : cat.arrow { _1 = a, _2 = m b })
             → λ(fa : Optional a)
             → Optional/fold
               a
@@ -18,10 +22,6 @@ in    λ(m : Type → Type)
                   (λ(y : b) → Some y)
                   (f x)
               )
-              (applicative.identity (Optional b) (None b))
+              (applicative.identity (Optional b) (λ(_ : cat.identity) → None b))
         }
-      : ./../../../Functor/Endo/Star/Type
-        Type
-        ./../../../Function/Type
-        m
-        Optional
+      : ./../../../Functor/Endo/Star/Type object cat.arrow m Optional

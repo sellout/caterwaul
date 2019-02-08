@@ -1,14 +1,11 @@
-    let cat = ./../../Category/Set/monoidal/cartesian
-
-in  let Either = ./../Type
+    let Either = ./../Type
 
 in    λ(a : Type)
-    →   ./../../Monad/impliedApplicative
-        (λ(b : Type) → Either { _1 = a, _2 = b })
-        ( ./../functor/endo/star
-          (./../../Identity/Type Type)
-          ./../../Identity/applicative
-          a
-        )
-        (./../monad a)
-      : ./../../Applicative/Type cat (λ(b : Type) → Either { _1 = a, _2 = b })
+    → ./../../Monad/impliedApplicative
+      (λ(b : Type) → Either { _1 = a, _2 = b })
+      ( ./../functor/endo/star
+        (./../../Identity/Type Type)
+        ./../../Identity/applicative
+        a
+      )
+      (./../monad a)

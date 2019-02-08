@@ -4,4 +4,6 @@ in  let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
-    → ./../Monad/Type object (./../Category/Op/Type object arrow)
+    → ./../Bimonoid/Type
+      (kArrow object object)
+      (./../Category/Endofunctor/monoidal/monadic object arrow)

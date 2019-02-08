@@ -1,0 +1,14 @@
+    let kArrow = ./../../Function/Kind
+
+in  let kProduct = ./../../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(cat : ./../Monoidal/Kind kArrow kProduct object)
+    →   { arrow =
+            ./Type object cat.arrow
+        , identity =
+            cat.identity
+        , op =
+            cat.op
+        }
+      : ./../Monoidal/Kind kArrow kProduct object

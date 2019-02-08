@@ -7,6 +7,6 @@ in    λ(object : Kind)
     → λ(m : object)
     → { monoid :
           ./../Monoid/Type object cat m
-      , comonod :
+      , comonoid :
           ./../Comonoid/Type object cat m
       }

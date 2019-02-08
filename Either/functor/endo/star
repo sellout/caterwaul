@@ -1,13 +1,15 @@
     let kArrow = ./../../../Function/Kind
 
+in  let object = Type
+
 in  let cat = ./../../../Category/Set/monoidal/cartesian
 
-in    λ(m : kArrow Type Type)
-    → λ(applicative : ./../../../Applicative/Type cat m)
-    → λ(a : Type)
+in    λ(m : kArrow object object)
+    → λ(applicative : ./../../../Applicative/Type object cat cat m)
+    → λ(a : object)
     →   { map =
-              λ(b : Type)
-            → λ(c : Type)
+              λ(b : object)
+            → λ(c : object)
             → λ(f : cat.arrow { _1 = b, _2 = m c })
             → ( ./../pair
                 m
@@ -15,10 +17,14 @@ in    λ(m : kArrow Type Type)
               ).map
               { _1 = a, _2 = b }
               { _1 = a, _2 = c }
-              { _1 = applicative.identity a, _2 = f }
+              { _1 =
+                  λ(x : a) → applicative.identity a (λ(_ : cat.identity) → x)
+              , _2 =
+                  f
+              }
         }
       : ./../../../Functor/Endo/Star/Type
-        Type
-        ./../../../Function/Type
+        object
+        cat.arrow
         m
         (λ(b : Type) → ./../../Type { _1 = a, _2 = b })

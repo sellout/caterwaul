@@ -1,25 +1,12 @@
     let object = Type
 
-in  let cat = ./../Category/Set/monoidal/cartesian
+in  let arrow = ./../Function/Type
 
 in  let category = ./../Function/category
 
 in  let Identity = ./Type object
 
-in    { identity =
-          category.identity
-      , op =
-            λ(i : Type)
-          → λ ( day
-              :   ∀(r : Type)
-                → ./../Day/convolution object cat cat Identity Identity i r
-                → r
-              )
-          → day
-            i
-            (   λ(b : { _1 : Type, _2 : Type })
-              → λ(fn : { _1 : b._1, _2 : b._2 } → i)
-              → fn
-            )
-      }
-    : ./../Applicative/Type cat Identity
+in  ./../Monad/impliedApplicative
+    Identity
+    (./functor/endo object arrow)
+    (./monad object arrow category)

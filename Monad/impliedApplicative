@@ -8,7 +8,9 @@ in    λ(f : kArrow object object)
     → λ(functor : ./../Functor/Endo/Type object cat.arrow f)
     → λ(monad : ./Type object cat.arrow f)
     →   { identity =
-            monad.identity
+              λ(a : object)
+            → λ(fn : cat.arrow { _1 = cat.identity, _2 = a })
+            → monad.identity a (fn {=})
         , op =
               λ(i : object)
             → λ ( day
@@ -34,4 +36,4 @@ in    λ(f : kArrow object object)
                   )
               )
         }
-      : ./../Applicative/Type cat f
+      : ./../Applicative/Type object cat cat f
