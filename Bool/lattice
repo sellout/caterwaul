@@ -1,0 +1,14 @@
+  { join =
+      { identity =
+          λ(_ : {}) → False
+      , op =
+          λ(p : { _1 : Bool, _2 : Bool }) → p._1 || p._2
+      }
+  , meet =
+      { identity =
+          λ(_ : {}) → True
+      , op =
+          λ(p : { _1 : Bool, _2 : Bool }) → p._1 && p._2
+      }
+  }
+: ./../Lattice/Type Type ./../Category/Set/monoidal/cartesian Bool

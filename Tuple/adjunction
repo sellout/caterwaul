@@ -1,0 +1,30 @@
+    let object = Type
+
+in  let arrow = ./../Function/Type
+
+in    λ(s : object)
+    →   { unit =
+            λ(a : object) → λ(x : a) → λ(y : s) → { _1 = y, _2 = x }
+        , counit =
+            λ(a : object) → λ(x : { _1 : s, _2 : s → a }) → x._2 x._1
+        , leftAdjunct =
+              λ(a : object)
+            → λ(b : object)
+            → λ(f : { _1 : s, _2 : a } → b)
+            → λ(x : a)
+            → λ(y : s)
+            → f { _1 = y, _2 = x }
+        , rightAdjunct =
+              λ(a : object)
+            → λ(b : object)
+            → λ(f : a → s → b)
+            → λ(t : { _1 : s, _2 : a })
+            → f t._2 t._1
+        }
+      : ./../Adjunction/Type
+        object
+        object
+        arrow
+        arrow
+        (λ(a : object) → ./Type { _1 = s, _2 = a })
+        (λ(a : object) → ./../Function/Type { _1 = s, _2 = a })

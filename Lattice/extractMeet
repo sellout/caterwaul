@@ -1,0 +1,9 @@
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)
+    → λ(m : object)
+    → λ(lattice : ./Type object cat m)
+    → lattice.meet : ./../Monoid/Commutative/Type object cat m
