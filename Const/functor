@@ -7,16 +7,23 @@ in    λ(cObject : Kind)
     → λ(cCategory : ./../Category/Type cObject cArrow)
     → λ(dObject : Kind)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
-    → λ(a : cObject)
     →   { map =
-              λ(b : dObject)
-            → λ(c : dObject)
-            → λ(_ : dArrow { _1 = b, _2 = c })
-            → cCategory.identity a
+              λ(a : { _1 : cObject, _2 : dObject })
+            → λ(b : { _1 : cObject, _2 : dObject })
+            → λ ( f
+                : { _1 :
+                      cArrow { _1 = a._1, _2 = b._1 }
+                  , _2 :
+                      dArrow { _1 = a._2, _2 = b._2 }
+                  }
+                )
+            → f._1
         }
-      : ./../Functor/Type
+      : ./../Functor/Bifunctor/Type
+        cObject
         dObject
         cObject
+        cArrow
         dArrow
         cArrow
-        (./Type cObject dObject a)
+        (./Type cObject dObject)

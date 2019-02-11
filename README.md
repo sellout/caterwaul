@@ -19,8 +19,8 @@ Many of the other types are defined as specializations
 - `Semigroup` → `Cosemigroup`, `Semigroupoid`
 - `Monoid` → `Category`, `Comonad`, `Comonoid`, `Monad`
 - `Functor` → `Bifunctor`, `Endofunctor`, `Profunctor`
-- `Ran` → `Day`, `Density`, `Yoneda`
-- `Lan` → `Codensity`, `Coyoneda`
+- `Lan` → `Day`, `Density`, `Coyoneda`
+- `Ran` → `Codensity`, `Yoneda`
 
 or ways of combining other types
 
