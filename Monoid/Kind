@@ -1,4 +1,4 @@
-{- NB: `identity` would ideally be defined with `: arrow identity m`, but
+{- NB: `identity` would ideally be defined with `: kArrow kIdentity m`, but
        there’s no Kind-level `{}` to use there.
 -}
   λ(kArrow : Kind → Kind → Kind)

@@ -1,0 +1,16 @@
+{- TODO: This would be `./../Group/Type … (./../Category/Monoidal/Profunctor
+         object morphism)`, but `Category` isn’t defined via `Monoid`, so we
+		 prefer compatibility with that.
+-}
+    let kArrow = ./../Function/Kind
+
+in  let kProduct = ./../Tuple/Kind
+
+in    λ(object : Kind)
+    →     let profunctor = kArrow (kProduct object object) Type
+      
+      in    λ(morphism : profunctor)
+          →   { inverse :
+                  ∀(a : { _1 : object, _2 : object }) → morphism a → morphism a
+              }
+            ⩓ ./../Category/Type object morphism
