@@ -1,0 +1,17 @@
+let object = Type
+
+let arrow = ./../Function/Type
+
+let product = ./../Tuple/Type
+
+in    λ(m : object)
+    → λ(eq : ./../Eq/Type m)
+    → λ(semigroup : ./Type object arrow product m)
+    → { associativity =
+            λ(a : m)
+          → λ(b : m)
+          → λ(c : m)
+          → eq.eq
+            (semigroup.op { _1 = semigroup.op { _1 = a, _2 = b }, _2 = c })
+            (semigroup.op { _1 = a, _2 = semigroup.op { _1 = b, _2 = c } })
+      }

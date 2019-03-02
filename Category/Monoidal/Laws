@@ -1,0 +1,27 @@
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(cat : ./Kind kArrow kProduct object)
+    → let Isomorphism = ./../../Isomorphism/Type object cat.arrow
+      
+      in  { associativity :
+                ∀(a : object)
+              → ∀(b : object)
+              → ∀(c : object)
+              → Isomorphism
+                { _1 =
+                    cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }
+                , _2 =
+                    cat.op { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
+                }
+          , leftIdentity :
+                ∀(a : object)
+              → Isomorphism
+                { _1 = cat.op { _1 = cat.identity, _2 = a }, _2 = a }
+          , rightIdentity :
+                ∀(a : object)
+              → Isomorphism
+                { _1 = cat.op { _1 = a, _2 = cat.identity }, _2 = a }
+          }

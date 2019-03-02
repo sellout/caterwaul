@@ -1,0 +1,49 @@
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(cat : ./Kind kArrow kProduct object)
+    → let Isomorphism = ./../../Isomorphism/Type object cat.arrow
+      
+      let additive = ./extractAdditive kArrow kProduct object cat
+      
+      let multiplicative = ./extractMultiplicative kArrow kProduct object cat
+      
+      in  { distributivity :
+                ∀(a : object)
+              → ∀(b : object)
+              → ∀(c : object)
+              → Isomorphism
+                { _1 =
+                    multiplicative.op
+                    { _1 = a, _2 = additive.op { _1 = b, _2 = c } }
+                , _2 =
+                    additive.op
+                    { _1 =
+                        multiplicative.op { _1 = a, _2 = b }
+                    , _2 =
+                        multiplicative.op { _1 = a, _2 = c }
+                    }
+                }
+          , leftAnnihilation :
+                ∀(a : object)
+              → Isomorphism
+                { _1 =
+                    multiplicative.op { _1 = additive.identity, _2 = a }
+                , _2 =
+                    additive.identity
+                }
+          , rightAnnihilation :
+                ∀(a : object)
+              → Isomorphism
+                { _1 =
+                    multiplicative.op { _1 = a, _2 = additive.identity }
+                , _2 =
+                    additive.identity
+                }
+          , additive :
+              ./../Monoidal/Laws object additive
+          , multiplicative :
+              ./../Monoidal/Laws object multiplicative
+          }

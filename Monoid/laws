@@ -1,0 +1,13 @@
+let object = Type
+
+let cat = ./../Category/Set/monoidal/cartesian
+
+in    λ(m : object)
+    → λ(eq : ./../Eq/Type m)
+    → λ(monoid : ./Type object cat m)
+    →   { leftIdentity =
+            λ(a : m) → eq.eq (monoid.op { _1 = monoid.identity {=}, _2 = a }) a
+        , rightIdentity =
+            λ(a : m) → eq.eq (monoid.op { _1 = a, _2 = monoid.identity {=} }) a
+        }
+      ∧ ./../Semigroup/laws m eq (./extractSemigroup object cat m monoid)
