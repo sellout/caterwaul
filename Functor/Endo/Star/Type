@@ -2,9 +2,9 @@
    implemented for an arbitrary `m`, doesn’t necessarily require an
   `Applicative` instance, and also may be _more_ constrained than `Applicative`.
 -}
-    let kArrow = ./../../../Function/Kind
+let kArrow = ./../../../Function/Kind
 
-in  let kProduct = ./../../../Tuple/Kind
+let kProduct = ./../../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)

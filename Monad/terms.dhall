@@ -1,6 +1,6 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
@@ -8,8 +8,8 @@ in    λ(object : Kind)
     → λ(m : kArrow object object)
     → λ(functor : ./../Functor/Endo/Type object arrow m)
     → λ(monad : ./Type object arrow m)
-    →     let extractStarfunctor =
-                ./impliedStarfunctor object arrow semigroupoid m functor monad
+    → let extractStarfunctor =
+            ./impliedStarfunctor object arrow semigroupoid m functor monad
       
       in  { map =
               functor.map

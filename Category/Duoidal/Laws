@@ -4,9 +4,7 @@ let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(cat : ./Kind kArrow kProduct object)
-    → let Isomorphism = ./../../Isomorphism/Type object cat.arrow
-      
-      let additive = ./extractAdditive kArrow kProduct object cat
+    → let additive = ./extractAdditive kArrow kProduct object cat
       
       let multiplicative = ./extractMultiplicative kArrow kProduct object cat
       

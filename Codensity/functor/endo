@@ -1,10 +1,8 @@
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let object = Type
 
-in  let object = Type
-
-in  let cat = ./../../Category/Set/monoidal/cartesian
+let cat = ./../../Category/Set/monoidal/cartesian
 
 in    λ(m : kArrow object object)
     → ./../../Functor/Monoidal/extractFunctor

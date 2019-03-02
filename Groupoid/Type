@@ -2,12 +2,12 @@
          object morphism)`, but `Category` isn’t defined via `Monoid`, so we
 		 prefer compatibility with that.
 -}
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
-    →     let profunctor = kArrow (kProduct object object) Type
+    → let profunctor = kArrow (kProduct object object) Type
       
       in    λ(morphism : profunctor)
           →   { inverse :

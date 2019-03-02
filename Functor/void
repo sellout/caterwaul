@@ -1,10 +1,10 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
-in  let cObject = Type
+let cObject = Type
 
-in  let c = ./../Category/Set/monoidal/cartesian
+let c = ./../Category/Set/monoidal/cartesian
 
 in    λ(dObject : Kind)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)

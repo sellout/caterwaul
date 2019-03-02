@@ -4,12 +4,12 @@
           it). So instead, we just build the `Semigroup`, and then write a
           custom identity. But this means we’re not structurally a `Monoid`.
 -}
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
-    →     let profunctor = kArrow (kProduct object object) Type
+    → let profunctor = kArrow (kProduct object object) Type
       
       in    λ(morphism : profunctor)
           →   { identity : ∀(a : object) → morphism { _1 = a, _2 = a } }

@@ -1,4 +1,4 @@
-    let identity = λ(a : Type) → λ(x : a) → x
+let identity = λ(a : Type) → λ(x : a) → x
 
 in    { arr =
           λ(a : Type) → λ(b : Type) → identity (a → b)

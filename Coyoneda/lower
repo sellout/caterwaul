@@ -1,14 +1,14 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(cObject : Kind)
     → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    →     let dObject = Type
+    → let dObject = Type
       
-      in  let dArrow = ./../Function/Type
+      let dArrow = ./../Function/Type
       
-      in  let dCategory = ./../Function/category
+      let dCategory = ./../Function/category
       
       in    λ(f : kArrow cObject dObject)
           → λ(functor : ./../Functor/Type cObject dObject cArrow dArrow f)

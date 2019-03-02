@@ -1,6 +1,6 @@
-    let Set = ./../../Function/Type
+let Set = ./../../Function/Type
 
-in  let Eq = ./../Type
+let Eq = ./../Type
 
 in    { map =
             λ(a : Type)

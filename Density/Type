@@ -1,9 +1,9 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
 in    λ(cObject : Kind)
-    →     let dObject = Type
+    → let dObject = Type
       
-      in  let dArrow = ./../Function/Type
+      let dArrow = ./../Function/Type
       
       in    λ(f : kArrow cObject dObject)
           → ./../Lan/Type cObject dObject dArrow f f

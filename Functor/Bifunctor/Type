@@ -1,6 +1,6 @@
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
@@ -9,7 +9,7 @@ in    λ(cObject : Kind)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
     → λ(eArrow : kArrow (kProduct eObject eObject) Type)
     → λ(f : kArrow (kProduct cObject dObject) eObject)
-    →     let object = { _1 : cObject, _2 : dObject }
+    → let object = { _1 : cObject, _2 : dObject }
       
       in  ./../Type
           object

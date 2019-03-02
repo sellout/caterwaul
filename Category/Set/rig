@@ -1,6 +1,6 @@
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
 in    { arrow =
           ./../../Function/Type

@@ -3,27 +3,27 @@
        distinguish them. So take them with a grain of salt if you’re editing
        this file.
 -}
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
-in  let MonoidalFunctor = ./../../Functor/Monoidal/Type
+let MonoidalFunctor = ./../../Functor/Monoidal/Type
 
 in    λ(cObject : Kind)
     → λ(c : ./../../Category/Monoidal/Kind kArrow kProduct cObject)
-    →     let dObject = Type
+    → let dObject = Type
       
-      in  let d = ./../../Category/Set/monoidal/cartesian
+      let d = ./../../Category/Set/monoidal/cartesian
       
-      in  let eObject = Type
+      let eObject = Type
       
-      in  let e = ./../../Category/Set/monoidal/cartesian
+      let e = ./../../Category/Set/monoidal/cartesian
       
-      in  let Compose = ./../Type cObject dObject eObject
+      let Compose = ./../Type cObject dObject eObject
       
-      in  let Day = ./../../Day/Type cObject c e
+      let Day = ./../../Day/Type cObject c e
       
-      in  let Day/convolution = ./../../Day/convolution
+      let Day/convolution = ./../../Day/convolution
       
       in    λ(f : kArrow dObject eObject)
           → λ(fMonoidal : MonoidalFunctor dObject d e f)

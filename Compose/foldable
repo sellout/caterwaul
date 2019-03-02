@@ -1,6 +1,6 @@
-    let Foldable = ./../Foldable/Type
+let Foldable = ./../Foldable/Type
 
-in  let Compose = ./Type Type Type Type
+let Compose = ./Type Type Type Type
 
 in    λ(f : Type → Type)
     → λ(fFoldable : Foldable f)

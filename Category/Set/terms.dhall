@@ -1,6 +1,6 @@
 {- These are various operations, grouped by type, specialized to **Set**.
 -}
-    let Set = ./../../Function/Type
+let Set = ./../../Function/Type
 
 in  { either =
         ./../../Either/terms.dhall

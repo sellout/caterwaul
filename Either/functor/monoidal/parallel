@@ -1,12 +1,10 @@
-    let object = Type
+let object = Type
 
-in  let cat = ./../../../Category/Set/monoidal/cartesian
+let cat = ./../../../Category/Set/monoidal/cartesian
 
-in  let category = ./../../../Function/category
+let Semigroup = ./../../../Semigroup/Type object cat.arrow cat.op
 
-in  let Semigroup = ./../../../Semigroup/Type object cat.arrow cat.op
-
-in  let Either = ./../../Type
+let Either = ./../../Type
 
 in    λ(a : object)
     → λ(semigroup : Semigroup a)

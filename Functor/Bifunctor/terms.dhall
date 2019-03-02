@@ -1,6 +1,6 @@
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
 in    λ(cObject : Kind)
     → λ(cArrow : kArrow (kProduct cObject cObject) Type)
@@ -12,29 +12,29 @@ in    λ(cObject : Kind)
     → λ(eArrow : kArrow (kProduct eObject eObject) Type)
     → λ(f : kArrow (kProduct cObject dObject) eObject)
     → λ(functor : ./Type cObject dObject eObject cArrow dArrow eArrow f)
-    →     let extractFirstFunctor =
-                ./impliedFirstFunctor
-                cObject
-                cArrow
-                dObject
-                dArrow
-                dCategory
-                eObject
-                eArrow
-                f
-                functor
+    → let extractFirstFunctor =
+            ./impliedFirstFunctor
+            cObject
+            cArrow
+            dObject
+            dArrow
+            dCategory
+            eObject
+            eArrow
+            f
+            functor
       
-      in  let extractSecondFunctor =
-                ./impliedSecondFunctor
-                cObject
-                cArrow
-                cCategory
-                dObject
-                dArrow
-                eObject
-                eArrow
-                f
-                functor
+      let extractSecondFunctor =
+            ./impliedSecondFunctor
+            cObject
+            cArrow
+            cCategory
+            dObject
+            dArrow
+            eObject
+            eArrow
+            f
+            functor
       
       in    { first =
                 λ(a : dObject) → (extractFirstFunctor a).map

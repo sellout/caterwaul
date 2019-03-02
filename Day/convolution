@@ -1,12 +1,12 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
-in  let MonoidalCategory = ./../Category/Monoidal/Kind kArrow kProduct
+let MonoidalCategory = ./../Category/Monoidal/Kind kArrow kProduct
 
 in    λ(cObject : Kind)
     → λ(c : MonoidalCategory cObject)
-    →     let vObject = Type
+    → let vObject = Type
       
       in    λ(v : MonoidalCategory vObject)
           → λ(f : kArrow cObject vObject)

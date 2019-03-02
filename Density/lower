@@ -1,8 +1,8 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let object = Type
+let object = Type
 
-in  let arrow = ./../Function/Type
+let arrow = ./../Function/Type
 
 in    λ(f : kArrow object object)
     → λ(functor : ./../Functor/Endo/Type object arrow f)

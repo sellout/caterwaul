@@ -3,9 +3,9 @@
    https://ncatlab.org/nlab/show/rig, using the name “rig” for what would
    traditionally be a semiring.
 -}
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)

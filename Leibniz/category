@@ -1,12 +1,12 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
     → λ(dCategory : ./../Category/Type dObject dArrow)
-    →     let Leibniz = ./Type cObject dObject dArrow
+    → let Leibniz = ./Type cObject dObject dArrow
       
       in    { identity =
                   λ(a : cObject)

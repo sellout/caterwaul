@@ -1,10 +1,10 @@
-    let object = Type
+let object = Type
 
-in  let arrow = ./../../Function/Type
+let arrow = ./../../Function/Type
 
-in  let category = ./../../Function/category
+let category = ./../../Function/category
 
-in  let Identity = ./../Type object
+let Identity = ./../Type object
 
 in  ./../../Monad/impliedMonoidalFunctor
     Identity

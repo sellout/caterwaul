@@ -1,15 +1,15 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(cObject : Kind)
     → λ(c : ./../Category/Monoidal/Kind kArrow kProduct cObject)
     → λ(semigroupoid : ./../Semigroupoid/Type cObject c.arrow)
-    →     let vObject = Type
+    → let vObject = Type
       
-      in  let v = ./../Category/Set/monoidal/cartesian
+      let v = ./../Category/Set/monoidal/cartesian
       
-      in  let Day = ./Type cObject c v
+      let Day = ./Type cObject c v
       
       in    λ(f : kArrow cObject vObject)
           → λ(g : kArrow cObject vObject)

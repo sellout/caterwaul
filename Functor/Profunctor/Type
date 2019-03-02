@@ -2,9 +2,9 @@
    is much more general than Haskell’s `Profunctor`. See `Hom` and `InternalHom`
    for that.
 -}
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
 in    λ(cObject : Kind)
     → λ(dObject : Kind)

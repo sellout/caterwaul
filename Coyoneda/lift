@@ -1,8 +1,8 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
-in  let object = Type
+let object = Type
 
 in    λ(arrow : kArrow (kProduct object object) Type)
     → λ(category : ./../Category/Type object arrow)

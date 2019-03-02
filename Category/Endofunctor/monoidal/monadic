@@ -1,9 +1,9 @@
 {- NB: This doesn’t use `Duoidal/extractMultiplicative` because that has a fixed
       `object`.
 -}
-    let kArrow = ./../../../Function/Kind
+let kArrow = ./../../../Function/Kind
 
-in  let kProduct = ./../../../Tuple/Kind
+let kProduct = ./../../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)

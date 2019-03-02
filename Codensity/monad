@@ -1,11 +1,11 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let object = Type
+let object = Type
 
-in  let arrow = ./../Function/Type
+let arrow = ./../Function/Type
 
 in    λ(category : ./../Category/Type object arrow)
-    →     let Codensity = ./Type object arrow
+    → let Codensity = ./Type object arrow
       
       in    λ(m : kArrow object object)
           →   { identity =

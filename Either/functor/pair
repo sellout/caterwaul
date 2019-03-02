@@ -1,4 +1,4 @@
-    let Either = ./../Type
+let Either = ./../Type
 
 in    λ(m : Type → Type)
     → λ(functor : ./../../Functor/Endo/Type Type ./../../Function/Type m)
@@ -7,7 +7,7 @@ in    λ(m : Type → Type)
             → λ(b : { _1 : Type, _2 : Type })
             → λ(f : { _1 : a._1 → m b._1, _2 : a._2 → m b._2 })
             → λ(e : Either a)
-            →     let E = Either b
+            → let E = Either b
               
               in  merge
                   { Left =

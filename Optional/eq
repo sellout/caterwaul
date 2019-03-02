@@ -1,4 +1,4 @@
-    let Equality = ./../Eq/Type
+let Equality = ./../Eq/Type
 
 in    λ(a : Type)
     → λ(eq : Equality a)

@@ -1,15 +1,15 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(cObject : Kind)
     → λ(cpObject : Kind)
     → λ(cpArrow : kArrow (kProduct cpObject cpObject) Type)
-    →     let dObject = Type
+    → let dObject = Type
       
-      in  let dArrow = ./../Function/Type
+      let dArrow = ./../Function/Type
       
-      in  let dSemigroupoid = ./../Function/semigroupoid
+      let dSemigroupoid = ./../Function/semigroupoid
       
       in    λ(h : kArrow cpObject dObject)
           → λ(functor : ./../Functor/Type cpObject dObject cpArrow dArrow h)

@@ -1,5 +1,5 @@
 
-    let Foldable = ./../Foldable/Type
+let Foldable = ./../Foldable/Type
 
 in    { fold =
             λ(a : Type)

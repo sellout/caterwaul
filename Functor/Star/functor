@@ -1,16 +1,16 @@
 {- If there is a natural transformation from `n` to `m`, then a m-Star functor
    can be made into an n-Star functor.
 -}
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → λ(category : ./../../Category/Type object arrow)
-    →     let endoObject = kArrow object object
+    → let endoObject = kArrow object object
       
-      in  let endoArrow = ./../../NaturalTransformation/Type object object arrow
+      let endoArrow = ./../../NaturalTransformation/Type object object arrow
       
       in    λ(f : endoObject)
           →   { map =

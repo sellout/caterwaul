@@ -1,16 +1,16 @@
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
-    →     let Set = ./../../Category/Set/monoidal/cartesian
+    → let Set = ./../../Category/Set/monoidal/cartesian
       
-      in  let Endofunctor = ./../../Functor/Endo/Type
+      let Endofunctor = ./../../Functor/Endo/Type
       
-      in  let Star = ./../../Star/Type object cat.arrow
+      let Star = ./../../Star/Type object cat.arrow
       
-      in  let Costar = ./../../Costar/Type object cat.arrow
+      let Costar = ./../../Costar/Type object cat.arrow
       
       in  { Adjunction =
               ./../../Adjunction/Type object object cat.arrow cat.arrow

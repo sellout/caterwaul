@@ -1,14 +1,14 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let cObject = Type
+let cObject = Type
 
-in  let c = ./../Category/Set/monoidal/cartesian
+let c = ./../Category/Set/monoidal/cartesian
 
-in  let cpObject = Type
+let cpObject = Type
 
-in  let cp = ./../Category/Set/monoidal/cartesian
+let cp = ./../Category/Set/monoidal/cartesian
 
-in  let dObject = Type
+let dObject = Type
 
 in    λ(p : kArrow cObject cpObject)
     → λ(monoidal : ./../Functor/Monoidal/Type cObject c cp p)

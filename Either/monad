@@ -1,4 +1,4 @@
-    let Either = ./Type
+let Either = ./Type
 
 in    λ(a : Type)
     →   { identity =

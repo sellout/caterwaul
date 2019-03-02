@@ -1,4 +1,4 @@
-    let Tuple = ./../Type
+let Tuple = ./../Type
 
 in    { map =
             λ(a : { _1 : Type, _2 : Type })

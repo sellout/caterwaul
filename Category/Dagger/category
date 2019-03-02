@@ -1,15 +1,15 @@
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → λ(category : ./../Type object arrow)
-    →     let opArrow = ./../Op/Type object arrow
+    → let opArrow = ./../Op/Type object arrow
       
-      in  let opCategory = ./../Op/category object arrow category
+      let opCategory = ./../Op/category object arrow category
       
-      in  let Dagger = ./Type object arrow
+      let Dagger = ./Type object arrow
       
       in    { identity =
                   λ(a : object)

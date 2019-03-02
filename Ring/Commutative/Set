@@ -1,4 +1,4 @@
-    let object = Type
+let object = Type
 
 in    λ(m : object)
     → { additive :

@@ -1,6 +1,6 @@
-    let kArrow = ./../../../Function/Kind
+let kArrow = ./../../../Function/Kind
 
-in  let Tuple = ./../../Type
+let Tuple = ./../../Type
 
 in    λ(m : kArrow Type Type)
     → λ(functor : ./../../../Functor/Endo/Type Type ./../../../Function/Type m)

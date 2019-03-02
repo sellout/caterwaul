@@ -1,15 +1,15 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → λ(semigroupoid : ./../Semigroupoid/Type object arrow)
     → λ(product : kArrow (kProduct object object) object)
     → λ(bifunctor : ./../Functor/Pair/Type object arrow product)
-    →     let Semigroup = ./Type object arrow product
+    → let Semigroup = ./Type object arrow product
       
-      in  let Dagger = ./../Category/Dagger/Type object arrow
+      let Dagger = ./../Category/Dagger/Type object arrow
       
       in    { map =
                   λ(a : object)

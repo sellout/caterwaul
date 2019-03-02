@@ -1,24 +1,24 @@
-    let kArrow = ./../Function/Kind
+let kArrow = ./../Function/Kind
 
-in  let kProduct = ./../Tuple/Kind
+let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
     → λ(semigroupoid : ./../Semigroupoid/Type object arrow)
     → λ(m : kArrow object object)
-    →     let starArrow = ./Type object arrow m
+    → let starArrow = ./Type object arrow m
       
       in    λ(functor : ./../Functor/Endo/Type object arrow m)
           → λ(monad : ./../Monad/Type object arrow m)
-          →     let bind =
-                      ( ./../Monad/impliedStarfunctor
-                        object
-                        arrow
-                        semigroupoid
-                        m
-                        functor
-                        monad
-                      ).map
+          → let bind =
+                  ( ./../Monad/impliedStarfunctor
+                    object
+                    arrow
+                    semigroupoid
+                    m
+                    functor
+                    monad
+                  ).map
             
             in    { identity =
                       monad.identity

@@ -1,6 +1,6 @@
-    let object = Type
+let object = Type
 
-in  let arrow = ./../Function/Type
+let arrow = ./../Function/Type
 
 in    { unit =
           λ(a : object) → λ(x : a) → x

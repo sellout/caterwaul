@@ -1,10 +1,10 @@
-    let object = Type
+let object = Type
 
-in  let cat = ./../../Category/Set/monoidal/cartesian
+let cat = ./../../Category/Set/monoidal/cartesian
 
-in  let category = ./../../Function/category
+let category = ./../../Function/category
 
-in  let bifunctor = ./../../Tuple/functor/pair
+let bifunctor = ./../../Tuple/functor/pair
 
 in    λ(m : object)
     → λ(field : ./Type m)

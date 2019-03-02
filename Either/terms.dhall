@@ -1,4 +1,4 @@
-    let Either = ./Type
+let Either = ./Type
 
 in  { traverse =
         ./functor/pair
@@ -22,7 +22,7 @@ in  { traverse =
     , ab =
           λ(a : Type)
         → λ(b : Type)
-        →     let E = Either { _1 = a, _2 = b }
+        → let E = Either { _1 = a, _2 = b }
           
           in  { Left = E.Left, Right = E.Right }
     }

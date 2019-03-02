@@ -1,14 +1,14 @@
 {- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
    functor **Set** → 𝒟.
 -}
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
-in  let MonoidalCategory = ./../Monoidal/Kind kArrow kProduct
+let MonoidalCategory = ./../Monoidal/Kind kArrow kProduct
 
 in    λ(cObject : Kind)
-    →     let dObject = Type
+    → let dObject = Type
       
       in    λ(c : MonoidalCategory cObject)
           → λ(d : MonoidalCategory dObject)

@@ -6,16 +6,16 @@
        When you combine these two restrictions, you end up only being able to
        support endofunctors in **Set**.
 -}
-    let kArrow = ./../../Function/Kind
+let kArrow = ./../../Function/Kind
 
-in  let kProduct = ./../../Tuple/Kind
+let kProduct = ./../../Tuple/Kind
 
-in  let object = Type
+let object = Type
 
 in    λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
-    →     let applicative = ./../Functor/monoidal object cat cat
+    → let applicative = ./../Functor/monoidal object cat cat
       
-      in  let monadic = ./monoidal/monadic object cat.arrow
+      let monadic = ./monoidal/monadic object cat.arrow
       
       in    { arrow =
                 applicative.arrow

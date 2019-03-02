@@ -1,7 +1,3 @@
-let kArrow = ./../../Function/Kind
-
-let kProduct = ./../../Tuple/Kind
-
 let Either = ./../../Either/Type
 
 in    { distributivity =
