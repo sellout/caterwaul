@@ -3,5 +3,5 @@ let kArrow = ./../Function/Kind
 let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → ./../Semigroup/Type object (./../Category/Op/Type object arrow)
+    → λ(cat : ./../Category/Semigroupal/Kind kArrow kProduct object)
+    → ./../Semigroup/Type object (./../Category/Op/semigroupal object cat)

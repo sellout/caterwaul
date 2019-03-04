@@ -3,13 +3,12 @@ let kArrow = ./../Function/Kind
 let kProduct = ./../Tuple/Kind
 
 in    λ(object : Kind)
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → λ(semigroupoid : ./../Semigroupoid/Type object arrow)
-    → λ(product : kArrow (kProduct object object) object)
-    → λ(bifunctor : ./../Functor/Pair/Type object arrow product)
-    → let Semigroup = ./Type object arrow product
+    → λ(cat : ./../Category/Semigroupal/Kind kArrow kProduct object)
+    → λ(semigroupoid : ./../Semigroupoid/Type object cat.arrow)
+    → λ(bifunctor : ./../Functor/Pair/Type object cat.arrow cat.op)
+    → let Semigroup = ./Type object cat
       
-      let Dagger = ./../Category/Dagger/Type object arrow
+      let Dagger = ./../Category/Dagger/Type object cat.arrow
       
       in    { map =
                   λ(a : object)
@@ -18,34 +17,30 @@ in    λ(object : Kind)
                 → λ(fa : Semigroup a)
                 → { op =
                       semigroupoid.op
-                      { _1 = product { _1 = b, _2 = b }, _2 = b }
+                      { _1 = cat.op { _1 = b, _2 = b }, _2 = b }
                       (   λ(r : Type)
                         → λ ( arrowsOut
                             :   ∀(z : object)
-                              → arrow { _1 = z, _2 = b }
-                              → arrow
-                                { _1 = product { _1 = b, _2 = b }, _2 = z }
+                              → cat.arrow { _1 = z, _2 = b }
+                              → cat.arrow
+                                { _1 = cat.op { _1 = b, _2 = b }, _2 = z }
                               → r
                             )
                         → arrowsOut
                           a
                           fn.to
                           ( semigroupoid.op
-                            { _1 = product { _1 = b, _2 = b }, _2 = a }
+                            { _1 = cat.op { _1 = b, _2 = b }, _2 = a }
                             (   λ(r : Type)
                               → λ ( arrowsOut
                                   :   ∀(z : object)
-                                    → arrow { _1 = z, _2 = a }
-                                    → arrow
-                                      { _1 =
-                                          product { _1 = b, _2 = b }
-                                      , _2 =
-                                          z
-                                      }
+                                    → cat.arrow { _1 = z, _2 = a }
+                                    → cat.arrow
+                                      { _1 = cat.op { _1 = b, _2 = b }, _2 = z }
                                     → r
                                   )
                               → arrowsOut
-                                (product { _1 = a, _2 = a })
+                                (cat.op { _1 = a, _2 = a })
                                 fa.op
                                 ( bifunctor.map
                                   { _1 = b, _2 = b }

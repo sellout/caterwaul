@@ -1,8 +1,20 @@
+let kArrow = ./../../../Function/Kind
+
+let kProduct = ./../../../Tuple/Kind
+
 let object = Type
 
 let cat = ./../../../Category/Set/monoidal/cartesian
 
-let Semigroup = ./../../../Semigroup/Type object cat.arrow cat.op
+let Semigroup =
+      ./../../../Semigroup/Type
+      object
+      ( ./../../../Category/Monoidal/extractSemigroupal
+        kArrow
+        kProduct
+        object
+        cat
+      )
 
 let Either = ./../../Type
 

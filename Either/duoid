@@ -1,11 +1,15 @@
 let kArrow = ./../Function/Kind
 
+let kProduct = ./../Tuple/Kind
+
 let object = Type
 
 let cat = ./../Category/Set/monoidal/cartesian
 
 let CommutativeSemigroup =
-      ./../Semigroup/Commutative/Type object cat.arrow cat.op
+      ./../Semigroup/Commutative/Type
+      object
+      (./../Category/Monoidal/extractSemigroupal kArrow kProduct object cat)
 
 let extractMonoid = ./../Functor/Monoidal/extractMonoid object cat cat
 

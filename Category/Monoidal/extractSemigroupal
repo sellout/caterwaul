@@ -1,0 +1,9 @@
+{- FIXME: Should be able to do `monoidal.{ arrow, op }`, but Dhall doesn’t like
+          that for some reason.
+-}
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(object : Kind)
+→ λ(monoidal : ./Kind kArrow kProduct object)
+→   { arrow = monoidal.arrow, op = monoidal.op }
+  : ./../Semigroupal/Kind kArrow kProduct object

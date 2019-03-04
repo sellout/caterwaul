@@ -1,12 +1,19 @@
+let kArrow = ./../Function/Kind
+
+let kProduct = ./../Tuple/Kind
+
 let object = Type
 
-let arrow = ./../Function/Type
-
-let product = ./../Tuple/Type
+let cat =
+      ./../Category/Monoidal/extractSemigroupal
+      kArrow
+      kProduct
+      object
+      ./../Category/Set/monoidal/cartesian
 
 in    λ(m : object)
     → λ(eq : ./../Eq/Type m)
-    → λ(semigroup : ./Type object arrow product m)
+    → λ(semigroup : ./Type object cat m)
     → { associativity =
             λ(a : m)
           → λ(b : m)

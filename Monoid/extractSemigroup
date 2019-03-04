@@ -6,4 +6,8 @@ in    λ(object : Kind)
     → λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)
     → λ(m : object)
     → λ(monoid : ./Type object cat m)
-    → monoid.{ op } : ./../Semigroup/Type object cat.arrow cat.op m
+    →   monoid.{ op }
+      : ./../Semigroup/Type
+        object
+        (./../Category/Monoidal/extractSemigroupal kArrow kProduct object cat)
+        m

@@ -3,8 +3,8 @@ let kArrow = ./../../Function/Kind
 let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
-    → λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
-    → let Set = ./../../Category/Set/monoidal/cartesian
+    → λ(cat : ./Kind kArrow kProduct object)
+    → let Set = ./../Set/monoidal/cartesian
       
       let Endofunctor = ./../../Functor/Endo/Type
       
@@ -25,7 +25,7 @@ in    λ(object : Kind)
               cat.arrow
               cat.arrow
           , Category =
-              ./../../Category/Type object
+              ./../Type object
           , Codensity =
               ./../../Codensity/Type object
           , CommutativeGroup =
@@ -99,7 +99,9 @@ in    λ(object : Kind)
           , Ring =
               ./../../Ring/Type object cat
           , Semigroup =
-              ./../../Semigroup/Type object cat.arrow cat.op
+              ./../../Semigroup/Type
+              object
+              (./extractSemigroupal kArrow kProduct object cat)
           , Semigroupoid =
               ./../../Semigroupoid/Type object
           , Semiring =

@@ -11,7 +11,10 @@ in    λ(object : Kind)
     → λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)
     → λ(m : object)
     → { additive :
-          ./../Semigroup/Type object cat.arrow cat.op m
+          ./../Semigroup/Type
+          object
+          (./../Category/Monoidal/extractSemigroupal kArrow kProduct object cat)
+          m
       , multiplicative :
           ./../Monoid/Type object cat m
       }

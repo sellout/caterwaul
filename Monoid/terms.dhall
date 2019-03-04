@@ -9,7 +9,6 @@ in    λ(object : Kind)
     →   monoid.{ identity }
       ∧ ./../Semigroup/terms.dhall
         object
-        cat.arrow
-        cat.op
+        (./../Category/Monoidal/extractSemigroupal kArrow kProduct object cat)
         m
         (./extractSemigroup object cat m monoid)

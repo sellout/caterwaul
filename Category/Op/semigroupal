@@ -1,0 +1,8 @@
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+in    λ(object : Kind)
+    → λ(cat : ./../Semigroupal/Kind kArrow kProduct object)
+    →   { arrow = ./Type object cat.arrow, op = cat.op }
+      : ./../Semigroupal/Kind kArrow kProduct object
