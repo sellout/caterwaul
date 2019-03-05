@@ -43,6 +43,90 @@
   }
 </pre></dd>
 </dl>
+<h4>impliedComonad (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(dObject : Kind)
+→ ∀(cArrow : { _1 : cObject, _2 : cObject } → Type)
+→ ∀(dArrow : { _1 : dObject, _2 : dObject } → Type)
+→ ∀(f : dObject → cObject)
+→ ∀ ( functor
+    : { map :
+            ∀(a : dObject)
+          → ∀(b : dObject)
+          → dArrow { _1 = a, _2 = b }
+          → cArrow { _1 = f a, _2 = f b }
+      }
+    )
+→ ∀(g : cObject → dObject)
+→ ∀ ( adjunction
+    : { counit :
+          ∀(a : cObject) → cArrow { _1 = f (g a), _2 = a }
+      , leftAdjunct :
+            ∀(a : dObject)
+          → ∀(b : cObject)
+          → cArrow { _1 = f a, _2 = b }
+          → dArrow { _1 = a, _2 = g b }
+      , rightAdjunct :
+            ∀(a : dObject)
+          → ∀(b : cObject)
+          → dArrow { _1 = a, _2 = g b }
+          → cArrow { _1 = f a, _2 = b }
+      , unit :
+          ∀(a : dObject) → dArrow { _1 = a, _2 = g (f a) }
+      }
+    )
+→ { identity :
+      ∀(a : cObject) → cArrow { _1 = f (g a), _2 = a }
+  , op :
+      ∀(a : cObject) → cArrow { _1 = f (g a), _2 = f (g (f (g a))) }
+  }
+</pre></dd>
+</dl>
+<h4>impliedMonad (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(dObject : Kind)
+→ ∀(cArrow : { _1 : cObject, _2 : cObject } → Type)
+→ ∀(dArrow : { _1 : dObject, _2 : dObject } → Type)
+→ ∀(f : dObject → cObject)
+→ ∀(g : cObject → dObject)
+→ ∀ ( functor
+    : { map :
+            ∀(a : cObject)
+          → ∀(b : cObject)
+          → cArrow { _1 = a, _2 = b }
+          → dArrow { _1 = g a, _2 = g b }
+      }
+    )
+→ ∀ ( adjunction
+    : { counit :
+          ∀(a : cObject) → cArrow { _1 = f (g a), _2 = a }
+      , leftAdjunct :
+            ∀(a : dObject)
+          → ∀(b : cObject)
+          → cArrow { _1 = f a, _2 = b }
+          → dArrow { _1 = a, _2 = g b }
+      , rightAdjunct :
+            ∀(a : dObject)
+          → ∀(b : cObject)
+          → dArrow { _1 = a, _2 = g b }
+          → cArrow { _1 = f a, _2 = b }
+      , unit :
+          ∀(a : dObject) → dArrow { _1 = a, _2 = g (f a) }
+      }
+    )
+→ { identity :
+      ∀(a : dObject) → dArrow { _1 = a, _2 = g (f a) }
+  , op :
+      ∀(a : dObject) → dArrow { _1 = g (f (g (f a))), _2 = g (f a) }
+  }
+</pre></dd>
+</dl>
 <h2 style="background-color: #bbb; width: 100%">./Arrow</h2>
 <h4>Type (type)</h4>
 <p></p>
@@ -399,6 +483,83 @@
   }
 </pre></dd>
 </dl>
+<h2 style="background-color: #bbb; width: 100%">./Bicategory</h2>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+  ∀(kArrow : Kind → Kind → Kind)
+→ ∀(kProduct : Kind → Kind → Kind)
+→ ∀(object : Kind)
+→ Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(object : Kind)
+→ { arrow :
+      kArrow (kProduct object object) Type
+  , arrow2 :
+      kArrow
+      ( kProduct
+        (kArrow (kProduct object object) Type)
+        (kArrow (kProduct object object) Type)
+      )
+      Type
+  }
+</pre></dd>
+</dl>
+<h4>extractLower (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(kArrow : Kind → Kind → Kind)
+→ ∀(kProduct : Kind → Kind → Kind)
+→ ∀(object : Kind)
+→ ∀ ( bicategory
+    : { arrow :
+          kArrow (kProduct object object) Type
+      , arrow2 :
+          kArrow
+          ( kProduct
+            (kArrow (kProduct object object) Type)
+            (kArrow (kProduct object object) Type)
+          )
+          Type
+      }
+    )
+→ { arrow : kArrow (kProduct object object) Type }
+</pre></dd>
+</dl>
+<h4>extractUppre (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(kArrow : Kind → Kind → Kind)
+→ ∀(kProduct : Kind → Kind → Kind)
+→ ∀(object : Kind)
+→ ∀ ( bicategory
+    : { arrow :
+          kArrow (kProduct object object) Type
+      , arrow2 :
+          kArrow
+          ( kProduct
+            (kArrow (kProduct object object) Type)
+            (kArrow (kProduct object object) Type)
+          )
+          Type
+      }
+    )
+→ { arrow :
+      kArrow
+      ( kProduct
+        (kArrow (kProduct object object) Type)
+        (kArrow (kProduct object object) Type)
+      )
+      Type
+  }
+</pre></dd>
+</dl>
 <h2 style="background-color: #bbb; width: 100%">./Bimonad</h2>
 <h4>Type (type)</h4>
 <p></p>
@@ -479,6 +640,17 @@
 <dl>
 <dt>type</dt><dd><pre>
 { eq : ∀(x : Bool) → ∀(y : Bool) → Bool }
+</pre></dd>
+</dl>
+<h4>lattice (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+{ join :
+    { identity : {} → Bool, op : ∀(p : { _1 : Bool, _2 : Bool }) → Bool }
+, meet :
+    { identity : {} → Bool, op : ∀(p : { _1 : Bool, _2 : Bool }) → Bool }
+}
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Bool/monoid</h3>
@@ -588,6 +760,197 @@
   }
 </pre></dd>
 </dl>
+<h4>Laws (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { additive :
+          { identity : object, op : { _1 : object, _2 : object } → object }
+      , arrow :
+          { _1 : object, _2 : object } → Type
+      , multiplicative :
+          { identity : object, op : { _1 : object, _2 : object } → object }
+      }
+    )
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { additive :
+          { identity : object, op : { _1 : object, _2 : object } → object }
+      , arrow :
+          { _1 : object, _2 : object } → Type
+      , multiplicative :
+          { identity : object, op : { _1 : object, _2 : object } → object }
+      }
+    )
+→ { additive :
+      { associativity :
+            ∀(a : object)
+          → ∀(b : object)
+          → ∀(c : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    cat.additive.op
+                    { _1 = a, _2 = cat.additive.op { _1 = b, _2 = c } }
+                , _2 =
+                    cat.additive.op
+                    { _1 = cat.additive.op { _1 = a, _2 = b }, _2 = c }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.additive.op
+                    { _1 = cat.additive.op { _1 = a, _2 = b }, _2 = c }
+                , _2 =
+                    cat.additive.op
+                    { _1 = a, _2 = cat.additive.op { _1 = b, _2 = c } }
+                }
+            }
+      , leftIdentity :
+            ∀(a : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    a
+                , _2 =
+                    cat.additive.op { _1 = cat.additive.identity, _2 = a }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.additive.op { _1 = cat.additive.identity, _2 = a }
+                , _2 =
+                    a
+                }
+            }
+      , rightIdentity :
+            ∀(a : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    a
+                , _2 =
+                    cat.additive.op { _1 = a, _2 = cat.additive.identity }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.additive.op { _1 = a, _2 = cat.additive.identity }
+                , _2 =
+                    a
+                }
+            }
+      }
+  , combine :
+      cat.arrow
+      { _1 =
+          cat.additive.op
+          { _1 = cat.multiplicative.identity, _2 = cat.multiplicative.identity }
+      , _2 =
+          cat.multiplicative.identity
+      }
+  , multiplicative :
+      { associativity :
+            ∀(a : object)
+          → ∀(b : object)
+          → ∀(c : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.op
+                    { _1 = a, _2 = cat.multiplicative.op { _1 = b, _2 = c } }
+                , _2 =
+                    cat.multiplicative.op
+                    { _1 = cat.multiplicative.op { _1 = a, _2 = b }, _2 = c }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.op
+                    { _1 = cat.multiplicative.op { _1 = a, _2 = b }, _2 = c }
+                , _2 =
+                    cat.multiplicative.op
+                    { _1 = a, _2 = cat.multiplicative.op { _1 = b, _2 = c } }
+                }
+            }
+      , leftIdentity :
+            ∀(a : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    a
+                , _2 =
+                    cat.multiplicative.op
+                    { _1 = cat.multiplicative.identity, _2 = a }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.op
+                    { _1 = cat.multiplicative.identity, _2 = a }
+                , _2 =
+                    a
+                }
+            }
+      , rightIdentity :
+            ∀(a : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    a
+                , _2 =
+                    cat.multiplicative.op
+                    { _1 = a, _2 = cat.multiplicative.identity }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.op
+                    { _1 = a, _2 = cat.multiplicative.identity }
+                , _2 =
+                    a
+                }
+            }
+      }
+  , split :
+      cat.arrow
+      { _1 =
+          cat.additive.identity
+      , _2 =
+          cat.multiplicative.op
+          { _1 = cat.additive.identity, _2 = cat.additive.identity }
+      }
+  , swap :
+        ∀(a : object)
+      → ∀(b : object)
+      → ∀(c : object)
+      → ∀(d : object)
+      → cat.arrow
+        { _1 =
+            cat.additive.op
+            { _1 =
+                cat.multiplicative.op { _1 = a, _2 = b }
+            , _2 =
+                cat.multiplicative.op { _1 = c, _2 = d }
+            }
+        , _2 =
+            cat.multiplicative.op
+            { _1 =
+                cat.additive.op { _1 = a, _2 = c }
+            , _2 =
+                cat.additive.op { _1 = b, _2 = d }
+            }
+        }
+  , switch :
+      cat.arrow { _1 = cat.additive.identity, _2 = cat.multiplicative.identity }
+  }
+</pre></dd>
+</dl>
 <h4>extractAdditive (term)</h4>
 <p></p>
 <dl>
@@ -676,6 +1039,16 @@
   }
 </pre></dd>
 </dl>
+<h4>laws (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
+</pre></dd>
+</dl>
 <h4 style="background-color: #bbb; width: 100%">./Category/Endofunctor/monoidal</h4>
 <h4>functor (term)</h4>
 <p></p>
@@ -719,6 +1092,18 @@
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Functor</h3>
+<h4>laws (type)</h4>
+<p>{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
+--    functor **Set** → 𝒟.
+-- -}</p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
+</pre></dd>
+</dl>
 <h4>monoidal (term)</h4>
 <p>{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
    functor **Set** → 𝒟.
@@ -794,6 +1179,147 @@
   }
 </pre></dd>
 </dl>
+<h4>Laws (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ { associativity :
+        ∀(a : object)
+      → ∀(b : object)
+      → ∀(c : object)
+      → { from :
+            cat.arrow
+            { _1 =
+                cat.op { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
+            , _2 =
+                cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }
+            }
+        , to :
+            cat.arrow
+            { _1 =
+                cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }
+            , _2 =
+                cat.op { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
+            }
+        }
+  , leftIdentity :
+        ∀(a : object)
+      → { from :
+            cat.arrow { _1 = a, _2 = cat.op { _1 = cat.identity, _2 = a } }
+        , to :
+            cat.arrow { _1 = cat.op { _1 = cat.identity, _2 = a }, _2 = a }
+        }
+  , rightIdentity :
+        ∀(a : object)
+      → { from :
+            cat.arrow { _1 = a, _2 = cat.op { _1 = a, _2 = cat.identity } }
+        , to :
+            cat.arrow { _1 = cat.op { _1 = a, _2 = cat.identity }, _2 = a }
+        }
+  }
+</pre></dd>
+</dl>
+<h4>Type (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ λ(m : object)
+→ { category :
+      { identity :
+          ∀(a : object) → cat.arrow { _1 = a, _2 = a }
+      , op :
+            ∀(a : { _1 : object, _2 : object })
+          → (   ∀(r : Type)
+              → (   ∀(z : object)
+                  → cat.arrow { _1 = z, _2 = a._2 }
+                  → cat.arrow { _1 = a._1, _2 = z }
+                  → r
+                )
+              → r
+            )
+          → cat.arrow a
+      }
+  , monoid :
+      { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+  }
+</pre></dd>
+</dl>
+<h4>extractSemigroupal (term)</h4>
+<p>{- FIXME: Should be able to do `monoidal.{ arrow, op }`, but Dhall doesn’t like
+          that for some reason.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(kArrow : Kind → Kind → Kind)
+→ ∀(kProduct : Kind → Kind → Kind)
+→ ∀(object : Kind)
+→ ∀ ( monoidal
+    : { arrow :
+          kArrow (kProduct object object) Type
+      , identity :
+          object
+      , op :
+          kArrow (kProduct object object) object
+      }
+    )
+→ { arrow :
+      kArrow (kProduct object object) Type
+  , op :
+      kArrow (kProduct object object) object
+  }
+</pre></dd>
+</dl>
 <h4>types.dhall (term)</h4>
 <p></p>
 <dl>
@@ -834,7 +1360,7 @@
       → ∀(a : object)
       → object
   , Const :
-      ∀(a : object) → object → object
+      ∀(a : { _1 : object, _2 : object }) → object
   , Costar :
       ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
   , Coyoneda :
@@ -1037,6 +1563,25 @@
   }
 </pre></dd>
 </dl>
+<h4>semigroupal (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ { arrow :
+      ∀(a : { _1 : object, _2 : object }) → Type
+  , op :
+      { _1 : object, _2 : object } → object
+  }
+</pre></dd>
+</dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Product</h3>
 <h4>Kind (kind)</h4>
 <p></p>
@@ -1203,6 +1748,35 @@
   }
 </pre></dd>
 </dl>
+<h4>semigroupal (term)</h4>
+<p>{- This doesn’t use `extractSemigroupal` because I don’t know how to apply the
+  `morphism` in the monoidal category instance.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ { arrow :
+        ∀ ( p
+          : { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          )
+      → Type
+  , op :
+        ∀ ( p
+          : { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          )
+      → ∀(a : { _1 : object, _2 : object })
+      → Type
+  }
+</pre></dd>
+</dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Rig</h3>
 <h4>Kind (kind)</h4>
 <p></p>
@@ -1223,6 +1797,223 @@
       kArrow (kProduct object object) Type
   , multiplicative :
       { identity : object, op : kArrow (kProduct object object) object }
+  }
+</pre></dd>
+</dl>
+<h4>Laws (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { additive :
+          { identity : object, op : { _1 : object, _2 : object } → object }
+      , arrow :
+          { _1 : object, _2 : object } → Type
+      , multiplicative :
+          { identity : object, op : { _1 : object, _2 : object } → object }
+      }
+    )
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { additive :
+          { identity : object, op : { _1 : object, _2 : object } → object }
+      , arrow :
+          { _1 : object, _2 : object } → Type
+      , multiplicative :
+          { identity : object, op : { _1 : object, _2 : object } → object }
+      }
+    )
+→ { additive :
+      { associativity :
+            ∀(a : object)
+          → ∀(b : object)
+          → ∀(c : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    cat.additive.op
+                    { _1 = a, _2 = cat.additive.op { _1 = b, _2 = c } }
+                , _2 =
+                    cat.additive.op
+                    { _1 = cat.additive.op { _1 = a, _2 = b }, _2 = c }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.additive.op
+                    { _1 = cat.additive.op { _1 = a, _2 = b }, _2 = c }
+                , _2 =
+                    cat.additive.op
+                    { _1 = a, _2 = cat.additive.op { _1 = b, _2 = c } }
+                }
+            }
+      , leftIdentity :
+            ∀(a : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    a
+                , _2 =
+                    cat.additive.op { _1 = cat.additive.identity, _2 = a }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.additive.op { _1 = cat.additive.identity, _2 = a }
+                , _2 =
+                    a
+                }
+            }
+      , rightIdentity :
+            ∀(a : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    a
+                , _2 =
+                    cat.additive.op { _1 = a, _2 = cat.additive.identity }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.additive.op { _1 = a, _2 = cat.additive.identity }
+                , _2 =
+                    a
+                }
+            }
+      }
+  , distributivity :
+        ∀(a : object)
+      → ∀(b : object)
+      → ∀(c : object)
+      → { from :
+            cat.arrow
+            { _1 =
+                cat.additive.op
+                { _1 =
+                    cat.multiplicative.op { _1 = a, _2 = b }
+                , _2 =
+                    cat.multiplicative.op { _1 = a, _2 = c }
+                }
+            , _2 =
+                cat.multiplicative.op
+                { _1 = a, _2 = cat.additive.op { _1 = b, _2 = c } }
+            }
+        , to :
+            cat.arrow
+            { _1 =
+                cat.multiplicative.op
+                { _1 = a, _2 = cat.additive.op { _1 = b, _2 = c } }
+            , _2 =
+                cat.additive.op
+                { _1 =
+                    cat.multiplicative.op { _1 = a, _2 = b }
+                , _2 =
+                    cat.multiplicative.op { _1 = a, _2 = c }
+                }
+            }
+        }
+  , leftAnnihilation :
+        ∀(a : object)
+      → { from :
+            cat.arrow
+            { _1 =
+                cat.additive.identity
+            , _2 =
+                cat.multiplicative.op { _1 = cat.additive.identity, _2 = a }
+            }
+        , to :
+            cat.arrow
+            { _1 =
+                cat.multiplicative.op { _1 = cat.additive.identity, _2 = a }
+            , _2 =
+                cat.additive.identity
+            }
+        }
+  , multiplicative :
+      { associativity :
+            ∀(a : object)
+          → ∀(b : object)
+          → ∀(c : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.op
+                    { _1 = a, _2 = cat.multiplicative.op { _1 = b, _2 = c } }
+                , _2 =
+                    cat.multiplicative.op
+                    { _1 = cat.multiplicative.op { _1 = a, _2 = b }, _2 = c }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.op
+                    { _1 = cat.multiplicative.op { _1 = a, _2 = b }, _2 = c }
+                , _2 =
+                    cat.multiplicative.op
+                    { _1 = a, _2 = cat.multiplicative.op { _1 = b, _2 = c } }
+                }
+            }
+      , leftIdentity :
+            ∀(a : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    a
+                , _2 =
+                    cat.multiplicative.op
+                    { _1 = cat.multiplicative.identity, _2 = a }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.op
+                    { _1 = cat.multiplicative.identity, _2 = a }
+                , _2 =
+                    a
+                }
+            }
+      , rightIdentity :
+            ∀(a : object)
+          → { from :
+                cat.arrow
+                { _1 =
+                    a
+                , _2 =
+                    cat.multiplicative.op
+                    { _1 = a, _2 = cat.multiplicative.identity }
+                }
+            , to :
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.op
+                    { _1 = a, _2 = cat.multiplicative.identity }
+                , _2 =
+                    a
+                }
+            }
+      }
+  , rightAnnihilation :
+        ∀(a : object)
+      → { from :
+            cat.arrow
+            { _1 =
+                cat.additive.identity
+            , _2 =
+                cat.multiplicative.op { _1 = a, _2 = cat.additive.identity }
+            }
+        , to :
+            cat.arrow
+            { _1 =
+                cat.multiplicative.op { _1 = a, _2 = cat.additive.identity }
+            , _2 =
+                cat.additive.identity
+            }
+        }
   }
 </pre></dd>
 </dl>
@@ -1276,7 +2067,204 @@
   }
 </pre></dd>
 </dl>
+<h3 style="background-color: #bbb; width: 100%">./Category/Semigroupal</h3>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+  ∀(kArrow : Kind → Kind → Kind)
+→ ∀(kProduct : Kind → Kind → Kind)
+→ ∀(object : Kind)
+→ Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(object : Kind)
+→ { arrow :
+      kArrow (kProduct object object) Type
+  , op :
+      kArrow (kProduct object object) object
+  }
+</pre></dd>
+</dl>
+<h4>Laws (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ { associativity :
+        ∀(a : object)
+      → ∀(b : object)
+      → ∀(c : object)
+      → { from :
+            cat.arrow
+            { _1 =
+                cat.op { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
+            , _2 =
+                cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }
+            }
+        , to :
+            cat.arrow
+            { _1 =
+                cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }
+            , _2 =
+                cat.op { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
+            }
+        }
+  }
+</pre></dd>
+</dl>
+<h4>Type (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ λ(m : object)
+→ { category :
+      { identity :
+          ∀(a : object) → cat.arrow { _1 = a, _2 = a }
+      , op :
+            ∀(a : { _1 : object, _2 : object })
+          → (   ∀(r : Type)
+              → (   ∀(z : object)
+                  → cat.arrow { _1 = z, _2 = a._2 }
+                  → cat.arrow { _1 = a._1, _2 = z }
+                  → r
+                )
+              → r
+            )
+          → cat.arrow a
+      }
+  , monoid :
+      { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }
+  }
+</pre></dd>
+</dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Set</h3>
+<h4>laws (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+{ additive :
+    { associativity :
+          ∀(a : Type)
+        → ∀(b : Type)
+        → ∀(c : Type)
+        → { from :
+                ∀(e : < Left : a | Right : < Left : b | Right : c > >)
+              → < Left : < Left : a | Right : b > | Right : c >
+          , to :
+                ∀(e : < Left : < Left : a | Right : b > | Right : c >)
+              → < Left : a | Right : < Left : b | Right : c > >
+          }
+    , leftIdentity :
+          ∀(a : Type)
+        → { from :
+              ∀(Right : a) → < Left : <> | Right : a >
+          , to :
+              ∀(e : < Left : <> | Right : a >) → a
+          }
+    , rightIdentity :
+          ∀(a : Type)
+        → { from :
+              ∀(Left : a) → < Left : a | Right : <> >
+          , to :
+              ∀(e : < Left : a | Right : <> >) → a
+          }
+    }
+, distributivity :
+      ∀(a : Type)
+    → ∀(b : Type)
+    → ∀(c : Type)
+    → { from :
+            ∀(e : < Left : { _1 : a, _2 : b } | Right : { _1 : a, _2 : c } >)
+          → { _1 : a, _2 : < Left : b | Right : c > }
+      , to :
+            ∀(p : { _1 : a, _2 : < Left : b | Right : c > })
+          → < Left : { _1 : a, _2 : b } | Right : { _1 : a, _2 : c } >
+      }
+, leftAnnihilation :
+      ∀(a : Type)
+    → { from :
+          ∀(v : <>) → { _1 : <>, _2 : a }
+      , to :
+          ∀(p : { _1 : <>, _2 : a }) → <>
+      }
+, multiplicative :
+    { associativity :
+          ∀(a : Type)
+        → ∀(b : Type)
+        → ∀(c : Type)
+        → { from :
+                ∀(p : { _1 : a, _2 : { _1 : b, _2 : c } })
+              → { _1 : { _1 : a, _2 : b }, _2 : c }
+          , to :
+                ∀(p : { _1 : { _1 : a, _2 : b }, _2 : c })
+              → { _1 : a, _2 : { _1 : b, _2 : c } }
+          }
+    , leftIdentity :
+          ∀(a : Type)
+        → { from :
+              ∀(x : a) → { _1 : {}, _2 : a }
+          , to :
+              ∀(p : { _1 : {}, _2 : a }) → a
+          }
+    , rightIdentity :
+          ∀(a : Type)
+        → { from :
+              ∀(x : a) → { _1 : a, _2 : {} }
+          , to :
+              ∀(p : { _1 : a, _2 : {} }) → a
+          }
+    }
+, rightAnnihilation :
+      ∀(a : Type)
+    → { from :
+          ∀(v : <>) → { _1 : a, _2 : <> }
+      , to :
+          ∀(p : { _1 : a, _2 : <> }) → <>
+      }
+}
+</pre></dd>
+</dl>
 <h4 style="background-color: #bbb; width: 100%">./Category/Set/monoidal</h4>
 <h4>cartesian (term)</h4>
 <p></p>
@@ -1433,7 +2421,7 @@
 , Compose :
     ∀(f : { _1 : Type → Type, _2 : Type → Type }) → ∀(a : Type) → Type
 , Const :
-    ∀(a : Type) → Type → Type
+    ∀(a : { _1 : Type, _2 : Type }) → Type
 , Costar :
     ∀(m : Type → Type) → ∀(a : { _1 : Type, _2 : Type }) → Type
 , Coyoneda :
@@ -1524,6 +2512,7 @@
 }
 </pre></dd>
 </dl>
+<h3 style="background-color: #bbb; width: 100%">./Category/Sub</h3>
 <h4>Type (type)</h4>
 <p>{- FIXME: This should use `./../Monoid/Type … (./../Category/Monoidal/Profunctor
           object morphism)`, but the identity in that monoidal category
@@ -1847,6 +2836,16 @@
 → eObject
 </pre></dd>
 </dl>
+<h4>adjunction (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
+</pre></dd>
+</dl>
 <h4>comonad (term)</h4>
 <p></p>
 <dl>
@@ -2069,11 +3068,24 @@
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Const</h2>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+∀(a : { _1 : Kind, _2 : Kind }) → Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+λ(a : { _1 : Kind, _2 : Kind }) → a._1
+</pre></dd>
+</dl>
 <h4>Type (term)</h4>
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-∀(cObject : Kind) → ∀(dObject : Kind) → ∀(a : cObject) → dObject → cObject
+  ∀(cObject : Kind)
+→ ∀(dObject : Kind)
+→ ∀(a : { _1 : cObject, _2 : dObject })
+→ cObject
 </pre></dd>
 </dl>
 <h4>functor (term)</h4>
@@ -2100,13 +3112,28 @@
     )
 → ∀(dObject : Kind)
 → ∀(dArrow : { _1 : dObject, _2 : dObject } → Type)
-→ ∀(a : cObject)
 → { map :
-        ∀(b : dObject)
-      → ∀(c : dObject)
-      → dArrow { _1 = b, _2 = c }
-      → cArrow { _1 = a, _2 = a }
+        ∀(a : { _1 : cObject, _2 : dObject })
+      → ∀(b : { _1 : cObject, _2 : dObject })
+      → ∀ ( f
+          : { _1 :
+                cArrow { _1 = a._1, _2 = b._1 }
+            , _2 :
+                dArrow { _1 = a._2, _2 = b._2 }
+            }
+          )
+      → cArrow { _1 = a._1, _2 = b._1 }
   }
+</pre></dd>
+</dl>
+<h4>term (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Type)
+→ ∀(dObject : Type)
+→ ∀(a : { _1 : cObject, _2 : dObject })
+→ cObject
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Cosemigroup</h2>
@@ -2115,17 +3142,27 @@
 <dl>
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
-→ ∀(arrow : { _1 : object, _2 : object } → Type)
-→ ∀(product : { _1 : object, _2 : object } → object)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → ∀(m : object)
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
-→ λ(arrow : { _1 : object, _2 : object } → Type)
-→ λ(product : { _1 : object, _2 : object } → object)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → λ(m : object)
-→ { op : arrow { _1 = m, _2 = product { _1 = m, _2 = m } } }
+→ { op : cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } } }
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Costar</h2>
@@ -2953,13 +3990,30 @@ Type
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Eq</h2>
 <h4>Type (type)</h4>
-<p></p>
+<p>{- `bool` is some sort of `Const` functor in the correct category that can be
+--     converted to a `Bool`.
+-- -}</p>
 <dl>
 <dt>kind</dt><dd><pre>
 ∀(a : Type) → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
 λ(a : Type) → { eq : a → a → Bool }
+</pre></dd>
+</dl>
+<h4>eqfn (term)</h4>
+<p>{- When defining properties, you almost always are trying to show the
+   equivalence of two functions. This makes that easier.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(a : Type)
+→ ∀(b : Type)
+→ ∀(eq : { eq : b → b → Bool })
+→ ∀(f : a → b)
+→ ∀(g : a → b)
+→ ∀(x : a)
+→ Bool
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Eq/functor</h3>
@@ -4787,6 +5841,52 @@ Type
   }
 </pre></dd>
 </dl>
+<h4>laws (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(c : { arrow : { _1 : cObject, _2 : cObject } → Type })
+→ ∀ ( cCategory
+    : { identity :
+          ∀(a : cObject) → c.arrow { _1 = a, _2 = a }
+      , op :
+            ∀(a : { _1 : cObject, _2 : cObject })
+          → (   ∀(r : Type)
+              → (   ∀(z : cObject)
+                  → c.arrow { _1 = z, _2 = a._2 }
+                  → c.arrow { _1 = a._1, _2 = z }
+                  → r
+                )
+              → r
+            )
+          → c.arrow a
+      }
+    )
+→ ∀(f : cObject → Type)
+→ ∀ ( functor
+    : { map :
+            ∀(a : cObject)
+          → ∀(b : cObject)
+          → c.arrow { _1 = a, _2 = b }
+          → f a
+          → f b
+      }
+    )
+→ { composition :
+        ∀(a : cObject)
+      → ∀(b : cObject)
+      → ∀(e : cObject)
+      → ∀(eq : { eq : f e → f e → Bool })
+      → ∀(fn : c.arrow { _1 = b, _2 = e })
+      → ∀(gn : c.arrow { _1 = a, _2 = b })
+      → ∀(x : f a)
+      → Bool
+  , identity :
+      ∀(a : cObject) → ∀(eq : { eq : f a → f a → Bool }) → ∀(x : f a) → Bool
+  }
+</pre></dd>
+</dl>
 <h4>opposite (term)</h4>
 <p></p>
 <dl>
@@ -4826,27 +5926,6 @@ Type
     )
 → ∀(a : Type)
 → dArrow { _1 = f a, _2 = f {} }
-</pre></dd>
-</dl>
-<h2 style="background-color: #bbb; width: 100%">./Graph</h2>
-<h4>Type (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-∀(a : Type) → ∀(b : Type) → Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-  λ(a : Type)
-→ λ(b : Type)
-→ < Connect :
-      { _1 : b, _2 : b }
-  | Empty :
-      {}
-  | Overlay :
-      { _1 : b, _2 : b }
-  | Vertex :
-      a
-  >
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Group</h2>
@@ -5605,12 +6684,79 @@ Type
   }
 </pre></dd>
 </dl>
+<h2 style="background-color: #bbb; width: 100%">./Groupoid</h2>
+<h4>Type (type)</h4>
+<p>{- TODO: This would be `./../Group/Type … (./../Category/Monoidal/Profunctor
+         object morphism)`, but `Category` isn’t defined via `Monoid`, so we
+		 prefer compatibility with that.
+-}</p>
+<dl>
+<dt>kind</dt><dd><pre>
+∀(object : Kind) → ∀(morphism : { _1 : object, _2 : object } → Type) → Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ(morphism : { _1 : object, _2 : object } → Type)
+→ { identity :
+      ∀(a : object) → morphism { _1 = a, _2 = a }
+  , inverse :
+      ∀(a : { _1 : object, _2 : object }) → morphism a → morphism a
+  , op :
+        ∀(a : { _1 : object, _2 : object })
+      → (   ∀(r : Type)
+          → (   ∀(z : object)
+              → morphism { _1 = z, _2 = a._2 }
+              → morphism { _1 = a._1, _2 = z }
+              → r
+            )
+          → r
+        )
+      → morphism a
+  }
+</pre></dd>
+</dl>
+<h2 style="background-color: #bbb; width: 100%">./HList</h2>
+<h4>Fix (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
+</pre></dd>
+</dl>
+<h4>Type (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+∀(a : Kind) → ∀(b : Kind) → Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+λ(a : Kind) → λ(b : Kind) → < Cons : { head : a, tail : b } | Nil : Type >
+</pre></dd>
+</dl>
 <h2 style="background-color: #bbb; width: 100%">./Identity</h2>
 <h4>Type (term)</h4>
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
 ∀(object : Kind) → ∀(a : object) → object
+</pre></dd>
+</dl>
+<h4>adjunction (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+{ counit :
+    ∀(a : Type) → ∀(x : a) → a
+, leftAdjunct :
+    ∀(a : Type) → ∀(b : Type) → ∀(f : a → b) → a → b
+, rightAdjunct :
+    ∀(a : Type) → ∀(b : Type) → ∀(f : a → b) → a → b
+, unit :
+    ∀(a : Type) → ∀(x : a) → a
+}
 </pre></dd>
 </dl>
 <h4>bimonad (term)</h4>
@@ -5899,6 +7045,125 @@ Type
       → r
     )
 → h a
+</pre></dd>
+</dl>
+<h2 style="background-color: #bbb; width: 100%">./Lattice</h2>
+<h4>Type (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ λ(m : object)
+→ { join :
+      { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+  , meet :
+      { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+  }
+</pre></dd>
+</dl>
+<h4>extractJoin (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ ∀ ( lattice
+    : { join :
+          { identity :
+              cat.arrow { _1 = cat.identity, _2 = m }
+          , op :
+              cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+          }
+      , meet :
+          { identity :
+              cat.arrow { _1 = cat.identity, _2 = m }
+          , op :
+              cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+          }
+      }
+    )
+→ { identity :
+      cat.arrow { _1 = cat.identity, _2 = m }
+  , op :
+      cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+  }
+</pre></dd>
+</dl>
+<h4>extractMeet (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ ∀ ( lattice
+    : { join :
+          { identity :
+              cat.arrow { _1 = cat.identity, _2 = m }
+          , op :
+              cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+          }
+      , meet :
+          { identity :
+              cat.arrow { _1 = cat.identity, _2 = m }
+          , op :
+              cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+          }
+      }
+    )
+→ { identity :
+      cat.arrow { _1 = cat.identity, _2 = m }
+  , op :
+      cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+  }
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Leibniz</h2>
@@ -6345,7 +7610,7 @@ Type
 </pre></dd>
 </dl>
 <h4>Kind (kind)</h4>
-<p>{- NB: `identity` would ideally be defined with `: arrow identity m`, but
+<p>{- NB: `identity` would ideally be defined with `: kArrow kIdentity m`, but
        there’s no Kind-level `{}` to use there.
 -}</p>
 <dl>
@@ -6423,6 +7688,34 @@ Type
 → { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }
 </pre></dd>
 </dl>
+<h4>laws (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(m : Type)
+→ ∀(eq : { eq : m → m → Bool })
+→ ∀(monoid : { identity : {} → m, op : { _1 : m, _2 : m } → m })
+→ { associativity :
+      ∀(a : m) → ∀(b : m) → ∀(c : m) → Bool
+  , leftIdentity :
+      ∀(a : m) → Bool
+  , rightIdentity :
+      ∀(a : m) → Bool
+  }
+</pre></dd>
+</dl>
+<h4>slaws (type)</h4>
+<p>{- It looks like this is actually the laws for a Semigroupal category, since it
+   needs an arrow and a product.
+-}</p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
+</pre></dd>
+</dl>
 <h4>terms.dhall (term)</h4>
 <p></p>
 <dl>
@@ -6496,6 +7789,16 @@ Type
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./NaturalTransformation</h2>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+∀(f : Kind → Kind) → ∀(g : Kind → Kind) → ∀(a : Kind) → Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+λ(f : Kind → Kind) → λ(g : Kind → Kind) → λ(a : Kind) → f a → g a
+</pre></dd>
+</dl>
 <h4>Type (type)</h4>
 <p></p>
 <dl>
@@ -7526,17 +8829,27 @@ Type
 <dl>
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
-→ ∀(arrow : { _1 : object, _2 : object } → Type)
-→ ∀(product : { _1 : object, _2 : object } → object)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → ∀(m : object)
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
-→ λ(arrow : { _1 : object, _2 : object } → Type)
-→ λ(product : { _1 : object, _2 : object } → object)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → λ(m : object)
-→ { op : arrow { _1 = product { _1 = m, _2 = m }, _2 = m } }
+→ { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }
 </pre></dd>
 </dl>
 <h4>Kind (kind)</h4>
@@ -7560,17 +8873,27 @@ Type
 <dl>
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
-→ ∀(arrow : { _1 : object, _2 : object } → Type)
-→ ∀(product : { _1 : object, _2 : object } → object)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → ∀(m : object)
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
-→ λ(arrow : { _1 : object, _2 : object } → Type)
-→ λ(product : { _1 : object, _2 : object } → object)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → λ(m : object)
-→ { op : arrow { _1 = product { _1 = m, _2 = m }, _2 = m } }
+→ { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }
 </pre></dd>
 </dl>
 <h4>functor (term)</h4>
@@ -7578,43 +8901,62 @@ Type
 <dl>
 <dt>type</dt><dd><pre>
   ∀(object : Kind)
-→ ∀(arrow : { _1 : object, _2 : object } → Type)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → ∀ ( semigroupoid
     : { op :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
-                  → arrow { _1 = z, _2 = a._2 }
-                  → arrow { _1 = a._1, _2 = z }
+                  → cat.arrow { _1 = z, _2 = a._2 }
+                  → cat.arrow { _1 = a._1, _2 = z }
                   → r
                 )
               → r
             )
-          → arrow a
+          → cat.arrow a
       }
     )
-→ ∀(product : { _1 : object, _2 : object } → object)
 → ∀ ( bifunctor
     : { map :
             ∀(a : { _1 : object, _2 : object })
           → ∀(b : { _1 : object, _2 : object })
           → { _1 :
-                arrow { _1 = a._1, _2 = b._1 }
+                cat.arrow { _1 = a._1, _2 = b._1 }
             , _2 :
-                arrow { _1 = a._2, _2 = b._2 }
+                cat.arrow { _1 = a._2, _2 = b._2 }
             }
-          → arrow { _1 = product a, _2 = product b }
+          → cat.arrow { _1 = cat.op a, _2 = cat.op b }
       }
     )
 → { map :
         ∀(a : object)
       → ∀(b : object)
       → ∀ ( fn
-          : { from : arrow { _1 = b, _2 = a }, to : arrow { _1 = a, _2 = b } }
+          : { from :
+                cat.arrow { _1 = b, _2 = a }
+            , to :
+                cat.arrow { _1 = a, _2 = b }
+            }
           )
-      → ∀(fa : { op : arrow { _1 = product { _1 = a, _2 = a }, _2 = a } })
-      → { op : arrow { _1 = product { _1 = b, _2 = b }, _2 = b } }
+      → ∀(fa : { op : cat.arrow { _1 = cat.op { _1 = a, _2 = a }, _2 = a } })
+      → { op : cat.arrow { _1 = cat.op { _1 = b, _2 = b }, _2 = b } }
   }
+</pre></dd>
+</dl>
+<h4>laws (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(m : Type)
+→ ∀(eq : { eq : m → m → Bool })
+→ ∀(semigroup : { op : { _1 : m, _2 : m } → m })
+→ { associativity : ∀(a : m) → ∀(b : m) → ∀(c : m) → Bool }
 </pre></dd>
 </dl>
 <h4>terms.dhall (term)</h4>
@@ -7622,11 +8964,16 @@ Type
 <dl>
 <dt>type</dt><dd><pre>
   ∀(object : Kind)
-→ ∀(arrow : { _1 : object, _2 : object } → Type)
-→ ∀(product : { _1 : object, _2 : object } → object)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → ∀(m : object)
-→ ∀(semigroup : { op : arrow { _1 = product { _1 = m, _2 = m }, _2 = m } })
-→ { op : arrow { _1 = product { _1 = m, _2 = m }, _2 = m } }
+→ ∀(semigroup : { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } })
+→ { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Semigroupoid</h2>
@@ -7731,17 +9078,27 @@ Type
 <dl>
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
-→ ∀(arrow : { _1 : object, _2 : object } → Type)
-→ ∀(product : { _1 : object, _2 : object } → object)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → ∀(m : object)
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
-→ λ(arrow : { _1 : object, _2 : object } → Type)
-→ λ(product : { _1 : object, _2 : object } → object)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
 → λ(m : object)
-→ { op : arrow { _1 = product { _1 = m, _2 = m }, _2 = m } }
+→ { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Semiring</h2>
@@ -8034,6 +9391,31 @@ Type
 </pre></dd>
 <dt>type</dt><dd><pre>
 λ(a : { _1 : Type, _2 : Type }) → { _1 : a._1, _2 : a._2 }
+</pre></dd>
+</dl>
+<h4>adjunction (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(s : Type)
+→ { counit :
+      ∀(a : Type) → ∀(x : { _1 : s, _2 : s → a }) → a
+  , leftAdjunct :
+        ∀(a : Type)
+      → ∀(b : Type)
+      → ∀(f : { _1 : s, _2 : a } → b)
+      → ∀(x : a)
+      → ∀(y : s)
+      → b
+  , rightAdjunct :
+        ∀(a : Type)
+      → ∀(b : Type)
+      → ∀(f : a → s → b)
+      → ∀(t : { _1 : s, _2 : a })
+      → b
+  , unit :
+      ∀(a : Type) → ∀(x : a) → ∀(y : s) → { _1 : s, _2 : a }
+  }
 </pre></dd>
 </dl>
 <h4>comonad (term)</h4>
