@@ -8,8 +8,11 @@ in    λ(object : Kind)
       
       in  { associativity :
                 ∀(a : object)
+              → ∀(subA : cat.constraint a)
               → ∀(b : object)
+              → ∀(subB : cat.constraint b)
               → ∀(c : object)
+              → ∀(subC : cat.constraint c)
               → Isomorphism
                 { _1 =
                     cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }

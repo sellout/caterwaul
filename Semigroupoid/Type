@@ -5,6 +5,8 @@ let kProduct = ./../Tuple/Kind
 in    λ(object : Kind)
     → let profunctor = kArrow (kProduct object object) Type
       
-      in  ./../Semigroup/Type
-          profunctor
-          (./../Category/Profunctor/semigroupal object)
+      in    λ(p : profunctor)
+          → ./../Semigroup/Type
+            profunctor
+            (./../Category/Profunctor/semigroupal object p)
+            p

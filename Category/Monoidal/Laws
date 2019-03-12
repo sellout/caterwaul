@@ -8,10 +8,12 @@ in    λ(object : Kind)
       
       in    { leftIdentity :
                   ∀(a : object)
+                → ∀(sub : cat.constraint a)
                 → Isomorphism
                   { _1 = cat.op { _1 = cat.identity, _2 = a }, _2 = a }
             , rightIdentity :
                   ∀(a : object)
+                → ∀(sub : cat.constraint a)
                 → Isomorphism
                   { _1 = cat.op { _1 = a, _2 = cat.identity }, _2 = a }
             }

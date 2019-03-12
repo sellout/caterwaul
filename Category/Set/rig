@@ -2,7 +2,9 @@ let kArrow = ./../../Function/Kind
 
 let kProduct = ./../../Tuple/Kind
 
-in    { arrow =
+in    { constraint =
+          λ(t : Type) → ./../../Const/Type Type Type { _1 = {}, _2 = t }
+      , arrow =
           ./../../Function/Type
       , additive =
           { identity = <>, op = ./../../Either/Type }

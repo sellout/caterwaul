@@ -5,5 +5,11 @@
 → λ(kProduct : Kind → Kind → Kind)
 → λ(object : Kind)
 → λ(monoidal : ./Kind kArrow kProduct object)
-→   { arrow = monoidal.arrow, op = monoidal.op }
+→   { constraint =
+        monoidal.constraint
+    , arrow =
+        monoidal.arrow
+    , op =
+        monoidal.op
+    }
   : ./../Semigroupal/Kind kArrow kProduct object

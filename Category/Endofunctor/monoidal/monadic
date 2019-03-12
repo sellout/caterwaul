@@ -7,7 +7,9 @@ let kProduct = ./../../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(arrow : kArrow (kProduct object object) Type)
-    →   { arrow =
+    →   { constraint =
+            ./../../../Functor/Endo/Type object arrow
+        , arrow =
             ./../../../NaturalTransformation/Type object object arrow
         , identity =
             ./../../../Identity/Type object

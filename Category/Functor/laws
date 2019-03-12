@@ -1,0 +1,159 @@
+{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
+   functor **Set** → 𝒟.
+-}
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let MonoidalCategory = ./../Monoidal/Kind kArrow kProduct
+
+let cObject = Type
+
+let dObject = Type
+
+let c = ./../Set/monoidal/cartesian
+
+let d = ./../Set/monoidal/cartesian
+
+let Day = ./../../Day/Type cObject c d
+
+let object = kArrow cObject dObject
+
+let functorCategory = ./monoidal cObject c d
+
+in    { associativity =
+            λ(a : object)
+          → λ(_ : functorCategory.constraint a)
+          → λ(b : object)
+          → λ(_ : functorCategory.constraint b)
+          → λ(e : object)
+          → λ(_ : functorCategory.constraint e)
+          → { to =
+                  λ(i : cObject)
+                → λ(day : Day { _1 = Day { _1 = a, _2 = b }, _2 = e } i)
+                → λ(r : Type)
+                → λ ( convolute
+                    :   ∀(f : { _1 : cObject, _2 : cObject })
+                      → c.arrow { _1 = c.op f, _2 = i }
+                      → d.op { _1 = a f._1, _2 = Day { _1 = b, _2 = e } f._2 }
+                      → r
+                    )
+                → day r
+            , from =
+                  λ(i : cObject)
+                → λ(day : Day { _1 = a, _2 = Day { _1 = b, _2 = e } } i)
+                → λ(r : Type)
+                → λ ( convolute
+                    :   ∀(f : { _1 : cObject, _2 : cObject })
+                      → c.arrow { _1 = c.op f, _2 = i }
+                      → d.op { _1 = Day { _1 = a, _2 = b } f._1, _2 = e f._2 }
+                      → r
+                    )
+                → day r
+            }
+      , leftIdentity =
+            λ(a : object)
+          → λ(functor : functorCategory.constraint a)
+          → { to =
+                  λ(i : cObject)
+                → λ ( day
+                    : Day
+                      { _1 =
+                          λ(x : cObject) → c.arrow { _1 = c.identity, _2 = x }
+                      , _2 =
+                          a
+                      }
+                      i
+                    )
+                → day
+                  (a i)
+                  (   λ(b : { _1 : cObject, _2 : cObject })
+                    → λ(fn : c.arrow { _1 = c.op b, _2 = i })
+                    → λ ( prod
+                        : d.op
+                          { _1 =
+                              c.arrow { _1 = c.identity, _2 = b._1 }
+                          , _2 =
+                              a b._2
+                          }
+                        )
+                    → functor.map
+                      b._2
+                      i
+                      (λ(x : b._2) → fn { _1 = prod._1 {=}, _2 = x })
+                      prod._2
+                  )
+            , from =
+                  λ(i : cObject)
+                → λ(x : a i)
+                → λ(r : Type)
+                → λ ( day
+                    :   ∀(b : { _1 : cObject, _2 : cObject })
+                      → c.arrow { _1 = c.op b, _2 = i }
+                      → d.op
+                        { _1 =
+                            c.arrow { _1 = c.identity, _2 = b._1 }
+                        , _2 =
+                            a b._2
+                        }
+                      → r
+                    )
+                → day
+                  { _1 = c.identity, _2 = i }
+                  (λ(p : { _1 : c.identity, _2 : i }) → p._2)
+                  { _1 = λ(y : c.identity) → y, _2 = x }
+            }
+      , rightIdentity =
+            λ(a : object)
+          → λ(functor : functorCategory.constraint a)
+          → { to =
+                  λ(i : cObject)
+                → λ ( day
+                    : Day
+                      { _1 =
+                          a
+                      , _2 =
+                          λ(x : cObject) → c.arrow { _1 = c.identity, _2 = x }
+                      }
+                      i
+                    )
+                → day
+                  (a i)
+                  (   λ(b : { _1 : cObject, _2 : cObject })
+                    → λ(fn : c.arrow { _1 = c.op b, _2 = i })
+                    → λ ( prod
+                        : d.op
+                          { _1 =
+                              a b._1
+                          , _2 =
+                              c.arrow { _1 = c.identity, _2 = b._2 }
+                          }
+                        )
+                    → functor.map
+                      b._1
+                      i
+                      (λ(x : b._1) → fn { _1 = x, _2 = prod._2 {=} })
+                      prod._1
+                  )
+            , from =
+                  λ(i : cObject)
+                → λ(x : a i)
+                → λ(r : Type)
+                → λ ( convolute
+                    :   ∀(b : { _1 : cObject, _2 : cObject })
+                      → c.arrow { _1 = c.op b, _2 = i }
+                      → d.op
+                        { _1 =
+                            a b._1
+                        , _2 =
+                            c.arrow { _1 = c.identity, _2 = b._2 }
+                        }
+                      → r
+                    )
+                → convolute
+                  { _1 = i, _2 = c.identity }
+                  (λ(p : { _1 : i, _2 : c.identity }) → p._1)
+                  { _1 = x, _2 = λ(y : c.identity) → y }
+            }
+      }
+    : ./../Monoidal/Laws object functorCategory

@@ -1,0 +1,115 @@
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let object = Type
+
+let cat = ./../../Category/Set/monoidal/cartesian
+
+let Compose = ./../../Compose/Type object object object
+
+let Day = ./../../Day/Type object cat cat
+
+let Identity = ./../../Identity/Type object
+
+let endoObject = kArrow object object
+
+let endoCategory = ./duoidal cat
+
+in    { swap =
+            λ(a : endoObject)
+          → λ(b : endoObject)
+          → λ(c : endoObject)
+          → λ(d : endoObject)
+          → λ(i : object)
+          → λ ( day
+              : Day
+                { _1 =
+                    Compose { _1 = a, _2 = b }
+                , _2 =
+                    Compose { _1 = c, _2 = d }
+                }
+                i
+              )
+          → day
+            ( Compose
+              { _1 = Day { _1 = a, _2 = c }, _2 = Day { _1 = b, _2 = d } }
+              i
+            )
+            (   λ(e : { _1 : object, _2 : object })
+              → λ(fn : cat.arrow { _1 = cat.op e, _2 = i })
+              → λ ( prod
+                  : cat.op
+                    { _1 =
+                        Compose { _1 = a, _2 = b } e._1
+                    , _2 =
+                        Compose { _1 = c, _2 = d } e._2
+                    }
+                  )
+              → x
+            )
+      , split =
+            λ(i : object)
+          → λ(zero : cat.arrow { _1 = cat.identity, _2 = i })
+          → λ(_ : cat.identity)
+          → zero
+      , combine =
+            λ(i : object)
+          → λ(add : Day { _1 = Identity, _2 = Identity } i)
+          → add
+            (Identity i)
+            (   λ(a : { _1 : object, _2 : object })
+              → λ(fn : cat.arrow { _1 = cat.op a, _2 = i })
+              → λ(prod : cat.op { _1 = Identity a._1, _2 = Identity a._2 })
+              → fn prod
+            )
+      , switch =
+            λ(i : object)
+          → λ(zero : cat.arrow { _1 = cat.identity, _2 = i })
+          → zero {=}
+      , additive =
+          ./../Functor/laws
+      , multiplicative =
+          { associativity =
+                λ(a : endoObject)
+              → λ(_ : endoCategory.constraint a)
+              → λ(b : endoObject)
+              → λ(_ : endoCategory.constraint b)
+              → λ(c : endoObject)
+              → λ(_ : endoCategory.constraint c)
+              → { to =
+                      λ(i : object)
+                    → λ ( x
+                        : Compose { _1 = Compose { _1 = a, _2 = b }, _2 = c } i
+                        )
+                    → x
+                , from =
+                      λ(i : object)
+                    → λ ( x
+                        : Compose { _1 = a, _2 = Compose { _1 = b, _2 = c } } i
+                        )
+                    → x
+                }
+          , leftIdentity =
+                λ(a : endoObject)
+              → λ(_ : endoCategory.constraint a)
+              → { to =
+                      λ(i : object)
+                    → λ(x : Compose { _1 = Identity, _2 = a } i)
+                    → x
+                , from =
+                    λ(i : object) → λ(x : a i) → x
+                }
+          , rightIdentity =
+                λ(a : endoObject)
+              → λ(_ : endoCategory.constraint a)
+              → { to =
+                      λ(i : object)
+                    → λ(x : Compose { _1 = a, _2 = Identity } i)
+                    → x
+                , from =
+                    λ(i : object) → λ(x : a i) → x
+                }
+          }
+      }
+    : ./../Duoidal/Laws (kArrow object object) endoCategory

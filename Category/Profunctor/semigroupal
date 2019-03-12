@@ -8,18 +8,21 @@ let kProduct = ./../../Tuple/Kind
 in    λ(object : Kind)
     → let profunctor = kArrow (kProduct object object) Type
       
-      in    { arrow =
-                  λ(p : { _1 : profunctor, _2 : profunctor })
-                → ∀(a : { _1 : object, _2 : object }) → p._1 a → p._2 a
-            , op =
-                  λ(p : { _1 : profunctor, _2 : profunctor })
-                → λ(a : { _1 : object, _2 : object })
-                →   ∀(r : Type)
-                  → (   ∀(z : object)
-                      → p._1 { _1 = z, _2 = a._2 }
-                      → p._2 { _1 = a._1, _2 = z }
-                      → r
-                    )
-                  → r
-            }
-          : ./../Semigroupal/Kind kArrow kProduct profunctor
+      in    λ(p : profunctor)
+          →   { constraint =
+                  ./../../Functor/Profunctor/Type object object p p
+              , arrow =
+                    λ(p : { _1 : profunctor, _2 : profunctor })
+                  → ∀(a : { _1 : object, _2 : object }) → p._1 a → p._2 a
+              , op =
+                    λ(p : { _1 : profunctor, _2 : profunctor })
+                  → λ(a : { _1 : object, _2 : object })
+                  →   ∀(r : Type)
+                    → (   ∀(z : object)
+                        → p._1 { _1 = z, _2 = a._2 }
+                        → p._2 { _1 = a._1, _2 = z }
+                        → r
+                      )
+                    → r
+              }
+            : ./../Semigroupal/Kind kArrow kProduct profunctor

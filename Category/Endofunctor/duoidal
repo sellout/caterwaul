@@ -17,7 +17,9 @@ in    λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct object)
       
       let monadic = ./monoidal/monadic object cat.arrow
       
-      in    { arrow =
+      in    { constraint =
+                monadic.constraint
+            , arrow =
                 applicative.arrow
             , additive =
                 { identity = applicative.identity, op = applicative.op }
