@@ -1,4 +1,9 @@
+{- This contains an extra `constraint` field that defines a subcategory by some
+  `Type` that needs to be satisfied for the objects. E.g., in the category of
+   endofunctors, there is a `Functor/Endo` constraint that must be available on
+   all objects in the category.
+-}
   λ(kArrow : Kind → Kind → Kind)
 → λ(kProduct : Kind → Kind → Kind)
 → λ(object : Kind)
-→ { arrow : kArrow (kProduct object object) Type }
+→ { constraint : object → Type, arrow : kArrow (kProduct object object) Type }

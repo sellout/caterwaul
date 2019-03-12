@@ -4,5 +4,11 @@ let kProduct = ./../../Tuple/Kind
 
 in    λ(object : Kind)
     → λ(cat : ./../Semigroupal/Kind kArrow kProduct object)
-    →   { arrow = ./Type object cat.arrow, op = cat.op }
+    →   { constraint =
+            cat.constraint
+        , arrow =
+            ./Type object cat.arrow
+        , op =
+            cat.op
+        }
       : ./../Semigroupal/Kind kArrow kProduct object

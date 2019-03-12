@@ -2,7 +2,9 @@
 → λ(kProduct : Kind → Kind → Kind)
 → λ(object : Kind)
 → λ(rig : ./Kind kArrow kProduct object)
-→   { arrow =
+→   { constraint =
+        rig.constraint
+    , arrow =
         rig.arrow
     , identity =
         rig.additive.identity

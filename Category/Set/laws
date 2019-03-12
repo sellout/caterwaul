@@ -1,5 +1,7 @@
 let Either = ./../../Either/Type
 
+let setCategory = ./rig
+
 in    { distributivity =
             λ(a : Type)
           → λ(b : Type)
@@ -51,8 +53,11 @@ in    { distributivity =
       , additive =
           { associativity =
                 λ(a : Type)
+              → λ(_ : setCategory.constraint a)
               → λ(b : Type)
+              → λ(_ : setCategory.constraint b)
               → λ(c : Type)
+              → λ(_ : setCategory.constraint c)
               → { to =
                       λ(e : Either { _1 = Either { _1 = a, _2 = b }, _2 = c })
                     → let EI = Either { _1 = b, _2 = c }
@@ -96,6 +101,7 @@ in    { distributivity =
                 }
           , leftIdentity =
                 λ(a : Type)
+              → λ(_ : setCategory.constraint a)
               → { to =
                       λ(e : Either { _1 = <>, _2 = a })
                     → merge
@@ -110,6 +116,7 @@ in    { distributivity =
                 }
           , rightIdentity =
                 λ(a : Type)
+              → λ(_ : setCategory.constraint a)
               → { to =
                       λ(e : Either { _1 = a, _2 = <> })
                     → merge
@@ -126,8 +133,11 @@ in    { distributivity =
       , multiplicative =
           { associativity =
                 λ(a : Type)
+              → λ(_ : setCategory.constraint a)
               → λ(b : Type)
+              → λ(_ : setCategory.constraint b)
               → λ(c : Type)
+              → λ(_ : setCategory.constraint c)
               → { to =
                       λ(p : { _1 : { _1 : a, _2 : b }, _2 : c })
                     → { _1 = p._1._1, _2 = { _1 = p._1._2, _2 = p._2 } }
@@ -137,6 +147,7 @@ in    { distributivity =
                 }
           , leftIdentity =
                 λ(a : Type)
+              → λ(_ : setCategory.constraint a)
               → { to =
                     λ(p : { _1 : {}, _2 : a }) → p._2
                 , from =
@@ -144,6 +155,7 @@ in    { distributivity =
                 }
           , rightIdentity =
                 λ(a : Type)
+              → λ(_ : setCategory.constraint a)
               → { to =
                     λ(p : { _1 : a, _2 : {} }) → p._1
                 , from =
@@ -151,4 +163,4 @@ in    { distributivity =
                 }
           }
       }
-    : ./../Rig/Laws Type ./rig
+    : ./../Rig/Laws Type setCategory

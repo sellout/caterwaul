@@ -12,7 +12,9 @@ in    λ(cObject : Kind)
       
       in    λ(c : MonoidalCategory cObject)
           → λ(d : MonoidalCategory dObject)
-          →   { arrow =
+          →   { constraint =
+                  ./../../Functor/Type cObject dObject c.arrow d.arrow
+              , arrow =
                   ./../../NaturalTransformation/Type cObject dObject d.arrow
               , identity =
                   λ(x : cObject) → c.arrow { _1 = c.identity, _2 = x }

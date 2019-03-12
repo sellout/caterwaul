@@ -2,7 +2,9 @@
 → λ(product : Kind → Kind → Kind)
 → λ(object : Kind)
 → λ(rig : ./Kind arrow product object)
-→   { arrow =
+→   { constraint =
+        rig.constraint
+    , arrow =
         rig.arrow
     , identity =
         rig.multiplicative.identity
