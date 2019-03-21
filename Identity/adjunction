@@ -1,6 +1,7 @@
 let object = Type
 
-let arrow = ./../Function/Type
+let arrow =
+      ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
 
 in    { unit =
           λ(a : object) → λ(x : a) → x
@@ -11,10 +12,14 @@ in    { unit =
       , rightAdjunct =
           λ(a : object) → λ(b : object) → λ(f : a → b) → f
       }
-    : ./../Adjunction/Type
+    : ./../Adjunction/Type sha256:917b36907d485af32d70d8d455f14f88a924980bfe626eaf8013371cd04a89fb
       object
       object
       arrow
       arrow
-      (./Type object)
-      (./Type object)
+      ( ./Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+        object
+      )
+      ( ./Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+        object
+      )

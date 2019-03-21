@@ -6,7 +6,13 @@
 → λ(product : Kind → Kind → Kind)
 → λ(m : Kind)
 → { additive :
-      ./../Semilattice/Bounded/Kind arrow product m
+      ./../Semilattice/Bounded/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
+      arrow
+      product
+      m
   , multiplicative :
-      ./../Monoid/Kind arrow product m
+      ./../Monoid/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
+      arrow
+      product
+      m
   }

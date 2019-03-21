@@ -1,4 +1,10 @@
   λ(kArrow : Kind → Kind → Kind)
 → λ(kProduct : Kind → Kind → Kind)
 → λ(m : Kind)
-→ { inverse : kArrow m m } ⩓ ./../Monoid/Kind kArrow kProduct m
+→   { inverse :
+        kArrow m m
+    }
+  ⩓ ./../Monoid/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
+    kArrow
+    kProduct
+    m

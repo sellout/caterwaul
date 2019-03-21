@@ -1,15 +1,22 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/extractSemigroupal
+      ./../Category/Monoidal/extractSemigroupal sha256:70ef91047fc61f9b95bc9a7c791c6e18d62c8c91d88741f2f72a070b3e820f1f
       kArrow
       kProduct
       object
-      ./../Category/Set/monoidal/cartesian
+      ./../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
 
-in    { op = λ(p : { _1 : <>, _2 : <> }) → merge {=} p._1 : <> }
-    : ./../Semigroup/Type object cat <>
+in    { op =
+          λ(p : { _1 : <>, _2 : <> }) → merge {=} p._1 : <>
+      }
+    : ./../Semigroup/Type sha256:d1635ee2a3c9117f5d330d01ec4ae277f46bd0726c670179994510a57c2fbc32
+      object
+      cat
+      <>

@@ -1,8 +1,11 @@
 let object = Type
 
-let arrow = ./../Function/Type
+let arrow =
+      ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
 
-in    λ(s : object)
+in    λ ( s
+        : object
+        )
     →   { unit =
             λ(a : object) → λ(x : a) → λ(y : s) → { _1 = y, _2 = x }
         , counit =
@@ -21,10 +24,20 @@ in    λ(s : object)
             → λ(t : { _1 : s, _2 : a })
             → f t._2 t._1
         }
-      : ./../Adjunction/Type
+      : ./../Adjunction/Type sha256:917b36907d485af32d70d8d455f14f88a924980bfe626eaf8013371cd04a89fb
         object
         object
         arrow
         arrow
-        (λ(a : object) → ./Type { _1 = s, _2 = a })
-        (λ(a : object) → ./../Function/Type { _1 = s, _2 = a })
+        (   λ ( a
+              : object
+              )
+          → ./Type sha256:3e54b0739d8286354614bb58323e74a8575dabbabfefed9324ea070a969a3227
+            { _1 = s, _2 = a }
+        )
+        (   λ ( a
+              : object
+              )
+          → ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+            { _1 = s, _2 = a }
+        )

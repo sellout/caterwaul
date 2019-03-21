@@ -1,23 +1,46 @@
 {- If there is a natural transformation from `n` to `m`, then a m-Star functor
    can be made into an n-Star functor.
 -}
-let kArrow = ./../../Function/Kind
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../Tuple/Kind
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(object : Kind)
+in    λ ( object
+        : Kind
+        )
     → λ(arrow : kArrow (kProduct object object) Type)
-    → λ(category : ./../../Category/Type object arrow)
-    → let endoObject = kArrow object object
+    → λ ( category
+        : ./../../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+          object
+          arrow
+        )
+    → let endoObject =
+            kArrow object object
       
-      let endoArrow = ./../../NaturalTransformation/Type object object arrow
+      let endoArrow =
+            ./../../NaturalTransformation/Type sha256:ac4ec9bf178715d3e80e93c72406abcaa99f0e70df64e30d76047afb6777ac95
+            object
+            object
+            arrow
       
-      in    λ(f : endoObject)
+      in    λ ( f
+              : endoObject
+              )
           →   { map =
-                    λ(m : endoObject)
+                    λ ( m
+                      : endoObject
+                      )
                   → λ(n : endoObject)
                   → λ(natural : endoArrow { _1 = n, _2 = m })
-                  → λ(star : ./Type object arrow m f)
+                  → λ ( star
+                      : ./Type sha256:111b31ccff80266953ee7dca8da156a98dedc5702e7257e42c240ac4397ada5d
+                        object
+                        arrow
+                        m
+                        f
+                      )
                   → { map =
                           λ(a : object)
                         → λ(b : object)
@@ -39,9 +62,17 @@ in    λ(object : Kind)
                           )
                     }
               }
-            : ./../../Functor/Contravariant
+            : ./../../Functor/Contravariant sha256:fa42cddb87dc4e9a4ea1f310bed11ea8f63fd36cbb861d19543cabaafdc769f6
               endoObject
               Type
               endoArrow
-              ./../../Function/Type
-              (λ(a : endoObject) → ./Type object arrow a f)
+              ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+              (   λ ( a
+                    : endoObject
+                    )
+                → ./Type sha256:111b31ccff80266953ee7dca8da156a98dedc5702e7257e42c240ac4397ada5d
+                  object
+                  arrow
+                  a
+                  f
+              )

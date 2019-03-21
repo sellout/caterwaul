@@ -1,6 +1,10 @@
-let Foldable = ./Type
+let Foldable =
+      ./Type sha256:2ebed849112126c8ec029b7e72bd05e8300308ebc5bf2c7708d677208f1a7937
 
-let Monoid = ./../Monoid/Type Type ./../Category/Set/monoidal/cartesian
+let Monoid =
+      ./../Monoid/Type sha256:a070e866a0c8ab80b910b06a9f007023adaa3ce08b60200bbd7b685752717249
+      Type
+      ./../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
 
 in    λ(m : Type)
     → λ(monoid : Monoid m)

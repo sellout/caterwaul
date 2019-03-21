@@ -1,15 +1,32 @@
-let Foldable = ./../Foldable/Type
+let Foldable =
+      ./../Foldable/Type sha256:2ebed849112126c8ec029b7e72bd05e8300308ebc5bf2c7708d677208f1a7937
 
-let Yoneda = ./Type Type ./../Function/Type
+let Yoneda =
+      ./Type sha256:70bf5d39106d0b96f318ec79d848af632b3c2ecc95eb1035b64baaf5c81e7b3e
+      Type
+      ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
 
-in    λ(f : Type → Type)
+in    λ ( f
+        : Type → Type
+        )
     → λ(foldable : Foldable f)
     →   { fold =
-              λ(a : Type)
+              λ ( a
+                : Type
+                )
             → λ(b : Type)
             → λ(k : b → a → b)
             → λ(z : b)
             → λ(yoneda : Yoneda f a)
-            → foldable.fold a b k z (./lower f a yoneda)
+            → foldable.fold
+              a
+              b
+              k
+              z
+              ( ./lower sha256:2e98e958aee4f4a021ee8a6223f9b444806d24bef8de98898c24235bb9054639
+                f
+                a
+                yoneda
+              )
         }
       : Foldable (Yoneda f)

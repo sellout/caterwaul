@@ -1,6 +1,9 @@
-let Either = ./Type
+let Either =
+      ./Type sha256:9ac62b105c684db0a562407c0132176c20e93cb29e9434f9b600ed5806cd9fc0
 
-in    λ(a : Type)
+in    λ ( a
+        : Type
+        )
     →   { fold =
               λ(b : Type)
             → λ(c : Type)
@@ -9,4 +12,5 @@ in    λ(a : Type)
             → λ(either : Either { _1 = a, _2 = b })
             → merge { Left = λ(_ : a) → z, Right = f z } either
         }
-      : ./../Foldable/Type (λ(b : Type) → Either { _1 = a, _2 = b })
+      : ./../Foldable/Type sha256:2ebed849112126c8ec029b7e72bd05e8300308ebc5bf2c7708d677208f1a7937
+        (λ(b : Type) → Either { _1 = a, _2 = b })

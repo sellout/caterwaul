@@ -1,6 +1,9 @@
-let Either = ./Type
+let Either =
+      ./Type sha256:9ac62b105c684db0a562407c0132176c20e93cb29e9434f9b600ed5806cd9fc0
 
-in    λ(a : Type)
+in    λ ( a
+        : Type
+        )
     →   { identity =
             λ(b : Type) → λ(x : b) → < Right = x | Left : a >
         , op =
@@ -21,7 +24,7 @@ in    λ(a : Type)
                 fa
               )
         }
-      : ./../Monad/Type
+      : ./../Monad/Type sha256:8001bfc30d9f2c2126215a85e75eb12648fabceb5ea6cdcb05d599256d8dc1bf
         Type
-        ./../Function/Type
+        ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
         (λ(b : Type) → Either { _1 = a, _2 = b })

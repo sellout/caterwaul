@@ -13,4 +13,5 @@
         )
         ([] : List b)
   }
-: ./../../Functor/Compactable/Type List
+: ./../../Functor/Compactable/Type sha256:6f95bfb114aaaa20cf9adc2492d0a6a7c2a9b5c273f82584aa3914885d7d5dcc
+  List

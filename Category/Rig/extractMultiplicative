@@ -1,7 +1,12 @@
   λ(arrow : Kind → Kind → Kind)
 → λ(product : Kind → Kind → Kind)
 → λ(object : Kind)
-→ λ(rig : ./Kind arrow product object)
+→ λ ( rig
+    : ./Kind sha256:f33682488a6823a12c3e8493b7887cb227cd1cf29fa44e8af49d6cf1033a1fbb
+      arrow
+      product
+      object
+    )
 →   { arrow =
         rig.arrow
     , identity =
@@ -9,4 +14,7 @@
     , op =
         rig.multiplicative.op
     }
-  : ./../Monoidal/Kind arrow product object
+  : ./../Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+    arrow
+    product
+    object

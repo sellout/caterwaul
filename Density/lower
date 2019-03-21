@@ -1,10 +1,32 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
 let object = Type
 
-let arrow = ./../Function/Type
+let arrow =
+      ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
 
-in    λ(f : kArrow object object)
-    → λ(functor : ./../Functor/Endo/Type object arrow f)
-    → λ(comonad : ./../Comonad/Type object arrow f)
-    → ./../Lan/lower object object arrow f functor f f comonad.op
+in    λ ( f
+        : kArrow object object
+        )
+    → λ ( functor
+        : ./../Functor/Endo/Type sha256:f230e076c15a9ae4eb91c84519b9ab384e03b03f0246ebe4dfdf3a2bb82b251a
+          object
+          arrow
+          f
+        )
+    → λ ( comonad
+        : ./../Comonad/Type sha256:f4df0fb438550e7ab95bad1373735669107b4d3027365755ed77d8dd5aea40b9
+          object
+          arrow
+          f
+        )
+    → ./../Lan/lower sha256:48cb580c65699a99200fc19fbc94da2d17773220740a438c3f421d41df3428a1
+      object
+      object
+      arrow
+      f
+      functor
+      f
+      f
+      comonad.op

@@ -1,19 +1,31 @@
-let kArrow = ./../../../Function/Kind
+let kArrow =
+      ./../../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
 let object = Type
 
-let cat = ./../../../Category/Set/monoidal/cartesian
+let cat =
+      ./../../../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
 
-in    λ(m : kArrow object object)
-    → λ(monoidal : ./../../../Functor/Monoidal/Type object cat cat m)
+in    λ ( m
+        : kArrow object object
+        )
+    → λ ( monoidal
+        : ./../../../Functor/Monoidal/Type sha256:bf47360872158ca906f90c060e3a3339c2ca60a630baa0446884e840ca7fbf70
+          object
+          cat
+          cat
+          m
+        )
     → λ(a : object)
     →   { map =
-              λ(b : object)
+              λ ( b
+                : object
+                )
             → λ(c : object)
             → λ(f : cat.arrow { _1 = b, _2 = m c })
-            → ( ./../pair
+            → ( ./../pair sha256:41dc12e9784aaef6e736dd9726bbfa372f7876eda6edb6309e45290722c57412
                 m
-                ( ./../../../Functor/Monoidal/extractFunctor
+                ( ./../../../Functor/Monoidal/extractFunctor sha256:f6fc5b1841bb362a8574e0ef26baa983afc635f3b3154cd52a77a959d7dd604b
                   object
                   cat
                   cat
@@ -29,8 +41,13 @@ in    λ(m : kArrow object object)
                   f
               }
         }
-      : ./../../../Functor/Endo/Star/Type
+      : ./../../../Functor/Endo/Star/Type sha256:bda0cae973d2e4f314fc165f8b7cd96d87f642bc9ce2b22569cac97346068717
         object
         cat.arrow
         m
-        (λ(b : Type) → ./../../Type { _1 = a, _2 = b })
+        (   λ ( b
+              : Type
+              )
+          → ./../../Type sha256:9ac62b105c684db0a562407c0132176c20e93cb29e9434f9b600ed5806cd9fc0
+            { _1 = a, _2 = b }
+        )

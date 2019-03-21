@@ -1,7 +1,21 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(object : Kind)
-    → λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)
-    → ./../Monoid/Type object (./../Category/Op/monoidal object cat)
+in    λ ( object
+        : Kind
+        )
+    → λ ( cat
+        : ./../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+          kArrow
+          kProduct
+          object
+        )
+    → ./../Monoid/Type sha256:a070e866a0c8ab80b910b06a9f007023adaa3ce08b60200bbd7b685752717249
+      object
+      ( ./../Category/Op/monoidal sha256:da6463c1fde68979789f0b9efbc6228ab0e1b7b8c8f1d3b9c710e3fe9944b82d
+        object
+        cat
+      )

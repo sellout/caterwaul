@@ -1,18 +1,34 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(cObject : Kind)
+in    λ ( cObject
+        : Kind
+        )
     → λ(cpObject : Kind)
     → λ(cpArrow : kArrow (kProduct cpObject cpObject) Type)
-    → λ(cpSemigroupoid : ./../Semigroupoid/Type cpObject cpArrow)
-    → let dObject = Type
+    → λ ( cpSemigroupoid
+        : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
+          cpObject
+          cpArrow
+        )
+    → let dObject =
+            Type
       
-      let dArrow = ./../Function/Type
+      let dArrow =
+            ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
       
-      let Ran = ./Type cObject cpObject cpArrow
+      let Ran =
+            ./Type sha256:5126ad6abdcdefab99fc1da45b21430cad31abcaee77cf79632340e26e36aabd
+            cObject
+            cpObject
+            cpArrow
       
-      in    λ(p : kArrow cObject cpObject)
+      in    λ ( p
+              : kArrow cObject cpObject
+              )
           → λ(f : kArrow cObject dObject)
           →   { map =
                     λ(a : cpObject)
@@ -36,4 +52,9 @@ in    λ(cObject : Kind)
                       )
                     )
               }
-            : ./../Functor/Type cpObject dObject cpArrow dArrow (Ran p f)
+            : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+              cpObject
+              dObject
+              cpArrow
+              dArrow
+              (Ran p f)

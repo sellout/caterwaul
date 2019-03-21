@@ -1,12 +1,29 @@
   λ(a : Type)
 →   { identity =
-        λ(b : Type) → λ(tup : ./Type { _1 = a, _2 = b }) → tup._2
+          λ ( b
+            : Type
+            )
+        → λ ( tup
+            : ./Type sha256:3e54b0739d8286354614bb58323e74a8575dabbabfefed9324ea070a969a3227
+              { _1 = a, _2 = b }
+            )
+        → tup._2
     , op =
-          λ(b : Type)
-        → λ(tup : ./Type { _1 = a, _2 = b })
+          λ ( b
+            : Type
+            )
+        → λ ( tup
+            : ./Type sha256:3e54b0739d8286354614bb58323e74a8575dabbabfefed9324ea070a969a3227
+              { _1 = a, _2 = b }
+            )
         → { _1 = tup._1, _2 = tup }
     }
-  : ./../Comonad/Type
+  : ./../Comonad/Type sha256:f4df0fb438550e7ab95bad1373735669107b4d3027365755ed77d8dd5aea40b9
     Type
-    ./../Function/Type
-    (λ(b : Type) → ./Type { _1 = a, _2 = b })
+    ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+    (   λ ( b
+          : Type
+          )
+      → ./Type sha256:3e54b0739d8286354614bb58323e74a8575dabbabfefed9324ea070a969a3227
+        { _1 = a, _2 = b }
+    )

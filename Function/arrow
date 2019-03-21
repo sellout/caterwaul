@@ -56,4 +56,5 @@ in    { arr =
           → λ(x : b._1)
           → f._2 (fn (f._1 x))
       }
-    : ./../Arrow/Type ./Type
+    : ./../Arrow/Type sha256:3883ef2c52128bb38cc4ba8f9ce1354f170d3b1d37854c2118b4ab88135d4a69
+      ./Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
