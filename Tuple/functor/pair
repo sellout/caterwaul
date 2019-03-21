@@ -1,4 +1,5 @@
-let Tuple = ./../Type
+let Tuple =
+      ./../Type sha256:3e54b0739d8286354614bb58323e74a8575dabbabfefed9324ea070a969a3227
 
 in    { map =
             λ(a : { _1 : Type, _2 : Type })
@@ -7,4 +8,7 @@ in    { map =
           → λ(t : Tuple a)
           → { _1 = f._1 t._1, _2 = f._2 t._2 }
       }
-    : ./../../Functor/Pair/Type Type ./../../Function/Type Tuple
+    : ./../../Functor/Pair/Type sha256:b1d24e5acae4194d312c360e78a435fc987a229e434f4e5f0994e35adb5ee5c3
+      Type
+      ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+      Tuple

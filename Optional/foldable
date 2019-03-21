@@ -1,5 +1,6 @@
 
-let Foldable = ./../Foldable/Type
+let Foldable =
+      ./../Foldable/Type sha256:2ebed849112126c8ec029b7e72bd05e8300308ebc5bf2c7708d677208f1a7937
 
 in    { fold =
             λ(a : Type)

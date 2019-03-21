@@ -1,13 +1,21 @@
   { identity =
       λ(a : Type) → λ(x : a) → Some x
   , op =
-        λ(a : Type)
+        λ ( a
+          : Type
+          )
       → λ(mma : Optional (Optional a))
       → Optional/fold
         (Optional a)
         mma
         (Optional a)
-        ((./../Function/category).identity (Optional a))
+        ( ( ./../Function/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
+          ).identity
+          (Optional a)
+        )
         (None a)
   }
-: ./../Monad/Type Type ./../Function/Type Optional
+: ./../Monad/Type sha256:8001bfc30d9f2c2126215a85e75eb12648fabceb5ea6cdcb05d599256d8dc1bf
+  Type
+  ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+  Optional

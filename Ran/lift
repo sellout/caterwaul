@@ -1,15 +1,30 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(cObject : Kind)
+in    λ ( cObject
+        : Kind
+        )
     → λ(cpObject : Kind)
     → λ(dObject : Kind)
     → λ(cpArrow : kArrow (kProduct cpObject cpObject) Type)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
-    → λ(dSemigroupoid : ./../Semigroupoid/Type dObject dArrow)
+    → λ ( dSemigroupoid
+        : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
+          dObject
+          dArrow
+        )
     → λ(h : kArrow cpObject dObject)
-    → λ(functor : ./../Functor/Type cpObject dObject cpArrow dArrow h)
+    → λ ( functor
+        : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+          cpObject
+          dObject
+          cpArrow
+          dArrow
+          h
+        )
     → λ(f : kArrow cObject cpObject)
     → λ(g : kArrow cObject dObject)
     → λ(join : ∀(b : cObject) → dArrow { _1 = h (f b), _2 = g b })

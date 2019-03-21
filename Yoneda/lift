@@ -1,23 +1,44 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(cObject : Kind)
+in    λ ( cObject
+        : Kind
+        )
     → λ(cArrow : kArrow (kProduct cObject cObject) Type)
     → λ(dObject : Kind)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
-    → λ(dCategory : ./../Category/Type dObject dArrow)
+    → λ ( dCategory
+        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+          dObject
+          dArrow
+        )
     → λ(f : kArrow cObject dObject)
-    → λ(functor : ./../Functor/Type cObject dObject cArrow dArrow f)
-    → ./../Ran/lift
+    → λ ( functor
+        : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+          cObject
+          dObject
+          cArrow
+          dArrow
+          f
+        )
+    → ./../Ran/lift sha256:0df70dd35a1f952bce13167c7c5e2b3d6c58ef733fa21e3b1cd4aa3c343e5559
       cObject
       cObject
       dObject
       cArrow
       dArrow
-      (./../Category/extractSemigroupoid dObject dArrow dCategory)
+      ( ./../Category/extractSemigroupoid sha256:00f0aa26c13556cbabfa6f2bc1365e1f1d1677332ff9bd3fc89b7c6946f2d7dc
+        dObject
+        dArrow
+        dCategory
+      )
       f
       functor
-      (./../Identity/Type cObject)
+      ( ./../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+        cObject
+      )
       f
       (λ(a : cObject) → dCategory.identity (f a))

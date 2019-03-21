@@ -1,15 +1,33 @@
-let kArrow = ./../../Function/Kind
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../Tuple/Kind
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(object : Kind)
+in    λ ( object
+        : Kind
+        )
     → λ(arrow : kArrow (kProduct object object) Type)
-    → λ(category : ./../Type object arrow)
-    → let opArrow = ./../Op/Type object arrow
+    → λ ( category
+        : ./../Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+          object
+          arrow
+        )
+    → let opArrow =
+            ./../Op/Type sha256:ed18079f3fe5ecb275074781d4f90158ec3fdbc9e48c40e77c1f9af77a8dd387
+            object
+            arrow
       
-      let opCategory = ./../Op/category object arrow category
+      let opCategory =
+            ./../Op/category sha256:79973bf8b8cdb999c7fd06e2746e66a8e0cf70abe6ec514f6f6e03a38e5e4337
+            object
+            arrow
+            category
       
-      let Dagger = ./Type object arrow
+      let Dagger =
+            ./Type sha256:5c54e6cfc68d8e5948c355658f18db9b3bcf21a6fdf436ac2ef80ee5eed192b7
+            object
+            arrow
       
       in    { identity =
                   λ(a : object)
@@ -63,4 +81,6 @@ in    λ(object : Kind)
                       )
                   }
             }
-          : ./../Type object Dagger
+          : ./../Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+            object
+            Dagger

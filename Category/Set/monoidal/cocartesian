@@ -1,5 +1,11 @@
-let kArrow = ./../../../Function/Kind
+let kArrow =
+      ./../../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../../Tuple/Kind
+let kProduct =
+      ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in  ./../../Rig/extractAdditive kArrow kProduct Type ./../rig
+in  ./../../Rig/extractAdditive sha256:e9f5540600b9424e612ecb7b059be10813ef50cd5853c2a94492bbb63603b05f
+    kArrow
+    kProduct
+    Type
+    ./../rig sha256:226e20c5d41d2e1189f5861a44510e65b63e65fd9787fefaad7b9fb99a743cdd

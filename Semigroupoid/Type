@@ -1,10 +1,17 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(object : Kind)
-    → let profunctor = kArrow (kProduct object object) Type
+in    λ ( object
+        : Kind
+        )
+    → let profunctor =
+            kArrow (kProduct object object) Type
       
-      in  ./../Semigroup/Type
+      in  ./../Semigroup/Type sha256:d1635ee2a3c9117f5d330d01ec4ae277f46bd0726c670179994510a57c2fbc32
           profunctor
-          (./../Category/Profunctor/semigroupal object)
+          ( ./../Category/Profunctor/semigroupal sha256:7346b27265b505151d67cb5bbb8714724fe7b6df44ade38d5c15f1f346ef0e87
+            object
+          )

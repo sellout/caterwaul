@@ -1,4 +1,7 @@
 {- Compactable functors enable “missing” elements to be removed from the
    structure.
 -}
-./../Star/Type Type ./../../Function/Type Optional
+./../Star/Type sha256:111b31ccff80266953ee7dca8da156a98dedc5702e7257e42c240ac4397ada5d
+Type
+./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+Optional

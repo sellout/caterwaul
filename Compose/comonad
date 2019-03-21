@@ -1,22 +1,46 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(cObject : Kind)
+in    λ ( cObject
+        : Kind
+        )
     → λ(cArrow : kArrow (kProduct cObject cObject) Type)
     → λ(dObject : Kind)
     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
     → λ(f : kArrow dObject cObject)
-    → λ(fFunctor : ./../Functor/Type dObject cObject dArrow cArrow f)
+    → λ ( fFunctor
+        : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+          dObject
+          cObject
+          dArrow
+          cArrow
+          f
+        )
     → λ(g : kArrow cObject dObject)
-    → λ(adjunction : ./../Adjunction/Type cObject dObject cArrow dArrow f g)
+    → λ ( adjunction
+        : ./../Adjunction/Type sha256:917b36907d485af32d70d8d455f14f88a924980bfe626eaf8013371cd04a89fb
+          cObject
+          dObject
+          cArrow
+          dArrow
+          f
+          g
+        )
     →   { identity =
             adjunction.counit
         , op =
               λ(a : cObject)
             → fFunctor.map (g a) (g (f (g a))) (adjunction.unit (g a))
         }
-      : ./../Comonad/Type
+      : ./../Comonad/Type sha256:f4df0fb438550e7ab95bad1373735669107b4d3027365755ed77d8dd5aea40b9
         cObject
         cArrow
-        (./Type cObject dObject cObject { _1 = f, _2 = g })
+        ( ./Type sha256:e18cb4b2004c6cf2789b492be4e1b912e3299eca94c229dc5913a11d55bcd72c
+          cObject
+          dObject
+          cObject
+          { _1 = f, _2 = g }
+        )

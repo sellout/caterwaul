@@ -1,4 +1,5 @@
-let Equality = ./../Eq/Type
+let Equality =
+      ./../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
 
 in    λ(a : Type)
     → λ(eq : Equality a)

@@ -1,22 +1,38 @@
 {- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
    functor **Set** → 𝒟.
 -}
-let kArrow = ./../../Function/Kind
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../Tuple/Kind
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-let MonoidalCategory = ./../Monoidal/Kind kArrow kProduct
+let MonoidalCategory =
+      ./../Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+      kArrow
+      kProduct
 
-in    λ(cObject : Kind)
-    → let dObject = Type
+in    λ ( cObject
+        : Kind
+        )
+    → let dObject =
+            Type
       
-      in    λ(c : MonoidalCategory cObject)
+      in    λ ( c
+              : MonoidalCategory cObject
+              )
           → λ(d : MonoidalCategory dObject)
           →   { arrow =
-                  ./../../NaturalTransformation/Type cObject dObject d.arrow
+                  ./../../NaturalTransformation/Type sha256:ac4ec9bf178715d3e80e93c72406abcaa99f0e70df64e30d76047afb6777ac95
+                  cObject
+                  dObject
+                  d.arrow
               , identity =
                   λ(x : cObject) → c.arrow { _1 = c.identity, _2 = x }
               , op =
-                  ./../../Day/Type cObject c d
+                  ./../../Day/Type sha256:681b4b22f4cd4484c75a93d75c4c4a58c7d7b146d8f9e1a52602b49a8fb51f87
+                  cObject
+                  c
+                  d
               }
             : MonoidalCategory (kArrow cObject dObject)

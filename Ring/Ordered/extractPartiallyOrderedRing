@@ -3,12 +3,16 @@ let object = Type
 in    λ ( m
         : object
         )
-    → λ(ring : ./Type m)
+    → λ ( ring
+        : ./Type sha256:be45eeda0704cd97ec9e48d83c1cd6cfc2d8723014d6b4cd9fedc28765ad2762
+          m
+        )
     →   { additive =
-            ./../../Group/OrderedCommutative/extractPartiallyOrderedCommutativeGroup
+            ./../../Group/OrderedCommutative/extractPartiallyOrderedCommutativeGroup sha256:828bcbbbdfaec271166a58c2c312516d32f21eb62d1bdded8cda8f1b7fcd4e63
             m
             ring.additive
         , multiplicative =
             ring.multiplicative
         }
-      : ./../PartiallyOrdered/Type m
+      : ./../PartiallyOrdered/Type sha256:346b20efe579120254fa39b5d93cf2fab5fc690abf811bd8bf0b373fef297f0e
+        m

@@ -1,6 +1,8 @@
-let Set = ./../../Function/Type
+let Set =
+      ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
 
-let Eq = ./../Type
+let Eq =
+      ./../Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
 
 in    { map =
             λ(a : Type)
@@ -9,4 +11,9 @@ in    { map =
           → λ(fa : Eq a)
           → { eq = λ(x : b) → λ(y : b) → fa.eq (fn x) (fn y) }
       }
-    : ./../../Functor/Contravariant Type Type Set Set Eq
+    : ./../../Functor/Contravariant sha256:fa42cddb87dc4e9a4ea1f310bed11ea8f63fd36cbb861d19543cabaafdc769f6
+      Type
+      Type
+      Set
+      Set
+      Eq

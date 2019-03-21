@@ -1,16 +1,39 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(object : Kind)
+in    λ ( object
+        : Kind
+        )
     → λ(arrow : kArrow (kProduct object object) Type)
-    → λ(category : ./../Category/Type object arrow)
+    → λ ( category
+        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+          object
+          arrow
+        )
     →   { monoid =
-            ./monad object arrow category
-        , comonoid =
-            ./monad
+            ./monad sha256:cc69fbc6820debd52434ed85411386635e67912794606e2fd89cbddacc0cec01
             object
-            (./../Category/Op/Type object arrow)
-            (./../Category/Op/category object arrow category)
+            arrow
+            category
+        , comonoid =
+            ./monad sha256:cc69fbc6820debd52434ed85411386635e67912794606e2fd89cbddacc0cec01
+            object
+            ( ./../Category/Op/Type sha256:ed18079f3fe5ecb275074781d4f90158ec3fdbc9e48c40e77c1f9af77a8dd387
+              object
+              arrow
+            )
+            ( ./../Category/Op/category sha256:79973bf8b8cdb999c7fd06e2746e66a8e0cf70abe6ec514f6f6e03a38e5e4337
+              object
+              arrow
+              category
+            )
         }
-      : ./../Bimonad/Type object arrow (./Type object)
+      : ./../Bimonad/Type sha256:f6a12ee66ae0a959ab1042099ba80e9555ff086356fc5256bab54e9e8de82b65
+        object
+        arrow
+        ( ./Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+          object
+        )
