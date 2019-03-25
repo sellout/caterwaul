@@ -6,39 +6,37 @@
        When you combine these two restrictions, you end up only being able to
        support endofunctors in **Set**.
 -}
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../../Function/Kind
 
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
 
 let object = Type
 
-in    λ ( cat
-        : ./../../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
-          kArrow
-          kProduct
-          object
-        )
-    → let applicative =
-            ./../Functor/monoidal sha256:2a889a152120481599818cc4e25c7e17abe4fa64e5666c2a052c970280491731
-            object
-            cat
-            cat
+in    λ(v : ./../../Category/Kind kArrow kProduct Type vObject)
+    → λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct vObject object)
+    → let applicative = ./../Functor/monoidal object v cat cat
       
       let monadic =
-            ./monoidal/monadic sha256:b83055180c5a4e4c7580f0786f47f444bc336468778ab6cbc808a27a254b3d3c
+            ./monoidal/monadic
             object
-            cat.arrow
+            v
+            ( ./../../Category/Monoidal/extractCategory
+              kArrow
+              kProduct
+              vObject
+              object
+              cat
+            )
       
-      in    { arrow =
+      in    { constraint =
+                monadic.constraint
+            , arrow =
                 applicative.arrow
             , additive =
                 { identity = applicative.identity, op = applicative.op }
             , multiplicative =
                 { identity = monadic.identity, op = monadic.op }
             }
-          : ./../Duoidal/Kind sha256:f33682488a6823a12c3e8493b7887cb227cd1cf29fa44e8af49d6cf1033a1fbb
-            kArrow
-            kProduct
-            (kArrow object object)
+          : ./../Duoidal/Kind kArrow kProduct vObject (kArrow object object)

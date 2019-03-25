@@ -1,21 +1,16 @@
-let kArrow =
-      ./../../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../../../Function/Kind
 
-let kProduct =
-      ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../../../Tuple/Kind
+
+let vObject = Type
 
 let object = Type
 
-in    λ ( cat
-        : ./../../Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
-          kArrow
-          kProduct
-          object
-        )
-    → ./../../Duoidal/extractAdditive sha256:e9f5540600b9424e612ecb7b059be10813ef50cd5853c2a94492bbb63603b05f
+in    λ(v : ./../../Kind kArrow kProduct Type vObject)
+    → λ(cat : ./../../Monoidal/Kind kArrow kProduct vObject object)
+    → ./../../Duoidal/extractAdditive
       kArrow
       kProduct
+      vObject
       (kArrow object object)
-      ( ./../duoidal sha256:cbe332e2120d18375e22eb0e0f194a40cb231ae6960c22d4d42f3c7b930a75eb
-        cat
-      )
+      (./../duoidal v cat)

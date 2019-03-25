@@ -3,19 +3,14 @@
 -}
   λ(kArrow : Kind → Kind → Kind)
 → λ(kProduct : Kind → Kind → Kind)
+→ λ(vObject : Kind)
 → λ(object : Kind)
-→ λ ( monoidal
-    : ./Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
-      kArrow
-      kProduct
-      object
-    )
-→   { arrow =
+→ λ(monoidal : ./Kind kArrow kProduct vObject object)
+→   { constraint =
+        monoidal.constraint
+    , arrow =
         monoidal.arrow
     , op =
         monoidal.op
     }
-  : ./../Semigroupal/Kind sha256:37baf05781aa3f5d1ee124aa740389e91a140fd0f5bd87594fd1d9f3b5ddc05d
-    kArrow
-    kProduct
-    object
+  : ./../Semigroupal/Kind kArrow kProduct vObject object

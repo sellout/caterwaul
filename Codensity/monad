@@ -1,42 +1,40 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../Function/Kind
+
+let kProduct = ./../Tuple/Kind
+
+let vObject = Type
+
+let v = ./../Category/Set/monoidal/cartesian
 
 let object = Type
 
-let arrow =
-      ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+let cat =
+      ./../Category/Monoidal/extractCategory
+      kArrow
+      kProduct
+      vObject
+      object
+      ./../Category/Set/monoidal/cartesian
 
-in    λ ( category
-        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          object
-          arrow
-        )
-    → let Codensity =
-            ./Type sha256:34365939359b31f1c876dde4f774b64d72bb52db06932ee8d050b01be305ce41
-            object
-            arrow
+in    λ(category : ./../Category/Type object v cat)
+    → let Codensity = ./Type object cat
       
-      in    λ ( m
-              : kArrow object object
-              )
+      in    λ(m : kArrow object object)
           →   { identity =
                     λ(a : object)
                   → λ(x : a)
                   → λ(b : object)
-                  → λ(k : arrow { _1 = a, _2 = m b })
+                  → λ(k : cat.arrow { _1 = a, _2 = m b })
                   → k x
               , op =
                     λ(a : object)
                   → λ(codensity : Codensity m (Codensity m a))
                   → λ(c : object)
-                  → λ(l : arrow { _1 = a, _2 = m c })
+                  → λ(l : cat.arrow { _1 = a, _2 = m c })
                   → codensity
                     c
                     (   λ(x : Codensity m a)
                       → category.identity (Codensity m a) x c l
                     )
               }
-            : ./../Monad/Type sha256:8001bfc30d9f2c2126215a85e75eb12648fabceb5ea6cdcb05d599256d8dc1bf
-              object
-              arrow
-              (Codensity m)
+            : ./../Monad/Type object cat (Codensity m)

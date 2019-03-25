@@ -1,10 +1,4 @@
 let object = Type
 
-in    λ ( m
-        : object
-        )
-    →   { partialLE :
-            m → m → Optional Bool
-        }
-      ⩓ ./../Monoid/Commutative/Set sha256:05b34911f815f5b1c7036219d14ed9261f8524349cce8f2fba6eb02937dccc0d
-        m
+in    λ(m : object)
+    → { partialLE : m → m → Optional Bool } ⩓ ./../Monoid/Commutative/Set m

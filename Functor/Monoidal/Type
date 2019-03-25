@@ -1,36 +1,33 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../../Function/Kind
 
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../../Tuple/Kind
 
-let MonoidalCategory =
-      ./../../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
-      kArrow
-      kProduct
+let vObject = Type
 
-in    λ ( cObject
-        : Kind
-        )
+let MonoidalCategory = ./../../Category/Monoidal/Kind kArrow kProduct vObject
+
+in    λ(cObject : Kind)
+    → λ(v : ./../../Category/Kind kArrow kProduct Type vObject)
     → λ(c : MonoidalCategory cObject)
-    → let dObject =
-            Type
+    → let dObject = Type
       
-      in    λ ( d
-              : MonoidalCategory dObject
-              )
+      in    λ(d : MonoidalCategory dObject)
           → λ(f : kArrow cObject dObject)
-          →   ./../Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
-              cObject
-              dObject
-              c.arrow
-              d.arrow
-              f
-            ⩓ ./../../Monoid/Type sha256:a070e866a0c8ab80b910b06a9f007023adaa3ce08b60200bbd7b685752717249
-              (kArrow cObject dObject)
-              ( ./../../Category/Functor/monoidal sha256:2a889a152120481599818cc4e25c7e17abe4fa64e5666c2a052c970280491731
-                cObject
-                c
-                d
-              )
-              f
+          → let base =
+                  ./../../Category/Monoidal/extractCategory
+                  kArrow
+                  kProduct
+                  vObject
+            
+            in    ./../Type
+                  vObject
+                  cObject
+                  dObject
+                  v
+                  (base cObject c)
+                  (base dObject d)
+                  f
+                ⩓ ./../../Monoid/Type
+                  (kArrow cObject dObject)
+                  (./../../Category/Functor/monoidal cObject v c d)
+                  f

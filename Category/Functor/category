@@ -1,0 +1,22 @@
+{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
+   functor **Set** → 𝒟.
+-}
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
+
+let Category = ./../Kind kArrow kProduct
+
+in    λ(cObject : Kind)
+    → λ(dObject : Kind)
+    → λ(v : Category Type vObject)
+    → λ(c : Category vObject cObject)
+    → λ(d : Category vObject dObject)
+    →   { constraint =
+            ./../../Functor/Type vObject cObject dObject v c d
+        , arrow =
+            ./../../NaturalTransformation/Type cObject dObject d
+        }
+      : Category vObject (kArrow cObject dObject)

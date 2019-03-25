@@ -1,23 +1,22 @@
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let base = ./../../Category/Monoidal/extractCategory kArrow kProduct
+
+let vObject = Type
+
+let v = base Type vObject ./../../Category/Set/monoidal/cartesian
+
+let vCategory = ./../../Category/Set/category
+
 let object = Type
 
-let arrow =
-      ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+let cat = base vObject object ./../../Category/Set/monoidal/cartesian
 
-let category =
-      ./../../Function/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
+let category = ./../../Category/Set/category
 
-let Identity =
-      ./../Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
-      object
-
-in  ./../../Monad/impliedMonoidalFunctor sha256:8b92d1f3c104cc5e4e1a17107c6006893aab6cb7ad59f2ad90bc4443ae78cf47
-    Identity
-    ( ./endo sha256:564834f3bdf37bba2dae2ffa0dd3fe7036a9152fdc099919bcfbb1a7b39e2348
-      object
-      arrow
-    )
-    ( ./../monad sha256:cc69fbc6820debd52434ed85411386635e67912794606e2fd89cbddacc0cec01
-      object
-      arrow
-      category
-    )
+in  ./../../Monad/impliedMonoidalFunctor
+    (./../Type object)
+    (./endo vObject object v vCategory cat)
+    (./../monad object cat category)

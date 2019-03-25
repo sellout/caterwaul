@@ -1,3 +1,35 @@
-./../Monoidal/types.dhall sha256:ddb046c8b23c245e7edd42a52d393c6dcbb279e1719b583ee3f84c401dc52643
-Type
-./../Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
+
+in    λ(v : ./../../Category/Monoidal/Kind kArrow kProduct Type vObject)
+    → let Set = ./rig
+      
+      in    { Either =
+                Set.additive.op
+            , Eq =
+                ./../../Eq/Type
+            , InternalHomFunctor =
+                ./../../Functor/InternalHom v
+            , OrderedField =
+                ./../../Field/Ordered/Type
+            , OrderedGroup =
+                ./../../Group/Ordered/Type
+            , OrderedRing =
+                ./../../Ring/Ordered/Type
+            , PartiallyOrderedField =
+                ./../../Field/PartiallyOrdered/Type
+            , PartiallyOrderedGroup =
+                ./../../Group/PartiallyOrdered/Type
+            , PartiallyOrderedRing =
+                ./../../Ring/PartiallyOrdered/Type
+            , Tuple =
+                Set.multiplicative.op
+            , Unit =
+                Set.multiplicative.identity
+            , Void =
+                Set.additive.identity
+            }
+          ∧ ./../Monoidal/types.dhall Type v ./monoidal/cartesian

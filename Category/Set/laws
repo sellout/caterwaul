@@ -1,5 +1,6 @@
-let Either =
-      ./../../Either/Type sha256:9ac62b105c684db0a562407c0132176c20e93cb29e9434f9b600ed5806cd9fc0
+let Set = ./rig
+
+let Either = Set.additive.op
 
 in    { distributivity =
             λ(a : Type)
@@ -152,6 +153,4 @@ in    { distributivity =
                 }
           }
       }
-    : ./../Rig/Laws sha256:49952a7c7ed804f7ca9a3e6b8a1ba1b17250c72134b184f972bb1cbe0dade1bd
-      Type
-      ./rig sha256:226e20c5d41d2e1189f5861a44510e65b63e65fd9787fefaad7b9fb99a743cdd
+    : ./../Rig/Laws Type ./rig

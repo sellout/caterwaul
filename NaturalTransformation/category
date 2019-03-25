@@ -1,28 +1,18 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../Function/Kind
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../Tuple/Kind
 
-in    λ ( cObject
-        : Kind
-        )
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
+let vObject = Type
+
+in    λ(v : ./../Category/Monoidal/Kind kArrow kProduct Type vObject)
+    → λ(cObject : Kind)
+    → λ(c : ./../Category/Kind kArrow kProduct vObject cObject)
     → λ(dObject : Kind)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
-    → λ ( dCategory
-        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          dObject
-          dArrow
-        )
-    → let object =
-            kArrow cObject dObject
+    → λ(d : ./../Category/Kind kArrow kProduct vObject dObject)
+    → λ(dCategory : ./../Category/Type dObject v d)
+    → let object = kArrow cObject dObject
       
-      let arrow =
-            ./Type sha256:ac4ec9bf178715d3e80e93c72406abcaa99f0e70df64e30d76047afb6777ac95
-            cObject
-            dObject
-            dArrow
+      let arrow = ./Type cObject dObject d
       
       in    { identity =
                 λ(a : object) → λ(i : cObject) → dCategory.identity (a i)
@@ -43,8 +33,8 @@ in    λ ( cObject
                   (   λ(r : Type)
                     → λ ( arrowsOut
                         :   ∀(z : dObject)
-                          → dArrow { _1 = z, _2 = a._2 i }
-                          → dArrow { _1 = a._1 i, _2 = z }
+                          → d.arrow { _1 = z, _2 = a._2 i }
+                          → d.arrow { _1 = a._1 i, _2 = z }
                           → r
                         )
                     → p
@@ -56,6 +46,19 @@ in    λ ( cObject
                       )
                   )
             }
-          : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+          : ./../Category/Type
             object
-            arrow
+            v
+            ( ./../Category/Functor/category
+              cObject
+              dObject
+              ( ./../Category/Monoidal/extractCategory
+                kArrow
+                kProduct
+                Type
+                vObject
+                v
+              )
+              c
+              d
+            )

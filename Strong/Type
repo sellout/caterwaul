@@ -1,39 +1,30 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../Function/Kind
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../Tuple/Kind
 
-in    λ ( cObject
-        : Kind
-        )
+let vObject = Type
+
+in    λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(v : ./../Category/Monoidal/Kind kArrow kProduct Type vObject)
+    → λ(c : ./../Category/Kind kArrow kProduct vObject cObject)
+    → λ(d : ./../Category/Kind kArrow kProduct vObject dObject)
     → λ(f : kArrow (kProduct dObject cObject) Type)
     →   { lmap :
-              ∀ ( a
-                : dObject
-                )
-            → ∀(b : dObject)
-            → ∀(c : cObject)
-            → ./../Category/Op/Type sha256:ed18079f3fe5ecb275074781d4f90158ec3fdbc9e48c40e77c1f9af77a8dd387
-              dObject
-              dArrow
-              { _1 = a, _2 = b }
-            → f { _1 = a, _2 = c }
-            → f { _1 = b, _2 = c }
+            let op = ./../Category/Op/Kind vObject dObject d
+            
+            in    ∀(h : dObject)
+                → ∀(i : dObject)
+                → ∀(j : cObject)
+                → op.arrow { _1 = h, _2 = i }
+                → f { _1 = h, _2 = j }
+                → f { _1 = i, _2 = j }
         , rmap :
-              ∀(a : dObject)
-            → ∀(b : cObject)
-            → ∀(c : cObject)
-            → cArrow { _1 = b, _2 = c }
-            → f { _1 = a, _2 = b }
-            → f { _1 = a, _2 = c }
+              ∀(h : dObject)
+            → ∀(i : cObject)
+            → ∀(j : cObject)
+            → c.arrow { _1 = i, _2 = j }
+            → f { _1 = h, _2 = i }
+            → f { _1 = h, _2 = j }
         }
-      ⩓ ./../Functor/Profunctor/Type sha256:da73e03c6c6fee307e1bda9ebcd75448fe5ca19edd857c42637ae41515631cff
-        cObject
-        dObject
-        cArrow
-        dArrow
-        f
+      ⩓ ./../Functor/Profunctor/Type cObject dObject v c d f

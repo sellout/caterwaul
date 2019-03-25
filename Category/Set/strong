@@ -1,0 +1,19 @@
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
+
+let v = ./monoidal/cartesian
+
+let object = Type
+
+let cat =
+      ./../Monoidal/extractSemigroupal
+      kArrow
+      kProduct
+      vObject
+      object
+      ./monoidal/cartesian
+
+in  ./../../Arrow/extractStrong object v cat ./arrow

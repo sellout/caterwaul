@@ -1,8 +1,14 @@
-let identity = λ(a : Type) → λ(x : a) → x
+let kArrow = ./../../Function/Kind
 
-in    { arr =
-          λ(a : Type) → λ(b : Type) → identity (a → b)
-      , split =
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
+
+let v = ./monoidal/cartesian
+
+let Set = ./monoidal/cartesian
+
+in    { split =
             λ(a : Type)
           → λ(b : Type)
           → λ(c : Type)
@@ -20,7 +26,7 @@ in    { arr =
           → λ(x : a)
           → { _1 = f x, _2 = g x }
       , identity =
-          identity
+          λ(a : Type) → λ(x : a) → x
       , op =
             λ(a : { _1 : Type, _2 : Type })
           → λ(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
@@ -56,5 +62,7 @@ in    { arr =
           → λ(x : b._1)
           → f._2 (fn (f._1 x))
       }
-    : ./../Arrow/Type sha256:3883ef2c52128bb38cc4ba8f9ce1354f170d3b1d37854c2118b4ab88135d4a69
-      ./Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+    : ./../../Arrow/Type
+      Type
+      v
+      (./../Monoidal/extractSemigroupal kArrow kProduct vObject Type Set)

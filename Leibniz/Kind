@@ -1,0 +1,20 @@
+let kArrow = ./../Function/Kind
+
+let kProduct = ./../Tuple/Kind
+
+let vObject = Type
+
+in    λ(cObject : Kind)
+    → λ(dObject : Kind)
+    → λ(c : ./../Category/Kind kArrow kProduct vObject cObject)
+    → λ(d : ./../Category/Kind kArrow kProduct vObject dObject)
+    →   { constraint =
+            c.constraint
+        , arrow =
+              λ(a : { _1 : cObject, _2 : cObject })
+            → { subst :
+                    ∀(f : kArrow cObject dObject)
+                  → d.arrow { _1 = f a._1, _2 = f a._2 }
+              }
+        }
+      : ./../Category/Kind kArrow kProduct vObject cObject

@@ -1,49 +1,40 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../../Function/Kind
 
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../../Tuple/Kind
 
-in    λ ( object
-        : Kind
-        )
-    → λ ( cat
-        : ./../../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
-          kArrow
-          kProduct
-          object
-        )
-    → λ ( category
-        : ./../../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          object
-          cat.arrow
-        )
-    → λ ( bifunctor
-        : ./../../Functor/Bifunctor/Type sha256:941c217fa6ee86da9597e1a86270a67bb1c9d62fe62f6d786fe6454a05fd72fa
-          object
-          object
-          object
-          cat.arrow
-          cat.arrow
-          cat.arrow
-          cat.op
-        )
-    → λ(m : object)
-    → λ ( group
-        : ./Type sha256:85e3cfd09df263fe9c3f4c4b97633f9613d96c42075c18416eb6da89f0945b47
-          object
-          cat
-          m
-        )
-    → ./../rightQuotient sha256:def4ab713ab3d255db4780c3d2271aa88e3ce568faf506ac9f4d107071016ee6
-      object
-      cat
-      category
-      bifunctor
-      m
-      ( ./extractGroup sha256:1a2a71172a99c65efa5d274e3edc283b9d2559ce87d72b1ec95f00e98b6a0f0e
-        object
-        cat
-        m
-        group
-      )
+let vObject = Type
+
+let v = ./../../Category/Set/monoidal/cartesian
+
+in    λ(object : Kind)
+    → λ(cat : ./../../Category/Monoidal/Kind kArrow kProduct vObject object)
+    → let base =
+            ./../../Category/Monoidal/extractCategory
+            kArrow
+            kProduct
+            vObject
+            object
+            cat
+      
+      in    λ(category : ./../../Category/Type object v base)
+          → λ ( bifunctor
+              : ./../../Functor/Bifunctor/Type
+                vObject
+                object
+                object
+                object
+                v
+                base
+                base
+                base
+                cat.op
+              )
+          → λ(m : object)
+          → λ(group : ./Type object cat m)
+          → ./../rightQuotient
+            object
+            cat
+            category
+            bifunctor
+            m
+            (./extractGroup object cat m group)

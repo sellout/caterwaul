@@ -1,0 +1,3 @@
+  λ(a : Type)
+→   { identity = λ(_ : a) → {=}, op = λ(x : a) → { _1 = x, _2 = x } }
+  : ./../../Comonoid/Type Type ./monoidal/cartesian a

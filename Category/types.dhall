@@ -1,0 +1,74 @@
+let kArrow = ./../Function/Kind
+
+let kProduct = ./../Tuple/Kind
+
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(v : ./Monoidal/Kind kArrow kProduct Type vObject)
+    → λ(cat : ./Kind kArrow kProduct vObject object)
+    → let vBase = ./Monoidal/extractCategory kArrow kProduct Type vObject v
+      
+      let Endofunctor = ./../Functor/Endo/Type vObject
+      
+      in  { Adjunction =
+              ./../Adjunction/Type object object cat cat
+          , Bifunctor =
+              ./../Functor/Bifunctor/Type
+              vObject
+              object
+              object
+              object
+              v
+              cat
+              cat
+              cat
+          , Category =
+              ./Type object
+          , Codensity =
+              ./../Codensity/Type object
+          , Comonad =
+              ./../Comonad/Type object cat
+          , Compose =
+              ./../Compose/Type object object object
+          , Const =
+              ./../Const/Type object object
+          , Costar =
+              ./../Costar/Type vObject object cat
+          , Coyoneda =
+              ./../Coyoneda/Type object cat
+          , Density =
+              ./../Density/Type object
+          , Endofunctor =
+              Endofunctor object vBase cat
+          , HomFunctor =
+              ./../Functor/Hom object v cat
+          , Identity =
+              ./../Identity/Type object
+          , Lan =
+              ./../Lan/Type object object cat
+          , Leibniz =
+              ./../Leibniz/Kind object object cat cat
+          , Monad =
+              ./../Monad/Type object cat
+          , NaturalTransformation =
+              ./../NaturalTransformation/Type object object cat
+          , Profunctor =
+              ./../Functor/Profunctor/Type object object v cat cat
+          , Ran =
+              ./../Ran/Type object object cat
+          , Semigroupoid =
+              ./../Semigroupoid/Type object
+          , Star =
+              ./../Star/Type vObject object cat
+          , Strong =
+              ./../Strong/Type object object v cat cat
+          , Traversable =
+                λ(m : kArrow object object)
+              → Endofunctor
+                object
+                vBase
+                (./Kleisli/category vObject object cat m)
+          , Yoneda =
+              ./../Yoneda/Type object cat
+          }

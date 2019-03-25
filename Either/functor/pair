@@ -1,35 +1,39 @@
-let Either =
-      ./../Type sha256:9ac62b105c684db0a562407c0132176c20e93cb29e9434f9b600ed5806cd9fc0
+let kArrow = ./../../Function/Kind
 
-in    λ ( m
-        : Type → Type
-        )
+let kProduct = ./../../Tuple/Kind
+
+let base = ./../../Category/Monoidal/extractCategory kArrow kProduct
+
+let vObject = Type
+
+let v = ./../../Category/Set/monoidal/cartesian
+
+let Set = ./../../Category/Set/monoidal/cocartesian
+
+let cat = base vObject Type Set
+
+in    λ(m : Type → Type)
     → λ ( functor
-        : ./../../Functor/Endo/Type sha256:f230e076c15a9ae4eb91c84519b9ab384e03b03f0246ebe4dfdf3a2bb82b251a
-          Type
-          ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
-          m
+        : ./../../Functor/Endo/Type vObject Type (base Type vObject v) cat m
         )
     →   { map =
               λ(a : { _1 : Type, _2 : Type })
             → λ(b : { _1 : Type, _2 : Type })
             → λ(f : { _1 : a._1 → m b._1, _2 : a._2 → m b._2 })
-            → λ(e : Either a)
-            → let E = Either b
+            → λ(e : Set.op a)
+            → let E = Set.op b
               
               in  merge
                   { Left =
-                      λ(x : a._1) → functor.map b._1 (Either b) E.Left (f._1 x)
+                      λ(x : a._1) → functor.map b._1 (Set.op b) E.Left (f._1 x)
                   , Right =
-                      λ(x : a._2) → functor.map b._2 (Either b) E.Right (f._2 x)
+                      λ(x : a._2) → functor.map b._2 (Set.op b) E.Right (f._2 x)
                   }
                   e
         }
-      : ./../../Functor/Pair/Type sha256:b1d24e5acae4194d312c360e78a435fc987a229e434f4e5f0994e35adb5ee5c3
+      : ./../../Functor/Pair/Type
+        vObject
         Type
-        ( ./../../Star/Type sha256:d7ac58f30d93bd5abe3c3134da0412899a896d023b3c5a92484941e738939ffc
-          Type
-          ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
-          m
-        )
-        Either
+        v
+        (./../../Category/Kleisli/category vObject Type cat m)
+        Set.op

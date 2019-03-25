@@ -1,24 +1,17 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+{- In a Leibniz category, identity is refl, and op is transitivity. -}
+let kArrow = ./../Function/Kind
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../Tuple/Kind
 
-in    λ ( cObject
-        : Kind
-        )
+let vObject = Type
+
+in    λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
-    → λ ( dCategory
-        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          dObject
-          dArrow
-        )
-    → let Leibniz =
-            ./Type sha256:575c8feae22c36c9466607c6b2f4ca05d7ce2c76e96593b0ef3694ef75a1f40d
-            cObject
-            dObject
-            dArrow
+    → λ(v : ./../Category/Monoidal/Kind kArrow kProduct Type vObject)
+    → λ(c : ./../Category/Kind kArrow kProduct vObject cObject)
+    → λ(d : ./../Category/Kind kArrow kProduct vObject dObject)
+    → λ(dCategory : ./../Category/Type dObject v d)
+    → let Leibniz = ./Kind cObject dObject c d
       
       in    { identity =
                   λ(a : cObject)
@@ -30,8 +23,8 @@ in    λ ( cObject
                 → λ ( p
                     :   ∀(r : Type)
                       → (   ∀(z : cObject)
-                          → Leibniz { _1 = z, _2 = a._2 }
-                          → Leibniz { _1 = a._1, _2 = z }
+                          → Leibniz.arrow { _1 = z, _2 = a._2 }
+                          → Leibniz.arrow { _1 = a._1, _2 = z }
                           → r
                         )
                       → r
@@ -43,20 +36,18 @@ in    λ ( cObject
                         (   λ(r : Type)
                           → λ ( arrowsOut
                               :   ∀(z : dObject)
-                                → dArrow { _1 = z, _2 = f a._2 }
-                                → dArrow { _1 = f a._1, _2 = z }
+                                → d.arrow { _1 = z, _2 = f a._2 }
+                                → d.arrow { _1 = f a._1, _2 = z }
                                 → r
                               )
                           → p
                             r
                             (   λ(z : cObject)
-                              → λ(g : Leibniz { _1 = z, _2 = a._2 })
-                              → λ(h : Leibniz { _1 = a._1, _2 = z })
+                              → λ(g : Leibniz.arrow { _1 = z, _2 = a._2 })
+                              → λ(h : Leibniz.arrow { _1 = a._1, _2 = z })
                               → arrowsOut (f z) (g.subst f) (h.subst f)
                             )
                         )
                   }
             }
-          : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-            cObject
-            Leibniz
+          : ./../Category/Type cObject v Leibniz

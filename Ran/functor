@@ -1,42 +1,32 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../Function/Kind
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../Tuple/Kind
 
-in    λ ( cObject
-        : Kind
-        )
+let base = ./../Category/Monoidal/extractCategory kArrow kProduct
+
+let vObject = Type
+
+let v = ./../Category/Set/monoidal/cartesian
+
+in    λ(cObject : Kind)
     → λ(cpObject : Kind)
-    → λ(cpArrow : kArrow (kProduct cpObject cpObject) Type)
-    → λ ( cpSemigroupoid
-        : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
-          cpObject
-          cpArrow
-        )
-    → let dObject =
-            Type
+    → λ(cp : ./../Category/Kind kArrow kProduct vObject cpObject)
+    → λ(cpSemigroupoid : ./../Semigroupoid/Type cpObject v cp cp.arrow)
+    → let dObject = Type
       
-      let dArrow =
-            ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+      let d = base vObject dObject ./../Category/Set/monoidal/cartesian
       
-      let Ran =
-            ./Type sha256:5126ad6abdcdefab99fc1da45b21430cad31abcaee77cf79632340e26e36aabd
-            cObject
-            cpObject
-            cpArrow
+      let Ran = ./Type cObject cpObject cp
       
-      in    λ ( p
-              : kArrow cObject cpObject
-              )
+      in    λ(p : kArrow cObject cpObject)
           → λ(f : kArrow cObject dObject)
           →   { map =
                     λ(a : cpObject)
                   → λ(b : cpObject)
-                  → λ(fn : cpArrow { _1 = a, _2 = b })
+                  → λ(fn : cp.arrow { _1 = a, _2 = b })
                   → λ(ran : Ran p f a)
                   → λ(c : cObject)
-                  → λ(k : cpArrow { _1 = b, _2 = p c })
+                  → λ(k : cp.arrow { _1 = b, _2 = p c })
                   → ran
                     c
                     ( cpSemigroupoid.op
@@ -44,17 +34,19 @@ in    λ ( cObject
                       (   λ(r : Type)
                         → λ ( arrowsOut
                             :   ∀(z : cpObject)
-                              → cpArrow { _1 = z, _2 = p c }
-                              → cpArrow { _1 = a, _2 = z }
+                              → cp.arrow { _1 = z, _2 = p c }
+                              → cp.arrow { _1 = a, _2 = z }
                               → r
                             )
                         → arrowsOut b k fn
                       )
                     )
               }
-            : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+            : ./../Functor/Type
+              vObject
               cpObject
               dObject
-              cpArrow
-              dArrow
+              (base Type vObject v)
+              cp
+              d
               (Ran p f)

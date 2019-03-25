@@ -1,46 +1,43 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../../Function/Kind
 
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../../Tuple/Kind
 
-in    λ ( cObject
-        : Kind
-        )
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
+let vObject = Type
+
+let v = ./../../Category/Set/monoidal/cartesian
+
+let Category = ./../../Category/Kind kArrow kProduct vObject
+
+in    λ(cObject : Kind)
+    → λ(c : Category cObject)
     → λ(dObject : Kind)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
-    → λ ( dCategory
-        : ./../../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          dObject
-          dArrow
-        )
+    → λ(d : Category dObject)
+    → λ(dCategory : ./../../Category/Type dObject v d)
     → λ(eObject : Kind)
-    → λ(eArrow : kArrow (kProduct eObject eObject) Type)
+    → λ(e : Category eObject)
     → λ(f : kArrow (kProduct cObject dObject) eObject)
-    → λ ( bifunctor
-        : ./Type sha256:941c217fa6ee86da9597e1a86270a67bb1c9d62fe62f6d786fe6454a05fd72fa
-          cObject
-          dObject
-          eObject
-          cArrow
-          dArrow
-          eArrow
-          f
-        )
+    → λ(bifunctor : ./Type vObject cObject dObject eObject v c d e f)
     → λ(a : dObject)
     →   { map =
-              λ(b : cObject)
-            → λ(c : cObject)
-            → λ(fn : cArrow { _1 = b, _2 = c })
+              λ(g : cObject)
+            → λ(h : cObject)
+            → λ(fn : c.arrow { _1 = g, _2 = h })
             → bifunctor.map
-              { _1 = b, _2 = a }
-              { _1 = c, _2 = a }
+              { _1 = g, _2 = a }
+              { _1 = h, _2 = a }
               { _1 = fn, _2 = dCategory.identity a }
         }
-      : ./../Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+      : ./../Type
+        vObject
         cObject
         eObject
-        cArrow
-        eArrow
-        (λ(b : cObject) → f { _1 = b, _2 = a })
+        ( ./../../Category/Monoidal/extractCategory
+          kArrow
+          kProduct
+          Type
+          vObject
+          v
+        )
+        c
+        e
+        (λ(g : cObject) → f { _1 = g, _2 = a })

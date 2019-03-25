@@ -1,40 +1,35 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../Function/Kind
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../Tuple/Kind
 
-in    λ ( cObject
-        : Kind
-        )
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → λ ( cCategory
-        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          cObject
-          cArrow
-        )
+let vObject = Type
+
+let v = ./../Category/Set/monoidal/cartesian
+
+in    λ(cObject : Kind)
+    → λ(c : ./../Category/Kind kArrow kProduct vObject cObject)
+    → λ(cCategory : ./../Category/Type cObject v c)
     → λ(dObject : Kind)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(d : ./../Category/Kind kArrow kProduct vObject dObject)
     →   { map =
               λ(a : { _1 : cObject, _2 : dObject })
             → λ(b : { _1 : cObject, _2 : dObject })
             → λ ( f
                 : { _1 :
-                      cArrow { _1 = a._1, _2 = b._1 }
+                      c.arrow { _1 = a._1, _2 = b._1 }
                   , _2 :
-                      dArrow { _1 = a._2, _2 = b._2 }
+                      d.arrow { _1 = a._2, _2 = b._2 }
                   }
                 )
             → f._1
         }
-      : ./../Functor/Bifunctor/Type sha256:941c217fa6ee86da9597e1a86270a67bb1c9d62fe62f6d786fe6454a05fd72fa
+      : ./../Functor/Bifunctor/Type
+        vObject
         cObject
         dObject
         cObject
-        cArrow
-        dArrow
-        cArrow
-        ( ./Type sha256:afc07425afed62cb4caa3f39fad3d935f236f71c056585b7dc4f1c7ecba31dbc
-          cObject
-          dObject
-        )
+        v
+        c
+        d
+        c
+        (./Type cObject dObject)

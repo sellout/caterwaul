@@ -1,70 +1,60 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../Function/Kind
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../Tuple/Kind
 
-in    λ ( cObject
-        : Kind
-        )
-    → let dObject =
-            Type
+let vObject = Type
+
+let v = ./../Category/Set/monoidal/cartesian
+
+in    λ(cObject : Kind)
+    → let dObject = Type
       
-      in    λ ( c
-              : ./../Category/Kind sha256:1d73f8625870dcd3cae352117c1161c36bd0e80f1fe4d0df6161eb12dd6be83b
-                kArrow
-                kProduct
-                cObject
-              )
-          → λ ( cCategory
-              : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-                cObject
-                c.arrow
-              )
-          → let dArrow =
-                  ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+      in    λ(c : ./../Category/Kind kArrow kProduct vObject cObject)
+          → λ(cCategory : ./../Category/Type cObject v c)
+          → let d =
+                  ./../Category/Monoidal/extractCategory
+                  kArrow
+                  kProduct
+                  vObject
+                  dObject
+                  ./../Category/Set/monoidal/cartesian
             
-            let dCategory =
-                  ./../Function/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
+            let dCategory = ./../Category/Set/category
             
-            in    λ ( f
-                    : kArrow cObject dObject
-                    )
+            in    λ(f : kArrow cObject dObject)
                 → λ ( functor
-                    : ./Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+                    : ./Type
+                      vObject
                       cObject
                       dObject
-                      c.arrow
-                      dArrow
+                      ( ./../Category/Monoidal/extractCategory
+                        kArrow
+                        kProduct
+                        Type
+                        vObject
+                        v
+                      )
+                      c
+                      d
                       f
                     )
                 → { identity =
-                        λ ( a
-                          : cObject
-                          )
-                      → λ ( eq
-                          : ./../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
-                            (f a)
-                          )
-                      → ./../Eq/eqfn sha256:bb163ff96681a81d7d9d5704f56225a7aee6bd14976ae8a3c1bb945772b2085c
+                        λ(a : cObject)
+                      → λ(eq : ./../Eq/Type (f a))
+                      → ./../Eq/eqfn
                         (f a)
                         (f a)
                         eq
                         (functor.map a a (cCategory.identity a))
                         (dCategory.identity (f a))
                   , composition =
-                        λ ( a
-                          : cObject
-                          )
+                        λ(a : cObject)
                       → λ(b : cObject)
                       → λ(e : cObject)
-                      → λ ( eq
-                          : ./../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
-                            (f e)
-                          )
+                      → λ(eq : ./../Eq/Type (f e))
                       → λ(fn : c.arrow { _1 = b, _2 = e })
                       → λ(gn : c.arrow { _1 = a, _2 = b })
-                      → ./../Eq/eqfn sha256:bb163ff96681a81d7d9d5704f56225a7aee6bd14976ae8a3c1bb945772b2085c
+                      → ./../Eq/eqfn
                         (f a)
                         (f e)
                         eq
@@ -89,8 +79,8 @@ in    λ ( cObject
                           (   λ(r : Type)
                             → λ ( arrowsOut
                                 :   ∀(z : dObject)
-                                  → dArrow { _1 = z, _2 = f e }
-                                  → dArrow { _1 = f a, _2 = z }
+                                  → d.arrow { _1 = z, _2 = f e }
+                                  → d.arrow { _1 = f a, _2 = z }
                                   → r
                                 )
                             → arrowsOut

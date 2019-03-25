@@ -1,0 +1,18 @@
+{- A true †-category has a contravariant endofunctor on C that reverses the
+   morphisms. I’m not sure how to implement that, so this structure simply uses
+   pairs of morphisms as the morphism.
+-}
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(cat : ./../Kind kArrow kProduct vObject object)
+    →   { constraint =
+            cat.constraint
+        , arrow =
+            ./../../Isomorphism/Type object cat.arrow
+        }
+      : ./../Kind kArrow kProduct vObject object

@@ -1,14 +1,23 @@
-  ./../../Monad/impliedStarfunctor sha256:b11a25783e9dfc89b15bf2dca97745556f58acf4702c37e229277a72da7ba843
-  Type
-  ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
-  ./../../Function/semigroupoid sha256:4827035ecdee301574a57c0dde786653eaf4724f0fb0d175a99128759e973c07
-  Optional
-  ( ./../functor/endo/star sha256:a7465f0bd3be8f635f9035091bc7ff3bdd6ec3c523e6e69d5359b4dcc52039e3
-    ( ./../../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let base = ./../../Category/Monoidal/extractCategory kArrow kProduct
+
+let vObject = Type
+
+let v = base Type vObject ./../../Category/Set/monoidal/cartesian
+
+let Set = base vObject Type ./../../Category/Set/monoidal/cartesian
+
+in    ./../../Monad/impliedStarfunctor
       Type
-    )
-    ./../../Identity/functor/monoidal sha256:2c113f02d3d833842925e85ffe0c50629d939f6a53bd453ab9127c714204ef26
-  )
-  ./../monad sha256:01306d868b78b62663fd70b3620a0922bf9a590da6b8f8a9c67b219de8c6f1d8
-: ./../../Functor/Compactable/type sha256:6f95bfb114aaaa20cf9adc2492d0a6a7c2a9b5c273f82584aa3914885d7d5dcc
-  Optional
+      Set
+      ./../../Category/Set/semigroupoid
+      Optional
+      ( ./../functor/endo/star
+        (./../../Identity/Type Type)
+        ./../../Identity/functor/monoidal
+      )
+      ./../monad
+    : ./../../Functor/Star/Type vObject Type v Set Optional Optional

@@ -1,35 +1,25 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
 
 let object = Type
 
-let arrow =
-      ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+let cat =
+      ./../../Category/Monoidal/extractCategory
+      kArrow
+      kProduct
+      vObject
+      object
+      ./../../Category/Set/monoidal/cartesian
 
-let category =
-      ./../../Function/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
+let category = ./../../Category/Set/category
 
-let semigroupoid =
-      ./../../Function/semigroupoid sha256:4827035ecdee301574a57c0dde786653eaf4724f0fb0d175a99128759e973c07
+let semigroupoid = ./../../Category/Set/semigroupoid
 
-in    λ ( m
-        : kArrow object object
-        )
-    → ./../../Monad/impliedMonoidalFunctor sha256:8b92d1f3c104cc5e4e1a17107c6006893aab6cb7ad59f2ad90bc4443ae78cf47
-      ( ./../Type sha256:34365939359b31f1c876dde4f774b64d72bb52db06932ee8d050b01be305ce41
-        object
-        arrow
-        m
-      )
-      ( ./../../Ran/functor sha256:c7a107c5f130da58c9bc1c7dae84abf841e8e9f14c4c84a81ee5239fb5b489e8
-        object
-        object
-        arrow
-        semigroupoid
-        m
-        m
-      )
-      ( ./../monad sha256:057a2f2dcba300a9ef436246a52f45a2c298c8bacf5c9774057f7f2267e325d5
-        category
-        m
-      )
+in    λ(m : kArrow object object)
+    → ./../../Monad/impliedMonoidalFunctor
+      (./../Type object cat m)
+      (./../../Ran/functor object object cat semigroupoid m m)
+      (./../monad category m)

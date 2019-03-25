@@ -1,4 +1,9 @@
   λ(kArrow : Kind → Kind → Kind)
 → λ(kProduct : Kind → Kind → Kind)
+→ λ(vObject : Kind)
 → λ(object : Kind)
-→ { arrow : kArrow (kProduct object object) Type }
+→ { constraint :
+      object → Type
+  , arrow :
+      kArrow (kProduct object object) vObject
+  }

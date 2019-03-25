@@ -1,0 +1,17 @@
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(v : ./../Monoidal/Kind kArrow kProduct Type vObject)
+    → λ(cat : ./../Monoidal/Kind kArrow kProduct vObject object)
+    → λ(m : object)
+    →   { category :
+            ./../Type
+            object
+            v
+            (./../Monoidal/extractCategory kArrow kProduct vObject object cat)
+        }
+      ⩓ ./../../Bimonoid/Type object cat m

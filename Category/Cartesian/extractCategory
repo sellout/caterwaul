@@ -1,0 +1,10 @@
+{- FIXME: Should be able to do `cartesian.{ arrow, op }`, but Dhall doesn’t like
+          that for some reason.
+-}
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→ λ(cartesian : ./Kind kArrow kProduct vObject object)
+→   { constraint = cartesian.constraint, arrow = cartesian.arrow }
+  : ./../Kind kArrow kProduct vObject object

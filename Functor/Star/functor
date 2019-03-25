@@ -1,50 +1,45 @@
 {- If there is a natural transformation from `n` to `m`, then a m-Star functor
    can be made into an n-Star functor.
 -}
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../../Function/Kind
 
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../../Tuple/Kind
 
-in    λ ( object
-        : Kind
-        )
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → λ ( category
-        : ./../../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          object
-          arrow
-        )
-    → let endoObject =
-            kArrow object object
+let vObject = Type
+
+let v = ./../../Category/Set/monoidal/cartesian
+
+in    λ(object : Kind)
+    → λ(cat : ./../../Category/Kind kArrow kProduct vObject object)
+    → λ(category : ./../../Category/Type object v cat)
+    → let vBase =
+            ./../../Category/Monoidal/extractCategory
+            kArrow
+            kProduct
+            Type
+            vObject
+            v
       
-      let endoArrow =
-            ./../../NaturalTransformation/Type sha256:ac4ec9bf178715d3e80e93c72406abcaa99f0e70df64e30d76047afb6777ac95
-            object
-            object
-            arrow
+      let endoObject = kArrow object object
       
-      in    λ ( f
-              : endoObject
-              )
+      let endo =
+            ./../../Category/Monoidal/extractCategory
+            kArrow
+            kProduct
+            vObject
+            endoObject
+            (./../../Category/Endofunctor/monoidal/monadic object vBase cat)
+      
+      in    λ(f : endoObject)
           →   { map =
-                    λ ( m
-                      : endoObject
-                      )
+                    λ(m : endoObject)
                   → λ(n : endoObject)
-                  → λ(natural : endoArrow { _1 = n, _2 = m })
-                  → λ ( star
-                      : ./Type sha256:111b31ccff80266953ee7dca8da156a98dedc5702e7257e42c240ac4397ada5d
-                        object
-                        arrow
-                        m
-                        f
-                      )
+                  → λ(natural : endo.arrow { _1 = n, _2 = m })
+                  → λ(star : ./Type vObject object vBase cat m f)
                   → { map =
                           λ(a : object)
                         → λ(b : object)
-                        → λ(fn : arrow { _1 = a, _2 = n b })
+                        → λ(fn : cat.arrow { _1 = a, _2 = n b })
                         → star.map
                           a
                           b
@@ -53,8 +48,8 @@ in    λ ( object
                             (   λ(r : Type)
                               → λ ( arrowsOut
                                   :   ∀(z : object)
-                                    → arrow { _1 = z, _2 = m b }
-                                    → arrow { _1 = a, _2 = z }
+                                    → cat.arrow { _1 = z, _2 = m b }
+                                    → cat.arrow { _1 = a, _2 = z }
                                     → r
                                   )
                               → arrowsOut (n b) (natural b) fn
@@ -62,17 +57,17 @@ in    λ ( object
                           )
                     }
               }
-            : ./../../Functor/Contravariant sha256:fa42cddb87dc4e9a4ea1f310bed11ea8f63fd36cbb861d19543cabaafdc769f6
+            : ./../../Functor/Contravariant
+              vObject
               endoObject
               Type
-              endoArrow
-              ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
-              (   λ ( a
-                    : endoObject
-                    )
-                → ./Type sha256:111b31ccff80266953ee7dca8da156a98dedc5702e7257e42c240ac4397ada5d
-                  object
-                  arrow
-                  a
-                  f
+              vBase
+              endo
+              ( ./../../Category/Monoidal/extractCategory
+                kArrow
+                kProduct
+                vObject
+                Type
+                ./../../Category/Set/monoidal/cartesian
               )
+              (λ(a : endoObject) → ./Type vObject object vBase cat a f)

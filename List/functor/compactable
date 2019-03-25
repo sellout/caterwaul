@@ -1,17 +1,32 @@
-  { map =
-        λ(a : Type)
-      → λ(b : Type)
-      → λ(f : a → Optional b)
-      → λ(l : List a)
-      → List/fold
-        a
-        l
-        (List b)
-        (   λ(x : a)
-          → λ(acc : List b)
-          → Optional/fold b (f x) (List b) (λ(y : b) → [ y ] # acc) acc
-        )
-        ([] : List b)
-  }
-: ./../../Functor/Compactable/Type sha256:6f95bfb114aaaa20cf9adc2492d0a6a7c2a9b5c273f82584aa3914885d7d5dcc
-  List
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
+
+let Set =
+      ./../../Category/Monoidal/extractCategory
+      kArrow
+      kProduct
+      vObject
+      Type
+      ./../../Category/Set/monoidal/cartesian
+
+let v = Set
+
+in    { map =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(f : a → Optional b)
+          → λ(l : List a)
+          → List/fold
+            a
+            l
+            (List b)
+            (   λ(x : a)
+              → λ(acc : List b)
+              → Optional/fold b (f x) (List b) (λ(y : b) → [ y ] # acc) acc
+            )
+            ([] : List b)
+      }
+    : ./../../Functor/Star/Type vObject Type v Set Optional List

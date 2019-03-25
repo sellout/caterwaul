@@ -1,34 +1,20 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../../Function/Kind
 
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../../Tuple/Kind
 
-in    λ ( cObject
-        : Kind
-        )
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → λ ( cCategory
-        : ./../type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          cObject
-          cArrow
-        )
+let vObject = Type
+
+let v = ./../Set/monoidal/cartesian
+
+in    λ(cObject : Kind)
+    → λ(c : ./../Kind kArrow kProduct vObject cObject)
+    → λ(cCategory : ./../Type cObject v c)
     → λ(dObject : Kind)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
-    → λ ( dCategory
-        : ./../type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          dObject
-          dArrow
-        )
-    → let object =
-            { _1 : cObject, _2 : dObject }
+    → λ(d : ./../Kind kArrow kProduct vObject dObject)
+    → λ(dCategory : ./../Type dObject v d)
+    → let object = { _1 : cObject, _2 : dObject }
       
-      let arrow =
-            ./Type sha256:d44710c2c4863e3799718eeac12eca6ee822900421933a93333f125464f42c34
-            cObject
-            dObject
-            cArrow
-            dArrow
+      let prod = ./Type vObject cObject dObject v c d
       
       in    { identity =
                   λ(a : object)
@@ -38,8 +24,8 @@ in    λ ( cObject
                 → λ ( p
                     :   ∀(r : Type)
                       → (   ∀(z : object)
-                          → arrow { _1 = z, _2 = a._2 }
-                          → arrow { _1 = a._1, _2 = z }
+                          → prod.arrow { _1 = z, _2 = a._2 }
+                          → prod.arrow { _1 = a._1, _2 = z }
                           → r
                         )
                       → r
@@ -50,15 +36,15 @@ in    λ ( cObject
                       (   λ(r : Type)
                         → λ ( arrowsOut
                             :   ∀(z : cObject)
-                              → cArrow { _1 = z, _2 = a._2._1 }
-                              → cArrow { _1 = a._1._1, _2 = z }
+                              → c.arrow { _1 = z, _2 = a._2._1 }
+                              → c.arrow { _1 = a._1._1, _2 = z }
                               → r
                             )
                         → p
                           r
                           (   λ(z : object)
-                            → λ(f : arrow { _1 = z, _2 = a._2 })
-                            → λ(g : arrow { _1 = a._1, _2 = z })
+                            → λ(f : prod.arrow { _1 = z, _2 = a._2 })
+                            → λ(g : prod.arrow { _1 = a._1, _2 = z })
                             → arrowsOut z._1 f._1 g._1
                           )
                       )
@@ -68,20 +54,18 @@ in    λ ( cObject
                       (   λ(r : Type)
                         → λ ( arrowsOut
                             :   ∀(z : dObject)
-                              → dArrow { _1 = z, _2 = a._2._2 }
-                              → dArrow { _1 = a._1._2, _2 = z }
+                              → d.arrow { _1 = z, _2 = a._2._2 }
+                              → d.arrow { _1 = a._1._2, _2 = z }
                               → r
                             )
                         → p
                           r
                           (   λ(z : object)
-                            → λ(f : arrow { _1 = z, _2 = a._2 })
-                            → λ(g : arrow { _1 = a._1, _2 = z })
+                            → λ(f : prod.arrow { _1 = z, _2 = a._2 })
+                            → λ(g : prod.arrow { _1 = a._1, _2 = z })
                             → arrowsOut z._2 f._2 g._2
                           )
                       )
                   }
             }
-          : ./../Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-            object
-            arrow
+          : ./../Type object v prod

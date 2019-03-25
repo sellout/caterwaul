@@ -1,0 +1,8 @@
+{- Can’t define `augmentation` at this level, because we have no unit `Kind`.
+-}
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→   { diagonal : kArrow object (kProduct object object) }
+  ⩓ ./../Monoidal/Kind kArrow kProduct vObject object

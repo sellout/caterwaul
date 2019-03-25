@@ -1,14 +1,28 @@
-let Tuple =
-      ./../Type sha256:3e54b0739d8286354614bb58323e74a8575dabbabfefed9324ea070a969a3227
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+let vObject = Type
+
+let v = ./../../Category/Set/monoidal/cartesian
+
+let setObject = Type
+
+let Set = ./../../Category/Set/monoidal/cartesian
+
+let base =
+      ./../../Category/Monoidal/extractCategory
+      kArrow
+      kProduct
+      vObject
+      setObject
+      Set
 
 in    { map =
-            λ(a : { _1 : Type, _2 : Type })
-          → λ(b : { _1 : Type, _2 : Type })
+            λ(a : { _1 : setObject, _2 : setObject })
+          → λ(b : { _1 : setObject, _2 : setObject })
           → λ(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
-          → λ(t : Tuple a)
+          → λ(t : Set.op a)
           → { _1 = f._1 t._1, _2 = f._2 t._2 }
       }
-    : ./../../Functor/Pair/Type sha256:b1d24e5acae4194d312c360e78a435fc987a229e434f4e5f0994e35adb5ee5c3
-      Type
-      ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
-      Tuple
+    : ./../../Functor/Pair/Type vObject setObject v base Set.op

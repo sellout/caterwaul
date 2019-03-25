@@ -1,1 +1,14 @@
-λ(kArrow : Kind → Kind → Kind) → λ(a : Kind) → λ(b : Kind) → b → a
+let kArrow = ./../../function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+in    λ(vObject : Kind)
+    → λ(object : Kind)
+    → λ(cat : ./../Kind kArrow kProduct vObject object)
+    →   { constraint =
+            cat.constraint
+        , arrow =
+              λ(a : { _1 : object, _2 : object })
+            → cat.arrow { _1 = a._2, _2 = a._1 }
+        }
+      : ./../Kind kArrow kProduct vObject object

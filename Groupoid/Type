@@ -2,24 +2,19 @@
          object morphism)`, but `Category` isn’t defined via `Monoid`, so we
 		 prefer compatibility with that.
 -}
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../Function/Kind
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../Tuple/Kind
 
-in    λ ( object
-        : Kind
-        )
-    → let profunctor =
-            kArrow (kProduct object object) Type
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(v : ./../Category/Monoidal/Kind kArrow kProduct Type vObject)
+    → λ(cat : ./../Category/Kind kArrow kProduct vObject object)
+    → let profunctor = kArrow (kProduct object object) vObject
       
-      in    λ ( morphism
-              : profunctor
-              )
+      in    λ(morphism : profunctor)
           →   { inverse :
                   ∀(a : { _1 : object, _2 : object }) → morphism a → morphism a
               }
-            ⩓ ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-              object
-              morphism
+            ⩓ ./../Category/Type object v cat

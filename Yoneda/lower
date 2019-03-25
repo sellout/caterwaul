@@ -1,5 +1,1 @@
-./../Ran/lower sha256:82bf9a98cc4905b0654ac6c8130f6ed7146c7c3c05de8c1128f3557f0d1eab7f
-( ./../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
-  Type
-)
-./../Identity/functor/monoidal sha256:2c113f02d3d833842925e85ffe0c50629d939f6a53bd453ab9127c714204ef26
+./../Ran/lower (./../Identity/Type Type) ./../Identity/functor/monoidal

@@ -1,8 +1,16 @@
-let Set =
-      ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+let kArrow = ./../../Function/Kind
 
-let Eq =
-      ./../Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
+let kProduct = ./../../Tuple/Kind
+
+let base = ./../../Category/Monoidal/extractCategory kArrow kProduct
+
+let vObject = Type
+
+let v = base Type vObject ./../../Category/Set/monoidal/cartesian
+
+let Set = base vObject Type ./../../Category/Set/monoidal/cartesian
+
+let Eq = ./../Type
 
 in    { map =
             λ(a : Type)
@@ -11,9 +19,4 @@ in    { map =
           → λ(fa : Eq a)
           → { eq = λ(x : b) → λ(y : b) → fa.eq (fn x) (fn y) }
       }
-    : ./../../Functor/Contravariant sha256:fa42cddb87dc4e9a4ea1f310bed11ea8f63fd36cbb861d19543cabaafdc769f6
-      Type
-      Type
-      Set
-      Set
-      Eq
+    : ./../../Functor/Contravariant vObject Type Type v Set Set Eq

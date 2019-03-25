@@ -40,6 +40,8 @@ Things at the sort level can’t be “grouped” (or even bound) in any way, so
 
 As that last sentence implies, everything lives within a “`Kind`-level” monoidal category, which you can think of as an approximation of **Cat**. This is represented by the names `kArrow` and `kProduct`. The object of the category is implicitly `Kind`, but we can’t specify that explicitly. We also have no way of representing common monoidal identities at the Kind-level (e.g., `{}` and `<>` have no `Kind`-level equivalent), so there is no `kIdentity` for the monoidal category. It actually forms a rig category, with `./Tuple/Kind` and `./Either/Kind`, but mostly you just see a monoidal view of it.
 
+We also use a `v…` convention when talking about enriched categories – like `vObject`, `vArrow`, etc. At least so far, the enriching category is always **Set**, so `vObject = Type` and `v = ./Category/Set`, but the convention helps us keep track of _why_ we’re using those types.
+
 ## Documentation
 
 Types as documentation: https://sellout.github.io/caterwaul/ (there actually are _some_ docs there, but pretty minimal at the moment.)

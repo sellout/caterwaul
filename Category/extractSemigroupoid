@@ -1,20 +1,11 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kArrow = ./../Function/Kind
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kProduct = ./../Tuple/Kind
 
-in    λ ( object
-        : Kind
-        )
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → λ ( category
-        : ./Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          object
-          arrow
-        )
-    →   category.{ op
-                 }
-      : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
-        object
-        arrow
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(v : ./Monoidal/Kind kArrow kProduct Type vObject)
+    → λ(cat : ./Kind kArrow kProduct vObject object)
+    → λ(category : ./Type object v cat)
+    → category.{ op } : ./../Semigroupoid/Type object v cat cat.arrow

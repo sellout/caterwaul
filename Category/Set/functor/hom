@@ -1,0 +1,17 @@
+let kArrow = ./../../../Function/Kind
+
+let kProduct = ./../../../Tuple/Kind
+
+let vObject = Type
+
+let v = ./../monoidal/cartesian
+
+let object = Type
+
+let extractSemigroupal = ./../../Monoidal/extractSemigroupal
+
+let Set = ./../monoidal/cartesian
+
+let cat = extractSemigroupal kArrow kProduct vObject object Set
+
+in  ./../../../Arrow/extractProfunctor object v cat ./../arrow

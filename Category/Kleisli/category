@@ -1,0 +1,14 @@
+let kArrow = ./../../Function/Kind
+
+let kProduct = ./../../Tuple/Kind
+
+in    λ(vObject : Kind)
+    → λ(object : Kind)
+    → λ(cat : ./../Kind kArrow kProduct vObject object)
+    → λ(m : kArrow object object)
+    →   { constraint =
+            cat.constraint
+        , arrow =
+            ./../../Star/Type vObject object cat m
+        }
+      : ./../Kind kArrow kProduct vObject object
