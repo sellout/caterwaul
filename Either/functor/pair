@@ -1,20 +1,34 @@
-let kArrow = ./../../Function/Kind
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../Tuple/Kind
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-let base = ./../../Category/Monoidal/extractCategory kArrow kProduct
+let base =
+      ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
 
 let vObject = Type
 
-let v = ./../../Category/Set/monoidal/cartesian
+let v =
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-let Set = ./../../Category/Set/monoidal/cocartesian
+let Set =
+      ./../../Category/Set/monoidal/cocartesian sha256:14c46eb82f84a4e93405e03c7f3f1882d5320831630961816fbc90c79d9bd441
 
 let cat = base vObject Type Set
 
-in    λ(m : Type → Type)
+in    λ ( m
+        : Type → Type
+        )
     → λ ( functor
-        : ./../../Functor/Endo/Type vObject Type (base Type vObject v) cat m
+        : ./../../Functor/Endo/Type sha256:f7141343200ccaa9a1f80d06732e331624a3edd9e92b9ec3153db87c468fafe3
+          vObject
+          Type
+          (base Type vObject v)
+          cat
+          m
         )
     →   { map =
               λ(a : { _1 : Type, _2 : Type })
@@ -31,9 +45,14 @@ in    λ(m : Type → Type)
                   }
                   e
         }
-      : ./../../Functor/Pair/Type
+      : ./../../Functor/Pair/Type sha256:460d01e5aa66e54230ca083bbded8f946937b74b0007c7a8c18e423b161ef5a8
         vObject
         Type
         v
-        (./../../Category/Kleisli/category vObject Type cat m)
+        ( ./../../Category/Kleisli/category sha256:0056c0e307e6067079ea8639413ea2afbeedf3294556842a376a1a56db060e0b
+          vObject
+          Type
+          cat
+          m
+        )
         Set.op

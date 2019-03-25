@@ -2,7 +2,13 @@
 → λ(kProduct : Kind → Kind → Kind)
 → λ(m : Kind)
 → { additive :
-      ./../../Group/Kind kArrow kProduct m
+      ./../../Group/Kind sha256:ee93cf6b2a974928a129df775e1fe4c7afb76224fcd8466e9e485ce039c87bba
+      kArrow
+      kProduct
+      m
   , multiplicative :
-      ./../../Monoid/Kind kArrow kProduct m
+      ./../../Monoid/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
+      kArrow
+      kProduct
+      m
   }

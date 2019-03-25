@@ -1,4 +1,10 @@
 let object = Type
 
-in    λ(m : object)
-    → { preLE : m → m → Optional Bool } ⩓ ./../PartiallyOrdered/Type m
+in    λ ( m
+        : object
+        )
+    →   { preLE :
+            m → m → Optional Bool
+        }
+      ⩓ ./../PartiallyOrdered/Type sha256:5917fd022b0a2614b362fc6beac71ec4303c8cf654e38985bda5a5705cc7bd00
+        m

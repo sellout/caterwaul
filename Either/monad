@@ -1,12 +1,17 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
-let Set = ./../Category/Set/rig
+let Set =
+      ./../Category/Set/rig sha256:7675c3b1f1540c9912bfc697d659ac38b8f3197718e238d83c16a8583cf793e2
 
-in    λ(a : Type)
+in    λ ( a
+        : Type
+        )
     →   { identity =
             λ(b : Type) → λ(x : b) → < Right = x | Left : a >
         , op =
@@ -32,13 +37,13 @@ in    λ(a : Type)
                 fa
               )
         }
-      : ./../Monad/Type
+      : ./../Monad/Type sha256:081e7d7d11c47a6170ed19e4593cc9f55600302a7aa5128a643f5e56c890eb05
         Type
-        ( ./../Category/Monoidal/extractCategory
+        ( ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
           kArrow
           kProduct
           vObject
           Type
-          ./../Category/Set/monoidal/cartesian
+          ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
         )
         (λ(b : Type) → Set.additive.op { _1 = a, _2 = b })

@@ -1,14 +1,23 @@
 let object = Type
 
-let cat = ./../../Category/Set/monoidal/cartesian
+let cat =
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-in    λ(m : object)
-    → λ(field : ./Type m)
+in    λ ( m
+        : object
+        )
+    → λ ( field
+        : ./Type sha256:b15fa73b5506bfaab6c40d363c176ccf478338af0f99682dcc61377af28f3b31
+          m
+        )
     →   { additive =
-            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup
+            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup sha256:1a54bc2c708aec2d9b61ff04c4878c529537a15d13d714cfbb74f8c16c970628
             m
             field.additive
         , multiplicative =
             field.multiplicative.{ identity, inverse, op }
         }
-      : ./../Type object cat m
+      : ./../Type sha256:a6589488cb3d578e43cf222dbbe82edf782ec86043d3032a5d54c2e3db958f5b
+        object
+        cat
+        m

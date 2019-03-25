@@ -1,23 +1,44 @@
-let kArrow = ./../../Function/Kind
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../Tuple/Kind
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-let base = ./../../Category/Monoidal/extractCategory kArrow kProduct
+let base =
+      ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
 
 let vObject = Type
 
-let v = base Type vObject ./../../Category/Set/monoidal/cartesian
+let v =
+      base
+      Type
+      vObject
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-let Set = base vObject Type ./../../Category/Set/monoidal/cartesian
+let Set =
+      base
+      vObject
+      Type
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-in    ./../../Monad/impliedStarfunctor
+in    ./../../Monad/impliedStarfunctor sha256:1d675b44b4bc5ebe652f969661e9f17cea2794ac4d4221b95a7f1adb5cde145c
       Type
       Set
-      ./../../Category/Set/semigroupoid
+      ./../../Category/Set/semigroupoid sha256:4827035ecdee301574a57c0dde786653eaf4724f0fb0d175a99128759e973c07
       Optional
-      ( ./../functor/endo/star
-        (./../../Identity/Type Type)
-        ./../../Identity/functor/monoidal
+      ( ./../functor/endo/star sha256:a7465f0bd3be8f635f9035091bc7ff3bdd6ec3c523e6e69d5359b4dcc52039e3
+        ( ./../../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+          Type
+        )
+        ./../../Identity/functor/monoidal sha256:2c113f02d3d833842925e85ffe0c50629d939f6a53bd453ab9127c714204ef26
       )
-      ./../monad
-    : ./../../Functor/Star/Type vObject Type v Set Optional Optional
+      ./../monad sha256:01306d868b78b62663fd70b3620a0922bf9a590da6b8f8a9c67b219de8c6f1d8
+    : ./../../Functor/Star/Type sha256:d014b87f0569e99e9d042215747a6ea4bdefe9101a034bbec7c57fde33f96f51
+      vObject
+      Type
+      v
+      Set
+      Optional
+      Optional

@@ -1,1 +1,6 @@
-λ(m : Type) → { le : m → m → Bool } ⩓ ./../PartiallyOrdered/Type m
+  λ(m : Type)
+→   { le :
+        m → m → Bool
+    }
+  ⩓ ./../PartiallyOrdered/Type sha256:5917fd022b0a2614b362fc6beac71ec4303c8cf654e38985bda5a5705cc7bd00
+    m

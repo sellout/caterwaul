@@ -1,22 +1,47 @@
-let kArrow = ./../../Function/Kind
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../Tuple/Kind
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
-let v = ./../../Category/Set/monoidal/cartesian
+let v =
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-let Category = ./../../Category/Kind kArrow kProduct vObject
+let Category =
+      ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+      kArrow
+      kProduct
+      vObject
 
-in    λ(cObject : Kind)
+in    λ ( cObject
+        : Kind
+        )
     → λ(c : Category cObject)
-    → λ(cCategory : ./../../Category/Type cObject v c)
+    → λ ( cCategory
+        : ./../../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+          cObject
+          v
+          c
+        )
     → λ(dObject : Kind)
     → λ(d : Category dObject)
     → λ(eObject : Kind)
     → λ(e : Category eObject)
     → λ(f : kArrow (kProduct cObject dObject) eObject)
-    → λ(bifunctor : ./Type vObject cObject dObject eObject v c d e f)
+    → λ ( bifunctor
+        : ./Type sha256:36f2a4b32c8e3b6a9a6d24d1289772f6aed01f9b314c9c8c5624e2dc42695d30
+          vObject
+          cObject
+          dObject
+          eObject
+          v
+          c
+          d
+          e
+          f
+        )
     → λ(a : cObject)
     →   { map =
               λ(b : dObject)
@@ -27,11 +52,11 @@ in    λ(cObject : Kind)
               { _1 = a, _2 = c }
               { _1 = cCategory.identity a, _2 = fn }
         }
-      : ./../Type
+      : ./../Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
         vObject
         dObject
         eObject
-        ( ./../../Category/Monoidal/extractCategory
+        ( ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
           kArrow
           kProduct
           Type

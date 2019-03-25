@@ -1,23 +1,26 @@
-let kArrow = ./../../../Function/Kind
+let kArrow =
+      ./../../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../../Tuple/Kind
+let kProduct =
+      ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
 let v =
-      ./../../../Category/Monoidal/extractCategory
+      ./../../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
       kArrow
       kProduct
       Type
       vObject
-      ./../../../Category/Set/monoidal/cartesian
+      ./../../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
 let object = Type
 
-let Set = ./../../../Category/Set/rig
+let Set =
+      ./../../../Category/Set/rig sha256:7675c3b1f1540c9912bfc697d659ac38b8f3197718e238d83c16a8583cf793e2
 
 let cat =
-      ./../../../Category/Rig/extractMultiplicative
+      ./../../../Category/Rig/extractMultiplicative sha256:745f93c40ce5eaa7eae89720816454e14832c9b87596c0f50c505af722ad8596
       kArrow
       kProduct
       vObject
@@ -25,9 +28,9 @@ let cat =
       Set
 
 let Semigroup =
-      ./../../../Semigroup/Type
+      ./../../../Semigroup/Type sha256:55c25eb9497197855d422125e85bac2769f31104b33c1ac1df40da0e4957990f
       object
-      ( ./../../../Category/Monoidal/extractSemigroupal
+      ( ./../../../Category/Monoidal/extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
         kArrow
         kProduct
         vObject
@@ -35,11 +38,15 @@ let Semigroup =
         cat
       )
 
-in    λ(a : object)
+in    λ ( a
+        : object
+        )
     → λ(semigroup : Semigroup a)
-    →     ./../endo/star
-          (./../../../Identity/Type object)
-          ./../../../Identity/functor/monoidal
+    →     ./../endo/star sha256:32aede32d0a6106fa9381778d63f4997b3f32d517f862aa0f299726bc7cbdf3a
+          ( ./../../../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+            object
+          )
+          ./../../../Identity/functor/monoidal sha256:2c113f02d3d833842925e85ffe0c50629d939f6a53bd453ab9127c714204ef26
           a
         ∧ { identity =
                 λ(b : object)
@@ -111,7 +118,7 @@ in    λ(a : object)
                     )
                 )
           }
-      : ./../../../Functor/Monoidal/Type
+      : ./../../../Functor/Monoidal/Type sha256:3fd0a2398dd1d3c0cb029ce034f09d4c1b6f51e622139f06ad1086ceea926567
         object
         v
         cat

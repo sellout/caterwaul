@@ -2,5 +2,12 @@
 → λ(kProduct : Kind → Kind → Kind)
 → λ(vObject : Kind)
 → λ(object : Kind)
-→   ./../Kind kArrow kProduct vObject object
-  ⩓ ./../../Rig/Kind kArrow kProduct object
+→   ./../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+    kArrow
+    kProduct
+    vObject
+    object
+  ⩓ ./../../Rig/Kind sha256:ab24b99ec3b4aba0e97c5d7872da2f838c6cb7c1f537a8e9838ccd49b87834a0
+    kArrow
+    kProduct
+    object

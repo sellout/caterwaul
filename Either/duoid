@@ -1,28 +1,36 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/extractCategory
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
       kArrow
       kProduct
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
 let object = Type
 
-let Set = ./../Category/Set/rig
+let Set =
+      ./../Category/Set/rig sha256:7675c3b1f1540c9912bfc697d659ac38b8f3197718e238d83c16a8583cf793e2
 
 let cat =
-      ./../Category/Rig/extractMultiplicative kArrow kProduct vObject object Set
+      ./../Category/Rig/extractMultiplicative sha256:745f93c40ce5eaa7eae89720816454e14832c9b87596c0f50c505af722ad8596
+      kArrow
+      kProduct
+      vObject
+      object
+      Set
 
 let CommutativeSemigroup =
-      ./../Semigroup/Commutative/Type
+      ./../Semigroup/Commutative/Type sha256:55c25eb9497197855d422125e85bac2769f31104b33c1ac1df40da0e4957990f
       object
-      ( ./../Category/Monoidal/extractSemigroupal
+      ( ./../Category/Monoidal/extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
         kArrow
         kProduct
         vObject
@@ -30,20 +38,35 @@ let CommutativeSemigroup =
         cat
       )
 
-let extractMonoid = ./../Functor/Monoidal/extractMonoid object v cat cat
+let extractMonoid =
+      ./../Functor/Monoidal/extractMonoid sha256:e239fcf05588e1e1160e9655b1d99ce1cb8fac907d66f0d8a1a7713c1af643ae
+      object
+      v
+      cat
+      cat
 
-in    λ(a : object)
+in    λ ( a
+        : object
+        )
     → λ(semigroup : CommutativeSemigroup a)
     →   { additive =
             extractMonoid
             (λ(b : object) → Set.additive.op { _1 = a, _2 = b })
-            (./functor/monoidal/parallel a semigroup)
+            ( ./functor/monoidal/parallel sha256:5829251d291cf74f3a1bedff63b8921117168c634ce16ff12135e49a8d7da27f
+              a
+              semigroup
+            )
         , multiplicative =
             extractMonoid
             (λ(b : object) → Set.additive.op { _1 = a, _2 = b })
-            (./functor/monoidal/sequential a)
+            ( ./functor/monoidal/sequential sha256:6672428dbc4159bfeaedee3daee0ea74d57e835ef0e60fc939d2ca644951c34c
+              a
+            )
         }
-      : ./../Duoid/Type
+      : ./../Duoid/Type sha256:3baff106e4b8032968b2fe0645306289090cac86c85317ab4281353146780a27
         (kArrow object object)
-        (./../Category/Endofunctor/monoidal/functor v cat)
+        ( ./../Category/Endofunctor/monoidal/functor sha256:78436eed169d3cb58e0b6e37bd5bc815366924093a31ade0f5fff41d4604a354
+          v
+          cat
+        )
         (λ(b : object) → Set.additive.op { _1 = a, _2 = b })

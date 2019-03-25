@@ -1,12 +1,23 @@
 let object = Type
 
-let cat = ./../../Category/Set/monoidal/cartesian
+let cat =
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-in    λ(m : object)
-    → λ(ring : ./Set m)
+in    λ ( m
+        : object
+        )
+    → λ ( ring
+        : ./Set sha256:2a24a1b79f3b8f36ac74c6c01e85631eb1a1c6f8a604c966c9e731a876da88df
+          m
+        )
     →   { additive =
             ring.additive.{ identity, inverse, op }
         , multiplicative =
-            ./../../Monoid/Commutative/extractMonoid m ring.multiplicative
+            ./../../Monoid/Commutative/extractMonoid sha256:089b712da66a83189d6fbedd59c4945b0acf0144ac3f16bcf8da864d07e7a210
+            m
+            ring.multiplicative
         }
-      : ./../Type object cat m
+      : ./../Type sha256:77b44df8cc75bc4287fe797e2d655776283097caed2e17d0ccadf43eb96ee046
+        object
+        cat
+        m

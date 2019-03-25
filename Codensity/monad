@@ -1,25 +1,38 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
-let v = ./../Category/Set/monoidal/cartesian
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/extractCategory
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
       kArrow
       kProduct
       vObject
       object
-      ./../Category/Set/monoidal/cartesian
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-in    λ(category : ./../Category/Type object v cat)
-    → let Codensity = ./Type object cat
+in    λ ( category
+        : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+          object
+          v
+          cat
+        )
+    → let Codensity =
+            ./Type sha256:87aecef733f578301b6b47822bcf1015c7cf5e7700c705cecec2f2bce732349a
+            object
+            cat
       
-      in    λ(m : kArrow object object)
+      in    λ ( m
+              : kArrow object object
+              )
           →   { identity =
                     λ(a : object)
                   → λ(x : a)
@@ -37,4 +50,7 @@ in    λ(category : ./../Category/Type object v cat)
                       → category.identity (Codensity m a) x c l
                     )
               }
-            : ./../Monad/Type object cat (Codensity m)
+            : ./../Monad/Type sha256:081e7d7d11c47a6170ed19e4593cc9f55600302a7aa5128a643f5e56c890eb05
+              object
+              cat
+              (Codensity m)

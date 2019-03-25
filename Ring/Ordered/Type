@@ -1,8 +1,15 @@
-let Set = ./../../Category/Set/monoidal/cartesian
+let Set =
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-in    λ(m : Type)
+in    λ ( m
+        : Type
+        )
     → { additive :
-          ./../../Group/OrderedCommutative/Type m
+          ./../../Group/OrderedCommutative/Type sha256:96a2a2a90336f09daed8a13ca2a55ff0ecd32026c1f0e8a29885beffbe5ac602
+          m
       , multiplicative :
-          ./../../Monoid/Type Type Set m
+          ./../../Monoid/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
+          Type
+          Set
+          m
       }

@@ -3,4 +3,7 @@
   , op =
       λ(a : { _1 : Text, _2 : Text }) → a._1 ++ a._2
   }
-: ./../Monoid/Type Type ./../Category/Set/monoidal/cartesian Text
+: ./../Monoid/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
+  Type
+  ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+  Text

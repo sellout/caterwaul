@@ -5,6 +5,12 @@
    than” to be meaningful.
 -}
   λ(m : Type)
-→   { partialLE : m → m → Optional Bool }
-  ⩓ ./../../Eq/Type m
-  ⩓ ./../Type Type ./../../Category/Set/monoidal/cartesian m
+→   { partialLE :
+        m → m → Optional Bool
+    }
+  ⩓ ./../../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
+    m
+  ⩓ ./../Type sha256:1d2eb52b6091711502e80d646cab25260b08324221c423c04df23b76e600b2c0
+    Type
+    ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+    m

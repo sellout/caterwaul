@@ -1,5 +1,5 @@
-./../../Lattice/extractMeet
+./../../Lattice/extractMeet sha256:bf026e16b847941708977fe1aa5eb558ef2a9fd3bcc8812874efdb6e6befcd21
 Type
-./../../Category/Set/monoidal/cartesian
+./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 Bool
-./../lattice
+./../lattice sha256:9a54f52351c726424fed294230a7d9d0b3806699a18d110e6c186193f01ebffd

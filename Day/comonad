@@ -1,19 +1,45 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
-let v = ./../Category/Set/monoidal/cartesian
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-let base = ./../Category/Monoidal/extractCategory kArrow kProduct Type vObject v
+let base =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+      Type
+      vObject
+      v
 
-in    λ(semigroupoid : ./../Semigroupoid/Type vObject v base v.arrow)
-    → let Comonad = ./../Comonad/Type vObject base
+in    λ ( semigroupoid
+        : ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
+          vObject
+          v
+          base
+          v.arrow
+        )
+    → let Comonad =
+            ./../Comonad/Type sha256:a197cedf53d6fab62ebbf59d0139b243e3bd71ff5a4b1bbfd9bd3b476762f9b7
+            vObject
+            base
       
-      let Day = ./Type vObject v v
+      let Day =
+            ./Type sha256:08b059e69330b8894b4a1830425eea70c2e4a0366c97e99cad8c073283bab16d
+            vObject
+            v
+            v
       
-      let Day/convolution = ./../Day/convolution vObject v v
+      let Day/convolution =
+            ./../Day/convolution sha256:e9cc6113ab1965750eabb0f553e45e3818548a78755967d465d6f3082e674913
+            vObject
+            v
+            v
       
       in    λ(f : kArrow vObject vObject)
           → λ(fComonad : Comonad f)

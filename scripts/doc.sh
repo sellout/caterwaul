@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-DHALL=/Users/greg/Documents/community/dhall-haskell/.stack-work/install/x86_64-osx/lts-11.22/8.2.2/bin/dhall
+DHALL=dhall
 project=$(basename -- $(realpath "./"))
 kind_pattern='Kind$'
 type_pattern='Type$'

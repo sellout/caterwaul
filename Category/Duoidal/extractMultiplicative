@@ -2,7 +2,13 @@
 → λ(kProduct : Kind → Kind → Kind)
 → λ(vObject : Kind)
 → λ(object : Kind)
-→ λ(duoidal : ./Kind kArrow kProduct vObject object)
+→ λ ( duoidal
+    : ./Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
+      kArrow
+      kProduct
+      vObject
+      object
+    )
 →   { constraint =
         duoidal.constraint
     , arrow =
@@ -12,4 +18,8 @@
     , op =
         duoidal.multiplicative.op
     }
-  : ./../Monoidal/Kind kArrow kProduct vObject object
+  : ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+    kArrow
+    kProduct
+    vObject
+    object

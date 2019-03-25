@@ -1,5 +1,16 @@
 let object = Type
 
-in    λ(m : object)
-    → λ(group : ./Type m)
-    → group.{ identity, inverse, op, preLE } : ./../Commutative/Set m
+in    λ ( m
+        : object
+        )
+    → λ ( group
+        : ./Type sha256:51ca56ae40f3f0edeea6dde973c0009e6eb2ecd511374f31b438a368bf7d8cd0
+          m
+        )
+    →   group.{ identity
+              , inverse
+              , op
+              , preLE
+              }
+      : ./../Commutative/Set sha256:5bd60514e0c6cf406b48462f1b8cd1b7f738f97a6ea0a44fcf91a17794c8ca86
+        m

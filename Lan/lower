@@ -1,29 +1,71 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-let base = ./../Category/Monoidal/extractCategory kArrow kProduct
+let base =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
 
 let vObject = Type
 
-let v = base Type vObject ./../Category/Set/monoidal/cartesian
+let v =
+      base
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-in    λ(cObject : Kind)
+in    λ ( cObject
+        : Kind
+        )
     → λ(cpObject : Kind)
-    → λ(cp : ./../Category/Kind kArrow kProduct vObject cpObject)
-    → let dObject = Type
+    → λ ( cp
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          cpObject
+        )
+    → let dObject =
+            Type
       
-      let d = base vObject dObject ./../Category/Set/monoidal/cartesian
+      let d =
+            base
+            vObject
+            dObject
+            ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
       
-      let dSemigroupoid = ./../Category/Set/semigroupoid
+      let dSemigroupoid =
+            ./../Category/Set/semigroupoid sha256:4827035ecdee301574a57c0dde786653eaf4724f0fb0d175a99128759e973c07
       
-      in    λ(h : kArrow cpObject dObject)
-          → λ(functor : ./../Functor/Type vObject cpObject dObject v cp d h)
+      in    λ ( h
+              : kArrow cpObject dObject
+              )
+          → λ ( functor
+              : ./../Functor/Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+                vObject
+                cpObject
+                dObject
+                v
+                cp
+                d
+                h
+              )
           → λ(f : kArrow cObject cpObject)
           → λ(g : kArrow cObject dObject)
           → λ(duplicate : ∀(b : cObject) → d.arrow { _1 = g b, _2 = h (f b) })
           → λ(a : cpObject)
-          → λ(lan : ./Type cObject cpObject cp f g a)
+          → λ ( lan
+              : ./Type sha256:9ca4462b685f10f495c272b038e14f3057cef70898133772a5ef07dbaf5be0e1
+                cObject
+                cpObject
+                cp
+                f
+                g
+                a
+              )
           → lan
             (h a)
             (   λ(b : cObject)

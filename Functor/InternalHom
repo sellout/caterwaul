@@ -2,14 +2,28 @@
   `Profunctor`. Not to be confused with Dhall’s `./Profunctor`, which is more
    general.
 -}
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
-in    λ(v : ./../Category/Monoidal/Kind kArrow kProduct Type vObject)
-    → ./Hom
+in    λ ( v
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
+    → ./Hom sha256:b3ea70ee7072e9919805ebbfee1c6ae8a558b3983ecb847307a1e66a220b1c72
       vObject
       v
-      (./../Category/Monoidal/extractCategory kArrow kProduct Type vObject v)
+      ( ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+        kArrow
+        kProduct
+        Type
+        vObject
+        v
+      )

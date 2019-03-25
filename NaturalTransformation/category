@@ -1,18 +1,48 @@
-let kArrow = ./../Function/Kind
+let kArrow =
+      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../Tuple/Kind
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
-in    λ(v : ./../Category/Monoidal/Kind kArrow kProduct Type vObject)
+in    λ ( v
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
     → λ(cObject : Kind)
-    → λ(c : ./../Category/Kind kArrow kProduct vObject cObject)
+    → λ ( c
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          cObject
+        )
     → λ(dObject : Kind)
-    → λ(d : ./../Category/Kind kArrow kProduct vObject dObject)
-    → λ(dCategory : ./../Category/Type dObject v d)
-    → let object = kArrow cObject dObject
+    → λ ( d
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          dObject
+        )
+    → λ ( dCategory
+        : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+          dObject
+          v
+          d
+        )
+    → let object =
+            kArrow cObject dObject
       
-      let arrow = ./Type cObject dObject d
+      let arrow =
+            ./Type sha256:1fb48a77c7998793c06084794271a92131143f42dc9f1a95cd8146b6aeda7d5e
+            cObject
+            dObject
+            d
       
       in    { identity =
                 λ(a : object) → λ(i : cObject) → dCategory.identity (a i)
@@ -46,13 +76,13 @@ in    λ(v : ./../Category/Monoidal/Kind kArrow kProduct Type vObject)
                       )
                   )
             }
-          : ./../Category/Type
+          : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
             object
             v
-            ( ./../Category/Functor/category
+            ( ./../Category/Functor/category sha256:20c87f9335c2da300dd29d45d7e78499a113481708800d86b12d1fb55ae58d9d
               cObject
               dObject
-              ( ./../Category/Monoidal/extractCategory
+              ( ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
                 kArrow
                 kProduct
                 Type

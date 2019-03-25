@@ -1,13 +1,21 @@
-let kArrow = ./../../Function/Kind
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let kProduct = ./../../Tuple/Kind
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let vObject = Type
 
 let object = Type
 
 in    { constraint =
-          λ(t : object) → ./../../Const/Type object object { _1 = {}, _2 = t }
+            λ ( t
+              : object
+              )
+          → ./../../Const/Type sha256:afc07425afed62cb4caa3f39fad3d935f236f71c056585b7dc4f1c7ecba31dbc
+            object
+            object
+            { _1 = {}, _2 = t }
       , arrow =
           λ(a : { _1 : object, _2 : object }) → a._1 → a._2
       , additive =
@@ -24,4 +32,8 @@ in    { constraint =
               λ(a : { _1 : Type, _2 : Type }) → { _1 : a._1, _2 : a._2 }
           }
       }
-    : ./../Rig/Kind kArrow kProduct vObject object
+    : ./../Rig/Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
+      kArrow
+      kProduct
+      vObject
+      object

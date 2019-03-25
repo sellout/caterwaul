@@ -5,6 +5,16 @@
 -}
 let object = Type
 
-let cat = ./../../Category/Set/monoidal/cartesian
+let cat =
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
-in  λ(m : object) → { preLE : m → m → Optional Bool } ⩓ ./Type object cat m
+in    λ ( m
+        : object
+        )
+    →   { preLE :
+            m → m → Optional Bool
+        }
+      ⩓ ./Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
+        object
+        cat
+        m
