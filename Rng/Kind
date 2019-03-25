@@ -1,0 +1,8 @@
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(m : Kind)
+→ { additive :
+      ./../Group/Commutative/Kind kArrow kProduct m
+  , multiplicative :
+      ./../Semigroup/Kind kArrow kProduct m
+  }

@@ -1,0 +1,10 @@
+let kArrow = ./../Function/Kind
+
+let kProduct = ./../Tuple/Kind
+
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(cat : ./../Category/Semigroupal/Kind kArrow kProduct vObject object)
+    → λ(m : object)
+    → { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }

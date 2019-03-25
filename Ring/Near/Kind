@@ -1,0 +1,8 @@
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(m : Kind)
+→ { additive :
+      ./../../Group/Kind kArrow kProduct m
+  , multiplicative :
+      ./../../Monoid/Kind kArrow kProduct m
+  }

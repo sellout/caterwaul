@@ -1,0 +1,7 @@
+{- NB: `identity` would ideally be defined with `: kArrow kIdentity m`, but
+       there’s no Kind-level `{}` to use there.
+-}
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(m : Kind)
+→ { identity : m } ⩓ ./../Quasigroup/Kind kArrow kProduct m

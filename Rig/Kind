@@ -2,11 +2,11 @@
    described in https://ncatlab.org/nlab/show/rig, reserving “semiring” for a
    rig without multiplicative identity.
 -}
-  λ(arrow : Kind → Kind → Kind)
-→ λ(product : Kind → Kind → Kind)
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
 → λ(m : Kind)
 → { additive :
-      ./../Monoid/Commutative/Kind arrow product m
+      ./../Monoid/Commutative/Kind kArrow kProduct m
   , multiplicative :
-      ./../Monoid/Kind arrow product m
+      ./../Monoid/Kind kArrow kProduct m
   }
