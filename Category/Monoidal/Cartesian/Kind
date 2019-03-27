@@ -2,7 +2,7 @@
 -}
   λ(kArrow : Kind → Kind → Kind)
 → let kProduct =
-        ./../../Tuple/Kind
+        ./../../../Tuple/Kind
   
   in    λ ( vObject
           : Kind
@@ -11,7 +11,7 @@
       →   { diagonal :
               kArrow object (kProduct object object)
           }
-        ⩓ ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+        ⩓ ./../Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
           vObject

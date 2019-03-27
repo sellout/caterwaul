@@ -16,22 +16,10 @@ let MonoidalCategory =
 
 let vObject = Type
 
-in    λ ( object
-        : Kind
-        )
+in    λ(object : Kind)
     → λ(v : MonoidalCategory Type vObject)
     → λ(cat : Category vObject object)
-    → let profunctor =
-            kArrow (kProduct object object) vObject
-      
-      in    λ ( morphism
-              : profunctor
-              )
-          →     { identity =
-                    morphism
-                }
-              ∧ ./semigroupal sha256:d8753e61fec816de0d2eb2cbd329bdc4ce0602204dbd66cedc0d7d3de987274c
-                object
-                v
-                cat
-            : MonoidalCategory vObject profunctor
+    → ./../Semigroupal/types.dhall
+      (kArrow (kProduct object object) vObject)
+      v
+      (./semigroupal object v cat)

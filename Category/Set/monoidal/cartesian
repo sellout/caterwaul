@@ -4,13 +4,13 @@ let kArrow =
 let kProduct =
       ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-let vObject = Type
-
-let object = Type
-
-in  ./../../Rig/extractMultiplicative sha256:745f93c40ce5eaa7eae89720816454e14832c9b87596c0f50c505af722ad8596
-    kArrow
-    kProduct
-    vObject
-    object
-    ./../rig sha256:7675c3b1f1540c9912bfc697d659ac38b8f3197718e238d83c16a8583cf793e2
+in      { diagonal =
+            λ(a : Type) → { _1 = a, _2 = a }
+        }
+      ∧ ./../../Rig/extractMultiplicative sha256:745f93c40ce5eaa7eae89720816454e14832c9b87596c0f50c505af722ad8596
+        kArrow
+        kProduct
+        Type
+        Type
+        ./../rig sha256:7675c3b1f1540c9912bfc697d659ac38b8f3197718e238d83c16a8583cf793e2
+    : ./../../../Category/Monoidal/Closed/Cartesian/Kind kArrow Type
