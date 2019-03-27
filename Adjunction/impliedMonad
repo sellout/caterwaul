@@ -5,32 +5,45 @@ let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let Functor =
-      ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+      ./../Functor/Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
 
 let Adjunction =
-      ./Type sha256:917b36907d485af32d70d8d455f14f88a924980bfe626eaf8013371cd04a89fb
+      ./Type sha256:51ae2b2aced57c2ce57608835fd4331ac08731d0186f42dcf4149fac498b6862
 
 let Monad =
-      ./../Monad/Type sha256:8001bfc30d9f2c2126215a85e75eb12648fabceb5ea6cdcb05d599256d8dc1bf
+      ./../Monad/Type sha256:081e7d7d11c47a6170ed19e4593cc9f55600302a7aa5128a643f5e56c890eb05
 
 let Compose =
       ./../Compose/Type sha256:e18cb4b2004c6cf2789b492be4e1b912e3299eca94c229dc5913a11d55bcd72c
 
+let vObject = Type
+
+let v =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let Category =
+      ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+      kArrow
+      kProduct
+      vObject
+
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(c : Category cObject)
+    → λ(d : Category dObject)
     → λ(f : kArrow dObject cObject)
     → λ(g : kArrow cObject dObject)
-    → λ(functor : Functor cObject dObject cArrow dArrow g)
-    → λ(adjunction : Adjunction cObject dObject cArrow dArrow f g)
+    → λ(functor : Functor vObject cObject dObject v c d g)
+    → λ(adjunction : Adjunction cObject dObject c d f g)
     →   { identity =
             adjunction.unit
         , op =
               λ(a : dObject)
             → functor.map (f (g (f a))) (f a) (adjunction.counit (f a))
         }
-      : Monad
-        dObject
-        dArrow
-        (Compose dObject cObject dObject { _1 = g, _2 = f })
+      : Monad dObject d (Compose dObject cObject dObject { _1 = g, _2 = f })

@@ -7,10 +7,13 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+      ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
       kArrow
       kProduct
+      vObject
 
 in    λ ( cObject
         : Kind
@@ -18,21 +21,33 @@ in    λ ( cObject
     → let dObject =
             Type
       
-      in    λ ( c
-              : MonoidalCategory cObject
+      in    λ ( v
+              : ./../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+                kArrow
+                kProduct
+                Type
+                vObject
               )
+          → λ(c : MonoidalCategory cObject)
           → λ(d : MonoidalCategory dObject)
-          →   { arrow =
-                  ./../../NaturalTransformation/Type sha256:ac4ec9bf178715d3e80e93c72406abcaa99f0e70df64e30d76047afb6777ac95
-                  cObject
-                  dObject
-                  d.arrow
-              , identity =
-                  λ(x : cObject) → c.arrow { _1 = c.identity, _2 = x }
-              , op =
-                  ./../../Day/Type sha256:681b4b22f4cd4484c75a93d75c4c4a58c7d7b146d8f9e1a52602b49a8fb51f87
-                  cObject
-                  c
-                  d
-              }
-            : MonoidalCategory (kArrow cObject dObject)
+          → let base =
+                  ./../Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+                  kArrow
+                  kProduct
+                  vObject
+            
+            in      { identity =
+                        λ(x : cObject) → c.arrow { _1 = c.identity, _2 = x }
+                    , op =
+                        ./../../Day/Type sha256:08b059e69330b8894b4a1830425eea70c2e4a0366c97e99cad8c073283bab16d
+                        cObject
+                        d
+                        c
+                    }
+                  ∧ ./category sha256:20c87f9335c2da300dd29d45d7e78499a113481708800d86b12d1fb55ae58d9d
+                    cObject
+                    dObject
+                    v
+                    (base cObject c)
+                    (base dObject d)
+                : MonoidalCategory (kArrow cObject dObject)

@@ -1,0 +1,14 @@
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(m : Kind)
+→ { additive :
+      ./../Group/Commutative/Kind sha256:ee93cf6b2a974928a129df775e1fe4c7afb76224fcd8466e9e485ce039c87bba
+      kArrow
+      kProduct
+      m
+  , multiplicative :
+      ./../Semigroup/Kind sha256:06bc772a2dac44c6b3caa344f0f5f3d25522919fcd818fb1e10d3e968ba8c12f
+      kArrow
+      kProduct
+      m
+  }

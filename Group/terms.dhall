@@ -4,63 +4,80 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
+          vObject
           object
         )
-    → λ ( category
-        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          object
-          cat.arrow
-        )
-    → λ ( bifunctor
-        : ./../Functor/Bifunctor/Type sha256:941c217fa6ee86da9597e1a86270a67bb1c9d62fe62f6d786fe6454a05fd72fa
-          object
-          object
-          object
-          cat.arrow
-          cat.arrow
-          cat.arrow
-          cat.op
-        )
-    → λ(m : object)
-    → λ ( group
-        : ./Type sha256:85e3cfd09df263fe9c3f4c4b97633f9613d96c42075c18416eb6da89f0945b47
-          object
-          cat
-          m
-        )
-    →   { inverse =
-            group.inverse
-        , leftQuotient =
-            ./leftQuotient sha256:202a154d6953dbe0477b18f6fd40a2cec86801befc7cc40f2e25c6bdc67db26c
+    → let base =
+            ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+            kArrow
+            kProduct
+            vObject
             object
             cat
-            category
-            bifunctor
-            m
-            group
-        , rightQuotient =
-            ./rightQuotient sha256:def4ab713ab3d255db4780c3d2271aa88e3ce568faf506ac9f4d107071016ee6
-            object
-            cat
-            category
-            bifunctor
-            m
-            group
-        }
-      ∧ ./../Monoid/terms.dhall sha256:f3536e64772d3f3d36b162dc818bedb6df1f556965f505b7fe65aab6b24e2c51
-        object
-        cat
-        m
-        ( ./extractMonoid sha256:74e4bb6c1a304d5f478265607c67ca60f2bf844a1eee2cc7ade91ca2029d53b4
-          object
-          cat
-          m
-          group
-        )
+      
+      in    λ ( category
+              : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+                object
+                v
+                base
+              )
+          → λ ( bifunctor
+              : ./../Functor/Bifunctor/Type sha256:36f2a4b32c8e3b6a9a6d24d1289772f6aed01f9b314c9c8c5624e2dc42695d30
+                vObject
+                object
+                object
+                object
+                v
+                base
+                base
+                base
+                cat.op
+              )
+          → λ(m : object)
+          → λ ( group
+              : ./Type sha256:1d2eb52b6091711502e80d646cab25260b08324221c423c04df23b76e600b2c0
+                object
+                cat
+                m
+              )
+          →   { inverse =
+                  group.inverse
+              , leftQuotient =
+                  ./leftQuotient sha256:a4b420bce76087a1e02ea4d9ca7b2eddf611b78ffd65421cc395e994f4569256
+                  object
+                  cat
+                  category
+                  bifunctor
+                  m
+                  group
+              , rightQuotient =
+                  ./rightQuotient sha256:f467c545710e199da12304ed8761cac63b86788eb4d0d2aaf8ce56a4ed30d000
+                  object
+                  cat
+                  category
+                  bifunctor
+                  m
+                  group
+              }
+            ∧ ./../Monoid/terms.dhall sha256:b906e84f120eec0dfe1541cf68aa1443c9a8d74f943d7f357b82f11d92926796
+              object
+              cat
+              m
+              ( ./extractMonoid sha256:43250fa0d527ae8fa554881a0f91783870ffeb02c279dede032649071682b484
+                object
+                cat
+                m
+                group
+              )

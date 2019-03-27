@@ -7,13 +7,36 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
+    → λ ( v
+        : ./../../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
+    → λ ( cat
+        : ./../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          object
+        )
     → let profunctor =
-            kArrow (kProduct object object) Type
+            kArrow (kProduct object object) vObject
       
-      in    { arrow =
+      in    { constraint =
+                ./../../Functor/Profunctor/Type sha256:b49ae06477f88b9ef50357cd60262da0bbe266d8af1cbe3c5a6b8d6cee32df44
+                object
+                object
+                v
+                cat
+                cat
+            , arrow =
                   λ(p : { _1 : profunctor, _2 : profunctor })
                 → ∀(a : { _1 : object, _2 : object }) → p._1 a → p._2 a
             , op =
@@ -27,7 +50,8 @@ in    λ ( object
                     )
                   → r
             }
-          : ./../Semigroupal/Kind sha256:37baf05781aa3f5d1ee124aa740389e91a140fd0f5bd87594fd1d9f3b5ddc05d
+          : ./../Semigroupal/Kind sha256:c397273f09d2bc88d7fb86edfcdc776644a7d9ad34ecd55177bd834e624af11e
             kArrow
             kProduct
+            vObject
             profunctor

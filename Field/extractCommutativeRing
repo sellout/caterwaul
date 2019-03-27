@@ -4,18 +4,21 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
+          vObject
           object
         )
     → λ(m : object)
     → λ ( field
-        : ./Type sha256:4cbccc76562039dff6963e815d37d2bffc2f1c8cf0735e1c89d9ae373ed39efe
+        : ./Type sha256:a6589488cb3d578e43cf222dbbe82edf782ec86043d3032a5d54c2e3db958f5b
           object
           cat
           m
@@ -23,13 +26,13 @@ in    λ ( object
     →   { additive =
             field.additive
         , multiplicative =
-            ./../Group/Commutative/extractCommutativeMonoid sha256:74e4bb6c1a304d5f478265607c67ca60f2bf844a1eee2cc7ade91ca2029d53b4
+            ./../Group/Commutative/extractCommutativeMonoid sha256:43250fa0d527ae8fa554881a0f91783870ffeb02c279dede032649071682b484
             object
             cat
             m
             field.multiplicative
         }
-      : ./../Ring/Commutative/Type sha256:ccfe4e84b3cb4751a759f879ccfc4bf3aba84ccf734b631c6094fc8c2ce7ae3e
+      : ./../Ring/Commutative/Type sha256:77b44df8cc75bc4287fe797e2d655776283097caed2e17d0ccadf43eb96ee046
         object
         cat
         m

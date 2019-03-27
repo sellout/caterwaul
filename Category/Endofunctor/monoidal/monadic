@@ -7,15 +7,28 @@ let kArrow =
 let kProduct =
       ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let Category =
+      ./../../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+      kArrow
+      kProduct
+
+let Endofunctor =
+      ./../../../Functor/Endo/Type sha256:f7141343200ccaa9a1f80d06732e331624a3edd9e92b9ec3153db87c468fafe3
+
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
-    → λ(arrow : kArrow (kProduct object object) Type)
-    →   { arrow =
-            ./../../../NaturalTransformation/Type sha256:ac4ec9bf178715d3e80e93c72406abcaa99f0e70df64e30d76047afb6777ac95
+    → λ(v : Category Type vObject)
+    → λ(cat : Category vObject object)
+    →   { constraint =
+            Endofunctor vObject object v cat
+        , arrow =
+            ./../../../NaturalTransformation/Type sha256:1fb48a77c7998793c06084794271a92131143f42dc9f1a95cd8146b6aeda7d5e
             object
             object
-            arrow
+            cat
         , identity =
             ./../../../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
             object
@@ -25,7 +38,8 @@ in    λ ( object
             object
             object
         }
-      : ./../../Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+      : ./../../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
         kArrow
         kProduct
+        vObject
         (kArrow object object)

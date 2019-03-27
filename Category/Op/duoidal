@@ -4,25 +4,34 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ ( object
+in    λ ( vObject
         : Kind
         )
+    → λ(object : Kind)
     → λ ( cat
-        : ./../Duoidal/Kind sha256:f33682488a6823a12c3e8493b7887cb227cd1cf29fa44e8af49d6cf1033a1fbb
+        : ./../Duoidal/Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
           kArrow
           kProduct
+          vObject
           object
         )
-    →   { arrow =
-            ./Type sha256:ed18079f3fe5ecb275074781d4f90158ec3fdbc9e48c40e77c1f9af77a8dd387
+    →     { additive =
+              cat.additive
+          , multiplicative =
+              cat.multiplicative
+          }
+        ∧ ./Kind sha256:e9734284b447322a4da84aed6be9d3c9df5ed65f9428ad99e6b519ebe13a4c0a
+          vObject
+          object
+          ( ./../Duoidal/extractCategory sha256:13edc37f9a72c61a67d57688ffa461b3bbfe2abb8ece6498ed0b42f160905db2
+            kArrow
+            kProduct
+            vObject
             object
-            cat.arrow
-        , additive =
-            cat.additive
-        , multiplicative =
-            cat.multiplicative
-        }
-      : ./../Duoidal/Kind sha256:f33682488a6823a12c3e8493b7887cb227cd1cf29fa44e8af49d6cf1033a1fbb
+            cat
+          )
+      : ./../Duoidal/Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
         kArrow
         kProduct
+        vObject
         object

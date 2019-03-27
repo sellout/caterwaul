@@ -4,24 +4,27 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
+          vObject
           object
         )
     → λ(m : object)
     → λ ( lattice
-        : ./Type sha256:66aa8b38ebcd4aeb81f571b981f4774fb6ab04ab412dba1ffdf6d2c3a1d5c509
+        : ./Type sha256:48ddff28e19534fa345bb64a25ae2d981be3193c272cf19b39c2a5307fff088b
           object
           cat
           m
         )
     →   lattice.join
-      : ./../Monoid/Commutative/Type sha256:a070e866a0c8ab80b910b06a9f007023adaa3ce08b60200bbd7b685752717249
+      : ./../Monoid/Commutative/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
         object
         cat
         m

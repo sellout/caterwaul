@@ -1,0 +1,30 @@
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+
+let vObject = Type
+
+in    λ ( object
+        : Kind
+        )
+    → λ ( cat
+        : ./../../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          vObject
+          object
+        )
+    → λ(m : object)
+    → { additive :
+          ./../../Group/Type sha256:1d2eb52b6091711502e80d646cab25260b08324221c423c04df23b76e600b2c0
+          object
+          cat
+          m
+      , multiplicative :
+          ./../../Monoid/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
+          object
+          cat
+          m
+      }

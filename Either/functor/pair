@@ -1,35 +1,58 @@
-let Either =
-      ./../Type sha256:9ac62b105c684db0a562407c0132176c20e93cb29e9434f9b600ed5806cd9fc0
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+
+let base =
+      ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+
+let vObject = Type
+
+let v =
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let Set =
+      ./../../Category/Set/monoidal/cocartesian sha256:14c46eb82f84a4e93405e03c7f3f1882d5320831630961816fbc90c79d9bd441
+
+let cat = base vObject Type Set
 
 in    λ ( m
         : Type → Type
         )
     → λ ( functor
-        : ./../../Functor/Endo/Type sha256:f230e076c15a9ae4eb91c84519b9ab384e03b03f0246ebe4dfdf3a2bb82b251a
+        : ./../../Functor/Endo/Type sha256:f7141343200ccaa9a1f80d06732e331624a3edd9e92b9ec3153db87c468fafe3
+          vObject
           Type
-          ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+          (base Type vObject v)
+          cat
           m
         )
     →   { map =
               λ(a : { _1 : Type, _2 : Type })
             → λ(b : { _1 : Type, _2 : Type })
             → λ(f : { _1 : a._1 → m b._1, _2 : a._2 → m b._2 })
-            → λ(e : Either a)
-            → let E = Either b
+            → λ(e : Set.op a)
+            → let E = Set.op b
               
               in  merge
                   { Left =
-                      λ(x : a._1) → functor.map b._1 (Either b) E.Left (f._1 x)
+                      λ(x : a._1) → functor.map b._1 (Set.op b) E.Left (f._1 x)
                   , Right =
-                      λ(x : a._2) → functor.map b._2 (Either b) E.Right (f._2 x)
+                      λ(x : a._2) → functor.map b._2 (Set.op b) E.Right (f._2 x)
                   }
                   e
         }
-      : ./../../Functor/Pair/Type sha256:b1d24e5acae4194d312c360e78a435fc987a229e434f4e5f0994e35adb5ee5c3
+      : ./../../Functor/Pair/Type sha256:460d01e5aa66e54230ca083bbded8f946937b74b0007c7a8c18e423b161ef5a8
+        vObject
         Type
-        ( ./../../Star/Type sha256:d7ac58f30d93bd5abe3c3134da0412899a896d023b3c5a92484941e738939ffc
+        v
+        ( ./../../Category/Kleisli/category sha256:0056c0e307e6067079ea8639413ea2afbeedf3294556842a376a1a56db060e0b
+          vObject
           Type
-          ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+          cat
           m
         )
-        Either
+        Set.op

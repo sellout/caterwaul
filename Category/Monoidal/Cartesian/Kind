@@ -1,0 +1,18 @@
+{- Can’t define `augmentation` at this level, because we have no unit `Kind`.
+-}
+  λ(kArrow : Kind → Kind → Kind)
+→ let kProduct =
+        ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+  
+  in    λ ( vObject
+          : Kind
+          )
+      → λ(object : Kind)
+      →   { diagonal :
+              kArrow object (kProduct object object)
+          }
+        ⩓ ./../Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          vObject
+          object

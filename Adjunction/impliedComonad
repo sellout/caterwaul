@@ -5,32 +5,45 @@ let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
 let Functor =
-      ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+      ./../Functor/Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
 
 let Adjunction =
-      ./Type sha256:917b36907d485af32d70d8d455f14f88a924980bfe626eaf8013371cd04a89fb
+      ./Type sha256:51ae2b2aced57c2ce57608835fd4331ac08731d0186f42dcf4149fac498b6862
 
 let Comonad =
-      ./../Comonad/Type sha256:f4df0fb438550e7ab95bad1373735669107b4d3027365755ed77d8dd5aea40b9
+      ./../Comonad/Type sha256:a197cedf53d6fab62ebbf59d0139b243e3bd71ff5a4b1bbfd9bd3b476762f9b7
 
 let Compose =
       ./../Compose/Type sha256:e18cb4b2004c6cf2789b492be4e1b912e3299eca94c229dc5913a11d55bcd72c
 
+let vObject = Type
+
+let v =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let Category =
+      ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+      kArrow
+      kProduct
+      vObject
+
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(c : Category cObject)
+    → λ(d : Category dObject)
     → λ(f : kArrow dObject cObject)
-    → λ(functor : Functor dObject cObject dArrow cArrow f)
+    → λ(functor : Functor vObject dObject cObject v d c f)
     → λ(g : kArrow cObject dObject)
-    → λ(adjunction : Adjunction cObject dObject cArrow dArrow f g)
+    → λ(adjunction : Adjunction cObject dObject c d f g)
     →   { identity =
             adjunction.counit
         , op =
               λ(a : cObject)
             → functor.map (g a) (g (f (g a))) (adjunction.unit (g a))
         }
-      : Comonad
-        cObject
-        cArrow
-        (Compose cObject dObject cObject { _1 = f, _2 = g })
+      : Comonad cObject c (Compose cObject dObject cObject { _1 = f, _2 = g })

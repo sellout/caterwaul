@@ -7,5 +7,5 @@ do
   # Echo the filename
   echo $f;
   # Compile the Dhall file
-  $DHALL --explain <<< $f >>/dev/null
+  $DHALL <<< $f >>/dev/null
 done

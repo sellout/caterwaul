@@ -4,31 +4,39 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let base =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+      vObject
+
 in    λ ( cObject
         : Kind
         )
     → λ ( c
-        : ./../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
+          vObject
           cObject
         )
     → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
+        : ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
           cObject
+          v
+          (base cObject c)
           c.arrow
         )
-    → let vObject =
-            Type
-      
-      let v =
-            ./../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
-      
-      let Day =
-            ./Type sha256:681b4b22f4cd4484c75a93d75c4c4a58c7d7b146d8f9e1a52602b49a8fb51f87
+    → let Day =
+            ./Type sha256:08b059e69330b8894b4a1830425eea70c2e4a0366c97e99cad8c073283bab16d
             cObject
-            c
             v
+            c
       
       in    λ ( f
               : kArrow cObject vObject
@@ -50,10 +58,10 @@ in    λ ( cObject
                       → λ(e : v.op { _1 = f d._1, _2 = g d._2 })
                       → λ(r0 : vObject)
                       → λ ( day0
-                          : ./convolution sha256:dffad22f69e29116debfd7702a83fae5a1278fa46a80668aa9730c28c1afdd02
+                          : ./convolution sha256:e9cc6113ab1965750eabb0f553e45e3818548a78755967d465d6f3082e674913
                             cObject
-                            c
                             v
+                            c
                             f
                             g
                             b
@@ -76,9 +84,11 @@ in    λ ( cObject
                         e
                     )
               }
-            : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+            : ./../Functor/Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+              vObject
               cObject
               vObject
-              c.arrow
-              v.arrow
+              (base vObject v)
+              (base cObject c)
+              (base vObject v)
               (Day { _1 = f, _2 = g })

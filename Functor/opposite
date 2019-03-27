@@ -4,33 +4,59 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ ( cObject
+in    λ ( vObject
         : Kind
         )
+    → λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ ( v
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
+    → λ ( c
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          cObject
+        )
+    → λ ( d
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          dObject
+        )
     → λ(f : kArrow cObject dObject)
     → λ ( functor
-        : ./Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+        : ./Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+          vObject
           cObject
           dObject
-          cArrow
-          dArrow
+          v
+          c
+          d
           f
         )
     →   { map =
             λ(a : cObject) → λ(b : cObject) → functor.map b a
         }
-      : ./Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+      : ./Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+        vObject
         cObject
         dObject
-        ( ./../Category/Op/Type sha256:ed18079f3fe5ecb275074781d4f90158ec3fdbc9e48c40e77c1f9af77a8dd387
+        v
+        ( ./../Category/Op/Kind sha256:e9734284b447322a4da84aed6be9d3c9df5ed65f9428ad99e6b519ebe13a4c0a
+          vObject
           cObject
-          cArrow
+          c
         )
-        ( ./../Category/Op/Type sha256:ed18079f3fe5ecb275074781d4f90158ec3fdbc9e48c40e77c1f9af77a8dd387
+        ( ./../Category/Op/Kind sha256:e9734284b447322a4da84aed6be9d3c9df5ed65f9428ad99e6b519ebe13a4c0a
+          vObject
           dObject
-          dArrow
+          d
         )
         f

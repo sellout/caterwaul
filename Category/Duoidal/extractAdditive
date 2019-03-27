@@ -1,20 +1,25 @@
   λ(kArrow : Kind → Kind → Kind)
 → λ(kProduct : Kind → Kind → Kind)
+→ λ(vObject : Kind)
 → λ(object : Kind)
-→ λ ( rig
-    : ./Kind sha256:f33682488a6823a12c3e8493b7887cb227cd1cf29fa44e8af49d6cf1033a1fbb
+→ λ ( duoidal
+    : ./Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
       kArrow
       kProduct
+      vObject
       object
     )
-→   { arrow =
-        rig.arrow
+→   { constraint =
+        duoidal.constraint
+    , arrow =
+        duoidal.arrow
     , identity =
-        rig.additive.identity
+        duoidal.additive.identity
     , op =
-        rig.additive.op
+        duoidal.additive.op
     }
-  : ./../Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+  : ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
     kArrow
     kProduct
+    vObject
     object

@@ -7,23 +7,48 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
 in    λ ( object
         : Kind
         )
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → λ ( category
-        : ./../../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+    → λ ( cat
+        : ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
           object
-          arrow
         )
-    → let endoObject =
-            kArrow object object
+    → λ ( category
+        : ./../../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+          object
+          v
+          cat
+        )
+    → let vBase =
+            ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+            kArrow
+            kProduct
+            Type
+            vObject
+            v
       
-      let endoArrow =
-            ./../../NaturalTransformation/Type sha256:ac4ec9bf178715d3e80e93c72406abcaa99f0e70df64e30d76047afb6777ac95
-            object
-            object
-            arrow
+      let endoObject = kArrow object object
+      
+      let endo =
+            ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+            kArrow
+            kProduct
+            vObject
+            endoObject
+            ( ./../../Category/Endofunctor/monoidal/monadic sha256:eae17a0f349c999d0cb4240a35b754212b124e8c53128a2fc8cd40cef7c0cc82
+              object
+              vBase
+              cat
+            )
       
       in    λ ( f
               : endoObject
@@ -33,18 +58,20 @@ in    λ ( object
                       : endoObject
                       )
                   → λ(n : endoObject)
-                  → λ(natural : endoArrow { _1 = n, _2 = m })
+                  → λ(natural : endo.arrow { _1 = n, _2 = m })
                   → λ ( star
-                      : ./Type sha256:111b31ccff80266953ee7dca8da156a98dedc5702e7257e42c240ac4397ada5d
+                      : ./Type sha256:d014b87f0569e99e9d042215747a6ea4bdefe9101a034bbec7c57fde33f96f51
+                        vObject
                         object
-                        arrow
+                        vBase
+                        cat
                         m
                         f
                       )
                   → { map =
                           λ(a : object)
                         → λ(b : object)
-                        → λ(fn : arrow { _1 = a, _2 = n b })
+                        → λ(fn : cat.arrow { _1 = a, _2 = n b })
                         → star.map
                           a
                           b
@@ -53,8 +80,8 @@ in    λ ( object
                             (   λ(r : Type)
                               → λ ( arrowsOut
                                   :   ∀(z : object)
-                                    → arrow { _1 = z, _2 = m b }
-                                    → arrow { _1 = a, _2 = z }
+                                    → cat.arrow { _1 = z, _2 = m b }
+                                    → cat.arrow { _1 = a, _2 = z }
                                     → r
                                   )
                               → arrowsOut (n b) (natural b) fn
@@ -62,17 +89,27 @@ in    λ ( object
                           )
                     }
               }
-            : ./../../Functor/Contravariant sha256:fa42cddb87dc4e9a4ea1f310bed11ea8f63fd36cbb861d19543cabaafdc769f6
+            : ./../../Functor/Contravariant sha256:b8fd4cab4d0a71d79d3a6db1b9566ff09d1d81043c232b61adad3ed45c4d61dd
+              vObject
               endoObject
               Type
-              endoArrow
-              ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+              vBase
+              endo
+              ( ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+                kArrow
+                kProduct
+                vObject
+                Type
+                ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+              )
               (   λ ( a
                     : endoObject
                     )
-                → ./Type sha256:111b31ccff80266953ee7dca8da156a98dedc5702e7257e42c240ac4397ada5d
+                → ./Type sha256:d014b87f0569e99e9d042215747a6ea4bdefe9101a034bbec7c57fde33f96f51
+                  vObject
                   object
-                  arrow
+                  vBase
+                  cat
                   a
                   f
               )

@@ -1,5 +1,5 @@
-./../Monoid/extractSemigroup sha256:065563aa889bd881cc1f8dbad41cae590741caccdf5681f4162c645f5bae9393
+./../Monoid/extractSemigroup sha256:4b5ff7433a08e9031f92fe19b46bfe1f5952956040d78858e908f702782c9856
 Type
-./../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
+./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 Text
 ./monoid sha256:c8f4440c5692815ffc669b2691150e95631ef13bf59ff014fefc795ffede2fa2

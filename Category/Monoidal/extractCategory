@@ -1,0 +1,24 @@
+{- FIXME: Should be able to do `monoidal.{ arrow, op }`, but Dhall doesn’t like
+          that for some reason.
+-}
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→ λ ( monoidal
+    : ./Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+      kArrow
+      kProduct
+      vObject
+      object
+    )
+→   { constraint =
+        monoidal.constraint
+    , arrow =
+        monoidal.arrow
+    }
+  : ./../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+    kArrow
+    kProduct
+    vObject
+    object

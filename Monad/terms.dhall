@@ -4,32 +4,55 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let vBase =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+      Type
+      vObject
+      v
+
 in    λ ( object
         : Kind
         )
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
+    → λ ( cat
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
           object
-          arrow
+        )
+    → λ ( semigroupoid
+        : ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
+          object
+          v
+          cat
+          cat.arrow
         )
     → λ(m : kArrow object object)
     → λ ( functor
-        : ./../Functor/Endo/Type sha256:f230e076c15a9ae4eb91c84519b9ab384e03b03f0246ebe4dfdf3a2bb82b251a
+        : ./../Functor/Endo/Type sha256:f7141343200ccaa9a1f80d06732e331624a3edd9e92b9ec3153db87c468fafe3
+          vObject
           object
-          arrow
+          vBase
+          cat
           m
         )
     → λ ( monad
-        : ./Type sha256:8001bfc30d9f2c2126215a85e75eb12648fabceb5ea6cdcb05d599256d8dc1bf
+        : ./Type sha256:081e7d7d11c47a6170ed19e4593cc9f55600302a7aa5128a643f5e56c890eb05
           object
-          arrow
+          cat
           m
         )
     → let extractStarfunctor =
-            ./impliedStarfunctor sha256:b11a25783e9dfc89b15bf2dca97745556f58acf4702c37e229277a72da7ba843
+            ./impliedStarfunctor sha256:1d675b44b4bc5ebe652f969661e9f17cea2794ac4d4221b95a7f1adb5cde145c
             object
-            arrow
+            cat
             semigroupoid
             m
             functor

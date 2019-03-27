@@ -4,13 +4,16 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./Kind sha256:f33682488a6823a12c3e8493b7887cb227cd1cf29fa44e8af49d6cf1033a1fbb
+        : ./Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
           kArrow
           kProduct
+          vObject
           object
         )
     → let Isomorphism =
@@ -19,16 +22,18 @@ in    λ ( object
             cat.arrow
       
       let additive =
-            ./extractAdditive sha256:e9f5540600b9424e612ecb7b059be10813ef50cd5853c2a94492bbb63603b05f
+            ./extractAdditive sha256:1074fe06c55fe9e0243e164b39ae06c8e791cdfeae09351b907c13dbda400266
             kArrow
             kProduct
+            vObject
             object
             cat
       
       let multiplicative =
-            ./extractMultiplicative sha256:be64d7757d97bf1a52836d6170ee232cdab100b8bc9aa40a63d2a264f35053c8
+            ./extractMultiplicative sha256:745f93c40ce5eaa7eae89720816454e14832c9b87596c0f50c505af722ad8596
             kArrow
             kProduct
+            vObject
             object
             cat
       
@@ -65,11 +70,11 @@ in    λ ( object
                     additive.identity
                 }
           , additive :
-              ./../Monoidal/Laws sha256:f9566aface4f68a78bdfe0d51a3b4c18ed39a624397d864ceb572ace616b01b9
+              ./../Monoidal/Laws sha256:9ee9cdda6ce8f8c6532775def31b4c2a9ca614586fca86e7eef6894c691873bc
               object
               additive
           , multiplicative :
-              ./../Monoidal/Laws sha256:f9566aface4f68a78bdfe0d51a3b4c18ed39a624397d864ceb572ace616b01b9
+              ./../Monoidal/Laws sha256:9ee9cdda6ce8f8c6532775def31b4c2a9ca614586fca86e7eef6894c691873bc
               object
               multiplicative
           }

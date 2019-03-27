@@ -1,0 +1,78 @@
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+
+let vObject = Type
+
+let v =
+      ./monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let Set =
+      ./monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+in    { split =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(c : Type)
+          → λ(d : Type)
+          → λ(f : a → b)
+          → λ(g : c → d)
+          → λ(p : { _1 : a, _2 : c })
+          → { _1 = f p._1, _2 = g p._2 }
+      , fanout =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(c : Type)
+          → λ(f : a → b)
+          → λ(g : a → c)
+          → λ(x : a)
+          → { _1 = f x, _2 = g x }
+      , identity =
+          λ(a : Type) → λ(x : a) → x
+      , op =
+            λ(a : { _1 : Type, _2 : Type })
+          → λ(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
+          → p
+            (a._1 → a._2)
+            (   λ(z : Type)
+              → λ(f : z → a._2)
+              → λ(g : a._1 → z)
+              → λ(x : a._1)
+              → f (g x)
+            )
+      , lmap =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(c : Type)
+          → λ(f : b → a)
+          → λ(p : a → c)
+          → λ(x : b)
+          → p (f x)
+      , rmap =
+            λ(a : Type)
+          → λ(b : Type)
+          → λ(c : Type)
+          → λ(f : b → c)
+          → λ(p : a → b)
+          → λ(x : a)
+          → f (p x)
+      , map =
+            λ(a : { _1 : Type, _2 : Type })
+          → λ(b : { _1 : Type, _2 : Type })
+          → λ(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+          → λ(fn : a._1 → a._2)
+          → λ(x : b._1)
+          → f._2 (fn (f._1 x))
+      }
+    : ./../../Arrow/Type sha256:d4b81aeba858b5caff956bc7d0af2a96f261786f31907635c394ea2ddbf4db05
+      Type
+      v
+      ( ./../Monoidal/extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
+        kArrow
+        kProduct
+        vObject
+        Type
+        Set
+      )

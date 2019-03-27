@@ -4,36 +4,61 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → λ ( category
-        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+    → λ ( v
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
+    → λ ( cat
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
           object
-          arrow
+        )
+    → λ ( category
+        : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+          object
+          v
+          cat
         )
     →   { monoid =
-            ./monad sha256:cc69fbc6820debd52434ed85411386635e67912794606e2fd89cbddacc0cec01
+            ./monad sha256:ee9a58dc82a1bcf294d085f464caec21302f24f1f3e876c25f35888328e8ace9
             object
-            arrow
+            cat
             category
         , comonoid =
-            ./monad sha256:cc69fbc6820debd52434ed85411386635e67912794606e2fd89cbddacc0cec01
+            ./monad sha256:ee9a58dc82a1bcf294d085f464caec21302f24f1f3e876c25f35888328e8ace9
             object
-            ( ./../Category/Op/Type sha256:ed18079f3fe5ecb275074781d4f90158ec3fdbc9e48c40e77c1f9af77a8dd387
+            ( ./../Category/Op/Kind sha256:e9734284b447322a4da84aed6be9d3c9df5ed65f9428ad99e6b519ebe13a4c0a
+              vObject
               object
-              arrow
+              cat
             )
-            ( ./../Category/Op/category sha256:79973bf8b8cdb999c7fd06e2746e66a8e0cf70abe6ec514f6f6e03a38e5e4337
+            ( ./../Category/Op/category sha256:ac633f55487233f6be2887dee86a19f6eea400124b58e7571a8f3dc4d3a73ffc
               object
-              arrow
+              v
+              cat
               category
             )
         }
-      : ./../Bimonad/Type sha256:f6a12ee66ae0a959ab1042099ba80e9555ff086356fc5256bab54e9e8de82b65
+      : ./../Bimonad/Type sha256:cbad3ec529183e2e450e65a19a44b5cf0f877dbaa72f7580ad7b8cfbbb668c80
         object
-        arrow
+        ( ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+          kArrow
+          kProduct
+          Type
+          vObject
+          v
+        )
+        cat
         ( ./Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
           object
         )

@@ -1,0 +1,10 @@
+  λ(a : Type)
+→   { identity =
+        λ(_ : a) → {=}
+    , op =
+        λ(x : a) → { _1 = x, _2 = x }
+    }
+  : ./../../Comonoid/Type sha256:e26be81103d8a30c1382961787947bb326d45ea65da78056b6a51101bdd08bf7
+    Type
+    ./monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+    a

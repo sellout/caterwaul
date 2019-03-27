@@ -4,34 +4,58 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let base =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+
+let vObject = Type
+
+let v =
+      base
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
 in    λ ( cObject
         : Kind
         )
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
+    → λ ( c
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          cObject
+        )
     → let dObject =
             Type
       
-      let dArrow =
-            ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+      let d =
+            base
+            vObject
+            dObject
+            ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
       
       let dCategory =
-            ./../Function/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
+            ./../Category/Set/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
       
       in    λ ( f
               : kArrow cObject dObject
               )
           → λ ( functor
-              : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+              : ./../Functor/Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+                vObject
                 cObject
                 dObject
-                cArrow
-                dArrow
+                v
+                c
+                d
                 f
               )
-          → ./../Lan/lower sha256:48cb580c65699a99200fc19fbc94da2d17773220740a438c3f421d41df3428a1
+          → ./../Lan/lower sha256:ac255b0c1b5ca9294cd4443d85b3e54f24a6eed83930892a88d33597efdc534b
             cObject
             cObject
-            cArrow
+            c
             f
             functor
             ( ./../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae

@@ -4,13 +4,23 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 let MonoidalCategory =
-      ./../../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+      ./../../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
       kArrow
       kProduct
+      vObject
 
 in    λ ( cObject
         : Kind
+        )
+    → λ ( v
+        : ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          Type
+          vObject
         )
     → λ(c : MonoidalCategory cObject)
     → let dObject =
@@ -21,17 +31,26 @@ in    λ ( cObject
               )
           → λ(f : kArrow cObject dObject)
           → λ ( monoidal
-              : ./Type sha256:bf47360872158ca906f90c060e3a3339c2ca60a630baa0446884e840ca7fbf70
+              : ./Type sha256:3fd0a2398dd1d3c0cb029ce034f09d4c1b6f51e622139f06ad1086ceea926567
                 cObject
+                v
                 c
                 d
                 f
               )
-          →   monoidal.{ map
-                       }
-            : ./../../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
-              cObject
-              dObject
-              c.arrow
-              d.arrow
-              f
+          → let base =
+                  ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+                  kArrow
+                  kProduct
+                  vObject
+            
+            in    monoidal.{ map
+                           }
+                : ./../../Functor/Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+                  vObject
+                  cObject
+                  dObject
+                  v
+                  (base cObject c)
+                  (base dObject d)
+                  f

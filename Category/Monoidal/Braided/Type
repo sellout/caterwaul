@@ -1,0 +1,35 @@
+let kArrow =
+      ./../../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+
+let kProduct =
+      ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+
+let vObject = Type
+
+in    λ ( object
+        : Kind
+        )
+    → λ ( v
+        : ./../Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
+    → λ ( cat
+        : ./../Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          vObject
+          object
+        )
+    →   { braid :
+              ∀(x : object)
+            → ∀(y : object)
+            → cat.arrow
+              { _1 = cat.op { _1 = x, _2 = y }, _2 = cat.op { _1 = y, _2 = x } }
+        }
+      ⩓ ./../Type sha256:e24b89a456d2a45d64b9f897150e46b20bd41f12b0e1d50bea094133af47e296
+        object
+        v
+        cat

@@ -4,20 +4,47 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ ( f
-        : kArrow (kProduct Type Type) Type
+let vObject = Type
+
+in    λ ( object
+        : Kind
         )
-    → λ ( arrow
-        : ./Type sha256:3883ef2c52128bb38cc4ba8f9ce1354f170d3b1d37854c2118b4ab88135d4a69
-          f
+    → λ ( v
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          Type
+          vObject
         )
-    →   arrow.{ lmap
-              , map
-              , rmap
-              }
-      : ./../Strong/Type sha256:c94a55422f313b4bb76f6c26e9174faf380c821f740e71351b4ad66e0c2a09b3
-        Type
-        Type
-        ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
-        ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
-        f
+    → λ ( cat
+        : ./../Category/Semigroupal/Kind sha256:c397273f09d2bc88d7fb86edfcdc776644a7d9ad34ecd55177bd834e624af11e
+          kArrow
+          kProduct
+          vObject
+          object
+        )
+    → let base =
+            ./../Category/Semigroupal/extractCategory sha256:e91af8eaf3c5c29c44bd0fc193a537c6048ddbb6adc6d17f2631ebd27f4de897
+            kArrow
+            kProduct
+            vObject
+            object
+            cat
+      
+      in    λ ( arrow
+              : ./Type sha256:d4b81aeba858b5caff956bc7d0af2a96f261786f31907635c394ea2ddbf4db05
+                object
+                v
+                cat
+              )
+          →   arrow.{ lmap
+                    , map
+                    , rmap
+                    }
+            : ./../Strong/Type sha256:756061802c96ae4038f3c9b66153199f7660862a56802d213746a1227ba05234
+              object
+              object
+              v
+              base
+              base
+              cat.arrow

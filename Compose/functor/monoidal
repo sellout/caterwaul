@@ -9,28 +9,44 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 let MonoidalFunctor =
-      ./../../Functor/Monoidal/Type sha256:bf47360872158ca906f90c060e3a3339c2ca60a630baa0446884e840ca7fbf70
+      ./../../Functor/Monoidal/Type sha256:3fd0a2398dd1d3c0cb029ce034f09d4c1b6f51e622139f06ad1086ceea926567
 
 in    λ ( cObject
         : Kind
         )
-    → λ ( c
-        : ./../../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+    → λ ( v
+        : ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
           kArrow
           kProduct
+          Type
+          vObject
+        )
+    → λ ( vCategory
+        : ./../../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+          vObject
+          ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+          v
+        )
+    → λ ( c
+        : ./../../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          vObject
           cObject
         )
     → let dObject =
             Type
       
       let d =
-            ./../../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
+            ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
       
       let eObject = Type
       
       let e =
-            ./../../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
+            ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
       
       let Compose =
             ./../Type sha256:e18cb4b2004c6cf2789b492be4e1b912e3299eca94c229dc5913a11d55bcd72c
@@ -39,23 +55,45 @@ in    λ ( cObject
             eObject
       
       let Day =
-            ./../../Day/Type sha256:681b4b22f4cd4484c75a93d75c4c4a58c7d7b146d8f9e1a52602b49a8fb51f87
+            ./../../Day/Type sha256:08b059e69330b8894b4a1830425eea70c2e4a0366c97e99cad8c073283bab16d
             cObject
-            c
             e
+            c
       
       let Day/convolution =
-            ./../../Day/convolution sha256:dffad22f69e29116debfd7702a83fae5a1278fa46a80668aa9730c28c1afdd02
+            ./../../Day/convolution sha256:e9cc6113ab1965750eabb0f553e45e3818548a78755967d465d6f3082e674913
       
       in    λ(f : kArrow dObject eObject)
-          → λ(fMonoidal : MonoidalFunctor dObject d e f)
+          → λ(fMonoidal : MonoidalFunctor dObject v d e f)
           → λ(g : kArrow cObject dObject)
-          → λ(gMonoidal : MonoidalFunctor cObject c d g)
+          → λ(gMonoidal : MonoidalFunctor cObject v c d g)
           →   { map =
                     λ(a : cObject)
                   → λ(b : cObject)
-                  → λ(k : c.arrow { _1 = a, _2 = b })
-                  → fMonoidal.map (g a) (g b) (gMonoidal.map a b k)
+                  → vCategory.op
+                    { _1 =
+                        c.arrow { _1 = a, _2 = b }
+                    , _2 =
+                        e.arrow { _1 = f (g a), _2 = f (g b) }
+                    }
+                    (   λ(r : Type)
+                      → λ ( arrowsOut
+                          :   ∀(z : vObject)
+                            → v.arrow
+                              { _1 =
+                                  z
+                              , _2 =
+                                  e.arrow { _1 = f (g a), _2 = f (g b) }
+                              }
+                            → v.arrow
+                              { _1 = c.arrow { _1 = a, _2 = b }, _2 = z }
+                            → r
+                          )
+                      → arrowsOut
+                        (d.arrow { _1 = g a, _2 = g b })
+                        (fMonoidal.map (g a) (g b))
+                        (gMonoidal.map a b)
+                    )
               , identity =
                     λ(a : cObject)
                   → λ(fn : c.arrow { _1 = c.identity, _2 = a })
@@ -81,7 +119,7 @@ in    λ ( cObject
                       → fMonoidal.op
                         (g i)
                         (   λ(fr : eObject)
-                          → λ(fDay : Day/convolution dObject d e f f (g i) fr)
+                          → λ(fDay : Day/convolution dObject e d f f (g i) fr)
                           → fDay
                             { _1 = g b._1, _2 = g b._2 }
                             (   λ(p : { _1 : g b._1, _2 : g b._2 })
@@ -89,7 +127,7 @@ in    λ ( cObject
                                 i
                                 (   λ(gr : dObject)
                                   → λ ( gDay
-                                      : Day/convolution cObject c d g g i gr
+                                      : Day/convolution cObject d c g g i gr
                                       )
                                   → gDay b fn p
                                 )
@@ -98,4 +136,4 @@ in    λ ( cObject
                         )
                     )
               }
-            : MonoidalFunctor cObject c e (Compose { _1 = f, _2 = g })
+            : MonoidalFunctor cObject v c e (Compose { _1 = f, _2 = g })

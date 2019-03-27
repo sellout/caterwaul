@@ -12,33 +12,54 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 let object = Type
 
-in    λ ( cat
-        : ./../../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+in    λ ( v
+        : ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
           kArrow
           kProduct
+          Type
+          vObject
+        )
+    → λ ( cat
+        : ./../../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          vObject
           object
         )
     → let applicative =
-            ./../Functor/monoidal sha256:2a889a152120481599818cc4e25c7e17abe4fa64e5666c2a052c970280491731
+            ./../Functor/monoidal sha256:fbe4d65afbcf7d2798b2644fffae791b465a7d534baa0bc6a100e66a1934390b
             object
+            v
             cat
             cat
       
       let monadic =
-            ./monoidal/monadic sha256:b83055180c5a4e4c7580f0786f47f444bc336468778ab6cbc808a27a254b3d3c
+            ./monoidal/monadic sha256:eae17a0f349c999d0cb4240a35b754212b124e8c53128a2fc8cd40cef7c0cc82
             object
-            cat.arrow
+            v
+            ( ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+              kArrow
+              kProduct
+              vObject
+              object
+              cat
+            )
       
-      in    { arrow =
+      in    { constraint =
+                monadic.constraint
+            , arrow =
                 applicative.arrow
             , additive =
                 { identity = applicative.identity, op = applicative.op }
             , multiplicative =
                 { identity = monadic.identity, op = monadic.op }
             }
-          : ./../Duoidal/Kind sha256:f33682488a6823a12c3e8493b7887cb227cd1cf29fa44e8af49d6cf1033a1fbb
+          : ./../Duoidal/Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
             kArrow
             kProduct
+            vObject
             (kArrow object object)

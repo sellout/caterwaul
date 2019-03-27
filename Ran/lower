@@ -1,24 +1,41 @@
 let kArrow =
       ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
 
-let cObject = Type
+let kProduct =
+      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-let c =
-      ./../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
+let base =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+
+let vObject = Type
+
+let v =
+      base
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let cObject = Type
 
 let cpObject = Type
 
-let cp =
-      ./../Category/Set/monoidal/cartesian sha256:b3c97e385d62b718ab11e540a98141cb81b89db0d7c1115ec11b330c596dcf01
-
 let dObject = Type
+
+let c =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let cp =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
 in    λ ( p
         : kArrow cObject cpObject
         )
     → λ ( monoidal
-        : ./../Functor/Monoidal/Type sha256:bf47360872158ca906f90c060e3a3339c2ca60a630baa0446884e840ca7fbf70
+        : ./../Functor/Monoidal/Type sha256:3fd0a2398dd1d3c0cb029ce034f09d4c1b6f51e622139f06ad1086ceea926567
           cObject
+          v
           c
           cp
           p
@@ -26,10 +43,10 @@ in    λ ( p
     → λ(f : kArrow cObject dObject)
     → λ(a : cpObject)
     → λ ( ran
-        : ./Type sha256:5126ad6abdcdefab99fc1da45b21430cad31abcaee77cf79632340e26e36aabd
+        : ./Type sha256:14da02cb2fa4ad84be6ff3180eab70fe7c2055572124171e2ee754e2a6a72b33
           cObject
           cpObject
-          cp.arrow
+          (base vObject cpObject cp)
           p
           f
           a

@@ -4,26 +4,47 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ ( cObject
-        : Kind
+let vObject = Type
+
+in    λ ( v
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          Type
+          vObject
         )
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
+    → λ(cObject : Kind)
+    → λ ( c
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          cObject
+        )
     → λ(dObject : Kind)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ ( d
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          dObject
+        )
     → λ(f : kArrow (kProduct dObject cObject) Type)
     → λ ( strong
-        : ./Type sha256:c94a55422f313b4bb76f6c26e9174faf380c821f740e71351b4ad66e0c2a09b3
+        : ./Type sha256:756061802c96ae4038f3c9b66153199f7660862a56802d213746a1227ba05234
           cObject
           dObject
-          cArrow
-          dArrow
+          v
+          c
+          d
           f
         )
     →   strong.{ map
                }
-      : ./../Functor/Profunctor/Type sha256:da73e03c6c6fee307e1bda9ebcd75448fe5ca19edd857c42637ae41515631cff
+      : ./../Functor/Profunctor/Type sha256:b49ae06477f88b9ef50357cd60262da0bbe266d8af1cbe3c5a6b8d6cee32df44
         cObject
         dObject
-        cArrow
-        dArrow
+        v
+        c
+        d
         f

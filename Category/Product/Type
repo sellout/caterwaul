@@ -4,17 +4,34 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ(cObject : Kind)
+let Category =
+      ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+      kArrow
+      kProduct
+
+let MonoidalCategory =
+      ./../../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+      kArrow
+      kProduct
+
+in    λ(vObject : Kind)
+    → λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(v : MonoidalCategory Type vObject)
+    → λ(c : Category vObject cObject)
+    → λ(d : Category vObject dObject)
     → let object = { _1 : cObject, _2 : dObject }
       
-      in    (   λ(a : { _1 : object, _2 : object })
-              → { _1 :
-                    cArrow { _1 = a._1._1, _2 = a._2._1 }
-                , _2 :
-                    dArrow { _1 = a._1._2, _2 = a._2._2 }
-                }
-            )
-          : kArrow (kProduct object object) Type
+      in    { constraint =
+                  λ(obj : object)
+                → { _1 : c.constraint obj._1, _2 : d.constraint obj._2 }
+            , arrow =
+                  λ(a : { _1 : object, _2 : object })
+                → v.op
+                  { _1 =
+                      c.arrow { _1 = a._1._1, _2 = a._2._1 }
+                  , _2 =
+                      d.arrow { _1 = a._1._2, _2 = a._2._2 }
+                  }
+            }
+          : Category vObject object

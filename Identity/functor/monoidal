@@ -1,23 +1,49 @@
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+
+let base =
+      ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+
+let vObject = Type
+
+let v =
+      base
+      Type
+      vObject
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let vCategory =
+      ./../../Category/Set/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
+
 let object = Type
 
-let arrow =
-      ./../../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+let cat =
+      base
+      vObject
+      object
+      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
 
 let category =
-      ./../../Function/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
-
-let Identity =
-      ./../Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
-      object
+      ./../../Category/Set/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
 
 in  ./../../Monad/impliedMonoidalFunctor sha256:8b92d1f3c104cc5e4e1a17107c6006893aab6cb7ad59f2ad90bc4443ae78cf47
-    Identity
-    ( ./endo sha256:564834f3bdf37bba2dae2ffa0dd3fe7036a9152fdc099919bcfbb1a7b39e2348
+    ( ./../Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
       object
-      arrow
     )
-    ( ./../monad sha256:cc69fbc6820debd52434ed85411386635e67912794606e2fd89cbddacc0cec01
+    ( ./endo sha256:b63f3fb5ffca347a2675c7d4322d5671fa38a499e594dc58baa0e833e1cc0bcf
+      vObject
       object
-      arrow
+      v
+      vCategory
+      cat
+    )
+    ( ./../monad sha256:ee9a58dc82a1bcf294d085f464caec21302f24f1f3e876c25f35888328e8ace9
+      object
+      cat
       category
     )

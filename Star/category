@@ -4,38 +4,62 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let vBase =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+      Type
+      vObject
+      v
+
 in    λ ( object
         : Kind
         )
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
+    → λ ( cat
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
           object
-          arrow
+        )
+    → λ ( semigroupoid
+        : ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
+          object
+          v
+          cat
+          cat.arrow
         )
     → λ(m : kArrow object object)
-    → let starArrow =
-            ./Type sha256:d7ac58f30d93bd5abe3c3134da0412899a896d023b3c5a92484941e738939ffc
+    → let star =
+            ./../Category/Kleisli/category sha256:0056c0e307e6067079ea8639413ea2afbeedf3294556842a376a1a56db060e0b
+            vObject
             object
-            arrow
+            cat
             m
       
       in    λ ( functor
-              : ./../Functor/Endo/Type sha256:f230e076c15a9ae4eb91c84519b9ab384e03b03f0246ebe4dfdf3a2bb82b251a
+              : ./../Functor/Endo/Type sha256:f7141343200ccaa9a1f80d06732e331624a3edd9e92b9ec3153db87c468fafe3
+                vObject
                 object
-                arrow
+                vBase
+                cat
                 m
               )
           → λ ( monad
-              : ./../Monad/Type sha256:8001bfc30d9f2c2126215a85e75eb12648fabceb5ea6cdcb05d599256d8dc1bf
+              : ./../Monad/Type sha256:081e7d7d11c47a6170ed19e4593cc9f55600302a7aa5128a643f5e56c890eb05
                 object
-                arrow
+                cat
                 m
               )
           → let bind =
-                  ( ./../Monad/impliedStarfunctor sha256:b11a25783e9dfc89b15bf2dca97745556f58acf4702c37e229277a72da7ba843
+                  ( ./../Monad/impliedStarfunctor sha256:1d675b44b4bc5ebe652f969661e9f17cea2794ac4d4221b95a7f1adb5cde145c
                     object
-                    arrow
+                    cat
                     semigroupoid
                     m
                     functor
@@ -49,8 +73,8 @@ in    λ ( object
                       → λ ( p
                           :   ∀(r : Type)
                             → (   ∀(z : object)
-                                → starArrow { _1 = z, _2 = a._2 }
-                                → starArrow { _1 = a._1, _2 = z }
+                                → star.arrow { _1 = z, _2 = a._2 }
+                                → star.arrow { _1 = a._1, _2 = z }
                                 → r
                               )
                             → r
@@ -60,19 +84,20 @@ in    λ ( object
                         (   λ(r : Type)
                           → λ ( arrowsOut
                               :   ∀(z : object)
-                                → arrow { _1 = z, _2 = m a._2 }
-                                → arrow { _1 = a._1, _2 = z }
+                                → cat.arrow { _1 = z, _2 = m a._2 }
+                                → cat.arrow { _1 = a._1, _2 = z }
                                 → r
                               )
                           → p
                             r
                             (   λ(z : object)
-                              → λ(f : starArrow { _1 = z, _2 = a._2 })
-                              → λ(g : starArrow { _1 = a._1, _2 = z })
+                              → λ(f : star.arrow { _1 = z, _2 = a._2 })
+                              → λ(g : star.arrow { _1 = a._1, _2 = z })
                               → arrowsOut (m z) (bind z a._2 f) g
                             )
                         )
                   }
-                : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+                : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
                   object
-                  starArrow
+                  v
+                  star

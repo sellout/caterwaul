@@ -4,40 +4,61 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let Category/Kind =
+      ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+      kArrow
+      kProduct
+      vObject
+
 in    λ ( cObject
         : Kind
         )
     → λ(cpObject : Kind)
     → λ(dObject : Kind)
-    → λ(cpArrow : kArrow (kProduct cpObject cpObject) Type)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(cp : Category/Kind cpObject)
+    → λ(d : Category/Kind dObject)
     → λ ( dSemigroupoid
-        : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
+        : ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
           dObject
-          dArrow
+          v
+          d
+          d.arrow
         )
     → λ(h : kArrow cpObject dObject)
     → λ ( functor
-        : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+        : ./../Functor/Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+          vObject
           cpObject
           dObject
-          cpArrow
-          dArrow
+          ( ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+            kArrow
+            kProduct
+            Type
+            vObject
+            v
+          )
+          cp
+          d
           h
         )
     → λ(f : kArrow cObject cpObject)
     → λ(g : kArrow cObject dObject)
-    → λ(join : ∀(b : cObject) → dArrow { _1 = h (f b), _2 = g b })
+    → λ(join : ∀(b : cObject) → d.arrow { _1 = h (f b), _2 = g b })
     → λ(a : cpObject)
     → λ(b : cObject)
-    → λ(k : cpArrow { _1 = a, _2 = f b })
+    → λ(k : cp.arrow { _1 = a, _2 = f b })
     → dSemigroupoid.op
       { _1 = h a, _2 = g b }
       (   λ(r : Type)
         → λ ( arrowsOut
             :   ∀(z : dObject)
-              → dArrow { _1 = z, _2 = g b }
-              → dArrow { _1 = h a, _2 = z }
+              → d.arrow { _1 = z, _2 = g b }
+              → d.arrow { _1 = h a, _2 = z }
               → r
             )
         → arrowsOut (h (f b)) (join b) (functor.map a (f b) k)

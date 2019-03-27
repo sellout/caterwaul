@@ -1,7 +1,7 @@
   λ(kArrow : Kind → Kind → Kind)
 → λ(kProduct : Kind → Kind → Kind)
 → ./../Monoid/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
-  ( ./../Category/Op/Kind sha256:9d9392db5ae7f094d54de871993b3e000eb3732ea5fa9f30e52fc4caf329fc5e
+  ( ./../Category/Op/Sort sha256:5f8be2056486bd82777255e325271e9c7e4ff1716c11106b3e00fb13b1b5c9fb
     kArrow
   )
   kProduct

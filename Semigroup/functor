@@ -4,81 +4,110 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
+let vBase =
+      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
+      Type
+      vObject
+      v
+
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Semigroupal/Kind sha256:37baf05781aa3f5d1ee124aa740389e91a140fd0f5bd87594fd1d9f3b5ddc05d
+        : ./../Category/Semigroupal/Kind sha256:c397273f09d2bc88d7fb86edfcdc776644a7d9ad34ecd55177bd834e624af11e
           kArrow
           kProduct
+          vObject
           object
         )
-    → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
-          object
-          cat.arrow
-        )
-    → λ ( bifunctor
-        : ./../Functor/Pair/Type sha256:b1d24e5acae4194d312c360e78a435fc987a229e434f4e5f0994e35adb5ee5c3
-          object
-          cat.arrow
-          cat.op
-        )
-    → let Semigroup =
-            ./Type sha256:d1635ee2a3c9117f5d330d01ec4ae277f46bd0726c670179994510a57c2fbc32
+    → let catBase =
+            ./../Category/Semigroupal/extractCategory sha256:e91af8eaf3c5c29c44bd0fc193a537c6048ddbb6adc6d17f2631ebd27f4de897
+            kArrow
+            kProduct
+            vObject
             object
             cat
       
-      let Dagger =
-            ./../Category/Dagger/Type sha256:5c54e6cfc68d8e5948c355658f18db9b3bcf21a6fdf436ac2ef80ee5eed192b7
-            object
-            cat.arrow
-      
-      in    { map =
-                  λ(a : object)
-                → λ(b : object)
-                → λ(fn : Dagger { _1 = a, _2 = b })
-                → λ(fa : Semigroup a)
-                → { op =
-                      semigroupoid.op
-                      { _1 = cat.op { _1 = b, _2 = b }, _2 = b }
-                      (   λ(r : Type)
-                        → λ ( arrowsOut
-                            :   ∀(z : object)
-                              → cat.arrow { _1 = z, _2 = b }
-                              → cat.arrow
-                                { _1 = cat.op { _1 = b, _2 = b }, _2 = z }
-                              → r
-                            )
-                        → arrowsOut
-                          a
-                          fn.to
-                          ( semigroupoid.op
-                            { _1 = cat.op { _1 = b, _2 = b }, _2 = a }
+      in    λ ( semigroupoid
+              : ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
+                object
+                v
+                catBase
+                cat.arrow
+              )
+          → λ ( bifunctor
+              : ./../Functor/Pair/Type sha256:460d01e5aa66e54230ca083bbded8f946937b74b0007c7a8c18e423b161ef5a8
+                vObject
+                object
+                v
+                catBase
+                cat.op
+              )
+          → let Semigroup =
+                  ./Type sha256:55c25eb9497197855d422125e85bac2769f31104b33c1ac1df40da0e4957990f
+                  object
+                  cat
+            
+            let Dagger =
+                  ./../Category/Dagger/Kind sha256:28f645c4639adb33671f8b0ef4c8fc20679cf28357b61be71cb415f10c6c7ae5
+                  object
+                  catBase
+            
+            in    { map =
+                        λ(a : object)
+                      → λ(b : object)
+                      → λ(fn : Dagger.arrow { _1 = a, _2 = b })
+                      → λ(fa : Semigroup a)
+                      → { op =
+                            semigroupoid.op
+                            { _1 = cat.op { _1 = b, _2 = b }, _2 = b }
                             (   λ(r : Type)
                               → λ ( arrowsOut
                                   :   ∀(z : object)
-                                    → cat.arrow { _1 = z, _2 = a }
+                                    → cat.arrow { _1 = z, _2 = b }
                                     → cat.arrow
                                       { _1 = cat.op { _1 = b, _2 = b }, _2 = z }
                                     → r
                                   )
                               → arrowsOut
-                                (cat.op { _1 = a, _2 = a })
-                                fa.op
-                                ( bifunctor.map
-                                  { _1 = b, _2 = b }
-                                  { _1 = a, _2 = a }
-                                  { _1 = fn.from, _2 = fn.from }
+                                a
+                                fn.to
+                                ( semigroupoid.op
+                                  { _1 = cat.op { _1 = b, _2 = b }, _2 = a }
+                                  (   λ(r : Type)
+                                    → λ ( arrowsOut
+                                        :   ∀(z : object)
+                                          → cat.arrow { _1 = z, _2 = a }
+                                          → cat.arrow
+                                            { _1 =
+                                                cat.op { _1 = b, _2 = b }
+                                            , _2 =
+                                                z
+                                            }
+                                          → r
+                                        )
+                                    → arrowsOut
+                                      (cat.op { _1 = a, _2 = a })
+                                      fa.op
+                                      ( bifunctor.map
+                                        { _1 = b, _2 = b }
+                                        { _1 = a, _2 = a }
+                                        { _1 = fn.from, _2 = fn.from }
+                                      )
+                                  )
                                 )
                             )
-                          )
-                      )
+                        }
                   }
-            }
-          : ./../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
-            object
-            Type
-            Dagger
-            ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
-            Semigroup
+                : ./../Functor/SetValued sha256:46c02f318af5e309a764d9b8e8ea0e477fe80626d9d618d5c8717b351d7cff95
+                  object
+                  vBase
+                  Dagger
+                  Semigroup

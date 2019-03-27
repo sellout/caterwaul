@@ -4,40 +4,43 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( cObject
         : Kind
         )
-    → λ ( c
-        : ./../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+    → λ ( v
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
+          Type
+          vObject
+        )
+    → λ ( c
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          vObject
           cObject
         )
-    → let vObject =
-            Type
-      
-      in    λ ( v
-              : ./../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
-                kArrow
-                kProduct
-                vObject
+    →   (   λ ( f
+              : { _1 : kArrow cObject vObject, _2 : kArrow cObject vObject }
               )
-          →   (   λ ( f
-                    : { _1 :
-                          kArrow cObject vObject
-                      , _2 :
-                          kArrow cObject vObject
-                      }
-                    )
-                → ./../Lan/Type sha256:0a24ae0e2725039bedcdd6985fc300164a47ad8eeef4cbbed689d0b13a05fe1f
-                  { _1 : cObject, _2 : cObject }
-                  cObject
-                  c.arrow
-                  c.op
-                  (   λ(p : { _1 : cObject, _2 : cObject })
-                    → v.op { _1 = f._1 p._1, _2 = f._2 p._2 }
-                  )
-              )
-            : kArrow
-              (kProduct (kArrow cObject vObject) (kArrow cObject vObject))
-              (kArrow cObject vObject)
+          → ./../Lan/Type sha256:9ca4462b685f10f495c272b038e14f3057cef70898133772a5ef07dbaf5be0e1
+            { _1 : cObject, _2 : cObject }
+            cObject
+            ( ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+              kArrow
+              kProduct
+              vObject
+              cObject
+              c
+            )
+            c.op
+            (   λ(p : { _1 : cObject, _2 : cObject })
+              → v.op { _1 = f._1 p._1, _2 = f._2 p._2 }
+            )
+        )
+      : kArrow
+        (kProduct (kArrow cObject vObject) (kArrow cObject vObject))
+        (kArrow cObject vObject)

@@ -4,27 +4,32 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ ( object
+in    λ ( vObject
         : Kind
         )
+    → λ(object : Kind)
     → λ ( cat
-        : ./../Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+        : ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
+          vObject
           object
         )
     →     { identity =
               cat.identity
           }
-        ∧ ./semigroupal sha256:df9c5ffd7f78a262c1782eb6d58fc0cb312596842fbb915f0b439d9757268b49
+        ∧ ./semigroupal sha256:c537780f2e47bfb7608638adf41e08305cbf1b7595d02e7cd5f6d1c906524e59
+          vObject
           object
-          ( ./../Monoidal/extractSemigroupal sha256:70ef91047fc61f9b95bc9a7c791c6e18d62c8c91d88741f2f72a070b3e820f1f
+          ( ./../Monoidal/extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
             kArrow
             kProduct
+            vObject
             object
             cat
           )
-      : ./../Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+      : ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
         kArrow
         kProduct
+        vObject
         object

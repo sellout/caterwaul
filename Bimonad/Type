@@ -4,13 +4,29 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
-    → λ(arrow : kArrow (kProduct object object) Type)
-    → ./../Bimonoid/Type sha256:0aa5c0f16704281cbee18ed9099aaa5fea9d374880ea20e2de0d10acb15528ed
+    → λ ( v
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
+    → λ ( cat
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          object
+        )
+    → ./../Bimonoid/Type sha256:96573eff0e7b59b0b665f3f859210ed58ad48c159be144f52ae7744be76b430a
       (kArrow object object)
-      ( ./../Category/Endofunctor/monoidal/monadic sha256:b83055180c5a4e4c7580f0786f47f444bc336468778ab6cbc808a27a254b3d3c
+      ( ./../Category/Endofunctor/monoidal/monadic sha256:eae17a0f349c999d0cb4240a35b754212b124e8c53128a2fc8cd40cef7c0cc82
         object
-        arrow
+        v
+        cat
       )

@@ -1,11 +1,11 @@
-let Either =
-      ./../../Type sha256:9ac62b105c684db0a562407c0132176c20e93cb29e9434f9b600ed5806cd9fc0
+let Set =
+      ./../../../Category/Set/rig sha256:7675c3b1f1540c9912bfc697d659ac38b8f3197718e238d83c16a8583cf793e2
 
 in    λ ( a
         : Type
         )
     → ./../../../Monad/impliedMonoidalFunctor sha256:8b92d1f3c104cc5e4e1a17107c6006893aab6cb7ad59f2ad90bc4443ae78cf47
-      (λ(b : Type) → Either { _1 = a, _2 = b })
+      (λ(b : Type) → Set.additive.op { _1 = a, _2 = b })
       ( ./../endo/star sha256:32aede32d0a6106fa9381778d63f4997b3f32d517f862aa0f299726bc7cbdf3a
         ( ./../../../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
           Type

@@ -4,36 +4,56 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
 in    λ ( cObject
         : Kind
         )
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
-    → λ ( cCategory
-        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+    → λ ( c
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
           cObject
-          cArrow
+        )
+    → λ ( cCategory
+        : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+          cObject
+          v
+          c
         )
     → λ(dObject : Kind)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ ( d
+        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          dObject
+        )
     →   { map =
               λ(a : { _1 : cObject, _2 : dObject })
             → λ(b : { _1 : cObject, _2 : dObject })
             → λ ( f
                 : { _1 :
-                      cArrow { _1 = a._1, _2 = b._1 }
+                      c.arrow { _1 = a._1, _2 = b._1 }
                   , _2 :
-                      dArrow { _1 = a._2, _2 = b._2 }
+                      d.arrow { _1 = a._2, _2 = b._2 }
                   }
                 )
             → f._1
         }
-      : ./../Functor/Bifunctor/Type sha256:941c217fa6ee86da9597e1a86270a67bb1c9d62fe62f6d786fe6454a05fd72fa
+      : ./../Functor/Bifunctor/Type sha256:36f2a4b32c8e3b6a9a6d24d1289772f6aed01f9b314c9c8c5624e2dc42695d30
+        vObject
         cObject
         dObject
         cObject
-        cArrow
-        dArrow
-        cArrow
+        v
+        c
+        d
+        c
         ( ./Type sha256:afc07425afed62cb4caa3f39fad3d935f236f71c056585b7dc4f1c7ecba31dbc
           cObject
           dObject

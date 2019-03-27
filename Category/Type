@@ -10,18 +10,30 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
-    → let profunctor =
-            kArrow (kProduct object object) Type
-      
-      in    λ ( morphism
-              : profunctor
-              )
-          →   { identity :
-                  ∀(a : object) → morphism { _1 = a, _2 = a }
-              }
-            ⩓ ./../Semigroupoid/Type sha256:7ea3ed050672efbe97058fdf8cee2c448261528fb9df88e77792684384125059
-              object
-              morphism
+    → λ ( v
+        : ./Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
+    → λ ( cat
+        : ./Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          object
+        )
+    →   { identity :
+            ∀(a : object) → cat.arrow { _1 = a, _2 = a }
+        }
+      ⩓ ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
+        object
+        v
+        cat
+        cat.arrow

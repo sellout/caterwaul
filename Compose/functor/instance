@@ -4,32 +4,64 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-let Functor =
-      ./../../Functor/Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+let Category =
+      ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+      kArrow
+      kProduct
 
-in    λ ( cObject
+let Functor =
+      ./../../Functor/Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+
+in    λ ( vObject
         : Kind
         )
-    → λ(cArrow : kArrow (kProduct cObject cObject) Type)
+    → λ(v : Category Type vObject)
+    → λ ( vCategory
+        : ./../../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+          vObject
+          ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+          v
+        )
+    → λ(cObject : Kind)
+    → λ(c : Category vObject cObject)
     → λ(dObject : Kind)
-    → λ(dArrow : kArrow (kProduct dObject dObject) Type)
+    → λ(d : Category vObject dObject)
     → λ(eObject : Kind)
-    → λ(eArrow : kArrow (kProduct eObject eObject) Type)
+    → λ(e : Category vObject eObject)
     → λ(f : kArrow dObject eObject)
-    → λ(fFunctor : Functor dObject eObject dArrow eArrow f)
+    → λ(fFunctor : Functor vObject dObject eObject v d e f)
     → λ(g : kArrow cObject dObject)
-    → λ(gFunctor : Functor cObject dObject cArrow dArrow g)
+    → λ(gFunctor : Functor vObject cObject dObject v c d g)
     →   { map =
               λ(a : cObject)
             → λ(b : cObject)
-            → λ(k : cArrow { _1 = a, _2 = b })
-            → fFunctor.map (g a) (g b) (gFunctor.map a b k)
+            → vCategory.op
+              { _1 =
+                  c.arrow { _1 = a, _2 = b }
+              , _2 =
+                  e.arrow { _1 = f (g a), _2 = f (g b) }
+              }
+              (   λ(r : Type)
+                → λ ( arrowsOut
+                    :   ∀(z : vObject)
+                      → v.arrow
+                        { _1 = z, _2 = e.arrow { _1 = f (g a), _2 = f (g b) } }
+                      → v.arrow { _1 = c.arrow { _1 = a, _2 = b }, _2 = z }
+                      → r
+                    )
+                → arrowsOut
+                  (d.arrow { _1 = g a, _2 = g b })
+                  (fFunctor.map (g a) (g b))
+                  (gFunctor.map a b)
+              )
         }
       : Functor
+        vObject
         cObject
         eObject
-        cArrow
-        eArrow
+        v
+        c
+        e
         ( ./../Type sha256:e18cb4b2004c6cf2789b492be4e1b912e3299eca94c229dc5913a11d55bcd72c
           cObject
           dObject

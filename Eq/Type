@@ -1,1 +1,9 @@
+-- {- `bool` is some sort of `Const` functor in the correct category that can be
+--     converted to a `Bool`.
+-- -}
+--   λ(object : Kind)
+-- → λ(cat : ./../Category/Monoidal/Kind kArrow kProduct object)
+-- → λ(bool : object)
+-- → λ(a : object)
+-- → { eq : cat.arrow { _1 = cat.op { _1 = a, _2 = a }, _2 = bool } }
 λ(a : Type) → { eq : a → a → Bool }

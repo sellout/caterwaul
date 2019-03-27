@@ -4,55 +4,72 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
+          vObject
           object
         )
-    → λ ( category
-        : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
-          object
-          cat.arrow
-        )
-    → λ ( bifunctor
-        : ./../Functor/Bifunctor/Type sha256:941c217fa6ee86da9597e1a86270a67bb1c9d62fe62f6d786fe6454a05fd72fa
-          object
-          object
-          object
-          cat.arrow
-          cat.arrow
-          cat.arrow
-          cat.op
-        )
-    → λ(m : object)
-    → λ ( ring
-        : ./Type sha256:ccfe4e84b3cb4751a759f879ccfc4bf3aba84ccf734b631c6094fc8c2ce7ae3e
-          object
-          cat
-          m
-        )
-    →   { negate =
-            ring.additive.inverse
-        , subtract =
-            ./subtract sha256:f322d8e499c27198f290967c56d5d3460ca33758429e3c58038c47291a6e2eae
+    → let base =
+            ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+            kArrow
+            kProduct
+            vObject
             object
             cat
-            category
-            bifunctor
-            m
-            ring
-        }
-      ∧ ./../Rig/terms.dhall sha256:27fdf3c10b6c9d8955f3ab58eb32b61ac7357853245914587e60e0202ffd0043
-        object
-        cat
-        m
-        ( ./extractRig sha256:e69584391d19e2da3c4d98fdae5a96b46844f28fa39fe3f1da850d1c477592aa
-          object
-          cat
-          m
-          ring
-        )
+      
+      in    λ ( category
+              : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+                object
+                v
+                base
+              )
+          → λ ( bifunctor
+              : ./../Functor/Bifunctor/Type sha256:36f2a4b32c8e3b6a9a6d24d1289772f6aed01f9b314c9c8c5624e2dc42695d30
+                vObject
+                object
+                object
+                object
+                v
+                base
+                base
+                base
+                cat.op
+              )
+          → λ(m : object)
+          → λ ( ring
+              : ./Type sha256:77b44df8cc75bc4287fe797e2d655776283097caed2e17d0ccadf43eb96ee046
+                object
+                cat
+                m
+              )
+          →   { negate =
+                  ring.additive.inverse
+              , subtract =
+                  ./subtract sha256:49abf0b247d83bbc8fa1051357b7f17982a4e613b7d9b9b5e49213cbb4434c4d
+                  object
+                  cat
+                  category
+                  bifunctor
+                  m
+                  ring
+              }
+            ∧ ./../Rig/terms.dhall sha256:3189a56e4a8fee7dd2163f50d15e08a8ba36fdd60f811d96a1228e56a10db179
+              object
+              cat
+              m
+              ( ./extractRig sha256:6d35c8d4dba7fd81357b9427b6a6663ba825dfd5884b10f652779f5385fb9041
+                object
+                cat
+                m
+                ring
+              )

@@ -8,15 +8,32 @@ let kArrow =
 let kProduct =
       ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
-in    λ ( object
+in    λ ( vObject
         : Kind
         )
-    → λ(arrow : kArrow (kProduct object object) Type)
+    → λ(object : Kind)
+    → λ ( v
+        : ./../../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          Type
+          vObject
+        )
+    → λ ( cat
+        : ./../../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
+          kArrow
+          kProduct
+          vObject
+          object
+        )
     → λ(m : kArrow object object)
-    → ./../Type sha256:f230e076c15a9ae4eb91c84519b9ab384e03b03f0246ebe4dfdf3a2bb82b251a
+    → ./../Type sha256:f7141343200ccaa9a1f80d06732e331624a3edd9e92b9ec3153db87c468fafe3
+      vObject
       object
-      ( ./../../../Star/Type sha256:d7ac58f30d93bd5abe3c3134da0412899a896d023b3c5a92484941e738939ffc
+      v
+      ( ./../../../Category/Kleisli/category sha256:0056c0e307e6067079ea8639413ea2afbeedf3294556842a376a1a56db060e0b
+        vObject
         object
-        arrow
+        cat
         m
       )

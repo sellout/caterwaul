@@ -2,17 +2,17 @@
    a shared `identity`. The `additive.op` distributes over the
   `multiplicative.op` as well.
 -}
-  λ(arrow : Kind → Kind → Kind)
-→ λ(product : Kind → Kind → Kind)
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
 → λ(m : Kind)
 → { additive :
       ./../Semilattice/Bounded/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
-      arrow
-      product
+      kArrow
+      kProduct
       m
   , multiplicative :
       ./../Monoid/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
-      arrow
-      product
+      kArrow
+      kProduct
       m
   }

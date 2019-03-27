@@ -4,6 +4,11 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
+let v =
+      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+
 in    λ ( cObject
         : Kind
         )
@@ -11,31 +16,46 @@ in    λ ( cObject
             Type
       
       in    λ ( c
-              : ./../Category/Kind sha256:1d73f8625870dcd3cae352117c1161c36bd0e80f1fe4d0df6161eb12dd6be83b
+              : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
                 kArrow
                 kProduct
+                vObject
                 cObject
               )
           → λ ( cCategory
-              : ./../Category/Type sha256:56874495587bd8bf58b702382562e4aed91603b64a2d6893413c72d5bf265596
+              : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
                 cObject
-                c.arrow
+                v
+                c
               )
-          → let dArrow =
-                  ./../Function/Type sha256:44d58123a7ba6bd4f59a8f0fe8363ca585db3061ae3f369d3a26607a127f7927
+          → let d =
+                  ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+                  kArrow
+                  kProduct
+                  vObject
+                  dObject
+                  ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
             
             let dCategory =
-                  ./../Function/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
+                  ./../Category/Set/category sha256:de245a327ab65ee050d8adfe6271621e83ceced0333a799c37bef940a119696f
             
             in    λ ( f
                     : kArrow cObject dObject
                     )
                 → λ ( functor
-                    : ./Type sha256:fe94261bd581198ae1523ffbe7037159ad8327199b42ee3f97d16a7e1fa1dc79
+                    : ./Type sha256:9222d1a669a235e545d7d24bc2845509339fb9f17711afef958df74457784d4d
+                      vObject
                       cObject
                       dObject
-                      c.arrow
-                      dArrow
+                      ( ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+                        kArrow
+                        kProduct
+                        Type
+                        vObject
+                        v
+                      )
+                      c
+                      d
                       f
                     )
                 → { identity =
@@ -89,8 +109,8 @@ in    λ ( cObject
                           (   λ(r : Type)
                             → λ ( arrowsOut
                                 :   ∀(z : dObject)
-                                  → dArrow { _1 = z, _2 = f e }
-                                  → dArrow { _1 = f a, _2 = z }
+                                  → d.arrow { _1 = z, _2 = f e }
+                                  → d.arrow { _1 = f a, _2 = z }
                                   → r
                                 )
                             → arrowsOut

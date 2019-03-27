@@ -4,13 +4,16 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./Kind sha256:c90d64b23bd9269a630ed0e3c5202fef1969034543a57c20db10215d7092fe22
+        : ./Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
           kArrow
           kProduct
+          vObject
           object
         )
     → let Isomorphism =
@@ -27,11 +30,12 @@ in    λ ( object
                 → Isomorphism
                   { _1 = cat.op { _1 = a, _2 = cat.identity }, _2 = a }
             }
-          ⩓ ./../Semigroupal/Laws sha256:77295f07fde575e813efe6dcc0b48ffbfda95be525c9656bf742fd2e7964bb3c
+          ⩓ ./../Semigroupal/Laws sha256:2736ae657028d3affc1ad2a5f98e4aab3e8537d30982527944a4f9dfc59a3435
             object
-            ( ./extractSemigroupal sha256:70ef91047fc61f9b95bc9a7c791c6e18d62c8c91d88741f2f72a070b3e820f1f
+            ( ./extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
               kArrow
               kProduct
+              vObject
               object
               cat
             )
