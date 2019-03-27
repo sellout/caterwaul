@@ -2,7 +2,7 @@
 -}
   λ(kArrow : Kind → Kind → Kind)
 → let kProduct =
-        ./../../../Tuple/Kind
+        ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
   
   in    λ ( vObject
           : Kind

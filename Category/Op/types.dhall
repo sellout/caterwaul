@@ -11,7 +11,16 @@ let MonoidalCategory =
 
 let vObject = Type
 
-in    λ(object : Kind)
+in    λ ( object
+        : Kind
+        )
     → λ(v : MonoidalCategory Type vObject)
     → λ(cat : MonoidalCategory vObject object)
-    → ./../Monoidal/types.dhall object v (./monoidal vObject object cat)
+    → ./../Monoidal/types.dhall sha256:24b39f8c71f7f30b1e4796d99b6cd8950a83df9e0b2c7ab7963d0b07cb2d3adb
+      object
+      v
+      ( ./monoidal sha256:b7ec2bd747f2a9914a3e151ff3711de4c56c2d54954e518568ad00ab1db24103
+        vObject
+        object
+        cat
+      )

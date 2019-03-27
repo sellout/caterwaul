@@ -29,4 +29,7 @@ in    λ ( object
             → cat.arrow
               { _1 = cat.op { _1 = x, _2 = y }, _2 = cat.op { _1 = y, _2 = x } }
         }
-      ⩓ ./../Type object v cat
+      ⩓ ./../Type sha256:e24b89a456d2a45d64b9f897150e46b20bd41f12b0e1d50bea094133af47e296
+        object
+        v
+        cat

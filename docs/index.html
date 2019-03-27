@@ -719,105 +719,6 @@
   }
 </pre></dd>
 </dl>
-<h2 style="background-color: #bbb; width: 100%">./Bicategory</h2>
-<h4>Kind (kind)</h4>
-<p></p>
-<dl>
-<dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
-→ ∀(vObject : Kind)
-→ ∀(object : Kind)
-→ Kind
-</pre></dd>
-<dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ { arrow :
-      kArrow (kProduct object object) vObject
-  , arrow2 :
-      kArrow
-      ( kProduct
-        (kArrow (kProduct object object) vObject)
-        (kArrow (kProduct object object) vObject)
-      )
-      vObject
-  , constraint :
-      object → Type
-  , constraint2 :
-      kArrow (kProduct object object) vObject → Type
-  }
-</pre></dd>
-</dl>
-<h4>extractLower (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
-→ ∀(vObject : Kind)
-→ ∀(object : Kind)
-→ ∀ ( bicategory
-    : { arrow :
-          kArrow (kProduct object object) vObject
-      , arrow2 :
-          kArrow
-          ( kProduct
-            (kArrow (kProduct object object) vObject)
-            (kArrow (kProduct object object) vObject)
-          )
-          vObject
-      , constraint :
-          object → Type
-      , constraint2 :
-          kArrow (kProduct object object) vObject → Type
-      }
-    )
-→ { arrow :
-      kArrow (kProduct object object) vObject
-  , constraint :
-      object → Type
-  }
-</pre></dd>
-</dl>
-<h4>extractUpper (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
-→ ∀(vObject : Kind)
-→ ∀(object : Kind)
-→ ∀ ( bicategory
-    : { arrow :
-          kArrow (kProduct object object) vObject
-      , arrow2 :
-          kArrow
-          ( kProduct
-            (kArrow (kProduct object object) vObject)
-            (kArrow (kProduct object object) vObject)
-          )
-          vObject
-      , constraint :
-          object → Type
-      , constraint2 :
-          kArrow (kProduct object object) vObject → Type
-      }
-    )
-→ { arrow :
-      kArrow
-      ( kProduct
-        (kArrow (kProduct object object) vObject)
-        (kArrow (kProduct object object) vObject)
-      )
-      vObject
-  , constraint :
-      kArrow (kProduct object object) vObject → Type
-  }
-</pre></dd>
-</dl>
 <h2 style="background-color: #bbb; width: 100%">./Bimonad</h2>
 <h4>Type (type)</h4>
 <p></p>
@@ -910,46 +811,6 @@
   }
 </pre></dd>
 </dl>
-<h4>laws (term)</h4>
-<p>{- These laws could use some better names.
-   Also, need to add the `comonoid` laws.
-   And finally, need to reintroduce this law:
-       , c =
-             λ(x : cat.op { _1 = m, _2 = m })
-           → eqI.eq
-             (comonoid.identity (monoid.op x))
-             { _1 = comonoid.identity x._1, _2 = comonoid.identity x._2 }
--}</p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(m : Type)
-→ ∀(eqP : { eq : { _1 : m, _2 : m } → { _1 : m, _2 : m } → Bool })
-→ ∀(eqI : { eq : {} → {} → Bool })
-→ ∀(eq : { eq : m → m → Bool })
-→ ∀ ( bimonoid
-    : { comonoid :
-          { identity : m → {}, op : m → { _1 : m, _2 : m } }
-      , monoid :
-          { identity : {} → m, op : { _1 : m, _2 : m } → m }
-      }
-    )
-→ { a :
-      ∀(x : { _1 : m, _2 : m }) → Bool
-  , b :
-      ∀(x : {}) → Bool
-  , d :
-      ∀(x : {}) → Bool
-  , monoid :
-      { associativity :
-          m → m → m → Bool
-      , leftIdentity :
-          m → Bool
-      , rightIdentity :
-          m → Bool
-      }
-  }
-</pre></dd>
-</dl>
 <h2 style="background-color: #bbb; width: 100%">./Bool</h2>
 <h4>eq (term)</h4>
 <p></p>
@@ -991,27 +852,22 @@
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
-→ ∀(vObject : Kind)
-→ ∀(object : Kind)
-→ Kind
+∀(kArrow : Kind → Kind → Kind) → ∀(vObject : Kind) → ∀(object : Kind) → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
   λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { arrow :
-      kArrow (kProduct object object) vObject
+      kArrow { _1 : object, _2 : object } vObject
   , constraint :
       object → Type
   , diagonal :
-      kArrow object (kProduct object object)
+      kArrow object { _1 : object, _2 : object }
   , identity :
       object
   , op :
-      kArrow (kProduct object object) object
+      kArrow { _1 : object, _2 : object } object
   }
 </pre></dd>
 </dl>
@@ -1130,227 +986,22 @@
   }
 </pre></dd>
 </dl>
-<h4>impliedBimonoid (term)</h4>
-<p>{- Every monoid in a cartesian category is a bimonoid in a unique way. -}</p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , identity :
-          Type
-      , op :
-          { _1 : Type, _2 : Type } → Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , identity :
-          object
-      , op :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀(m : object)
-→ ∀ ( cartesian
-    : { category :
-          { identity :
-              object → cat.arrow { _1 = _, _2 = _ }
-          , op :
-                { _1 : object, _2 : object }
-              → (   Type
-                  → (   object
-                      → cat.arrow { _1 = _, _2 = _@2._2 }
-                      → cat.arrow { _1 = _@3._1, _2 = _@1 }
-                      → _@3
-                    )
-                  → _@1
-                )
-              → cat.arrow _@1
-          }
-      , comonoid :
-          { identity :
-              cat.arrow { _1 = m, _2 = cat.identity }
-          , op :
-              cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
-          }
-      , monoid :
-          { identity :
-              cat.arrow { _1 = cat.identity, _2 = m }
-          , op :
-              cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
-          }
-      }
-    )
-→ ∀ ( monoid
-    : { identity :
-          cat.arrow { _1 = cat.identity, _2 = m }
-      , op :
-          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
-      }
-    )
-→ { comonoid :
-      { identity :
-          cat.arrow { _1 = m, _2 = cat.identity }
-      , op :
-          cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
-      }
-  , monoid :
-      { identity :
-          cat.arrow { _1 = cat.identity, _2 = m }
-      , op :
-          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
-      }
-  }
-</pre></dd>
-</dl>
-<h4>impliedHopfMonoid (term)</h4>
-<p>{- Every group in a cartesian category is a Hopf monoid in a unique way. -}</p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , identity :
-          Type
-      , op :
-          { _1 : Type, _2 : Type } → Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , identity :
-          object
-      , op :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀(m : object)
-→ ∀ ( cartesian
-    : { category :
-          { identity :
-              object → cat.arrow { _1 = _, _2 = _ }
-          , op :
-                { _1 : object, _2 : object }
-              → (   Type
-                  → (   object
-                      → cat.arrow { _1 = _, _2 = _@2._2 }
-                      → cat.arrow { _1 = _@3._1, _2 = _@1 }
-                      → _@3
-                    )
-                  → _@1
-                )
-              → cat.arrow _@1
-          }
-      , comonoid :
-          { identity :
-              cat.arrow { _1 = m, _2 = cat.identity }
-          , op :
-              cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
-          }
-      , monoid :
-          { identity :
-              cat.arrow { _1 = cat.identity, _2 = m }
-          , op :
-              cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
-          }
-      }
-    )
-→ ∀ ( group
-    : { identity :
-          cat.arrow { _1 = cat.identity, _2 = m }
-      , inverse :
-          cat.arrow { _1 = m, _2 = m }
-      , op :
-          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
-      }
-    )
-→ { antipode :
-      cat.arrow { _1 = m, _2 = m }
-  , comonoid :
-      { identity :
-          cat.arrow { _1 = m, _2 = cat.identity }
-      , op :
-          cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
-      }
-  , monoid :
-      { identity :
-          cat.arrow { _1 = cat.identity, _2 = m }
-      , op :
-          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
-      }
-  }
-</pre></dd>
-</dl>
-<h3 style="background-color: #bbb; width: 100%">./Category/Comma</h3>
-<h4>category (term)</h4>
-<p>{- I think this requires dependent types to get the correct object type.
-   Something like
-
-       { d : dObject, e : eObject ** fn : c.arrow { _1 = d, _2 = e } }
+<h3 style="background-color: #bbb; width: 100%">./Category/Closed</h3>
+<h4>Kind (kind)</h4>
+<p>{- A category enriched over itself.
 -}</p>
 <dl>
-<dt>type</dt><dd><pre>
-  ∀(cObject : Kind)
-→ ∀(dObject : Kind)
-→ ∀(eObject : Kind)
-→ ∀ ( c
-    : { arrow :
-          { _1 : cObject, _2 : cObject } → Type
-      , constraint :
-          cObject → Type
-      }
-    )
-→ ∀ ( d
-    : { arrow :
-          { _1 : dObject, _2 : dObject } → Type
-      , constraint :
-          dObject → Type
-      }
-    )
-→ ∀ ( e
-    : { arrow :
-          { _1 : eObject, _2 : eObject } → Type
-      , constraint :
-          eObject → Type
-      }
-    )
-→ ∀(f : dObject → cObject)
-→ ∀(g : eObject → cObject)
-→ { arrow :
-        ∀ ( a
-          : { _1 :
-                { d : dObject, e : eObject }
-            , _2 :
-                { d : dObject, e : eObject }
-            }
-          )
-      → Type
-  , constraint :
-      ∀(x : { d : dObject, e : eObject }) → Type
-  }
+<dt>sort</dt><dd><pre>
+  ∀(kArrow : Kind → Kind → Kind)
+→ ∀(kProduct : Kind → Kind → Kind)
+→ ∀(object : Kind)
+→ Kind
 </pre></dd>
-</dl>
-<h4>domain (type)</h4>
-<p></p>
-<dl>
 <dt>kind</dt><dd><pre>
-Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-<>
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(object : Kind)
+→ { arrow : kArrow (kProduct object object) object, constraint : object → Type }
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Dagger</h3>
@@ -1810,16 +1461,6 @@ Type
   }
 </pre></dd>
 </dl>
-<h4>laws (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-<>
-</pre></dd>
-</dl>
 <h4 style="background-color: #bbb; width: 100%">./Category/Endofunctor/monoidal</h4>
 <h4>functor (term)</h4>
 <p></p>
@@ -1905,18 +1546,6 @@ Type
   }
 </pre></dd>
 </dl>
-<h4>laws (type)</h4>
-<p>{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
---    functor **Set** → 𝒟.
--- -}</p>
-<dl>
-<dt>kind</dt><dd><pre>
-Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-<>
-</pre></dd>
-</dl>
 <h4>monoidal (term)</h4>
 <p>{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
    functor **Set** → 𝒟.
@@ -1955,6 +1584,154 @@ Type
       ∀(x : cObject) → Type
   , op :
       { _1 : cObject → Type, _2 : cObject → Type } → cObject → Type
+  }
+</pre></dd>
+</dl>
+<h4>types.dhall (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(dObject : Kind)
+→ ∀ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ ∀ ( c
+    : { arrow :
+          { _1 : cObject, _2 : cObject } → Type
+      , constraint :
+          cObject → Type
+      }
+    )
+→ ∀ ( d
+    : { arrow :
+          { _1 : dObject, _2 : dObject } → Type
+      , constraint :
+          dObject → Type
+      }
+    )
+→ { Adjunction :
+        ((cObject → dObject) → cObject → dObject)
+      → ((cObject → dObject) → cObject → dObject)
+      → Type
+  , Bifunctor :
+        ({ _1 : cObject → dObject, _2 : cObject → dObject } → cObject → dObject)
+      → Type
+  , Category :
+        { arrow :
+            { _1 : Type, _2 : Type } → Type
+        , constraint :
+            Type → Type
+        , identity :
+            Type
+        , op :
+            { _1 : Type, _2 : Type } → Type
+        }
+      → { arrow :
+            { _1 : cObject → dObject, _2 : cObject → dObject } → Type
+        , constraint :
+            (cObject → dObject) → Type
+        }
+      → Type
+  , Codensity :
+        { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type }
+      → ((cObject → dObject) → Type)
+      → Type
+      → Type
+  , Comonad :
+      ((cObject → dObject) → cObject → dObject) → Type
+  , Compose :
+        { _1 :
+            (cObject → dObject) → cObject → dObject
+        , _2 :
+            (cObject → dObject) → cObject → dObject
+        }
+      → (cObject → dObject)
+      → cObject
+      → dObject
+  , Const :
+      { _1 : cObject → dObject, _2 : cObject → dObject } → cObject → dObject
+  , Costar :
+        ((cObject → dObject) → cObject → dObject)
+      → { _1 : cObject → dObject, _2 : cObject → dObject }
+      → Type
+  , Coyoneda :
+      ((cObject → dObject) → Type) → (cObject → dObject) → Type
+  , Density :
+        { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type }
+      → ((cObject → dObject) → Type)
+      → Type
+      → Type
+  , Endofunctor :
+      ((cObject → dObject) → cObject → dObject) → Type
+  , HomFunctor :
+      ({ _1 : cObject → dObject, _2 : cObject → dObject } → Type) → Type
+  , Identity :
+      (cObject → dObject) → cObject → dObject
+  , Lan :
+        ((cObject → dObject) → cObject → dObject)
+      → ((cObject → dObject) → Type)
+      → (cObject → dObject)
+      → Type
+  , Leibniz :
+      { arrow :
+          { _1 : cObject → dObject, _2 : cObject → dObject } → Type
+      , constraint :
+          (cObject → dObject) → Type
+      }
+  , Monad :
+      ((cObject → dObject) → cObject → dObject) → Type
+  , NaturalTransformation :
+        { _1 :
+            (cObject → dObject) → cObject → dObject
+        , _2 :
+            (cObject → dObject) → cObject → dObject
+        }
+      → Type
+  , Profunctor :
+      ({ _1 : cObject → dObject, _2 : cObject → dObject } → Type) → Type
+  , Ran :
+        ((cObject → dObject) → cObject → dObject)
+      → ((cObject → dObject) → Type)
+      → (cObject → dObject)
+      → Type
+  , Semigroupoid :
+        { arrow :
+            { _1 : Type, _2 : Type } → Type
+        , constraint :
+            Type → Type
+        , identity :
+            Type
+        , op :
+            { _1 : Type, _2 : Type } → Type
+        }
+      → { arrow :
+            { _1 : cObject → dObject, _2 : cObject → dObject } → Type
+        , constraint :
+            (cObject → dObject) → Type
+        }
+      → ({ _1 : cObject → dObject, _2 : cObject → dObject } → Type)
+      → Type
+  , Star :
+        ((cObject → dObject) → cObject → dObject)
+      → { _1 : cObject → dObject, _2 : cObject → dObject }
+      → Type
+  , Strong :
+      ({ _1 : cObject → dObject, _2 : cObject → dObject } → Type) → Type
+  , Traversable :
+        ((cObject → dObject) → cObject → dObject)
+      → ((cObject → dObject) → cObject → dObject)
+      → Type
+  , Yoneda :
+      ((cObject → dObject) → Type) → (cObject → dObject) → Type
   }
 </pre></dd>
 </dl>
@@ -1998,40 +1775,24 @@ Type
 → { arrow : { _1 : object, _2 : object } → vObject, constraint : object → Type }
 </pre></dd>
 </dl>
-<h3 style="background-color: #bbb; width: 100%">./Category/Mon</h3>
-<h4>Kind (term)</h4>
-<p>{- The category of monoids in `cat`. -}</p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , identity :
-          object
-      , op :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ { arrow :
-      { _1 : object, _2 : object } → Type
-  , constraint :
-      ∀(a : object) → Type
-  , identity :
-      object
-  , op :
-      { _1 : object, _2 : object } → object
-  }
-</pre></dd>
-</dl>
-<h4>forgetful (type)</h4>
-<p>{- The category of monoids in `cat`. -}</p>
+<h3 style="background-color: #bbb; width: 100%">./Category/Monoidal</h3>
+<h4 style="background-color: #bbb; width: 100%">./Category/Monoidal/Braided</h4>
+<h4>Type (type)</h4>
+<p></p>
 <dl>
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
-→ ∀(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ ∀ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
 → ∀ ( cat
     : { arrow :
           { _1 : object, _2 : object } → Type
@@ -2043,12 +1804,21 @@ Type
           { _1 : object, _2 : object } → object
       }
     )
-→ (object → object)
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
-→ λ(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ λ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
 → λ ( cat
     : { arrow :
           { _1 : object, _2 : object } → Type
@@ -2060,40 +1830,106 @@ Type
           { _1 : object, _2 : object } → object
       }
     )
-→ λ(_ : object → object)
-→ { map :
+→ { braid :
+        ∀(x : object)
+      → ∀(y : object)
+      → cat.arrow
+        { _1 = cat.op { _1 = x, _2 = y }, _2 = cat.op { _1 = y, _2 = x } }
+  , category :
+      { identity :
+          object → cat.arrow { _1 = _, _2 = _ }
+      , op :
+            { _1 : object, _2 : object }
+          → (   Type
+              → (   object
+                  → cat.arrow { _1 = _, _2 = _@2._2 }
+                  → cat.arrow { _1 = _@3._1, _2 = _@1 }
+                  → _@3
+                )
+              → _@1
+            )
+          → cat.arrow _@1
+      }
+  , monoid :
         object
-      → object
-      → v.arrow
-        { _1 =
-            cat.arrow { _1 = _@1, _2 = _ }
-        , _2 =
-            cat.arrow { _1 = _@2 _@1, _2 = _@2 _ }
+      → { identity :
+            cat.arrow { _1 = cat.identity, _2 = _ }
+        , op :
+            cat.arrow { _1 = cat.op { _1 = _, _2 = _ }, _2 = _ }
         }
   }
 </pre></dd>
 </dl>
-<h3 style="background-color: #bbb; width: 100%">./Category/Monoidal</h3>
-<h4 style="background-color: #bbb; width: 100%">./Category/Monoidal/Braided</h4>
+<h4 style="background-color: #bbb; width: 100%">./Category/Monoidal/Cartesian</h4>
+<h4>Kind (kind)</h4>
+<p>{- Can’t define `augmentation` at this level, because we have no unit `Kind`.
+-}</p>
+<dl>
+<dt>sort</dt><dd><pre>
+∀(kArrow : Kind → Kind → Kind) → ∀(vObject : Kind) → ∀(object : Kind) → Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→ { arrow :
+      kArrow { _1 : object, _2 : object } vObject
+  , constraint :
+      object → Type
+  , diagonal :
+      kArrow object { _1 : object, _2 : object }
+  , identity :
+      object
+  , op :
+      kArrow { _1 : object, _2 : object } object
+  }
+</pre></dd>
+</dl>
+<h4 style="background-color: #bbb; width: 100%">./Category/Monoidal/Closed</h4>
+<h5 style="background-color: #bbb; width: 100%">./Category/Monoidal/Closed/Cartesian</h5>
 <h4>Kind (kind)</h4>
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-(Kind → Kind → Kind) → (Kind → Kind → Kind) → Kind → Kind → Kind
+∀(kArrow : Kind → Kind → Kind) → ∀(object : Kind) → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind)
-→ λ(_ : Kind)
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(object : Kind)
 → { arrow :
-      _@3 (_@2 _ _) _@1
+      kArrow { _1 : object, _2 : object } object
   , constraint :
-      _ → Type
+      object → Type
+  , diagonal :
+      kArrow object { _1 : object, _2 : object }
   , identity :
-      _
+      object
   , op :
-      _@3 (_@2 _ _) _
+      kArrow { _1 : object, _2 : object } object
+  }
+</pre></dd>
+</dl>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+  ∀(kArrow : Kind → Kind → Kind)
+→ ∀(kProduct : Kind → Kind → Kind)
+→ ∀(object : Kind)
+→ Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(object : Kind)
+→ { arrow :
+      kArrow (kProduct object object) object
+  , constraint :
+      object → Type
+  , identity :
+      object
+  , op :
+      kArrow (kProduct object object) object
   }
 </pre></dd>
 </dl>
@@ -2191,25 +2027,82 @@ Type
 </pre></dd>
 </dl>
 <h4 style="background-color: #bbb; width: 100%">./Category/Monoidal/Symmetric</h4>
-<h4>Kind (kind)</h4>
+<h4>Type (type)</h4>
 <p></p>
 <dl>
-<dt>sort</dt><dd><pre>
-(Kind → Kind → Kind) → (Kind → Kind → Kind) → Kind → Kind → Kind
-</pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind)
-→ λ(_ : Kind)
+  Kind
 → { arrow :
-      _@3 (_@2 _ _) _@1
+      { _1 : Type, _2 : Type } → Type
   , constraint :
-      _ → Type
+      Type → Type
   , identity :
-      _
+      Type
   , op :
-      _@3 (_@2 _ _) _
+      { _1 : Type, _2 : Type } → Type
+  }
+→ { arrow :
+      { _1 : _@1, _2 : _@1 } → Type
+  , constraint :
+      _@1 → Type
+  , identity :
+      _@1
+  , op :
+      { _1 : _@1, _2 : _@1 } → _@2
+  }
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(_ : Kind)
+→ λ ( _
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ λ ( _
+    : { arrow :
+          { _1 : _@1, _2 : _@1 } → Type
+      , constraint :
+          _@1 → Type
+      , identity :
+          _@1
+      , op :
+          { _1 : _@1, _2 : _@1 } → _@2
+      }
+    )
+→ { braid :
+        _@2
+      → _@3
+      → _@2.arrow
+        { _1 = _@2.op { _1 = _@1, _2 = _ }, _2 = _@2.op { _1 = _, _2 = _@1 } }
+  , category :
+      { identity :
+          _@2 → _@1.arrow { _1 = _, _2 = _ }
+      , op :
+            { _1 : _@2, _2 : _@2 }
+          → (   Type
+              → (   _@4
+                  → _@3.arrow { _1 = _, _2 = _@2._2 }
+                  → _@4.arrow { _1 = _@3._1, _2 = _@1 }
+                  → _@3
+                )
+              → _@1
+            )
+          → _@2.arrow _@1
+      }
+  , monoid :
+        _@2
+      → { identity :
+            _@1.arrow { _1 = _@1.identity, _2 = _ }
+        , op :
+            _@1.arrow { _1 = _@1.op { _1 = _, _2 = _ }, _2 = _ }
+        }
   }
 </pre></dd>
 </dl>
@@ -2240,7 +2133,6 @@ Type
           { _1 : object, _2 : object } → object
       }
     )
-→ ∀(m : object)
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
@@ -2267,7 +2159,6 @@ Type
           { _1 : object, _2 : object } → object
       }
     )
-→ λ(m : object)
 → { category :
       { identity :
           object → cat.arrow { _1 = _, _2 = _ }
@@ -2284,11 +2175,12 @@ Type
           → cat.arrow _@1
       }
   , monoid :
-      { identity :
-          cat.arrow { _1 = cat.identity, _2 = m }
-      , op :
-          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
-      }
+        ∀(m : object)
+      → { identity :
+            cat.arrow { _1 = cat.identity, _2 = m }
+        , op :
+            cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+        }
   }
 </pre></dd>
 </dl>
@@ -2658,6 +2550,147 @@ Type
   }
 </pre></dd>
 </dl>
+<h4>types.dhall (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ { Adjunction :
+      (object → object) → (object → object) → Type
+  , Arrow :
+      Type
+  , Bifunctor :
+      ({ _1 : object, _2 : object } → object) → Type
+  , Category :
+        { arrow :
+            { _1 : Type, _2 : Type } → Type
+        , constraint :
+            Type → Type
+        , identity :
+            Type
+        , op :
+            { _1 : Type, _2 : Type } → Type
+        }
+      → { arrow :
+            { _1 : object, _2 : object } → Type
+        , constraint :
+            object → Type
+        }
+      → Type
+  , Codensity :
+        { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type }
+      → (object → Type)
+      → Type
+      → Type
+  , CommutativeGroup :
+      object → Type
+  , CommutativeMonoid :
+      object → Type
+  , Comonad :
+      (object → object) → Type
+  , Compose :
+      { _1 : object → object, _2 : object → object } → object → object
+  , Const :
+      { _1 : object, _2 : object } → object
+  , Costar :
+      (object → object) → { _1 : object, _2 : object } → Type
+  , Coyoneda :
+      (object → Type) → object → Type
+  , Day :
+      { _1 : object → Type, _2 : object → Type } → object → Type
+  , Density :
+        { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type }
+      → (object → Type)
+      → Type
+      → Type
+  , Endofunctor :
+      (object → object) → Type
+  , Field :
+      object → Type
+  , Group :
+      object → Type
+  , HomFunctor :
+      ({ _1 : object, _2 : object } → Type) → Type
+  , Identity :
+      object → object
+  , Lan :
+      (object → object) → (object → Type) → object → Type
+  , Leibniz :
+      { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      }
+  , Monad :
+      (object → object) → Type
+  , Monoid :
+      object → Type
+  , MonoidalFunctor :
+      (object → Type) → Type
+  , NaturalTransformation :
+      { _1 : object → object, _2 : object → object } → Type
+  , Profunctor :
+      ({ _1 : object, _2 : object } → Type) → Type
+  , Ran :
+      (object → object) → (object → Type) → object → Type
+  , Rig :
+      object → Type
+  , Ring :
+      object → Type
+  , Semigroup :
+      object → Type
+  , Semigroupoid :
+        { arrow :
+            { _1 : Type, _2 : Type } → Type
+        , constraint :
+            Type → Type
+        , identity :
+            Type
+        , op :
+            { _1 : Type, _2 : Type } → Type
+        }
+      → { arrow :
+            { _1 : object, _2 : object } → Type
+        , constraint :
+            object → Type
+        }
+      → ({ _1 : object, _2 : object } → Type)
+      → Type
+  , Semiring :
+      object → Type
+  , Star :
+      (object → object) → { _1 : object, _2 : object } → Type
+  , Strong :
+      ({ _1 : object, _2 : object } → Type) → Type
+  , Traversable :
+      (object → object) → (object → object) → Type
+  , Yoneda :
+      (object → Type) → object → Type
+  }
+</pre></dd>
+</dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Product</h3>
 <h4>Kind (term)</h4>
 <p></p>
@@ -2831,6 +2864,218 @@ Type
   }
 </pre></dd>
 </dl>
+<h4>types.dhall (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(dObject : Kind)
+→ ∀ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ ∀ ( c
+    : { arrow :
+          { _1 : cObject, _2 : cObject } → Type
+      , constraint :
+          cObject → Type
+      }
+    )
+→ ∀ ( d
+    : { arrow :
+          { _1 : dObject, _2 : dObject } → Type
+      , constraint :
+          dObject → Type
+      }
+    )
+→ { Adjunction :
+        ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
+      → ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
+      → Type
+  , Bifunctor :
+        (   { _1 :
+                { _1 : cObject, _2 : dObject }
+            , _2 :
+                { _1 : cObject, _2 : dObject }
+            }
+          → { _1 : cObject, _2 : dObject }
+        )
+      → Type
+  , Category :
+        { arrow :
+            { _1 : Type, _2 : Type } → Type
+        , constraint :
+            Type → Type
+        , identity :
+            Type
+        , op :
+            { _1 : Type, _2 : Type } → Type
+        }
+      → { arrow :
+              { _1 :
+                  { _1 : cObject, _2 : dObject }
+              , _2 :
+                  { _1 : cObject, _2 : dObject }
+              }
+            → Type
+        , constraint :
+            { _1 : cObject, _2 : dObject } → Type
+        }
+      → Type
+  , Codensity :
+        { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type }
+      → ({ _1 : cObject, _2 : dObject } → Type)
+      → Type
+      → Type
+  , Comonad :
+      ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject }) → Type
+  , Compose :
+        { _1 :
+            { _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject }
+        , _2 :
+            { _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject }
+        }
+      → { _1 : cObject, _2 : dObject }
+      → { _1 : cObject, _2 : dObject }
+  , Const :
+        { _1 :
+            { _1 : cObject, _2 : dObject }
+        , _2 :
+            { _1 : cObject, _2 : dObject }
+        }
+      → { _1 : cObject, _2 : dObject }
+  , Costar :
+        ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
+      → { _1 :
+            { _1 : cObject, _2 : dObject }
+        , _2 :
+            { _1 : cObject, _2 : dObject }
+        }
+      → Type
+  , Coyoneda :
+        ({ _1 : cObject, _2 : dObject } → Type)
+      → { _1 : cObject, _2 : dObject }
+      → Type
+  , Density :
+        { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type }
+      → ({ _1 : cObject, _2 : dObject } → Type)
+      → Type
+      → Type
+  , Endofunctor :
+      ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject }) → Type
+  , HomFunctor :
+        (   { _1 :
+                { _1 : cObject, _2 : dObject }
+            , _2 :
+                { _1 : cObject, _2 : dObject }
+            }
+          → Type
+        )
+      → Type
+  , Identity :
+      { _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject }
+  , Lan :
+        ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
+      → ({ _1 : cObject, _2 : dObject } → Type)
+      → { _1 : cObject, _2 : dObject }
+      → Type
+  , Leibniz :
+      { arrow :
+            { _1 :
+                { _1 : cObject, _2 : dObject }
+            , _2 :
+                { _1 : cObject, _2 : dObject }
+            }
+          → Type
+      , constraint :
+          { _1 : cObject, _2 : dObject } → Type
+      }
+  , Monad :
+      ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject }) → Type
+  , NaturalTransformation :
+        { _1 :
+            { _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject }
+        , _2 :
+            { _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject }
+        }
+      → Type
+  , Profunctor :
+        (   { _1 :
+                { _1 : cObject, _2 : dObject }
+            , _2 :
+                { _1 : cObject, _2 : dObject }
+            }
+          → Type
+        )
+      → Type
+  , Ran :
+        ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
+      → ({ _1 : cObject, _2 : dObject } → Type)
+      → { _1 : cObject, _2 : dObject }
+      → Type
+  , Semigroupoid :
+        { arrow :
+            { _1 : Type, _2 : Type } → Type
+        , constraint :
+            Type → Type
+        , identity :
+            Type
+        , op :
+            { _1 : Type, _2 : Type } → Type
+        }
+      → { arrow :
+              { _1 :
+                  { _1 : cObject, _2 : dObject }
+              , _2 :
+                  { _1 : cObject, _2 : dObject }
+              }
+            → Type
+        , constraint :
+            { _1 : cObject, _2 : dObject } → Type
+        }
+      → (   { _1 :
+                { _1 : cObject, _2 : dObject }
+            , _2 :
+                { _1 : cObject, _2 : dObject }
+            }
+          → Type
+        )
+      → Type
+  , Star :
+        ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
+      → { _1 :
+            { _1 : cObject, _2 : dObject }
+        , _2 :
+            { _1 : cObject, _2 : dObject }
+        }
+      → Type
+  , Strong :
+        (   { _1 :
+                { _1 : cObject, _2 : dObject }
+            , _2 :
+                { _1 : cObject, _2 : dObject }
+            }
+          → Type
+        )
+      → Type
+  , Traversable :
+        ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
+      → ({ _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
+      → Type
+  , Yoneda :
+        ({ _1 : cObject, _2 : dObject } → Type)
+      → { _1 : cObject, _2 : dObject }
+      → Type
+  }
+</pre></dd>
+</dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Profunctor</h3>
 <h4>monoidal (term)</h4>
 <p></p>
@@ -2923,6 +3168,263 @@ Type
             }
           )
       → ∀(a : { _1 : object, _2 : object })
+      → Type
+  }
+</pre></dd>
+</dl>
+<h4>types.dhall (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      }
+    )
+→ { Adjunction :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → Type
+  , Arrow :
+      Type
+  , Bifunctor :
+        (   { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → Type
+  , Category :
+        { arrow :
+            { _1 : Type, _2 : Type } → Type
+        , constraint :
+            Type → Type
+        , identity :
+            Type
+        , op :
+            { _1 : Type, _2 : Type } → Type
+        }
+      → { arrow :
+              { _1 :
+                  { _1 : object, _2 : object } → Type
+              , _2 :
+                  { _1 : object, _2 : object } → Type
+              }
+            → Type
+        , constraint :
+            ({ _1 : object, _2 : object } → Type) → Type
+        }
+      → Type
+  , Codensity :
+        { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type }
+      → (({ _1 : object, _2 : object } → Type) → Type)
+      → Type
+      → Type
+  , Comonad :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → Type
+  , Compose :
+        { _1 :
+              ({ _1 : object, _2 : object } → Type)
+            → { _1 : object, _2 : object }
+            → Type
+        , _2 :
+              ({ _1 : object, _2 : object } → Type)
+            → { _1 : object, _2 : object }
+            → Type
+        }
+      → ({ _1 : object, _2 : object } → Type)
+      → { _1 : object, _2 : object }
+      → Type
+  , Const :
+        { _1 :
+            { _1 : object, _2 : object } → Type
+        , _2 :
+            { _1 : object, _2 : object } → Type
+        }
+      → { _1 : object, _2 : object }
+      → Type
+  , Costar :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → { _1 :
+            { _1 : object, _2 : object } → Type
+        , _2 :
+            { _1 : object, _2 : object } → Type
+        }
+      → Type
+  , Coyoneda :
+        (({ _1 : object, _2 : object } → Type) → Type)
+      → ({ _1 : object, _2 : object } → Type)
+      → Type
+  , Density :
+        { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type }
+      → (({ _1 : object, _2 : object } → Type) → Type)
+      → Type
+      → Type
+  , Endofunctor :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → Type
+  , HomFunctor :
+        (   { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          → Type
+        )
+      → Type
+  , Identity :
+        ({ _1 : object, _2 : object } → Type)
+      → { _1 : object, _2 : object }
+      → Type
+  , Lan :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → (({ _1 : object, _2 : object } → Type) → Type)
+      → ({ _1 : object, _2 : object } → Type)
+      → Type
+  , Leibniz :
+      { arrow :
+            { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          → Type
+      , constraint :
+          ({ _1 : object, _2 : object } → Type) → Type
+      }
+  , Monad :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → Type
+  , NaturalTransformation :
+        { _1 :
+              ({ _1 : object, _2 : object } → Type)
+            → { _1 : object, _2 : object }
+            → Type
+        , _2 :
+              ({ _1 : object, _2 : object } → Type)
+            → { _1 : object, _2 : object }
+            → Type
+        }
+      → Type
+  , Profunctor :
+        (   { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          → Type
+        )
+      → Type
+  , Ran :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → (({ _1 : object, _2 : object } → Type) → Type)
+      → ({ _1 : object, _2 : object } → Type)
+      → Type
+  , Semigroup :
+      ({ _1 : object, _2 : object } → Type) → Type
+  , Semigroupoid :
+        { arrow :
+            { _1 : Type, _2 : Type } → Type
+        , constraint :
+            Type → Type
+        , identity :
+            Type
+        , op :
+            { _1 : Type, _2 : Type } → Type
+        }
+      → { arrow :
+              { _1 :
+                  { _1 : object, _2 : object } → Type
+              , _2 :
+                  { _1 : object, _2 : object } → Type
+              }
+            → Type
+        , constraint :
+            ({ _1 : object, _2 : object } → Type) → Type
+        }
+      → (   { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          → Type
+        )
+      → Type
+  , Star :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → { _1 :
+            { _1 : object, _2 : object } → Type
+        , _2 :
+            { _1 : object, _2 : object } → Type
+        }
+      → Type
+  , Strong :
+        (   { _1 :
+                { _1 : object, _2 : object } → Type
+            , _2 :
+                { _1 : object, _2 : object } → Type
+            }
+          → Type
+        )
+      → Type
+  , Traversable :
+        (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → (   ({ _1 : object, _2 : object } → Type)
+          → { _1 : object, _2 : object }
+          → Type
+        )
+      → Type
+  , Yoneda :
+        (({ _1 : object, _2 : object } → Type) → Type)
+      → ({ _1 : object, _2 : object } → Type)
       → Type
   }
 </pre></dd>
@@ -3727,21 +4229,8 @@ Type
     { _1 : Type, _2 : Type } → Type
 , constraint :
     Type → Type
-, identity :
-    Type
-, op :
-    { _1 : Type, _2 : Type } → Type
-}
-</pre></dd>
-</dl>
-<h4>cocartesian (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-{ arrow :
-    { _1 : Type, _2 : Type } → Type
-, constraint :
-    Type → Type
+, diagonal :
+    ∀(a : Type) → { _1 : Type, _2 : Type }
 , identity :
     Type
 , op :
@@ -4128,16 +4617,6 @@ Type
       → ∀(input : cat.arrow { _1 = x, _2 = c })
       → cat.arrow { _1 = y, _2 = c }
   }
-</pre></dd>
-</dl>
-<h4>two-sided (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-<>
 </pre></dd>
 </dl>
 <h4>types.dhall (term)</h4>
@@ -6421,69 +6900,6 @@ Type
   }
 </pre></dd>
 </dl>
-<h2 style="background-color: #bbb; width: 100%">./Foldable</h2>
-<h2 style="background-color: #bbb; width: 100%">./Free</h2>
-<h4>Type (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-  ∀(vObject : Kind)
-→ ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : vObject, _2 : vObject } → Type
-      , constraint :
-          vObject → Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → vObject
-      , constraint :
-          object → Type
-      , identity :
-          object
-      , op :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀(construction : object → Type)
-→ ∀(a : object)
-→ Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-  λ(vObject : Kind)
-→ λ(object : Kind)
-→ λ ( v
-    : { arrow :
-          { _1 : vObject, _2 : vObject } → Type
-      , constraint :
-          vObject → Type
-      }
-    )
-→ λ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → vObject
-      , constraint :
-          object → Type
-      , identity :
-          object
-      , op :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ λ(construction : object → Type)
-→ λ(a : object)
-→   ∀(m : object)
-  → construction m
-  → v.arrow
-    { _1 =
-        cat.arrow { _1 = a, _2 = m }
-    , _2 =
-        cat.arrow { _1 = cat.identity, _2 = m }
-    }
-</pre></dd>
-</dl>
 <h2 style="background-color: #bbb; width: 100%">./Function</h2>
 <h4>Kind (kind)</h4>
 <p></p>
@@ -7715,16 +8131,6 @@ Type
   }
 </pre></dd>
 </dl>
-<h4>inclusion (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-<>
-</pre></dd>
-</dl>
 <h4>laws (term)</h4>
 <p></p>
 <dl>
@@ -8682,27 +9088,6 @@ Type
         )
       → cat.arrow _@1
   }
-</pre></dd>
-</dl>
-<h2 style="background-color: #bbb; width: 100%">./HList</h2>
-<h4>Fix (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-<>
-</pre></dd>
-</dl>
-<h4>Type (kind)</h4>
-<p></p>
-<dl>
-<dt>sort</dt><dd><pre>
-∀(a : Kind) → ∀(b : Kind) → Kind
-</pre></dd>
-<dt>kind</dt><dd><pre>
-λ(a : Kind) → λ(b : Kind) → < Cons : { head : a, tail : b } | Nil : Type >
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Identity</h2>
@@ -9834,57 +10219,6 @@ Type
 → { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }
 </pre></dd>
 </dl>
-<h3 style="background-color: #bbb; width: 100%">./Monoid/Hopf</h3>
-<h4>Type (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , identity :
-          object
-      , op :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀(m : object)
-→ Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-  λ(object : Kind)
-→ λ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , identity :
-          object
-      , op :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ λ(m : object)
-→ { antipode :
-      cat.arrow { _1 = m, _2 = m }
-  , comonoid :
-      { identity :
-          cat.arrow { _1 = m, _2 = cat.identity }
-      , op :
-          cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
-      }
-  , monoid :
-      { identity :
-          cat.arrow { _1 = cat.identity, _2 = m }
-      , op :
-          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
-      }
-  }
-</pre></dd>
-</dl>
 <h4>Kind (kind)</h4>
 <p>{- NB: `identity` would ideally be defined with `: kArrow kIdentity m`, but
        there’s no Kind-level `{}` to use there.
@@ -9984,18 +10318,6 @@ Type
   , rightIdentity :
       ∀(a : m) → Bool
   }
-</pre></dd>
-</dl>
-<h4>slaws (type)</h4>
-<p>{- It looks like this is actually the laws for a Semigroupal category, since it
-   needs an arrow and a product.
--}</p>
-<dl>
-<dt>kind</dt><dd><pre>
-Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-<>
 </pre></dd>
 </dl>
 <h4>terms.dhall (term)</h4>

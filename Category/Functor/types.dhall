@@ -11,16 +11,30 @@ let Category =
       kArrow
       kProduct
 
-let MonoidalCategory = ./../Monoidal/Kind kArrow kProduct
+let MonoidalCategory =
+      ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+      kArrow
+      kProduct
 
-let base = ./../Monoidal/extractCategory kArrow kProduct
+let base =
+      ./../Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
+      kArrow
+      kProduct
 
-in    λ(cObject : Kind)
+in    λ ( cObject
+        : Kind
+        )
     → λ(dObject : Kind)
     → λ(v : MonoidalCategory Type vObject)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
-    → ./../types.dhall
+    → ./../types.dhall sha256:ba6db6fca0c9310f9067aca5d5aff33b188942b1e765454d261aa08348b47810
       (kArrow cObject dObject)
       v
-      (./category cObject dObject (base Type vObject v) c d)
+      ( ./category sha256:20c87f9335c2da300dd29d45d7e78499a113481708800d86b12d1fb55ae58d9d
+        cObject
+        dObject
+        (base Type vObject v)
+        c
+        d
+      )

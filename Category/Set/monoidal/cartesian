@@ -13,4 +13,6 @@ in      { diagonal =
         Type
         Type
         ./../rig sha256:7675c3b1f1540c9912bfc697d659ac38b8f3197718e238d83c16a8583cf793e2
-    : ./../../../Category/Monoidal/Closed/Cartesian/Kind kArrow Type
+    : ./../../../Category/Monoidal/Closed/Cartesian/Kind sha256:4ade819f102a0b8d5385d5d0f9a50363f18860b1d9758b471e78dbf1a0aeaf0b
+      kArrow
+      Type
