@@ -4,31 +4,27 @@ let kArrow =
 let kProduct =
       ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let Isomorphism = ./../../Isomorphism/Type
+
+let SemigroupalCategory =
+      ./Kind sha256:c397273f09d2bc88d7fb86edfcdc776644a7d9ad34ecd55177bd834e624af11e
+      kArrow
+      kProduct
+
 let vObject = Type
 
-in    λ ( object
-        : Kind
-        )
-    → λ ( cat
-        : ./Kind sha256:c397273f09d2bc88d7fb86edfcdc776644a7d9ad34ecd55177bd834e624af11e
-          kArrow
-          kProduct
-          vObject
-          object
-        )
-    → let Isomorphism =
-            ./../../Isomorphism/Type sha256:5c54e6cfc68d8e5948c355658f18db9b3bcf21a6fdf436ac2ef80ee5eed192b7
+in    λ(object : Kind)
+    → λ(cat : SemigroupalCategory vObject object)
+    → { associativity :
+            ∀(a : object)
+          → ∀(b : object)
+          → ∀(c : object)
+          → Isomorphism
             object
-            cat.arrow
-      
-      in  { associativity :
-                ∀(a : object)
-              → ∀(b : object)
-              → ∀(c : object)
-              → Isomorphism
-                { _1 =
-                    cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }
-                , _2 =
-                    cat.op { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
-                }
-          }
+            (./extractCategory kArrow kProduct vObject object cat)
+            { _1 =
+                cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }
+            , _2 =
+                cat.op { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
+            }
+      }

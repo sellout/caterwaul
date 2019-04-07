@@ -9,15 +9,12 @@
       vObject
       object
     )
-→   { constraint =
-        duoidal.constraint
-    , arrow =
-        duoidal.arrow
-    , identity =
-        duoidal.additive.identity
-    , op =
-        duoidal.additive.op
-    }
+→     { identity =
+          duoidal.additive.identity
+      , op =
+          duoidal.additive.op
+      }
+    ∧ ./extractCategory kArrow kProduct vObject object duoidal
   : ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
     kArrow
     kProduct

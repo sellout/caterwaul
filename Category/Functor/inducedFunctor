@@ -1,0 +1,51 @@
+{- Any functor `p : C → C'` induces a functor between functor categories
+  `[C', D] → [C, D]`.
+-}
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+
+let Category = ./../Kind kArrow kProduct
+
+let Compose = ./../../Compose/Type
+
+let Functor = ./../../Functor/Type
+
+let FunctorCategory = ./category
+
+let NaturalTransformation = ./../../NaturalTransformation/Type
+
+let Set = ./../Set/monoidal/cartesian
+
+let vObject = Type
+
+let v = Set.{ arrow, constraint }
+
+in    λ(cObject : Kind)
+    → λ(c : Category vObject cObject)
+    → λ(cpObject : Kind)
+    → λ(cp : Category vObject cpObject)
+    → λ(p : kArrow cObject cpObject)
+    → λ(dObject : Kind)
+    → λ(d : Category vObject dObject)
+    →   { map =
+              λ(a : kArrow cpObject dObject)
+            → λ(b : kArrow cpObject dObject)
+            → λ ( fn
+                : NaturalTransformation cpObject dObject d { _1 = a, _2 = b }
+                )
+            → λ(i : cObject)
+            → fn (p i)
+        }
+      : Functor
+        vObject
+        (kArrow cpObject dObject)
+        (kArrow cObject dObject)
+        v
+        (FunctorCategory cpObject dObject v cp d)
+        (FunctorCategory cObject dObject v c d)
+        (   λ(h : kArrow cpObject dObject)
+          → Compose cObject cpObject dObject { _1 = h, _2 = p }
+        )

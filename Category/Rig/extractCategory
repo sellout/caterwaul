@@ -1,0 +1,13 @@
+  λ(kArrow : Kind → Kind → Kind)
+→ λ(kProduct : Kind → Kind → Kind)
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→ λ ( rig
+    : ./Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
+      kArrow
+      kProduct
+      vObject
+      object
+    )
+→   { constraint = rig.constraint, arrow = rig.arrow }
+  : ./../Kind kArrow kProduct vObject object

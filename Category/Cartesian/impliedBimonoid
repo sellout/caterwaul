@@ -1,0 +1,30 @@
+{- Every monoid in a cartesian category is a bimonoid in a unique way. -}
+let kArrow =
+      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+
+let kProduct =
+      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+
+let Bimonoid =
+      ./../../Bimonoid/Type sha256:96573eff0e7b59b0b665f3f859210ed58ad48c159be144f52ae7744be76b430a
+
+let CartesianCategory =
+      ./Type sha256:9f2137c01ea7d329d5171b0e5d8c2f522d95cd7a93711e5e8e4b6dc7d594e04d
+
+let Monoid =
+      ./../../Monoid/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
+
+let MonoidalCategory =
+      ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
+      kArrow
+      kProduct
+
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(v : MonoidalCategory Type vObject)
+    → λ(cat : MonoidalCategory vObject object)
+    → λ(m : object)
+    → λ(cartesian : CartesianCategory object v cat m)
+    → λ(monoid : Monoid object cat m)
+    → { monoid = monoid, comonoid = cartesian.comonoid } : Bimonoid object cat m

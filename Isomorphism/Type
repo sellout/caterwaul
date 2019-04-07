@@ -4,9 +4,11 @@ let kArrow =
 let kProduct =
       ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
 
+let vObject = Type
+
 in    λ(object : Kind)
-    → λ(arrow : kArrow (kProduct object object) Type)
+    → λ(cat : ./../Category/Kind kArrow kProduct vObject object)
     →   (   λ(a : { _1 : object, _2 : object })
-          → { to : arrow a, from : arrow { _1 = a._2, _2 = a._1 } }
+          → { to : cat.arrow a, from : cat.arrow { _1 = a._2, _2 = a._1 } }
         )
-      : kArrow (kProduct object object) Type
+      : kArrow (kProduct object object) vObject
