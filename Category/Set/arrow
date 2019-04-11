@@ -1,16 +1,21 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let Cat =
+      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let v =
-      ./monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      Cat
+      Type
+      vObject
+      ./monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 let Set =
-      ./monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Monoidal/Cartesian/extractSemigroupal sha256:7e5d21f3576c085dca88a9b3bfa2cc01b21136397fbb7c9a6ffd9a990c0282cf
+      Cat
+      vObject
+      Type
+      ./monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 in    { split =
             λ(a : Type)
@@ -66,13 +71,7 @@ in    { split =
           → λ(x : b._1)
           → f._2 (fn (f._1 x))
       }
-    : ./../../Arrow/Type sha256:d4b81aeba858b5caff956bc7d0af2a96f261786f31907635c394ea2ddbf4db05
+    : ./../../Arrow/Type sha256:759b21e206149156890a66e451068ab35e69fd0bf99ad580084c390022c48008
       Type
       v
-      ( ./../Monoidal/extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
-        kArrow
-        kProduct
-        vObject
-        Type
-        Set
-      )
+      Set

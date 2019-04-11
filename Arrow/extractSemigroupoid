@@ -1,8 +1,5 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
@@ -10,33 +7,30 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
+        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+          kCat
           Type
           vObject
         )
     → λ ( cat
-        : ./../Category/Semigroupal/Kind sha256:c397273f09d2bc88d7fb86edfcdc776644a7d9ad34ecd55177bd834e624af11e
-          kArrow
-          kProduct
+        : ./../Category/Semigroupal/Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+          kCat
           vObject
           object
         )
     → λ ( arrow
-        : ./Type sha256:d4b81aeba858b5caff956bc7d0af2a96f261786f31907635c394ea2ddbf4db05
+        : ./Type sha256:759b21e206149156890a66e451068ab35e69fd0bf99ad580084c390022c48008
           object
           v
           cat
         )
     →   arrow.{ op
               }
-      : ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
+      : ./../Semigroupoid/Type sha256:c43adcdb5e9cb39774277d7dcbeb77a8c85a6d64458b129d1a92bac3711f132d
         object
         v
-        ( ./../Category/Semigroupal/extractCategory sha256:e91af8eaf3c5c29c44bd0fc193a537c6048ddbb6adc6d17f2631ebd27f4de897
-          kArrow
-          kProduct
+        ( ./../Category/Semigroupal/extractCategory sha256:6f1f56b9a2979d9d15d3f85459a5869f8122619c2dbd3b7ba0d982c6de320222
+          kCat
           vObject
           object
           cat

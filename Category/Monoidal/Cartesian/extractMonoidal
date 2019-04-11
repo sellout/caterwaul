@@ -1,0 +1,20 @@
+  λ ( cat
+    : ./../Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+    )
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→ λ ( cartesian
+    : ./Kind sha256:4ac875e8c1c47c4aa92d3c46ef58468ec26b213dc8aa5fd6a8ceed3273f0e8e3
+      cat
+      vObject
+      object
+    )
+→   cartesian.{ constraint
+              , arrow
+              , identity
+              , op
+              }
+  : ./../Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+    cat
+    vObject
+    object

@@ -1,18 +1,14 @@
-let kArrow =
-      ./../../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat =
+      ./../../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 in      { diagonal =
             λ(a : Type) → { _1 = a, _2 = a }
         }
-      ∧ ./../../Rig/extractMultiplicative sha256:745f93c40ce5eaa7eae89720816454e14832c9b87596c0f50c505af722ad8596
-        kArrow
-        kProduct
+      ∧ ./../../Rig/extractMultiplicative sha256:fef92f72e30bf84551fae14ba281414b952d166146fc061b212ea3c0afef650d
+        cat
         Type
         Type
-        ./../rig sha256:7675c3b1f1540c9912bfc697d659ac38b8f3197718e238d83c16a8583cf793e2
-    : ./../../../Category/Monoidal/Closed/Cartesian/Kind sha256:4ade819f102a0b8d5385d5d0f9a50363f18860b1d9758b471e78dbf1a0aeaf0b
-      kArrow
+        ./../rig sha256:11dbf023e35a2fb89e364023c53cf9f99bb3fd25f3b650b3b925595e01049669
+    : ./../../../Category/Monoidal/Closed/Cartesian/Kind sha256:b79a15c145272c09f0ff7a4d1c5ac29c58b809739730c067241780dd292c5078
+      cat
       Type

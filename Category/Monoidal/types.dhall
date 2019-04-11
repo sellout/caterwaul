@@ -1,8 +1,5 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
@@ -10,53 +7,54 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
+        : ./Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+          kCat
           Type
           vObject
         )
     → λ ( cat
-        : ./Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
+        : ./Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+          kCat
           vObject
           object
         )
     → let Set =
-            ./../Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+            ./Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+            kCat
+            vObject
+            Type
+            ./../Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
       
       in    { CommutativeGroup =
-                ./../../Group/Commutative/Type sha256:1d2eb52b6091711502e80d646cab25260b08324221c423c04df23b76e600b2c0
+                ./../../Group/Commutative/Type sha256:fc01995b27c56e372c0cac6a842f3f7e80095057868f72104d58140e3b5bf908
                 object
                 cat
             , CommutativeMonoid =
-                ./../../Monoid/Commutative/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
+                ./../../Monoid/Commutative/Type sha256:7ec2cac4a8bda85f6010a0a00ab0da221bcc0ea295863c1c6259c5aa14878500
                 object
                 cat
             , Day =
-                ./../../Day/Type sha256:08b059e69330b8894b4a1830425eea70c2e4a0366c97e99cad8c073283bab16d
+                ./../../Day/Type sha256:75bb9592fce61b6be1565b8b7589763f51b71a9dab310fd5b9c72dbce176a67f
                 object
                 Set
                 cat
             , Field =
-                ./../../Field/Type sha256:a6589488cb3d578e43cf222dbbe82edf782ec86043d3032a5d54c2e3db958f5b
+                ./../../Field/Type sha256:6ef655309a937164f95bda55fe839a7329b4629b1d2042213a01f103e413ff43
                 object
                 cat
             , Group =
-                ./../../Group/Type sha256:1d2eb52b6091711502e80d646cab25260b08324221c423c04df23b76e600b2c0
+                ./../../Group/Type sha256:fc01995b27c56e372c0cac6a842f3f7e80095057868f72104d58140e3b5bf908
                 object
                 cat
             , Monoid =
-                ./../../Monoid/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
+                ./../../Monoid/Type sha256:7ec2cac4a8bda85f6010a0a00ab0da221bcc0ea295863c1c6259c5aa14878500
                 object
                 cat
             , MonoidalFunctor =
-                ./../../Functor/Monoidal/Type sha256:3fd0a2398dd1d3c0cb029ce034f09d4c1b6f51e622139f06ad1086ceea926567
+                ./../../Functor/Monoidal/Type sha256:7d4a68165b33b76bf9e8d8ab6fc8739699a1260549ebee624e57d8cab06f97c0
                 object
-                ( ./extractcategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-                  kArrow
-                  kProduct
+                ( ./extractcategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+                  kCat
                   Type
                   vObject
                   v
@@ -64,24 +62,23 @@ in    λ ( object
                 cat
                 Set
             , Rig =
-                ./../../Rig/Type sha256:3baff106e4b8032968b2fe0645306289090cac86c85317ab4281353146780a27
+                ./../../Rig/Type sha256:a9c861fad7547e485d9c2238266baa59221ed1c3f8b2f540a6a8fcabaa7ddd03
                 object
                 cat
             , Ring =
-                ./../../Ring/Type sha256:77b44df8cc75bc4287fe797e2d655776283097caed2e17d0ccadf43eb96ee046
+                ./../../Ring/Type sha256:c568c4291c16cccc5a32f16d7962dbcf9b6ef7b5c9aaf67a6086946ad21ee64a
                 object
                 cat
             , Semiring =
-                ./../../Semiring/Type sha256:8ef0a1efff6a14a542202cb12fcd94f8c9ddda235e2ce2133fc1da5efcb184be
+                ./../../Semiring/Type sha256:596494c7f410b819e5b60a9246dee8dbd9d24cb8603477c81830a34809c45a91
                 object
                 cat
             }
-          ∧ ./../Semigroupal/types.dhall sha256:229128827e0b2be96091589c5c92491b33619213335aa8414eb4322162645ef4
+          ∧ ./../Semigroupal/types.dhall sha256:c2ad1eea90a1249da92468ab10ef0102073879fa133618158414193835529916
             object
             v
-            ( ./extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
-              kArrow
-              kProduct
+            ( ./extractSemigroupal sha256:8fc720d6416e099e6943afa14eefa7bb86489af66eea29c4d5c9e11eab9c6808
+              kCat
               vObject
               object
               cat

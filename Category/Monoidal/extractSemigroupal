@@ -1,14 +1,14 @@
 {- FIXME: Should be able to do `monoidal.{ arrow, op }`, but Dhall doesn’t like
           that for some reason.
 -}
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ ( cat
+    : ./Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+    )
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( monoidal
-    : ./Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-      kArrow
-      kProduct
+    : ./Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      cat
       vObject
       object
     )
@@ -19,8 +19,7 @@
     , op =
         monoidal.op
     }
-  : ./../Semigroupal/Kind sha256:c397273f09d2bc88d7fb86edfcdc776644a7d9ad34ecd55177bd834e624af11e
-    kArrow
-    kProduct
+  : ./../Semigroupal/Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+    cat
     vObject
     object

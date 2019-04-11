@@ -1,23 +1,32 @@
+let kCat =
+      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+
+let vObject = Type
+
 let object = Type
 
 let cat =
-      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      kCat
+      vObject
+      object
+      ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 in    λ ( m
         : object
         )
     → λ ( field
-        : ./Type sha256:b15fa73b5506bfaab6c40d363c176ccf478338af0f99682dcc61377af28f3b31
+        : ./Type sha256:7ac1525deb156a2ce22d96f3958e4add809c3c7d763956ff92c563a5b8a843ff
           m
         )
     →   { additive =
-            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup sha256:1a54bc2c708aec2d9b61ff04c4878c529537a15d13d714cfbb74f8c16c970628
+            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup sha256:11ad75e2e86b5395a70a31bc10ceee173bd314d8321f49bc8b7dcf43036de7b0
             m
             field.additive
         , multiplicative =
             field.multiplicative.{ identity, inverse, op }
         }
-      : ./../Type sha256:a6589488cb3d578e43cf222dbbe82edf782ec86043d3032a5d54c2e3db958f5b
+      : ./../Type sha256:6ef655309a937164f95bda55fe839a7329b4629b1d2042213a01f103e413ff43
         object
         cat
         m

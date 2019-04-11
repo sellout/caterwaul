@@ -1,4 +1,4 @@
 {- A commutative monoid implies a preorder. However, that currently forces us
    into *Set*, so we instead just alias the non-commutative type to avoid specializing.
 -}
-./../Kind sha256:ee93cf6b2a974928a129df775e1fe4c7afb76224fcd8466e9e485ce039c87bba
+./../Kind sha256:d09be9f9f87e3e29fb6237321a7330866bcea58798e4a4a6b7dc45f1c609af22

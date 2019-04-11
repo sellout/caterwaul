@@ -1,11 +1,11 @@
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ ( cat
+    : ./../Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+    )
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( rig
-    : ./Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
-      kArrow
-      kProduct
+    : ./Kind sha256:477d8185fbbe496496f87216c1204a2367ff703d5ca3b0c7495f17c43ac4dec6
+      cat
       vObject
       object
     )
@@ -14,9 +14,12 @@
       , op =
           rig.multiplicative.op
       }
-    ∧ ./extractCategory kArrow kProduct vObject object rig
-  : ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-    kArrow
-    kProduct
+    ∧ ./extractCategory sha256:bde612d19d314b7e0948fe034abeb4c6d06b7aafd95550ce115672c904792089
+      cat
+      vObject
+      object
+      rig
+  : ./../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+    cat
     vObject
     object

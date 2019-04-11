@@ -1,18 +1,18 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let v =
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      kCat
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 let vBase =
-      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-      kArrow
-      kProduct
+      ./../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+      kCat
       Type
       vObject
       v
@@ -21,22 +21,21 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-          kArrow
-          kProduct
+        : ./../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+          kCat
           vObject
           object
         )
     → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
+        : ./../Semigroupoid/Type sha256:c43adcdb5e9cb39774277d7dcbeb77a8c85a6d64458b129d1a92bac3711f132d
           object
           v
           cat
           cat.arrow
         )
-    → λ(m : kArrow object object)
+    → λ(m : kCat.arrow object object)
     → λ ( functor
-        : ./../Functor/Endo/Type sha256:f7141343200ccaa9a1f80d06732e331624a3edd9e92b9ec3153db87c468fafe3
+        : ./../Functor/Endo/Type sha256:158c6ae27571d27adefd3b94b6b9ce3ed48e1130d406ec72c62ccadcf931dcd0
           vObject
           object
           vBase
@@ -44,13 +43,13 @@ in    λ ( object
           m
         )
     → λ ( monad
-        : ./Type sha256:081e7d7d11c47a6170ed19e4593cc9f55600302a7aa5128a643f5e56c890eb05
+        : ./Type sha256:d47c5141940d87e0a1ed370c52c27ddb1be4330b8c6684c90247f1f72eb77876
           object
           cat
           m
         )
     → let extractStarfunctor =
-            ./impliedStarfunctor sha256:1d675b44b4bc5ebe652f969661e9f17cea2794ac4d4221b95a7f1adb5cde145c
+            ./impliedStarfunctor sha256:9f0b07169975c0e36ccdca72a4d1b8728484206c6be328b50c3616efb4e26925
             object
             cat
             semigroupoid

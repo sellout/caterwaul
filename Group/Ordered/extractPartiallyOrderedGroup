@@ -4,7 +4,7 @@ in    λ ( m
         : object
         )
     → λ ( group
-        : ./Type sha256:b6fbc7bc6aaee3da63e7efb2c717e9a204eb903ad0b81c6d972b26625a3f393b
+        : ./Type sha256:8b6d9aadc23c1f247b44f71cce87b88cd74506427efef577bf730504d1213202
           m
         )
     →   group.{ eq
@@ -13,5 +13,5 @@ in    λ ( m
               , op
               , partialLE
               }
-      : ./../PartiallyOrdered/Type sha256:5917fd022b0a2614b362fc6beac71ec4303c8cf654e38985bda5a5705cc7bd00
+      : ./../PartiallyOrdered/Type sha256:74347464c97f0377694a6b16680573fd88a8ee37aa78497228bae5b803c73670
         m

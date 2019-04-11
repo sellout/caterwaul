@@ -1,41 +1,39 @@
-let kArrow =
-      ./../../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat =
+      ./../../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let v =
-      ./../../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-      kArrow
-      kProduct
+      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      cat
       Type
       vObject
-      ./../../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
-let object = Type
-
-let cat =
-      ./../../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+let Set =
+      ./../../../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      cat
+      vObject
+      Type
+      ./../../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 in    λ ( m
-        : kArrow object object
+        : cat.arrow Type Type
         )
     → λ ( monoidal
-        : ./../../../Functor/Monoidal/Type sha256:3fd0a2398dd1d3c0cb029ce034f09d4c1b6f51e622139f06ad1086ceea926567
-          object
+        : ./../../../Functor/Monoidal/Type sha256:7d4a68165b33b76bf9e8d8ab6fc8739699a1260549ebee624e57d8cab06f97c0
+          Type
           v
-          cat
-          cat
+          Set
+          Set
           m
         )
     →   { map =
               λ ( a
-                : object
+                : Type
                 )
-            → λ(b : object)
-            → λ(f : cat.arrow { _1 = a, _2 = m b })
+            → λ(b : Type)
+            → λ(f : Set.arrow { _1 = a, _2 = m b })
             → λ(fa : List a)
             → let liftCons =
                       λ ( mb
@@ -48,10 +46,10 @@ in    λ ( m
                             : Type
                             )
                         → λ ( day
-                            : ./../../../Day/convolution sha256:e9cc6113ab1965750eabb0f553e45e3818548a78755967d465d6f3082e674913
-                              object
-                              cat
-                              cat
+                            : ./../../../Day/convolution sha256:ca965ddd64a13ff9661a3e175fa344344e188283b59f6620afb6ffb36fe95ba5
+                              Type
+                              Set
+                              Set
                               m
                               m
                               (List b)
@@ -70,19 +68,18 @@ in    λ ( m
                   (λ(x : a) → liftCons (f x))
                   ( monoidal.identity
                     (List b)
-                    (λ(_ : cat.identity) → [] : List b)
+                    (λ(_ : Set.identity) → [] : List b)
                   )
         }
-      : ./../../../Functor/Endo/Star/Type sha256:2362c697b588d4e2206bc6003d63b13abc31f8ecc25f6ccb72950d3611b6cb7f
+      : ./../../../Functor/Endo/Star/Type sha256:fc8ac120351147c630fb970d16a63ab71aaf0db1cef9764f6988f65b318c199a
         vObject
-        object
+        Type
         v
-        ( ./../../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-          kArrow
-          kProduct
-          vObject
-          object
+        ( ./../../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
           cat
+          vObject
+          Type
+          Set
         )
         m
         List

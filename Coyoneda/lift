@@ -1,46 +1,41 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let object = Type
 
 in    λ ( v
-        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
+        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+          kCat
           Type
           vObject
         )
     → λ ( cat
-        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-          kArrow
-          kProduct
+        : ./../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+          kCat
           vObject
           object
         )
     → λ ( category
-        : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+        : ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
           object
           v
           cat
         )
-    → ./../Lan/lift sha256:6c26f826d1468efaa1b1a0a8156b32f28a8032f9d35004d62de39ee279c24cd4
+    → ./../Lan/lift sha256:2cca8ebfdbd743d9b119a68f5c9e6a771b7bbfaa68897d41e5e2fe5ecdc0da35
       v
       cat
-      ( ./../Category/extractSemigroupoid sha256:fbbdc5300698558b5463a073aa44518f8663baf8d7be5a2f9875930f9f11cbcc
+      ( ./../Category/extractSemigroupoid sha256:32704d792cbe70770219b46101523db724eae4e3b156dba1502d01ebc0de1563
         object
         v
         cat
         category
       )
-      ( ./../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+      ( ./../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
         object
       )
-      ( ./../Identity/comonad sha256:a6b345fbefa73a2aaa218aeb448c21636dab3ae65eaeeb56c6d309f36576ef99
+      ( ./../Identity/comonad sha256:bd10d87a59f05cca818c2a98e8bd513b65f03a37fb15971357edb8e79052addf
         object
         v
         cat

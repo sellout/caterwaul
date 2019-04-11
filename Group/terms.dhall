@@ -1,40 +1,39 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let v =
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      kCat
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
+        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+          kCat
           vObject
           object
         )
     → let base =
-            ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-            kArrow
-            kProduct
+            ./../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+            kCat
             vObject
             object
             cat
       
       in    λ ( category
-              : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+              : ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
                 object
                 v
                 base
               )
           → λ ( bifunctor
-              : ./../Functor/Bifunctor/Type sha256:36f2a4b32c8e3b6a9a6d24d1289772f6aed01f9b314c9c8c5624e2dc42695d30
+              : ./../Functor/Bifunctor/Type sha256:d8949693dfb049e8d09615a9e1e7037418bc3e654d2eeecfc61e41a99e7daf41
                 vObject
                 object
                 object
@@ -47,7 +46,7 @@ in    λ ( object
               )
           → λ(m : object)
           → λ ( group
-              : ./Type sha256:1d2eb52b6091711502e80d646cab25260b08324221c423c04df23b76e600b2c0
+              : ./Type sha256:fc01995b27c56e372c0cac6a842f3f7e80095057868f72104d58140e3b5bf908
                 object
                 cat
                 m
@@ -55,7 +54,7 @@ in    λ ( object
           →   { inverse =
                   group.inverse
               , leftQuotient =
-                  ./leftQuotient sha256:a4b420bce76087a1e02ea4d9ca7b2eddf611b78ffd65421cc395e994f4569256
+                  ./leftQuotient sha256:b53eb8a6d9425135881204b29b9e5b0494d36b85e250f1e781affd527a0bd1cc
                   object
                   cat
                   category
@@ -63,7 +62,7 @@ in    λ ( object
                   m
                   group
               , rightQuotient =
-                  ./rightQuotient sha256:f467c545710e199da12304ed8761cac63b86788eb4d0d2aaf8ce56a4ed30d000
+                  ./rightQuotient sha256:90d602a30cc7faecbf231c472d3fd1b9559980d13151e39cd6f5d49c440e59f3
                   object
                   cat
                   category
@@ -71,11 +70,11 @@ in    λ ( object
                   m
                   group
               }
-            ∧ ./../Monoid/terms.dhall sha256:b906e84f120eec0dfe1541cf68aa1443c9a8d74f943d7f357b82f11d92926796
+            ∧ ./../Monoid/terms.dhall sha256:6b5d11e766798070bb13f1e3d950d2dd4a7c12039d3bb767bec090d78a87a412
               object
               cat
               m
-              ( ./extractMonoid sha256:43250fa0d527ae8fa554881a0f91783870ffeb02c279dede032649071682b484
+              ( ./extractMonoid sha256:49c1580d0e7d8b8f154acb786f7f3011f135300908fbc942137a095e1f66eedf
                 object
                 cat
                 m

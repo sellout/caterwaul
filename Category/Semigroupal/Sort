@@ -1,0 +1,3 @@
+{- Should use ` ⩓ ./../Sort`.
+-}
+{ arrow : Kind → Kind → Kind, product : Kind → Kind → Kind }

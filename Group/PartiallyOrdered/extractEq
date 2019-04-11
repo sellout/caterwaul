@@ -1,9 +1,9 @@
   λ(m : Type)
 → λ ( group
-    : ./Type sha256:5917fd022b0a2614b362fc6beac71ec4303c8cf654e38985bda5a5705cc7bd00
+    : ./Type sha256:74347464c97f0377694a6b16680573fd88a8ee37aa78497228bae5b803c73670
       m
     )
 →   group.{ eq
           }
-  : ./../../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
+  : ./../../Eq/Type sha256:16ec0250d1cd6f2d48bb5fe37d46d1db9ef640657c7b247b8d5be1aca30259b1
     m

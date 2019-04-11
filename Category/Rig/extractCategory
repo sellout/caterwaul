@@ -1,13 +1,20 @@
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ ( cat
+    : ./../Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+    )
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( rig
-    : ./Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
-      kArrow
-      kProduct
+    : ./Kind sha256:477d8185fbbe496496f87216c1204a2367ff703d5ca3b0c7495f17c43ac4dec6
+      cat
       vObject
       object
     )
-→   { constraint = rig.constraint, arrow = rig.arrow }
-  : ./../Kind kArrow kProduct vObject object
+→   { constraint =
+        rig.constraint
+    , arrow =
+        rig.arrow
+    }
+  : ./../Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+    cat
+    vObject
+    object

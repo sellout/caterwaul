@@ -36,9 +36,9 @@ As much as possible, these are defined at multiple levels. E.g.
 - `./Monoid/Kind` is kind-level monoid, where instances are defined for specific kinds, like `{}`/`./Tuple/Type` for the kind `Type`; and
 - `kProduct` at the top of most files is a sort-level monoid (well, a semigroup, since we have no unit kind), which is usually `./Tuple/Kind`, but may also be `./Either/Kind`.
 
-Things at the sort level can’t be “grouped” (or even bound) in any way, so we talk about `kArrow` and `kProduct` forming a sort-level monoidal category (with `Kind` as the objects and an undefinable unit), but can’t organize them any better than that.
+Things at the sort level can’t be “grouped” (or even bound) in any way, so we talk about `kCat` forming a sort-level monoidal category (with `Kind` as the objects and an undefinable unit), but can’t organize them any better than that.
 
-As that last sentence implies, everything lives within a “`Kind`-level” monoidal category, which you can think of as an approximation of **Cat**. This is represented by the names `kArrow` and `kProduct`. The object of the category is implicitly `Kind`, but we can’t specify that explicitly. We also have no way of representing common monoidal identities at the Kind-level (e.g., `{}` and `<>` have no `Kind`-level equivalent), so there is no `kIdentity` for the monoidal category. It actually forms a rig category, with `./Tuple/Kind` and `./Either/Kind`, but mostly you just see a monoidal view of it.
+As that last sentence implies, everything lives within a “`Kind`-level” monoidal category, which you can think of as an approximation of **Cat**. The object of the category is implicitly `Kind`, but we can’t specify that explicitly. We also have no way of representing common monoidal identities at the Kind-level (e.g., `{}` and `<>` have no `Kind`-level equivalent), so there is no `cat.unit` for the monoidal category. It actually forms a rig category, with `./Tuple/Kind` and `./Either/Kind`, but mostly you just see a monoidal view of it.
 
 We also use a `v…` convention when talking about enriched categories – like `vObject`, `vArrow`, etc. At least so far, the enriching category is always **Set**, so `vObject = Type` and `v = ./Category/Set`, but the convention helps us keep track of _why_ we’re using those types.
 

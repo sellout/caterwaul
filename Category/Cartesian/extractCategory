@@ -1,14 +1,14 @@
 {- FIXME: Should be able to do `cartesian.{ arrow, op }`, but Dhall doesn’t like
           that for some reason.
 -}
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ ( cat
+    : ./../Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+    )
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( cartesian
-    : ./Kind sha256:6236c478bcaaab7be15886235dcb29d272ed5def93e6094fd9fccf9121fad1d9
-      kArrow
-      kProduct
+    : ./Kind sha256:4ac875e8c1c47c4aa92d3c46ef58468ec26b213dc8aa5fd6a8ceed3273f0e8e3
+      cat
       vObject
       object
     )
@@ -17,8 +17,7 @@
     , arrow =
         cartesian.arrow
     }
-  : ./../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-    kArrow
-    kProduct
+  : ./../Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+    cat
     vObject
     object

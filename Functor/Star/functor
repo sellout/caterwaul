@@ -1,50 +1,55 @@
 {- If there is a natural transformation from `n` to `m`, then a m-Star functor
    can be made into an n-Star functor.
 -}
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let v =
-      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      kCat
+      Type
+      vObject
+      ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+
+let Set =
+      ./../../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      kCat
+      vObject
+      Type
+      ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-          kArrow
-          kProduct
+        : ./../../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+          kCat
           vObject
           object
         )
     → λ ( category
-        : ./../../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+        : ./../../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
           object
           v
           cat
         )
     → let vBase =
-            ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-            kArrow
-            kProduct
+            ./../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+            kCat
             Type
             vObject
             v
       
-      let endoObject = kArrow object object
+      let endoObject = kCat.arrow object object
       
       let endo =
-            ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-            kArrow
-            kProduct
+            ./../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+            kCat
             vObject
             endoObject
-            ( ./../../Category/Endofunctor/monoidal/monadic sha256:eae17a0f349c999d0cb4240a35b754212b124e8c53128a2fc8cd40cef7c0cc82
+            ( ./../../Category/Endofunctor/monoidal/monadic sha256:6c2ff9a2294a8955a06b7ccad72ba28e11587ecb0882b7ecd1702b56c59d2f38
               object
               vBase
               cat
@@ -60,7 +65,7 @@ in    λ ( object
                   → λ(n : endoObject)
                   → λ(natural : endo.arrow { _1 = n, _2 = m })
                   → λ ( star
-                      : ./Type sha256:d014b87f0569e99e9d042215747a6ea4bdefe9101a034bbec7c57fde33f96f51
+                      : ./Type sha256:478e56de78e7bcfddaa56adfb8e10e97007303aee206e5a64080fe7210bfb539
                         vObject
                         object
                         vBase
@@ -89,23 +94,17 @@ in    λ ( object
                           )
                     }
               }
-            : ./../../Functor/Contravariant sha256:b8fd4cab4d0a71d79d3a6db1b9566ff09d1d81043c232b61adad3ed45c4d61dd
+            : ./../../Functor/Contravariant sha256:5cac00b722fed910bc5b8637f00ec1361decf3c8936a4336631a4cf3ba1d20e6
               vObject
               endoObject
               Type
               vBase
               endo
-              ( ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-                kArrow
-                kProduct
-                vObject
-                Type
-                ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
-              )
+              Set
               (   λ ( a
                     : endoObject
                     )
-                → ./Type sha256:d014b87f0569e99e9d042215747a6ea4bdefe9101a034bbec7c57fde33f96f51
+                → ./Type sha256:478e56de78e7bcfddaa56adfb8e10e97007303aee206e5a64080fe7210bfb539
                   vObject
                   object
                   vBase

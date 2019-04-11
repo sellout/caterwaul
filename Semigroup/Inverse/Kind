@@ -1,10 +1,10 @@
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ ( cat
+    : ./../../Category/Semigroupal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+    )
 → λ(m : Kind)
 →   { inverse :
-        kArrow m m
+        cat.arrow m m
     }
-  ⩓ ./../../Semigroup/Kind sha256:06bc772a2dac44c6b3caa344f0f5f3d25522919fcd818fb1e10d3e968ba8c12f
-    kArrow
-    kProduct
+  ⩓ ./../../Semigroup/Kind sha256:d3bf6e41e5fe906bfbd8f9928c3510b3b4dc39119fa887d5d3200998011b79b9
+    cat
     m

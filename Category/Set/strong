@@ -1,26 +1,24 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat =
+      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let v =
-      ./monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
-
-let object = Type
-
-let cat =
-      ./../Monoidal/extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
-      kArrow
-      kProduct
+      ./../Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      cat
+      Type
       vObject
-      object
-      ./monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
-in  ./../../Arrow/extractStrong sha256:d20cb9f350f096c48935279d4f3c351914fee0b28cbeba486157ff8d1454ee2f
-    object
+let Set =
+      ./../Monoidal/Cartesian/extractSemigroupal sha256:7e5d21f3576c085dca88a9b3bfa2cc01b21136397fbb7c9a6ffd9a990c0282cf
+      cat
+      vObject
+      Type
+      ./monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+
+in  ./../../Arrow/extractStrong sha256:25b8239eb273cf659e6fce8f4c2887535707700df0afc5a095f1b38e948e810a
+    Type
     v
-    cat
-    ./arrow sha256:e120bc65f24a3497c365a09a89a4385a3dbec4d00df33038c8f3326f0ce3b792
+    Set
+    ./arrow sha256:e8842bef75f32fe3ff032d8ec3ac6d4cfdd5cf74a2ab673bf7837f0cdcc05ff0

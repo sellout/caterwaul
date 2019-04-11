@@ -1,20 +1,16 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-      kArrow
-      kProduct
+      ./../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      kCat
       vObject
       object
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 in    { unit =
           λ(a : object) → λ(x : a) → x
@@ -25,14 +21,14 @@ in    { unit =
       , rightAdjunct =
           λ(a : object) → λ(b : object) → λ(f : a → b) → f
       }
-    : ./../Adjunction/Type sha256:51ae2b2aced57c2ce57608835fd4331ac08731d0186f42dcf4149fac498b6862
+    : ./../Adjunction/Type sha256:9f462ba882ff165dc54ad4130625161af51d1df5530cfc925150f18ba4f24f25
       object
       object
       cat
       cat
-      ( ./Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+      ( ./Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
         object
       )
-      ( ./Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+      ( ./Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
         object
       )

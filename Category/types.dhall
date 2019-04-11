@@ -1,8 +1,5 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
@@ -10,39 +7,36 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
+        : ./Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+          kCat
           Type
           vObject
         )
     → λ ( cat
-        : ./Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-          kArrow
-          kProduct
+        : ./Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+          kCat
           vObject
           object
         )
     → let vBase =
-            ./Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-            kArrow
-            kProduct
+            ./Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+            kCat
             Type
             vObject
             v
       
       let Endofunctor =
-            ./../Functor/Endo/Type sha256:f7141343200ccaa9a1f80d06732e331624a3edd9e92b9ec3153db87c468fafe3
+            ./../Functor/Endo/Type sha256:158c6ae27571d27adefd3b94b6b9ce3ed48e1130d406ec72c62ccadcf931dcd0
             vObject
       
       in  { Adjunction =
-              ./../Adjunction/Type sha256:51ae2b2aced57c2ce57608835fd4331ac08731d0186f42dcf4149fac498b6862
+              ./../Adjunction/Type sha256:9f462ba882ff165dc54ad4130625161af51d1df5530cfc925150f18ba4f24f25
               object
               object
               cat
               cat
           , Bifunctor =
-              ./../Functor/Bifunctor/Type sha256:36f2a4b32c8e3b6a9a6d24d1289772f6aed01f9b314c9c8c5624e2dc42695d30
+              ./../Functor/Bifunctor/Type sha256:d8949693dfb049e8d09615a9e1e7037418bc3e654d2eeecfc61e41a99e7daf41
               vObject
               object
               object
@@ -52,88 +46,88 @@ in    λ ( object
               cat
               cat
           , Category =
-              ./Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
+              ./Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
               object
           , Codensity =
-              ./../Codensity/Type sha256:87aecef733f578301b6b47822bcf1015c7cf5e7700c705cecec2f2bce732349a
+              ./../Codensity/Type sha256:b0945f99031bc91ed9a0bc7c25b48ef903bf0c3746ac6fcaaeb04fefa0b652e1
               object
           , Comonad =
-              ./../Comonad/Type sha256:a197cedf53d6fab62ebbf59d0139b243e3bd71ff5a4b1bbfd9bd3b476762f9b7
+              ./../Comonad/Type sha256:d13db9e0b984aa3ad4e658ae2574973a4a477d0f8ca3b88c3b5a79d0799536c8
               object
               cat
           , Compose =
-              ./../Compose/Type sha256:e18cb4b2004c6cf2789b492be4e1b912e3299eca94c229dc5913a11d55bcd72c
+              ./../Compose/Type sha256:e830545569ce8ba04d3124a7ca93994fc93e18c0372616f45910253f0a00907d
               object
               object
               object
           , Const =
-              ./../Const/Type sha256:afc07425afed62cb4caa3f39fad3d935f236f71c056585b7dc4f1c7ecba31dbc
+              ./../Const/Type sha256:d0d255964e7701c8f9aa67f01b9f97dac9fbbda16e9c326faa48cddc1cf63740
               object
               object
           , Costar =
-              ./../Costar/Type sha256:8d50f81202ab49a78478d1fb61b301bde91fe682f04cc2b1e69cc76180e75f66
+              ./../Costar/Type sha256:bbaf7811fb808c09d2b46eb3a95324a50ac75d1c72b9edc523ce2e194b48855e
               vObject
               object
               cat
           , Coyoneda =
-              ./../Coyoneda/Type sha256:17701cd67ebd40812cf82947493a9642722565d92d02a34fe4b4bb09ead53760
+              ./../Coyoneda/Type sha256:019bbcfe9820f84256e25d6f948461e363f6ef7c18a516f7ed2204369385df4d
               object
               cat
           , Density =
-              ./../Density/Type sha256:84157cd62f47d0dcdbd085ef1d062692963963e44934d06ba785c241c981753c
+              ./../Density/Type sha256:808487ede56e964755d21fa151dd6bacb120e8fbb24a937e8315c66091813531
               object
           , Endofunctor =
               Endofunctor object vBase cat
           , HomFunctor =
-              ./../Functor/Hom sha256:b3ea70ee7072e9919805ebbfee1c6ae8a558b3983ecb847307a1e66a220b1c72
+              ./../Functor/Hom sha256:fe32ab6637ecdcd22d50078702dc94679bd611851eaddf1e40fec26d6e32b184
               object
               v
               cat
           , Identity =
-              ./../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+              ./../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
               object
           , Lan =
-              ./../Lan/Type sha256:9ca4462b685f10f495c272b038e14f3057cef70898133772a5ef07dbaf5be0e1
+              ./../Lan/Type sha256:2edbc6596b56524c06bd7d0f89e30a4a273b5a8a2e53c65c09f2e2ae340891a4
               object
               object
               cat
           , Leibniz =
-              ./../Leibniz/Kind sha256:3b3493422c5f205484219d6726b5cc60f39f501f5e750e5e44d2053e3ab87f77
+              ./../Leibniz/Kind sha256:a5b66002e6e42543925c88fc6fc8d6b528eda12277cc998a0cc254be408ae193
               object
               object
               cat
               cat
           , Monad =
-              ./../Monad/Type sha256:081e7d7d11c47a6170ed19e4593cc9f55600302a7aa5128a643f5e56c890eb05
+              ./../Monad/Type sha256:d47c5141940d87e0a1ed370c52c27ddb1be4330b8c6684c90247f1f72eb77876
               object
               cat
           , NaturalTransformation =
-              ./../NaturalTransformation/Type sha256:1fb48a77c7998793c06084794271a92131143f42dc9f1a95cd8146b6aeda7d5e
+              ./../NaturalTransformation/Type sha256:ae103806c5d0da8f35ba65b9c08afdcc86ed1d5d71eb2ed4a0d631119df51bbc
               object
               object
               cat
           , Profunctor =
-              ./../Functor/Profunctor/Type sha256:b49ae06477f88b9ef50357cd60262da0bbe266d8af1cbe3c5a6b8d6cee32df44
+              ./../Functor/Profunctor/Type sha256:cb60a14dd70d9116c64424b1368414ce44a425a238a17bf79efed6251fd8d13f
               object
               object
               v
               cat
               cat
           , Ran =
-              ./../Ran/Type sha256:14da02cb2fa4ad84be6ff3180eab70fe7c2055572124171e2ee754e2a6a72b33
+              ./../Ran/Type sha256:5047b1521693599d043a9c04270b2d4649481321743beae0ea4179975068d804
               object
               object
               cat
           , Semigroupoid =
-              ./../Semigroupoid/Type sha256:8cb9ba1a061053c5b685c45eefe13ace83aff91ddb0d381f204af51240ff4606
+              ./../Semigroupoid/Type sha256:c43adcdb5e9cb39774277d7dcbeb77a8c85a6d64458b129d1a92bac3711f132d
               object
           , Star =
-              ./../Star/Type sha256:308e2835b712bb5e5dc9f2879d64c8a1c4ba3d7d4c5add781b8bd37a91b144ea
+              ./../Star/Type sha256:40299f511a6a0ec179c2752f6efb313ce65db208c3ea894a096e0bd59602d6fc
               vObject
               object
               cat
           , Strong =
-              ./../Strong/Type sha256:756061802c96ae4038f3c9b66153199f7660862a56802d213746a1227ba05234
+              ./../Strong/Type sha256:7c36ad50721347c7e886786fe21b1ab6281c18682f378b5f5809ab7e53274a09
               object
               object
               v
@@ -141,19 +135,19 @@ in    λ ( object
               cat
           , Traversable =
                 λ ( m
-                  : kArrow object object
+                  : kCat.arrow object object
                   )
               → Endofunctor
                 object
                 vBase
-                ( ./Kleisli/category sha256:0056c0e307e6067079ea8639413ea2afbeedf3294556842a376a1a56db060e0b
+                ( ./Kleisli/category sha256:305a4efbaafe53c64977af42c8d0be72f689442060a575282f9d31d19ad974ca
                   vObject
                   object
                   cat
                   m
                 )
           , Yoneda =
-              ./../Yoneda/Type sha256:851fb05baca35e5208b96212af4362baf4bed66ff336a90936ff7e46003c47ca
+              ./../Yoneda/Type sha256:d83e9e99b0ed861bb05e89d49a6e73e857510a600045c199ebb555234538f4e5
               object
               cat
           }

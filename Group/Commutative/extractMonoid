@@ -1,8 +1,5 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
@@ -10,15 +7,14 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
+        : ./../../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+          kCat
           vObject
           object
         )
     → λ(m : object)
     → λ ( group
-        : ./Type sha256:1d2eb52b6091711502e80d646cab25260b08324221c423c04df23b76e600b2c0
+        : ./Type sha256:fc01995b27c56e372c0cac6a842f3f7e80095057868f72104d58140e3b5bf908
           object
           cat
           m
@@ -26,7 +22,7 @@ in    λ ( object
     →   group.{ identity
               , op
               }
-      : ./../../Monoid/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
+      : ./../../Monoid/Type sha256:7ec2cac4a8bda85f6010a0a00ab0da221bcc0ea295863c1c6259c5aa14878500
         object
         cat
         m

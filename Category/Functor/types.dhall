@@ -1,25 +1,19 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat =
+      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let vObject = Type
 
 let Category =
-      ./../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-      kArrow
-      kProduct
+      ./../Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+      cat
 
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-      kArrow
-      kProduct
+      ./../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      cat
 
 let base =
-      ./../Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-      kArrow
-      kProduct
+      ./../Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+      cat
 
 in    λ ( cObject
         : Kind
@@ -28,10 +22,10 @@ in    λ ( cObject
     → λ(v : MonoidalCategory Type vObject)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
-    → ./../types.dhall sha256:ba6db6fca0c9310f9067aca5d5aff33b188942b1e765454d261aa08348b47810
-      (kArrow cObject dObject)
+    → ./../types.dhall sha256:e97633bf915d1cd417dc07321103352ab99dcf3556af52ae4c2b9c98d1e26921
+      (cat.arrow cObject dObject)
       v
-      ( ./category sha256:20c87f9335c2da300dd29d45d7e78499a113481708800d86b12d1fb55ae58d9d
+      ( ./category sha256:c69163eac75892504c9b6fd8b9637704c20e0baa23c5d428ecfb2b4587414bef
         cObject
         dObject
         (base Type vObject v)

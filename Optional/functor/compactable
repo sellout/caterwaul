@@ -1,13 +1,9 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat =
+      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let base =
-      ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-      kArrow
-      kProduct
+      ./../../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      cat
 
 let vObject = Type
 
@@ -15,27 +11,27 @@ let v =
       base
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
 let Set =
       base
       vObject
       Type
-      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
 
-in    ./../../Monad/impliedStarfunctor sha256:1d675b44b4bc5ebe652f969661e9f17cea2794ac4d4221b95a7f1adb5cde145c
+in    ./../../Monad/impliedStarfunctor sha256:9f0b07169975c0e36ccdca72a4d1b8728484206c6be328b50c3616efb4e26925
       Type
       Set
-      ./../../Category/Set/semigroupoid sha256:4827035ecdee301574a57c0dde786653eaf4724f0fb0d175a99128759e973c07
+      ./../../Category/Set/semigroupoid sha256:3b8491b6aa3f60ae83a7ad46b6e13cdda79ae6d2348926fe8815a2549c5b5cc4
       Optional
-      ( ./../functor/endo/star sha256:a7465f0bd3be8f635f9035091bc7ff3bdd6ec3c523e6e69d5359b4dcc52039e3
-        ( ./../../Identity/Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
+      ( ./../functor/endo/star sha256:9f2d49430fe1328e285602835360aeef1f4dbc6852f10d19f9cb492b53ad0fc2
+        ( ./../../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
           Type
         )
-        ./../../Identity/functor/monoidal sha256:2c113f02d3d833842925e85ffe0c50629d939f6a53bd453ab9127c714204ef26
+        ./../../Identity/functor/monoidal sha256:c7b7bb7632523da1fcea63ad5d4c29fd51abf5f4464995b5e10621807fdecc1b
       )
-      ./../monad sha256:01306d868b78b62663fd70b3620a0922bf9a590da6b8f8a9c67b219de8c6f1d8
-    : ./../../Functor/Star/Type sha256:d014b87f0569e99e9d042215747a6ea4bdefe9101a034bbec7c57fde33f96f51
+      ./../monad sha256:9b43b91723eda52d0238b4284ccff4b0a553301de05d309e2bec63bf8023ac4a
+    : ./../../Functor/Star/Type sha256:478e56de78e7bcfddaa56adfb8e10e97007303aee206e5a64080fe7210bfb539
       vObject
       Type
       v

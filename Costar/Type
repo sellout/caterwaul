@@ -1,24 +1,20 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat =
+      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 in    λ ( vObject
         : Kind
         )
     → λ(object : Kind)
     → λ ( cat
-        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-          kArrow
-          kProduct
+        : ./../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+          kCat
           vObject
           object
         )
-    → ./../Star/Type sha256:308e2835b712bb5e5dc9f2879d64c8a1c4ba3d7d4c5add781b8bd37a91b144ea
+    → ./../Star/Type sha256:40299f511a6a0ec179c2752f6efb313ce65db208c3ea894a096e0bd59602d6fc
       vObject
       object
-      ( ./../Category/Op/Kind sha256:e9734284b447322a4da84aed6be9d3c9df5ed65f9428ad99e6b519ebe13a4c0a
+      ( ./../Category/Op/Kind sha256:e098dd6a242e1c53f07ac907a04e6196a2d8055fe8e95650872a5b89ff60c7b4
         vObject
         object
         cat

@@ -1,13 +1,12 @@
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ ( cat
+    : ./Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+    )
 → λ(vObject : Kind)
 → λ(object : Kind)
-→   ./../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-    kArrow
-    kProduct
+→   ./../Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
+    cat
     vObject
     object
-  ⩓ ./../../Monoid/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
-    kArrow
-    kProduct
+  ⩓ ./../../Monoid/Kind sha256:67630b8edf6802a33f3436591147b3531148ddd8b335075112ba59a120e1ea01
+    cat
     object

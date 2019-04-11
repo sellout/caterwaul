@@ -1,14 +1,13 @@
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ ( cat
+    : ./../Category/Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+    )
 → λ(m : Kind)
 → { additive :
-      ./../Group/Commutative/Kind sha256:ee93cf6b2a974928a129df775e1fe4c7afb76224fcd8466e9e485ce039c87bba
-      kArrow
-      kProduct
+      ./../Group/Commutative/Kind sha256:d09be9f9f87e3e29fb6237321a7330866bcea58798e4a4a6b7dc45f1c609af22
+      cat
       m
   , multiplicative :
-      ./../Monoid/Kind sha256:6a121be449b829634d652dc47b128580f37b20f91298e4467c09bf13656d81ea
-      kArrow
-      kProduct
+      ./../Monoid/Kind sha256:67630b8edf6802a33f3436591147b3531148ddd8b335075112ba59a120e1ea01
+      cat
       m
   }

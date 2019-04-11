@@ -11,5 +11,5 @@
   , partialLE =
       λ(_ : {}) → λ(_ : {}) → Some True
   }
-: ./../Group/Ordered/Type sha256:b6fbc7bc6aaee3da63e7efb2c717e9a204eb903ad0b81c6d972b26625a3f393b
+: ./../Group/Ordered/Type sha256:8b6d9aadc23c1f247b44f71cce87b88cd74506427efef577bf730504d1213202
   {}
