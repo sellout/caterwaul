@@ -18,9 +18,9 @@ in    λ ( object
           vObject
           object
         )
-    → ./../Bimonoid/Type sha256:4035bc62422e92370b5c223f0f503df357e71952226ecff88dcecddbf2766947
+    → ./../Bimonoid/Type sha256:9964284fa5ab49985d51ec1219fa75ff8a6607d113c3b1249a7cbc9e74786c8c
       (kCat.arrow object object)
-      ( ./../Category/Endofunctor/monoidal/monadic sha256:6c2ff9a2294a8955a06b7ccad72ba28e11587ecb0882b7ecd1702b56c59d2f38
+      ( ./../Category/Endofunctor/monoidal/monadic sha256:bc90904e831033ee75dfbaca1c8bbf79c20633bae1c27ab297460fb43bddbaaa
         object
         v
         cat

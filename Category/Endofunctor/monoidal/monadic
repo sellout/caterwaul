@@ -28,13 +28,13 @@ in    λ ( object
         , identity =
             ./../../../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
             object
-        , op =
+        , product =
             ./../../../Compose/Type sha256:e830545569ce8ba04d3124a7ca93994fc93e18c0372616f45910253f0a00907d
             object
             object
             object
         }
-      : ./../../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      : ./../../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
         kCat
         vObject
         (kCat.arrow object object)

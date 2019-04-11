@@ -4,18 +4,18 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Set/rig sha256:11dbf023e35a2fb89e364023c53cf9f99bb3fd25f3b650b3b925595e01049669
+      ./../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
 
 in    λ ( a
         : Type
         )
     →   { identity =
             λ(b : Type) → λ(x : b) → < Right = x | Left : a >
-        , op =
+        , product =
               λ(b : Type)
             → λ ( fa
-                : Set.additive.op
-                  { _1 = a, _2 = Set.additive.op { _1 = a, _2 = b } }
+                : Set.additive.product
+                  { _1 = a, _2 = Set.additive.product { _1 = a, _2 = b } }
                 )
             → merge
               { Left =
@@ -26,20 +26,24 @@ in    λ ( a
               ( merge
                 { Left =
                       λ(x : a)
-                    → < Left = x | Right : Set.additive.op { _1 = a, _2 = b } >
+                    → < Left =
+                          x
+                      | Right :
+                          Set.additive.product { _1 = a, _2 = b }
+                      >
                 , Right =
-                      λ(x : Set.additive.op { _1 = a, _2 = b })
+                      λ(x : Set.additive.product { _1 = a, _2 = b })
                     → < Right = x | Left : a >
                 }
                 fa
               )
         }
-      : ./../Monad/Type sha256:d47c5141940d87e0a1ed370c52c27ddb1be4330b8c6684c90247f1f72eb77876
+      : ./../Monad/Type sha256:0324dd40fc192581e566136f5cde4424ed653ecf7311b967b7d291d05484b78e
         Type
-        ( ./../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+        ( ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
           cat
           vObject
           Type
-          ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+          ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
         )
-        (λ(b : Type) → Set.additive.op { _1 = a, _2 = b })
+        (λ(b : Type) → Set.additive.product { _1 = a, _2 = b })

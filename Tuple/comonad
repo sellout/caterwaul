@@ -4,10 +4,10 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let base =
-      ./../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
       cat
       vObject
       Type
@@ -17,13 +17,13 @@ in    λ ( a
         : Type
         )
     →   { identity =
-            λ(b : Type) → λ(tup : Set.op { _1 = a, _2 = b }) → tup._2
-        , op =
+            λ(b : Type) → λ(tup : Set.product { _1 = a, _2 = b }) → tup._2
+        , product =
               λ(b : Type)
-            → λ(tup : Set.op { _1 = a, _2 = b })
+            → λ(tup : Set.product { _1 = a, _2 = b })
             → { _1 = tup._1, _2 = tup }
         }
-      : ./../Comonad/Type sha256:d13db9e0b984aa3ad4e658ae2574973a4a477d0f8ca3b88c3b5a79d0799536c8
+      : ./../Comonad/Type sha256:6ddfa25c10ab6487474f62a2f4962d2a1ea8d2ef42a646a14add738717e861bf
         Type
         base
-        (λ(b : Type) → Set.op { _1 = a, _2 = b })
+        (λ(b : Type) → Set.product { _1 = a, _2 = b })

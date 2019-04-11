@@ -1,4 +1,4 @@
-{- FIXME: Should be able to do `cartesian.{ arrow, op }`, but Dhall doesn’t like
+{- FIXME: Should be able to do `cartesian.{ arrow, product }`, but Dhall doesn’t like
           that for some reason.
 -}
   λ ( cat
@@ -7,7 +7,7 @@
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( cartesian
-    : ./Kind sha256:4ac875e8c1c47c4aa92d3c46ef58468ec26b213dc8aa5fd6a8ceed3273f0e8e3
+    : ./Kind sha256:7bb821c96d6c062b6187841d1a758e3d7b3c69efa3167e54bca5b5907ac8e103
       cat
       vObject
       object

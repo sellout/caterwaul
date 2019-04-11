@@ -7,20 +7,20 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./Kind sha256:477d8185fbbe496496f87216c1204a2367ff703d5ca3b0c7495f17c43ac4dec6
+        : ./Kind sha256:9093c6472bbfa0939a07b1d0896b7856410c84b4e55175dce8978baf8ff28b07
           kCat
           vObject
           object
         )
     → let additive =
-            ./extractAdditive sha256:868060f11fb386ceaa98cb7dc5d6da8b7ddcde2c9674da7ce9f0e598269c2004
+            ./extractAdditive sha256:5e68260653c471df3977a657c811c8ca7f0317e379bcd90886917b0f2ec52f2b
             kCat
             vObject
             object
             cat
       
       let multiplicative =
-            ./extractMultiplicative sha256:fef92f72e30bf84551fae14ba281414b952d166146fc061b212ea3c0afef650d
+            ./extractMultiplicative sha256:fcce2925fbebe635a50151f4cd5e00b0807811c62395c6fa5c8a87a40b229f32
             kCat
             vObject
             object
@@ -33,18 +33,18 @@ in    λ ( object
               → ∀(d : object)
               → cat.arrow
                 { _1 =
-                    additive.op
+                    additive.product
                     { _1 =
-                        multiplicative.op { _1 = a, _2 = b }
+                        multiplicative.product { _1 = a, _2 = b }
                     , _2 =
-                        multiplicative.op { _1 = c, _2 = d }
+                        multiplicative.product { _1 = c, _2 = d }
                     }
                 , _2 =
-                    multiplicative.op
+                    multiplicative.product
                     { _1 =
-                        additive.op { _1 = a, _2 = c }
+                        additive.product { _1 = a, _2 = c }
                     , _2 =
-                        additive.op { _1 = b, _2 = d }
+                        additive.product { _1 = b, _2 = d }
                     }
                 }
           , split :
@@ -52,13 +52,13 @@ in    λ ( object
               { _1 =
                   additive.identity
               , _2 =
-                  multiplicative.op
+                  multiplicative.product
                   { _1 = additive.identity, _2 = additive.identity }
               }
           , combine :
               cat.arrow
               { _1 =
-                  additive.op
+                  additive.product
                   { _1 = multiplicative.identity, _2 = multiplicative.identity }
               , _2 =
                   multiplicative.identity
@@ -66,11 +66,11 @@ in    λ ( object
           , switch :
               cat.arrow { _1 = additive.identity, _2 = multiplicative.identity }
           , additive :
-              ./../Monoidal/Laws sha256:eb4bcdd8e582d07218c606de30c733d05a3dc01cd63d72cd7704f88b6c881b81
+              ./../Monoidal/Laws sha256:9c4494b45285d0d1a961b74a896ffc20009a3020d9b5b84a5b47ba22cb09c97e
               object
               additive
           , multiplicative :
-              ./../Monoidal/Laws sha256:eb4bcdd8e582d07218c606de30c733d05a3dc01cd63d72cd7704f88b6c881b81
+              ./../Monoidal/Laws sha256:9c4494b45285d0d1a961b74a896ffc20009a3020d9b5b84a5b47ba22cb09c97e
               object
               multiplicative
           }

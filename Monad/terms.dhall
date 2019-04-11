@@ -4,14 +4,14 @@ let kCat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       kCat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let vBase =
-      ./../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+      ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
       kCat
       Type
       vObject
@@ -27,7 +27,7 @@ in    λ ( object
           object
         )
     → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:c43adcdb5e9cb39774277d7dcbeb77a8c85a6d64458b129d1a92bac3711f132d
+        : ./../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
           object
           v
           cat
@@ -43,13 +43,13 @@ in    λ ( object
           m
         )
     → λ ( monad
-        : ./Type sha256:d47c5141940d87e0a1ed370c52c27ddb1be4330b8c6684c90247f1f72eb77876
+        : ./Type sha256:0324dd40fc192581e566136f5cde4424ed653ecf7311b967b7d291d05484b78e
           object
           cat
           m
         )
     → let extractStarfunctor =
-            ./impliedStarfunctor sha256:9f0b07169975c0e36ccdca72a4d1b8728484206c6be328b50c3616efb4e26925
+            ./impliedStarfunctor sha256:6abee7f440f314c1d05b0fd96c62d0abf28be7e1380d75f4feef8c5702abc0d0
             object
             cat
             semigroupoid
@@ -62,7 +62,7 @@ in    λ ( object
           , pure =
               monad.identity
           , join =
-              monad.op
+              monad.product
           , bind =
               extractStarfunctor.map
           , extractStarfunctor =

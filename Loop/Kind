@@ -8,6 +8,6 @@
 →   { identity :
         m
     }
-  ⩓ ./../Quasigroup/Kind sha256:a6ecd443ceae72c5a99f669806693afd202a19a8110e475d37b7bdd76ff5caf3
+  ⩓ ./../Quasigroup/Kind sha256:1513d682a3571bee9d3d559be7cdf7de924b04b53f903b41a4d2f61104f4d12f
     cat
     m

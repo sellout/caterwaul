@@ -4,28 +4,28 @@ let kCat =
 let vObject = Type
 
 let v =
-      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
       kCat
       Type
       vObject
-      ./../../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let object = Type
 
 let Set =
-      ./../../../Category/Set/rig sha256:11dbf023e35a2fb89e364023c53cf9f99bb3fd25f3b650b3b925595e01049669
+      ./../../../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
 
 let cat =
-      ./../../../Category/Rig/extractMultiplicative sha256:fef92f72e30bf84551fae14ba281414b952d166146fc061b212ea3c0afef650d
+      ./../../../Category/Rig/extractMultiplicative sha256:fcce2925fbebe635a50151f4cd5e00b0807811c62395c6fa5c8a87a40b229f32
       kCat
       vObject
       object
       Set
 
 let Semigroup =
-      ./../../../Semigroup/Type sha256:9c2ee52a412e914e1716a0b3210be32af44993029f703a15b183a3b0cce9002c
+      ./../../../Semigroup/Type sha256:c141f4fb3c393804963be5ed72ffe07f5a7e90f588ead9065235240815a80c88
       object
-      ( ./../../../Category/Monoidal/extractSemigroupal sha256:8fc720d6416e099e6943afa14eefa7bb86489af66eea29c4d5c9e11eab9c6808
+      ( ./../../../Category/Monoidal/extractSemigroupal sha256:a5bbf4cdc598ec13d870022473eb80feeee8f9b2b10528f5df7f48edccb2c751
         kCat
         vObject
         object
@@ -36,40 +36,43 @@ in    λ ( a
         : object
         )
     → λ(semigroup : Semigroup a)
-    →     ./../endo/star sha256:714ba5c1401929dc0a33a3e319f65fe17dfdc7b0d896b3d022572b39f0bf1091
+    →     ./../endo/star sha256:b87eef622146c7b43b2a16e492bc30bd03fdfedf037ed9ceebcf94f022500293
           ( ./../../../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
             object
           )
-          ./../../../Identity/functor/monoidal sha256:c7b7bb7632523da1fcea63ad5d4c29fd51abf5f4464995b5e10621807fdecc1b
+          ./../../../Identity/functor/monoidal sha256:40c429fedb0d4632284b3665f35b06c09b8eb582fc39f6997676aa403a6efc1f
           a
         ∧ { identity =
                 λ(b : object)
               → λ(fn : Set.arrow { _1 = Set.multiplicative.identity, _2 = b })
               → < Right = fn {=} | Left : a >
-          , op =
+          , product =
                 λ(i : object)
               → λ ( day
                   :   ∀(r : Type)
                     → (   ∀(d : { _1 : object, _2 : object })
-                        → Set.arrow { _1 = Set.multiplicative.op d, _2 = i }
+                        → Set.arrow
+                          { _1 = Set.multiplicative.product d, _2 = i }
                         → { _1 :
-                              Set.additive.op { _1 = a, _2 = d._1 }
+                              Set.additive.product { _1 = a, _2 = d._1 }
                           , _2 :
-                              Set.additive.op { _1 = a, _2 = d._2 }
+                              Set.additive.product { _1 = a, _2 = d._2 }
                           }
                         → r
                       )
                     → r
                   )
               → day
-                (Set.additive.op { _1 = a, _2 = i })
+                (Set.additive.product { _1 = a, _2 = i })
                 (   λ(p : { _1 : object, _2 : object })
-                  → λ(fn : Set.arrow { _1 = Set.multiplicative.op p, _2 = i })
+                  → λ ( fn
+                      : Set.arrow { _1 = Set.multiplicative.product p, _2 = i }
+                      )
                   → λ ( args
                       : { _1 :
-                            Set.additive.op { _1 = a, _2 = p._1 }
+                            Set.additive.product { _1 = a, _2 = p._1 }
                         , _2 :
-                            Set.additive.op { _1 = a, _2 = p._2 }
+                            Set.additive.product { _1 = a, _2 = p._2 }
                         }
                       )
                   → merge
@@ -79,7 +82,7 @@ in    λ ( a
                           { Left =
                                 λ(ll : a)
                               → < Left =
-                                    semigroup.op { _1 = l, _2 = ll }
+                                    semigroup.product { _1 = l, _2 = ll }
                                 | Right :
                                     i
                                 >
@@ -112,9 +115,9 @@ in    λ ( a
                     )
                 )
           }
-      : ./../../../Functor/Monoidal/Type sha256:7d4a68165b33b76bf9e8d8ab6fc8739699a1260549ebee624e57d8cab06f97c0
+      : ./../../../Functor/Monoidal/Type sha256:73d6a61a626107cf8fc9ee73e02b3116a2540bae6fa38881165eab9d8c0f8913
         object
         v
         cat
         cat
-        (λ(b : object) → Set.additive.op { _1 = a, _2 = b })
+        (λ(b : object) → Set.additive.product { _1 = a, _2 = b })

@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           vObject
           object
@@ -15,7 +15,7 @@ in    λ ( object
     → let Isomorphism =
             ./../../Isomorphism/Type sha256:aa416af42a745ed47476a9aa736340f4346442177a2396f368ba9659d2a23ad9
             object
-            ( ./extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+            ( ./extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
               kCat
               vObject
               object
@@ -25,15 +25,15 @@ in    λ ( object
       in    { leftIdentity :
                   ∀(a : object)
                 → Isomorphism
-                  { _1 = cat.op { _1 = cat.identity, _2 = a }, _2 = a }
+                  { _1 = cat.product { _1 = cat.identity, _2 = a }, _2 = a }
             , rightIdentity :
                   ∀(a : object)
                 → Isomorphism
-                  { _1 = cat.op { _1 = a, _2 = cat.identity }, _2 = a }
+                  { _1 = cat.product { _1 = a, _2 = cat.identity }, _2 = a }
             }
-          ⩓ ./../Semigroupal/Laws sha256:87c1d9fd686f52114ea4c3f67879905f67947314aef2c4f877aa6f814106e73c
+          ⩓ ./../Semigroupal/Laws sha256:2a543ae31fbf5ba35d9555aa6077dd540b5e523e634772f29d9945fceec489bc
             object
-            ( ./extractSemigroupal sha256:8fc720d6416e099e6943afa14eefa7bb86489af66eea29c4d5c9e11eab9c6808
+            ( ./extractSemigroupal sha256:a5bbf4cdc598ec13d870022473eb80feeee8f9b2b10528f5df7f48edccb2c751
               kCat
               vObject
               object

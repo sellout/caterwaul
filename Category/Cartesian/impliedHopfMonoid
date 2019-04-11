@@ -3,19 +3,19 @@ let kCat =
       ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let CartesianCategory =
-      ./Type sha256:f5c21da484fffdaa1b6e8847b80d5825d716578a81cd8694177aa84279439094
+      ./Type sha256:223ac3444e5e1fbce3fb19cebe82bd2879837b64e510fc5319c68ddf7ed7ab1b
 
 let Group =
-      ./../../Group/Type sha256:fc01995b27c56e372c0cac6a842f3f7e80095057868f72104d58140e3b5bf908
+      ./../../Group/Type sha256:cac478dd8354b05c1af60acb85d82d4898c35cda2ea44ccf0b7cd61938c80c14
 
 let extractMonoid =
-      ./../../Group/extractMonoid sha256:49c1580d0e7d8b8f154acb786f7f3011f135300908fbc942137a095e1f66eedf
+      ./../../Group/extractMonoid sha256:4af2369ebfed14dd040a969eafa09413110ca5d2ee0dafa00ff261e96066d996
 
 let HopfMonoid =
-      ./../../Monoid/Hopf/Type sha256:33d1f3be0a2a55f79742531bc45661be08d69f845da85c6bc095991f5cfedad1
+      ./../../Monoid/Hopf/Type sha256:3678f5df98153f870a20930560498c9a41e1c1f3f45354d79a8fabe851e26b3f
 
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
       kCat
 
 let vObject = Type
@@ -31,7 +31,7 @@ in    λ ( object
     →     { antipode =
               group.inverse
           }
-        ∧ ./impliedBimonoid sha256:21955be9d47321ac905985581ee412fe50d7dbc084d53791a47b8350eaaa2da3
+        ∧ ./impliedBimonoid sha256:448de62a21cfc4401e7653bccc41ab1dc96787ca5bc8f54d35e044d39a26abea
           object
           v
           cat

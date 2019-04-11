@@ -6,10 +6,10 @@
       λ(_ : {}) → {=}
   , le =
       λ(_ : {}) → λ(_ : {}) → True
-  , op =
+  , product =
       λ(_ : { _1 : {}, _2 : {} }) → {=}
   , partialLE =
       λ(_ : {}) → λ(_ : {}) → Some True
   }
-: ./../Group/Ordered/Type sha256:8b6d9aadc23c1f247b44f71cce87b88cd74506427efef577bf730504d1213202
+: ./../Group/Ordered/Type sha256:eca0fcdc9d9d4ef5327269dd6312ed1eb03b3035b683cc72cd68f9a198bdb0fe
   {}

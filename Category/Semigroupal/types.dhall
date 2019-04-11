@@ -7,31 +7,31 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           Type
           vObject
         )
     → λ ( cat
-        : ./Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+        : ./Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
           kCat
           vObject
           object
         )
     →   { Arrow =
-            ./../../Arrow/Type sha256:759b21e206149156890a66e451068ab35e69fd0bf99ad580084c390022c48008
+            ./../../Arrow/Type sha256:e2050044f4f51e126b329c08e88ad827636c005cf4111d5847558d19c0512759
             object
             v
             cat
         , Semigroup =
-            ./../../Semigroup/Type sha256:9c2ee52a412e914e1716a0b3210be32af44993029f703a15b183a3b0cce9002c
+            ./../../Semigroup/Type sha256:c141f4fb3c393804963be5ed72ffe07f5a7e90f588ead9065235240815a80c88
             object
             cat
         }
-      ∧ ./../types.dhall sha256:e97633bf915d1cd417dc07321103352ab99dcf3556af52ae4c2b9c98d1e26921
+      ∧ ./../types.dhall sha256:5287842c5c29b3aa5fb475aaccca0f2c411c4d0de9221baa8536c47f819d50b3
         object
         v
-        ( ./extractCategory sha256:6f1f56b9a2979d9d15d3f85459a5869f8122619c2dbd3b7ba0d982c6de320222
+        ( ./extractCategory sha256:e424ab1a06cccec93571da2bc08642157fd9e60030535233320a7e22c02d01b6
           kCat
           vObject
           object

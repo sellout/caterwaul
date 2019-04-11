@@ -7,13 +7,13 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           Type
           vObject
         )
     → λ ( cat
-        : ./../Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           vObject
           object
@@ -22,9 +22,13 @@ in    λ ( object
               ∀(x : object)
             → ∀(y : object)
             → cat.arrow
-              { _1 = cat.op { _1 = x, _2 = y }, _2 = cat.op { _1 = y, _2 = x } }
+              { _1 =
+                  cat.product { _1 = x, _2 = y }
+              , _2 =
+                  cat.product { _1 = y, _2 = x }
+              }
         }
-      ⩓ ./../Type sha256:7c2ce9c238759c2018b248c75b7feeb17b5c83a5cccedb930399f31ce072e06b
+      ⩓ ./../Type sha256:d0263935dad945c3784132fdf2a3e919f9c860493d5722a41a4cd43f15938cb6
         object
         v
         cat

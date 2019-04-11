@@ -6,6 +6,47 @@
 <body>
 <h1>caterwaul</h1>
 <h1 style="background-color: #bbb; width: 100%">.</h1>
+<h2 style="background-color: #bbb; width: 100%">./2category</h2>
+<h3 style="background-color: #bbb; width: 100%">./2category/Cat</h3>
+<h4>Kind (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
+</pre></dd>
+</dl>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→ { arrow :
+      cat.arrow (cat.product object object) vObject
+  , arrow2 :
+      cat.arrow
+      ( cat.product
+        (cat.arrow (cat.product object object) vObject)
+        (cat.arrow (cat.product object object) vObject)
+      )
+      vObject
+  , constraint :
+      object → Type
+  , constraint2 :
+      cat.arrow (cat.product object object) vObject → Type
+  }
+</pre></dd>
+</dl>
 <h2 style="background-color: #bbb; width: 100%">./Adjunction</h2>
 <h4>Type (type)</h4>
 <p></p>
@@ -719,6 +760,101 @@
   }
 </pre></dd>
 </dl>
+<h2 style="background-color: #bbb; width: 100%">./Bicategory</h2>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→ { arrow :
+      cat.arrow (cat.product object object) vObject
+  , arrow2 :
+      cat.arrow
+      ( cat.product
+        (cat.arrow (cat.product object object) vObject)
+        (cat.arrow (cat.product object object) vObject)
+      )
+      vObject
+  , constraint :
+      object → Type
+  , constraint2 :
+      cat.arrow (cat.product object object) vObject → Type
+  }
+</pre></dd>
+</dl>
+<h4>extractLower (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ ∀ ( bicategory
+    : { arrow :
+          cat.arrow (cat.product object object) vObject
+      , arrow2 :
+          cat.arrow
+          ( cat.product
+            (cat.arrow (cat.product object object) vObject)
+            (cat.arrow (cat.product object object) vObject)
+          )
+          vObject
+      , constraint :
+          object → Type
+      , constraint2 :
+          cat.arrow (cat.product object object) vObject → Type
+      }
+    )
+→ { arrow :
+      cat.arrow (cat.product object object) vObject
+  , constraint :
+      object → Type
+  }
+</pre></dd>
+</dl>
+<h4>extractUpper (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ ∀ ( bicategory
+    : { arrow :
+          cat.arrow (cat.product object object) vObject
+      , arrow2 :
+          cat.arrow
+          ( cat.product
+            (cat.arrow (cat.product object object) vObject)
+            (cat.arrow (cat.product object object) vObject)
+          )
+          vObject
+      , constraint :
+          object → Type
+      , constraint2 :
+          cat.arrow (cat.product object object) vObject → Type
+      }
+    )
+→ { arrow :
+      cat.arrow
+      ( cat.product
+        (cat.arrow (cat.product object object) vObject)
+        (cat.arrow (cat.product object object) vObject)
+      )
+      vObject
+  , constraint :
+      cat.arrow (cat.product object object) vObject → Type
+  }
+</pre></dd>
+</dl>
 <h2 style="background-color: #bbb; width: 100%">./Bimonad</h2>
 <h4>Type (type)</h4>
 <p></p>
@@ -811,6 +947,46 @@
   }
 </pre></dd>
 </dl>
+<h4>laws (term)</h4>
+<p>{- These laws could use some better names.
+   Also, need to add the `comonoid` laws.
+   And finally, need to reintroduce this law:
+       , c =
+             λ(x : cat.op { _1 = m, _2 = m })
+           → eqI.eq
+             (comonoid.identity (monoid.op x))
+             { _1 = comonoid.identity x._1, _2 = comonoid.identity x._2 }
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(m : Type)
+→ ∀(eqP : { eq : { _1 : m, _2 : m } → { _1 : m, _2 : m } → Bool })
+→ ∀(eqI : { eq : {} → {} → Bool })
+→ ∀(eq : { eq : m → m → Bool })
+→ ∀ ( bimonoid
+    : { comonoid :
+          { identity : m → {}, op : m → { _1 : m, _2 : m } }
+      , monoid :
+          { identity : {} → m, op : { _1 : m, _2 : m } → m }
+      }
+    )
+→ { a :
+      ∀(x : { _1 : m, _2 : m }) → Bool
+  , b :
+      ∀(x : {}) → Bool
+  , d :
+      ∀(x : {}) → Bool
+  , monoid :
+      { associativity :
+          m → m → m → Bool
+      , leftIdentity :
+          m → Bool
+      , rightIdentity :
+          m → Bool
+      }
+  }
+</pre></dd>
+</dl>
 <h2 style="background-color: #bbb; width: 100%">./Bool</h2>
 <h4>eq (term)</h4>
 <p></p>
@@ -852,22 +1028,25 @@
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-∀(kArrow : Kind → Kind → Kind) → ∀(vObject : Kind) → ∀(object : Kind) → Kind
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { arrow :
-      kArrow { _1 : object, _2 : object } vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , diagonal :
-      kArrow object { _1 : object, _2 : object }
+      cat.arrow object (cat.product object object)
   , identity :
       object
   , op :
-      kArrow { _1 : object, _2 : object } object
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -962,28 +1141,203 @@
 -}</p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( cartesian
     : { arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , diagonal :
-          kArrow object (kProduct object object)
+          cat.arrow object (cat.product object object)
       , identity :
           object
       , op :
-          kArrow (kProduct object object) object
+          cat.arrow (cat.product object object) object
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   }
+</pre></dd>
+</dl>
+<h4>impliedBimonoid (term)</h4>
+<p>{- Every monoid in a cartesian category is a bimonoid in a unique way. -}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ ∀ ( cartesian
+    : { category :
+          { identity :
+              object → cat.arrow { _1 = _, _2 = _ }
+          , op :
+                { _1 : object, _2 : object }
+              → (   Type
+                  → (   object
+                      → cat.arrow { _1 = _, _2 = _@2._2 }
+                      → cat.arrow { _1 = _@3._1, _2 = _@1 }
+                      → _@3
+                    )
+                  → _@1
+                )
+              → cat.arrow _@1
+          }
+      , comonoid :
+          { identity :
+              cat.arrow { _1 = m, _2 = cat.identity }
+          , op :
+              cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
+          }
+      , monoid :
+          { identity :
+              cat.arrow { _1 = cat.identity, _2 = m }
+          , op :
+              cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+          }
+      }
+    )
+→ ∀ ( monoid
+    : { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+    )
+→ { comonoid :
+      { identity :
+          cat.arrow { _1 = m, _2 = cat.identity }
+      , op :
+          cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
+      }
+  , monoid :
+      { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+  }
+</pre></dd>
+</dl>
+<h4>impliedHopfMonoid (term)</h4>
+<p>{- Every group in a cartesian category is a Hopf monoid in a unique way. -}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ ∀ ( cartesian
+    : { category :
+          { identity :
+              object → cat.arrow { _1 = _, _2 = _ }
+          , op :
+                { _1 : object, _2 : object }
+              → (   Type
+                  → (   object
+                      → cat.arrow { _1 = _, _2 = _@2._2 }
+                      → cat.arrow { _1 = _@3._1, _2 = _@1 }
+                      → _@3
+                    )
+                  → _@1
+                )
+              → cat.arrow _@1
+          }
+      , comonoid :
+          { identity :
+              cat.arrow { _1 = m, _2 = cat.identity }
+          , op :
+              cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
+          }
+      , monoid :
+          { identity :
+              cat.arrow { _1 = cat.identity, _2 = m }
+          , op :
+              cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+          }
+      }
+    )
+→ ∀ ( group
+    : { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , inverse :
+          cat.arrow { _1 = m, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+    )
+→ { antipode :
+      cat.arrow { _1 = m, _2 = m }
+  , comonoid :
+      { identity :
+          cat.arrow { _1 = m, _2 = cat.identity }
+      , op :
+          cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
+      }
+  , monoid :
+      { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+  }
+</pre></dd>
+</dl>
+<h3 style="background-color: #bbb; width: 100%">./Category/Cat</h3>
+<h4>semigroupal (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+{ arrow :
+    ∀(a : Kind) → ∀(b : Kind) → Kind
+, product :
+    ∀(a : Kind) → ∀(b : Kind) → Kind
+}
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Closed</h3>
@@ -992,16 +1346,77 @@
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(object : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(object : Kind)
-→ { arrow : kArrow (kProduct object object) object, constraint : object → Type }
+→ { arrow :
+      cat.arrow (cat.product object object) object
+  , constraint :
+      object → Type
+  }
+</pre></dd>
+</dl>
+<h3 style="background-color: #bbb; width: 100%">./Category/Comma</h3>
+<h4>category (term)</h4>
+<p>{- I think this requires dependent types to get the correct object type.
+   Something like
+
+       { d : dObject, e : eObject ** fn : c.arrow { _1 = d, _2 = e } }
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(dObject : Kind)
+→ ∀(eObject : Kind)
+→ ∀ ( c
+    : { arrow :
+          { _1 : cObject, _2 : cObject } → Type
+      , constraint :
+          cObject → Type
+      }
+    )
+→ ∀ ( d
+    : { arrow :
+          { _1 : dObject, _2 : dObject } → Type
+      , constraint :
+          dObject → Type
+      }
+    )
+→ ∀ ( e
+    : { arrow :
+          { _1 : eObject, _2 : eObject } → Type
+      , constraint :
+          eObject → Type
+      }
+    )
+→ ∀(f : dObject → cObject)
+→ ∀(g : eObject → cObject)
+→ { arrow :
+        ∀ ( a
+          : { _1 :
+                { d : dObject, e : eObject }
+            , _2 :
+                { d : dObject, e : eObject }
+            }
+          )
+      → Type
+  , constraint :
+      ∀(x : { d : dObject, e : eObject }) → Type
+  }
+</pre></dd>
+</dl>
+<h4>domain (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Dagger</h3>
@@ -1097,25 +1512,23 @@
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { additive :
-      { identity : object, op : kArrow (kProduct object object) object }
+      { identity : object, op : cat.arrow (cat.product object object) object }
   , arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , multiplicative :
-      { identity : object, op : kArrow (kProduct object object) object }
+      { identity : object, op : cat.arrow (cat.product object object) object }
   }
 </pre></dd>
 </dl>
@@ -1334,29 +1747,36 @@
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( duoidal
     : { additive :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       , arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , multiplicative :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , identity :
       object
   , op :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -1366,23 +1786,30 @@
 -}</p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( duoidal
     : { additive :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       , arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , multiplicative :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   }
@@ -1392,29 +1819,36 @@
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( duoidal
     : { additive :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       , arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , multiplicative :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , identity :
       object
   , op :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -1459,6 +1893,16 @@
           { _1 : Type → Type, _2 : Type → Type } → Type → Type
       }
   }
+</pre></dd>
+</dl>
+<h4>laws (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
 </pre></dd>
 </dl>
 <h4 style="background-color: #bbb; width: 100%">./Category/Endofunctor/monoidal</h4>
@@ -1543,6 +1987,195 @@
       { _1 : cObject → dObject, _2 : cObject → dObject } → Type
   , constraint :
       (cObject → dObject) → Type
+  }
+</pre></dd>
+</dl>
+<h4>inducedFunctor (term)</h4>
+<p>{- Any functor `p : C → C'` induces a functor between functor categories
+  `[C', D] → [C, D]`.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀ ( c
+    : { arrow :
+          { _1 : cObject, _2 : cObject } → Type
+      , constraint :
+          cObject → Type
+      }
+    )
+→ ∀(cpObject : Kind)
+→ ∀ ( cp
+    : { arrow :
+          { _1 : cpObject, _2 : cpObject } → Type
+      , constraint :
+          cpObject → Type
+      }
+    )
+→ ∀(p : cObject → cpObject)
+→ ∀(dObject : Kind)
+→ ∀ ( d
+    : { arrow :
+          { _1 : dObject, _2 : dObject } → Type
+      , constraint :
+          dObject → Type
+      }
+    )
+→ { map :
+        ∀(a : cpObject → dObject)
+      → ∀(b : cpObject → dObject)
+      → ∀(fn : cpObject → d.arrow { _1 = a _, _2 = b _ })
+      → ∀(i : cObject)
+      → d.arrow { _1 = a (p i), _2 = b (p i) }
+  }
+</pre></dd>
+</dl>
+<h4>laws (type)</h4>
+<p>{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
+--    functor **Set** → 𝒟.
+-- -}</p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
+</pre></dd>
+</dl>
+<h4>liftedDuoidal (term)</h4>
+<p>{- For any rig category 𝒞, any 𝒞-valued functor category is a rig category in
+   the same way by “lifting” the rig structure of 𝒞.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ ∀ ( c
+    : { arrow :
+          { _1 : cObject, _2 : cObject } → Type
+      , constraint :
+          cObject → Type
+      }
+    )
+→ ∀ ( d
+    : { additive :
+          { identity : Type, op : { _1 : Type, _2 : Type } → Type }
+      , arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , multiplicative :
+          { identity : Type, op : { _1 : Type, _2 : Type } → Type }
+      }
+    )
+→ { additive :
+      { identity :
+          ∀(x : cObject) → Type
+      , op :
+            ∀(f : { _1 : cObject → Type, _2 : cObject → Type })
+          → ∀(x : cObject)
+          → Type
+      }
+  , arrow :
+      { _1 : cObject → Type, _2 : cObject → Type } → Type
+  , constraint :
+      (cObject → Type) → Type
+  , multiplicative :
+      { identity :
+          ∀(x : cObject) → Type
+      , op :
+            ∀(f : { _1 : cObject → Type, _2 : cObject → Type })
+          → ∀(x : cObject)
+          → Type
+      }
+  }
+</pre></dd>
+</dl>
+<h4>liftedMonoidal (term)</h4>
+<p>{- For any monoidal category 𝒞, any 𝒞-valued functor category is monoidal in the
+   same way by “lifting” the monoidal structure of 𝒞.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ ∀ ( c
+    : { arrow :
+          { _1 : cObject, _2 : cObject } → Type
+      , constraint :
+          cObject → Type
+      }
+    )
+→ ∀ ( d
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , identity :
+          Type
+      , op :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
+→ { arrow :
+      { _1 : cObject → Type, _2 : cObject → Type } → Type
+  , constraint :
+      (cObject → Type) → Type
+  , identity :
+      ∀(x : cObject) → Type
+  , op :
+        ∀(f : { _1 : cObject → Type, _2 : cObject → Type })
+      → ∀(x : cObject)
+      → Type
+  }
+</pre></dd>
+</dl>
+<h4>liftedRig (term)</h4>
+<p>{- For any rig category 𝒞, any 𝒞-valued functor category is a rig category in
+   the same way by “lifting” the rig structure of 𝒞.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cObject : Kind)
+→ ∀(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ ∀ ( c
+    : { arrow :
+          { _1 : cObject, _2 : cObject } → Type
+      , constraint :
+          cObject → Type
+      }
+    )
+→ ∀ ( d
+    : { additive :
+          { identity : Type, op : { _1 : Type, _2 : Type } → Type }
+      , arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , multiplicative :
+          { identity : Type, op : { _1 : Type, _2 : Type } → Type }
+      }
+    )
+→ { additive :
+      { identity :
+          ∀(x : cObject) → Type
+      , op :
+            ∀(f : { _1 : cObject → Type, _2 : cObject → Type })
+          → ∀(x : cObject)
+          → Type
+      }
+  , arrow :
+      { _1 : cObject → Type, _2 : cObject → Type } → Type
+  , constraint :
+      (cObject → Type) → Type
+  , multiplicative :
+      { identity :
+          ∀(x : cObject) → Type
+      , op :
+            ∀(f : { _1 : cObject → Type, _2 : cObject → Type })
+          → ∀(x : cObject)
+          → Type
+      }
   }
 </pre></dd>
 </dl>
@@ -1739,19 +2372,17 @@
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   }
@@ -1773,6 +2404,81 @@
     )
 → ∀(m : object → object)
 → { arrow : { _1 : object, _2 : object } → vObject, constraint : object → Type }
+</pre></dd>
+</dl>
+<h3 style="background-color: #bbb; width: 100%">./Category/Mon</h3>
+<h4>Kind (term)</h4>
+<p>{- The category of monoids in `cat`. -}</p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ { arrow :
+      { _1 : object, _2 : object } → Type
+  , constraint :
+      ∀(a : object) → Type
+  , identity :
+      object
+  , op :
+      { _1 : object, _2 : object } → object
+  }
+</pre></dd>
+</dl>
+<h4>forgetful (type)</h4>
+<p>{- The category of monoids in `cat`. -}</p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ (object → object)
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ λ(_ : object → object)
+→ { map :
+        object
+      → object
+      → v.arrow
+        { _1 =
+            cat.arrow { _1 = _@1, _2 = _ }
+        , _2 =
+            cat.arrow { _1 = _@2 _@1, _2 = _@2 _ }
+        }
+  }
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Monoidal</h3>
@@ -1866,22 +2572,112 @@
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-∀(kArrow : Kind → Kind → Kind) → ∀(vObject : Kind) → ∀(object : Kind) → Kind
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { arrow :
-      kArrow { _1 : object, _2 : object } vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , diagonal :
-      kArrow object { _1 : object, _2 : object }
+      cat.arrow object (cat.product object object)
   , identity :
       object
   , op :
-      kArrow { _1 : object, _2 : object } object
+      cat.arrow (cat.product object object) object
+  }
+</pre></dd>
+</dl>
+<h4>extractCategory (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ ∀ ( cartesian
+    : { arrow :
+          cat.arrow (cat.product object object) vObject
+      , constraint :
+          object → Type
+      , diagonal :
+          cat.arrow object (cat.product object object)
+      , identity :
+          object
+      , op :
+          cat.arrow (cat.product object object) object
+      }
+    )
+→ { arrow :
+      cat.arrow (cat.product object object) vObject
+  , constraint :
+      object → Type
+  }
+</pre></dd>
+</dl>
+<h4>extractMonoidal (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ ∀ ( cartesian
+    : { arrow :
+          cat.arrow (cat.product object object) vObject
+      , constraint :
+          object → Type
+      , diagonal :
+          cat.arrow object (cat.product object object)
+      , identity :
+          object
+      , op :
+          cat.arrow (cat.product object object) object
+      }
+    )
+→ { arrow :
+      cat.arrow (cat.product object object) vObject
+  , constraint :
+      object → Type
+  , identity :
+      object
+  , op :
+      cat.arrow (cat.product object object) object
+  }
+</pre></dd>
+</dl>
+<h4>extractSemigroupal (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ ∀ ( cartesian
+    : { arrow :
+          cat.arrow (cat.product object object) vObject
+      , constraint :
+          object → Type
+      , diagonal :
+          cat.arrow object (cat.product object object)
+      , identity :
+          object
+      , op :
+          cat.arrow (cat.product object object) object
+      }
+    )
+→ { arrow :
+      cat.arrow (cat.product object object) vObject
+  , constraint :
+      object → Type
+  , op :
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -1891,45 +2687,23 @@
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-∀(kArrow : Kind → Kind → Kind) → ∀(object : Kind) → Kind
-</pre></dd>
-<dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(object : Kind)
-→ { arrow :
-      kArrow { _1 : object, _2 : object } object
-  , constraint :
-      object → Type
-  , diagonal :
-      kArrow object { _1 : object, _2 : object }
-  , identity :
-      object
-  , op :
-      kArrow { _1 : object, _2 : object } object
-  }
-</pre></dd>
-</dl>
-<h4>Kind (kind)</h4>
-<p></p>
-<dl>
-<dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(object : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(object : Kind)
 → { arrow :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
   , constraint :
       object → Type
+  , diagonal :
+      cat.arrow object (cat.product object object)
   , identity :
       object
   , op :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -1937,25 +2711,45 @@
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(object : Kind)
+→ Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ λ(object : Kind)
+→ { arrow :
+      cat.arrow (cat.product object object) object
+  , constraint :
+      object → Type
+  , identity :
+      object
+  , op :
+      cat.arrow (cat.product object object) object
+  }
+</pre></dd>
+</dl>
+<h4>Kind (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , identity :
       object
   , op :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -2024,6 +2818,16 @@
             cat.arrow { _1 = cat.op { _1 = a, _2 = cat.identity }, _2 = a }
         }
   }
+</pre></dd>
+</dl>
+<h4>Sort (term)</h4>
+<p>{- Unfortunately, we don’t have the common kind-level identities available. So
+   rather than making a type that can’t be used, we just stick with Semigroupal,
+   and let the desired type be _named_ even if it can’t be implemented yet.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+Sort
 </pre></dd>
 </dl>
 <h4 style="background-color: #bbb; width: 100%">./Category/Monoidal/Symmetric</h4>
@@ -2190,23 +2994,22 @@
 -}</p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( monoidal
     : { arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , identity :
           object
       , op :
-          kArrow (kProduct object object) object
+          cat.arrow (cat.product object object) object
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   }
@@ -2218,27 +3021,26 @@
 -}</p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( monoidal
     : { arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , identity :
           object
       , op :
-          kArrow (kProduct object object) object
+          cat.arrow (cat.product object object) object
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , op :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -2404,16 +3206,6 @@
   }
 </pre></dd>
 </dl>
-<h4>Sort (kind)</h4>
-<p></p>
-<dl>
-<dt>sort</dt><dd><pre>
-∀(kArrow : Kind → Kind → Kind) → ∀(a : Kind) → ∀(b : Kind) → Kind
-</pre></dd>
-<dt>kind</dt><dd><pre>
-λ(kArrow : Kind → Kind → Kind) → λ(a : Kind) → λ(b : Kind) → kArrow b a
-</pre></dd>
-</dl>
 <h4>category (term)</h4>
 <p></p>
 <dl>
@@ -2468,6 +3260,14 @@
           )
       → cat.arrow { _1 = a._2, _2 = a._1 }
   }
+</pre></dd>
+</dl>
+<h4>categorySort (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind })
+→ { arrow : ∀(a : Kind) → ∀(b : Kind) → Kind }
 </pre></dd>
 </dl>
 <h4>duoidal (term)</h4>
@@ -2548,6 +3348,14 @@
   , op :
       { _1 : object, _2 : object } → object
   }
+</pre></dd>
+</dl>
+<h4>semigroupalSort (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ { arrow : ∀(a : Kind) → ∀(b : Kind) → Kind, product : Kind → Kind → Kind }
 </pre></dd>
 </dl>
 <h4>types.dhall (term)</h4>
@@ -3434,25 +4242,23 @@
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { additive :
-      { identity : object, op : kArrow (kProduct object object) object }
+      { identity : object, op : cat.arrow (cat.product object object) object }
   , arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , multiplicative :
-      { identity : object, op : kArrow (kProduct object object) object }
+      { identity : object, op : cat.arrow (cat.product object object) object }
   }
 </pre></dd>
 </dl>
@@ -3697,29 +4503,69 @@
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( rig
     : { additive :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       , arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , multiplicative :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , identity :
       object
   , op :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
+  }
+</pre></dd>
+</dl>
+<h4>extractCategory (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ ∀ ( rig
+    : { additive :
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
+      , arrow :
+          cat.arrow (cat.product object object) vObject
+      , constraint :
+          object → Type
+      , multiplicative :
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
+      }
+    )
+→ { arrow :
+      cat.arrow (cat.product object object) vObject
+  , constraint :
+      object → Type
   }
 </pre></dd>
 </dl>
@@ -3727,29 +4573,36 @@
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( rig
     : { additive :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       , arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , multiplicative :
-          { identity : object, op : kArrow (kProduct object object) object }
+          { identity :
+              object
+          , op :
+              cat.arrow (cat.product object object) object
+          }
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , identity :
       object
   , op :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -3758,23 +4611,21 @@
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   , op :
-      kArrow (kProduct object object) object
+      cat.arrow (cat.product object object) object
   }
 </pre></dd>
 </dl>
@@ -3825,6 +4676,14 @@
             }
         }
   }
+</pre></dd>
+</dl>
+<h4>Sort (term)</h4>
+<p>{- Should use ` ⩓ ./../Sort`.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+Sort
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -3904,24 +4763,31 @@
 -}</p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(vObject : Kind)
 → ∀(object : Kind)
 → ∀ ( semigroupal
     : { arrow :
-          kArrow (kProduct object object) vObject
+          cat.arrow (cat.product object object) vObject
       , constraint :
           object → Type
       , op :
-          kArrow (kProduct object object) object
+          cat.arrow (cat.product object object) object
       }
     )
 → { arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   , constraint :
       object → Type
   }
+</pre></dd>
+</dl>
+<h4>extractCategorySort (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+  ∀(semigroupal : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ { arrow : Kind → Kind → Kind }
 </pre></dd>
 </dl>
 <h4>types.dhall (term)</h4>
@@ -4342,8 +5208,6 @@
       → (Type → Type)
       → Type
       → Type
-  , Either :
-      { _1 : Type, _2 : Type } → Type
   , Endofunctor :
       (Type → Type) → Type
   , Eq :
@@ -4413,15 +5277,16 @@
       ({ _1 : Type, _2 : Type } → Type) → Type
   , Traversable :
       (Type → Type) → (Type → Type) → Type
-  , Tuple :
-      { _1 : Type, _2 : Type } → Type
-  , Unit :
-      Type
-  , Void :
-      Type
   , Yoneda :
       (Type → Type) → Type → Type
   }
+</pre></dd>
+</dl>
+<h4>Sort (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+Sort
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -4617,6 +5482,16 @@
       → ∀(input : cat.arrow { _1 = x, _2 = c })
       → cat.arrow { _1 = y, _2 = c }
   }
+</pre></dd>
+</dl>
+<h4>two-sided (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
 </pre></dd>
 </dl>
 <h4>types.dhall (term)</h4>
@@ -4943,13 +5818,14 @@
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-∀(kArrow : Kind → Kind → Kind) → ∀(kProduct : Kind → Kind → Kind) → Kind → Kind
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
+→ Kind
+→ Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(_ : Kind)
-→ { identity : _, op : kArrow _ (kProduct _ _) }
+→ { identity : _, op : cat.arrow _ (cat.product _ _) }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -5956,19 +6832,17 @@ Type
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   , multiplicative :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   }
 </pre></dd>
 </dl>
@@ -6257,19 +7131,29 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { identity : m, inverse : kArrow m m, op : kArrow (kProduct m m) m }
+      { identity :
+          m
+      , inverse :
+          cat.arrow m m
+      , op :
+          cat.arrow (cat.product m m) m
+      }
   , multiplicative :
-      { identity : m, inverse : kArrow m m, op : kArrow (kProduct m m) m }
+      { identity :
+          m
+      , inverse :
+          cat.arrow m m
+      , op :
+          cat.arrow (cat.product m m) m
+      }
   }
 </pre></dd>
 </dl>
@@ -6900,17 +7784,69 @@ Type
   }
 </pre></dd>
 </dl>
-<h2 style="background-color: #bbb; width: 100%">./Function</h2>
-<h4>Kind (kind)</h4>
+<h2 style="background-color: #bbb; width: 100%">./Free</h2>
+<h4>Type (type)</h4>
 <p></p>
 <dl>
-<dt>sort</dt><dd><pre>
-∀(a : Kind) → ∀(b : Kind) → Kind
-</pre></dd>
 <dt>kind</dt><dd><pre>
-λ(a : Kind) → λ(b : Kind) → a → b
+  ∀(vObject : Kind)
+→ ∀(object : Kind)
+→ ∀ ( v
+    : { arrow :
+          { _1 : vObject, _2 : vObject } → Type
+      , constraint :
+          vObject → Type
+      }
+    )
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → vObject
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(construction : object → Type)
+→ ∀(a : object)
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(vObject : Kind)
+→ λ(object : Kind)
+→ λ ( v
+    : { arrow :
+          { _1 : vObject, _2 : vObject } → Type
+      , constraint :
+          vObject → Type
+      }
+    )
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → vObject
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ λ(construction : object → Type)
+→ λ(a : object)
+→   ∀(m : object)
+  → construction m
+  → v.arrow
+    { _1 =
+        cat.arrow { _1 = a, _2 = m }
+    , _2 =
+        cat.arrow { _1 = cat.identity, _2 = m }
+    }
 </pre></dd>
 </dl>
+<h2 style="background-color: #bbb; width: 100%">./Function</h2>
 <h2 style="background-color: #bbb; width: 100%">./Functor</h2>
 <h3 style="background-color: #bbb; width: 100%">./Functor/Bifunctor</h3>
 <h4>Type (type)</h4>
@@ -8131,6 +9067,16 @@ Type
   }
 </pre></dd>
 </dl>
+<h4>inclusion (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+<>
+</pre></dd>
+</dl>
 <h4>laws (term)</h4>
 <p></p>
 <dl>
@@ -8254,13 +9200,12 @@ Type
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-(Kind → Kind → Kind) → (Kind → Kind → Kind) → Kind → Kind
+{ arrow : Kind → Kind → Kind, product : Kind → Kind → Kind } → Kind → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind → Kind → Kind)
+  λ(_ : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(_ : Kind)
-→ { identity : _, inverse : _@2 _ _, op : _@2 (_@1 _ _) _ }
+→ { identity : _, inverse : _@1.arrow _ _, op : _@1.arrow (_@1.product _ _) _ }
 </pre></dd>
 </dl>
 <h4>Set (type)</h4>
@@ -8486,16 +9431,14 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
-→ { identity : m, inverse : kArrow m m, op : kArrow (kProduct m m) m }
+→ { identity : m, inverse : cat.arrow m m, op : cat.arrow (cat.product m m) m }
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Group/Ordered</h3>
@@ -9090,6 +10033,17 @@ Type
   }
 </pre></dd>
 </dl>
+<h2 style="background-color: #bbb; width: 100%">./HList</h2>
+<h4>Type (kind)</h4>
+<p></p>
+<dl>
+<dt>sort</dt><dd><pre>
+∀(a : Kind) → ∀(b : Kind) → Kind
+</pre></dd>
+<dt>kind</dt><dd><pre>
+λ(a : Kind) → λ(b : Kind) → < Cons : { head : a, tail : b } | Nil : Type >
+</pre></dd>
+</dl>
 <h2 style="background-color: #bbb; width: 100%">./Identity</h2>
 <h4>Type (term)</h4>
 <p></p>
@@ -9320,13 +10274,13 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-∀(kArrow : Kind → Kind → Kind) → ∀(a : Kind) → ∀(b : Kind) → Kind
+∀(cat : { arrow : Kind → Kind → Kind }) → ∀(a : Kind) → ∀(b : Kind) → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind })
 → λ(a : Kind)
 → λ(b : Kind)
-→ { from : kArrow b a, to : kArrow a b }
+→ { from : cat.arrow b a, to : cat.arrow a b }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -9334,15 +10288,27 @@ Type
 <dl>
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
-→ ∀(arrow : { _1 : object, _2 : object } → Type)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      }
+    )
 → ∀(a : { _1 : object, _2 : object })
 → Type
 </pre></dd>
 <dt>type</dt><dd><pre>
   λ(object : Kind)
-→ λ(arrow : { _1 : object, _2 : object } → Type)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      }
+    )
 → λ(a : { _1 : object, _2 : object })
-→ { from : arrow { _1 = a._2, _2 = a._1 }, to : arrow a }
+→ { from : cat.arrow { _1 = a._2, _2 = a._1 }, to : cat.arrow a }
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Lan</h2>
@@ -9496,6 +10462,57 @@ Type
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Lattice</h2>
+<h3 style="background-color: #bbb; width: 100%">./Lattice/Complemented</h3>
+<h4>Type (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ λ(m : object)
+→ { complement :
+      cat.arrow { _1 = m, _2 = m }
+  , join :
+      { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+  , meet :
+      { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+  }
+</pre></dd>
+</dl>
 <h4>Type (type)</h4>
 <p></p>
 <dl>
@@ -9811,21 +10828,19 @@ Type
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Loop</h2>
 <h4>Kind (kind)</h4>
-<p>{- NB: `identity` would ideally be defined with `: kArrow kIdentity m`, but
+<p>{- NB: `identity` would ideally be defined with `: cat.arrow cat.unit m`, but
        there’s no Kind-level `{}` to use there.
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
-→ { identity : m, inverse : kArrow m m, op : kArrow (kProduct m m) m }
+→ { identity : m, inverse : cat.arrow m m, op : cat.arrow (cat.product m m) m }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -9875,16 +10890,14 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
-→ { op : kArrow (kProduct m m) m }
+→ { op : cat.arrow (cat.product m m) m }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -9921,7 +10934,7 @@ Type
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Monad</h2>
 <h4>Type (type)</h4>
-<p>{- A monad on a category C{object, arrow} is a monoid object in the category of
+<p>{- A monad on a category C is a monoid object in the category of
    endofunctors in C induced by composition.
 -}</p>
 <dl>
@@ -10105,13 +11118,12 @@ Type
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-(Kind → Kind → Kind) → (Kind → Kind → Kind) → Kind → Kind
+{ arrow : Kind → Kind → Kind, product : Kind → Kind → Kind } → Kind → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind → Kind → Kind)
+  λ(_ : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(_ : Kind)
-→ { identity : _, op : _@2 (_@1 _ _) _ }
+→ { identity : _, op : _@1.arrow (_@1.product _ _) _ }
 </pre></dd>
 </dl>
 <h4>Set (type)</h4>
@@ -10219,22 +11231,71 @@ Type
 → { op : cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m } }
 </pre></dd>
 </dl>
+<h3 style="background-color: #bbb; width: 100%">./Monoid/Hopf</h3>
+<h4>Type (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ ∀(m : object)
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , identity :
+          object
+      , op :
+          { _1 : object, _2 : object } → object
+      }
+    )
+→ λ(m : object)
+→ { antipode :
+      cat.arrow { _1 = m, _2 = m }
+  , comonoid :
+      { identity :
+          cat.arrow { _1 = m, _2 = cat.identity }
+      , op :
+          cat.arrow { _1 = m, _2 = cat.op { _1 = m, _2 = m } }
+      }
+  , monoid :
+      { identity :
+          cat.arrow { _1 = cat.identity, _2 = m }
+      , op :
+          cat.arrow { _1 = cat.op { _1 = m, _2 = m }, _2 = m }
+      }
+  }
+</pre></dd>
+</dl>
 <h4>Kind (kind)</h4>
-<p>{- NB: `identity` would ideally be defined with `: kArrow kIdentity m`, but
+<p>{- NB: `identity` would ideally be defined with `: cat.arrow cat.unit m`, but
        there’s no Kind-level `{}` to use there.
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
-→ { identity : m, op : kArrow (kProduct m m) m }
+→ { identity : m, op : cat.arrow (cat.product m m) m }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -10589,16 +11650,14 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
-→ { inverse : kArrow m m, op : kArrow (kProduct m m) m }
+→ { inverse : cat.arrow m m, op : cat.arrow (cat.product m m) m }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -10802,19 +11861,17 @@ Type
 -}</p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   , multiplicative :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   }
 </pre></dd>
 </dl>
@@ -10823,19 +11880,17 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   , multiplicative :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   }
 </pre></dd>
 </dl>
@@ -11163,19 +12218,23 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { identity : m, inverse : kArrow m m, op : kArrow (kProduct m m) m }
+      { identity :
+          m
+      , inverse :
+          cat.arrow m m
+      , op :
+          cat.arrow (cat.product m m) m
+      }
   , multiplicative :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   }
 </pre></dd>
 </dl>
@@ -11184,19 +12243,23 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { identity : m, inverse : kArrow m m, op : kArrow (kProduct m m) m }
+      { identity :
+          m
+      , inverse :
+          cat.arrow m m
+      , op :
+          cat.arrow (cat.product m m) m
+      }
   , multiplicative :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   }
 </pre></dd>
 </dl>
@@ -11692,19 +12755,23 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { identity : m, inverse : kArrow m m, op : kArrow (kProduct m m) m }
+      { identity :
+          m
+      , inverse :
+          cat.arrow m m
+      , op :
+          cat.arrow (cat.product m m) m
+      }
   , multiplicative :
-      { op : kArrow (kProduct m m) m }
+      { op : cat.arrow (cat.product m m) m }
   }
 </pre></dd>
 </dl>
@@ -11760,13 +12827,12 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-(Kind → Kind → Kind) → (Kind → Kind → Kind) → Kind → Kind
+{ arrow : Kind → Kind → Kind, product : Kind → Kind → Kind } → Kind → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind → Kind → Kind)
+  λ(_ : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(_ : Kind)
-→ { op : _@2 (_@1 _ _) _ }
+→ { op : _@1.arrow (_@1.product _ _) _ }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -11804,16 +12870,14 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
-→ { inverse : kArrow m m, op : kArrow (kProduct m m) m }
+→ { inverse : cat.arrow m m, op : cat.arrow (cat.product m m) m }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -11856,13 +12920,12 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-(Kind → Kind → Kind) → (Kind → Kind → Kind) → Kind → Kind
+{ arrow : Kind → Kind → Kind, product : Kind → Kind → Kind } → Kind → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind → Kind → Kind)
+  λ(_ : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(_ : Kind)
-→ { op : _@2 (_@1 _ _) _ }
+→ { op : _@1.arrow (_@1.product _ _) _ }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -12047,13 +13110,12 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-(Kind → Kind → Kind) → (Kind → Kind → Kind) → Kind → Kind
+{ arrow : Kind → Kind → Kind, product : Kind → Kind → Kind } → Kind → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(_ : Kind → Kind → Kind)
-→ λ(_ : Kind → Kind → Kind)
+  λ(_ : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(_ : Kind)
-→ { identity : _, op : _@2 (_@1 _ _) _ }
+→ { identity : _, op : _@1.arrow (_@1.product _ _) _ }
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -12148,19 +13210,17 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { op : kArrow (kProduct m m) m }
+      { op : cat.arrow (cat.product m m) m }
   , multiplicative :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   }
 </pre></dd>
 </dl>
@@ -12169,19 +13229,17 @@ Type
 <p></p>
 <dl>
 <dt>sort</dt><dd><pre>
-  ∀(kArrow : Kind → Kind → Kind)
-→ ∀(kProduct : Kind → Kind → Kind)
+  ∀(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → ∀(m : Kind)
 → Kind
 </pre></dd>
 <dt>kind</dt><dd><pre>
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : { arrow : Kind → Kind → Kind, product : Kind → Kind → Kind })
 → λ(m : Kind)
 → { additive :
-      { op : kArrow (kProduct m m) m }
+      { op : cat.arrow (cat.product m m) m }
   , multiplicative :
-      { identity : m, op : kArrow (kProduct m m) m }
+      { identity : m, op : cat.arrow (cat.product m m) m }
   }
 </pre></dd>
 </dl>
@@ -12593,16 +13651,6 @@ Type
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Tuple</h2>
-<h4>Kind (kind)</h4>
-<p></p>
-<dl>
-<dt>sort</dt><dd><pre>
-∀(a : Kind) → ∀(b : Kind) → Kind
-</pre></dd>
-<dt>kind</dt><dd><pre>
-λ(a : Kind) → λ(b : Kind) → { _1 : a, _2 : b }
-</pre></dd>
-</dl>
 <h4>adjunction (term)</h4>
 <p></p>
 <dl>

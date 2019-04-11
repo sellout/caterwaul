@@ -5,5 +5,5 @@
 -- → λ(cat : ./../Category/Monoidal/Kind kCat object)
 -- → λ(bool : object)
 -- → λ(a : object)
--- → { eq : cat.arrow { _1 = cat.op { _1 = a, _2 = a }, _2 = bool } }
+-- → { eq : cat.arrow { _1 = cat.product { _1 = a, _2 = a }, _2 = bool } }
 λ(a : Type) → { eq : a → a → Bool }

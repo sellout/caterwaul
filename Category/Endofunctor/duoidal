@@ -20,23 +20,23 @@ in    λ ( v
           vObject
         )
     → λ ( cat
-        : ./../../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           vObject
           object
         )
     → let applicative =
-            ./../Functor/monoidal sha256:ca31ba197edb1e6fe3e901c7e628430170df1367d5ece052734749b4a757c054
+            ./../Functor/monoidal sha256:c875c228da7431ca2e307e3889d06f7b6b85e11022c22b649d3d80cdc860e991
             object
             v
             cat
             cat
       
       let monadic =
-            ./monoidal/monadic sha256:6c2ff9a2294a8955a06b7ccad72ba28e11587ecb0882b7ecd1702b56c59d2f38
+            ./monoidal/monadic sha256:bc90904e831033ee75dfbaca1c8bbf79c20633bae1c27ab297460fb43bddbaaa
             object
             v
-            ( ./../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+            ( ./../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
               kCat
               vObject
               object
@@ -48,11 +48,15 @@ in    λ ( v
             , arrow =
                 applicative.arrow
             , additive =
-                { identity = applicative.identity, op = applicative.op }
+                { identity =
+                    applicative.identity
+                , product =
+                    applicative.product
+                }
             , multiplicative =
-                { identity = monadic.identity, op = monadic.op }
+                { identity = monadic.identity, product = monadic.product }
             }
-          : ./../Duoidal/Kind sha256:477d8185fbbe496496f87216c1204a2367ff703d5ca3b0c7495f17c43ac4dec6
+          : ./../Duoidal/Kind sha256:9093c6472bbfa0939a07b1d0896b7856410c84b4e55175dce8978baf8ff28b07
             kCat
             vObject
             (kCat.arrow object object)

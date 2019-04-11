@@ -7,14 +7,14 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           vObject
           object
         )
-    → ./../Monoid/Type sha256:7ec2cac4a8bda85f6010a0a00ab0da221bcc0ea295863c1c6259c5aa14878500
+    → ./../Monoid/Type sha256:de30a2de2ca32bea0db95476b658e4220a53b26134becbe2e3b8a3d8e7ee1fa5
       object
-      ( ./../Category/Op/monoidal sha256:2e9ba15d160c923c4ffc0d152ebc72a6d1a760ca82d1a22d5939b166fbc2fdca
+      ( ./../Category/Op/monoidal sha256:64aa4d3715e94ce086e27194aaa8214e6645647b82fbb8907038b243387c3586
         vObject
         object
         cat

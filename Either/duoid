@@ -4,28 +4,28 @@ let kCat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
       kCat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let object = Type
 
 let Set =
-      ./../Category/Set/rig sha256:11dbf023e35a2fb89e364023c53cf9f99bb3fd25f3b650b3b925595e01049669
+      ./../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
 
 let cat =
-      ./../Category/Rig/extractMultiplicative sha256:fef92f72e30bf84551fae14ba281414b952d166146fc061b212ea3c0afef650d
+      ./../Category/Rig/extractMultiplicative sha256:fcce2925fbebe635a50151f4cd5e00b0807811c62395c6fa5c8a87a40b229f32
       kCat
       vObject
       object
       Set
 
 let CommutativeSemigroup =
-      ./../Semigroup/Commutative/Type sha256:9c2ee52a412e914e1716a0b3210be32af44993029f703a15b183a3b0cce9002c
+      ./../Semigroup/Commutative/Type sha256:c141f4fb3c393804963be5ed72ffe07f5a7e90f588ead9065235240815a80c88
       object
-      ( ./../Category/Monoidal/extractSemigroupal sha256:8fc720d6416e099e6943afa14eefa7bb86489af66eea29c4d5c9e11eab9c6808
+      ( ./../Category/Monoidal/extractSemigroupal sha256:a5bbf4cdc598ec13d870022473eb80feeee8f9b2b10528f5df7f48edccb2c751
         kCat
         vObject
         object
@@ -33,7 +33,7 @@ let CommutativeSemigroup =
       )
 
 let extractMonoid =
-      ./../Functor/Monoidal/extractMonoid sha256:bda57c9719de2da0e96312bd2b3121d4aa7d66b789800f77aa19b0a187e91358
+      ./../Functor/Monoidal/extractMonoid sha256:e93483f755c54ba85af7bbbe2d05af51912ef2d9dab04252cb84a4f314b9430b
       object
       v
       cat
@@ -45,22 +45,22 @@ in    λ ( a
     → λ(semigroup : CommutativeSemigroup a)
     →   { additive =
             extractMonoid
-            (λ(b : object) → Set.additive.op { _1 = a, _2 = b })
-            ( ./functor/monoidal/parallel sha256:8bc69a5992dfc9871754095b9402b7701ed8ac02da52d6116c1de2d04d6e9155
+            (λ(b : object) → Set.additive.product { _1 = a, _2 = b })
+            ( ./functor/monoidal/parallel sha256:297ad7a35c8034ace69945b6da2220e606d3c258c06a40bac0869ecae8d6973b
               a
               semigroup
             )
         , multiplicative =
             extractMonoid
-            (λ(b : object) → Set.additive.op { _1 = a, _2 = b })
-            ( ./functor/monoidal/sequential sha256:61456cca362a3e100a2b3f10fad7501c90f116e78fa54520a1a72dde4f224141
+            (λ(b : object) → Set.additive.product { _1 = a, _2 = b })
+            ( ./functor/monoidal/sequential sha256:a94fecc864328cc1bc38d26b5e2f78a84fc9d59846467c769fa4115e5d336422
               a
             )
         }
-      : ./../Duoid/Type sha256:a9c861fad7547e485d9c2238266baa59221ed1c3f8b2f540a6a8fcabaa7ddd03
+      : ./../Duoid/Type sha256:db5179b63bfe4cfec2face20845757f747a1fbe98c7e8ccdaf86487cfeec17f4
         (kCat.arrow object object)
-        ( ./../Category/Endofunctor/monoidal/functor sha256:1cbf0bbab108fb1e17bb9c03206a11cadc0f3c7d3b5e59928b3e74962635f215
+        ( ./../Category/Endofunctor/monoidal/functor sha256:fb99eab936eca8a781143279bc871dfa0a434255f0da8e00f225f85313733a95
           v
           cat
         )
-        (λ(b : object) → Set.additive.op { _1 = a, _2 = b })
+        (λ(b : object) → Set.additive.product { _1 = a, _2 = b })

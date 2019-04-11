@@ -1,4 +1,4 @@
-{- FIXME: Should be able to do `semigroupal.{ arrow, op }`, but Dhall doesn’t like
+{- FIXME: Should be able to do `semigroupal.{ arrow, product }`, but Dhall doesn’t like
           that for some reason.
 -}
   λ ( cat
@@ -7,7 +7,7 @@
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( semigroupal
-    : ./Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+    : ./Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
       cat
       vObject
       object

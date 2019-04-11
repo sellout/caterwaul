@@ -7,16 +7,16 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Semigroupal/Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+        : ./../Category/Semigroupal/Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
           kCat
           vObject
           object
         )
     → λ(m : object)
     → λ ( semigroup
-        : ./Type sha256:9c2ee52a412e914e1716a0b3210be32af44993029f703a15b183a3b0cce9002c
+        : ./Type sha256:c141f4fb3c393804963be5ed72ffe07f5a7e90f588ead9065235240815a80c88
           object
           cat
           m
         )
-    → semigroup.{ op }
+    → semigroup.{ product }

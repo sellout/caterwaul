@@ -1,8 +1,8 @@
   λ(m : Type)
 → { additive :
-      ./../../Group/PartiallyOrderedCommutative/Type sha256:c5608774ec82836e55b006fe253a9580c90cd376491f561fd5819430eb5f4282
+      ./../../Group/PartiallyOrderedCommutative/Type sha256:05e41f5c97f79ac404c3e2b2c34e37270f8dae4b3eb4dc319e06114c6ee2870a
       m
   , multiplicative :
-      ./../../Group/Commutative/Set sha256:5a82659751c640f647bffa256c70b252e8650b23a381342e838d9d280024bbd4
+      ./../../Group/Commutative/Set sha256:f90b67104cd79c18f5092c91bf0747c5f869e5659cf2a69778fd6ecac25cdce1
       m
   }

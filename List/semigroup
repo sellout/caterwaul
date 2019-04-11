@@ -4,19 +4,19 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       cat
       vObject
       Type
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 in    λ ( a
         : Type
         )
-    → ./../Monoid/extractSemigroup sha256:dd1d77224129bcf8e11eb1e927b2a6d911e0b1147525ac902eacd7ead31e96ae
+    → ./../Monoid/extractSemigroup sha256:473fba2a269e006256d7fbba84fd802226e0364a09356ff7d70d6ca3a84f6522
       Type
       Set
       (List a)
-      ( ./monoid sha256:2041bcc3dac3683f83dc477b97d8e39963b7fa6976258f5abc4059f149d740f8
+      ( ./monoid sha256:4270621b8abee2e451dc0e64c41a2552c7f71211d9beb83787984a8d41fbb035
         a
       )

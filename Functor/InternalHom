@@ -8,15 +8,15 @@ let cat =
 let vObject = Type
 
 in    λ ( v
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           cat
           Type
           vObject
         )
-    → ./Hom sha256:fe32ab6637ecdcd22d50078702dc94679bd611851eaddf1e40fec26d6e32b184
+    → ./Hom sha256:4b7bbe0c0fe08ad3dce24f104e1e282429ef8058c97060e36ce90f92012708a6
       vObject
       v
-      ( ./../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+      ( ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
         cat
         Type
         vObject

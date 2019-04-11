@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           vObject
           object
@@ -16,9 +16,9 @@ in    λ ( object
     →   { identity :
             cat.arrow { _1 = cat.identity, _2 = m }
         }
-      ⩓ ./../Quasigroup/Type sha256:a6b4ad24cb3ab8207d48de0caa4170fd1909aa6d6a5846773ff80b7b3bea4ad2
+      ⩓ ./../Quasigroup/Type sha256:15b2bed7847588a5fba4bf854140a6dace00cdfd27af5d57d0927018fc5edd58
         object
-        ( ./../Category/Monoidal/extractSemigroupal sha256:8fc720d6416e099e6943afa14eefa7bb86489af66eea29c4d5c9e11eab9c6808
+        ( ./../Category/Monoidal/extractSemigroupal sha256:a5bbf4cdc598ec13d870022473eb80feeee8f9b2b10528f5df7f48edccb2c751
           kCat
           vObject
           object

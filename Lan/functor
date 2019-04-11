@@ -4,11 +4,11 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       cat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 in    λ ( cObject
         : Kind
@@ -21,7 +21,7 @@ in    λ ( cObject
           cpObject
         )
     → λ ( cpSemigroupoid
-        : ./../Semigroupoid/Type sha256:c43adcdb5e9cb39774277d7dcbeb77a8c85a6d64458b129d1a92bac3711f132d
+        : ./../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
           cpObject
           v
           cp
@@ -31,11 +31,11 @@ in    λ ( cObject
             Type
       
       let d =
-            ./../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+            ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
             cat
             vObject
             dObject
-            ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+            ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
       
       let Lan =
             ./Type sha256:2edbc6596b56524c06bd7d0f89e30a4a273b5a8a2e53c65c09f2e2ae340891a4
@@ -64,7 +64,7 @@ in    λ ( cObject
                       → λ(x : cp.arrow { _1 = f c, _2 = a })
                       → k
                         c
-                        ( cpSemigroupoid.op
+                        ( cpSemigroupoid.product
                           { _1 = f c, _2 = b }
                           (   λ(r : Type)
                             → λ ( arrowsOut
@@ -82,7 +82,7 @@ in    λ ( cObject
               vObject
               cpObject
               dObject
-              ( ./../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+              ( ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
                 cat
                 Type
                 vObject

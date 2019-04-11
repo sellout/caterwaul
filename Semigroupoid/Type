@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           Type
           vObject
@@ -21,9 +21,9 @@ in    λ ( object
     → let profunctor =
             kCat.arrow (kCat.product object object) vObject
       
-      in  ./../Semigroup/Type sha256:9c2ee52a412e914e1716a0b3210be32af44993029f703a15b183a3b0cce9002c
+      in  ./../Semigroup/Type sha256:c141f4fb3c393804963be5ed72ffe07f5a7e90f588ead9065235240815a80c88
           profunctor
-          ( ./../Category/Profunctor/semigroupal sha256:96b99ef1921dac9ea988b429323cd2695c8ef3167a489decc0783bb37b122005
+          ( ./../Category/Profunctor/semigroupal sha256:d5815c7bb2a27b70391bab244ececa40c93e5deed7186662ee4e9c96d8fcf578
             object
             v
             cat

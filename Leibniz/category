@@ -1,4 +1,4 @@
-{- In a Leibniz category, identity is refl, and op is transitivity. -}
+{- In a Leibniz category, identity is refl, and product is transitivity. -}
 let cat =
       ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
@@ -9,7 +9,7 @@ in    λ ( cObject
         )
     → λ(dObject : Kind)
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           cat
           Type
           vObject
@@ -27,7 +27,7 @@ in    λ ( cObject
           dObject
         )
     → λ ( dCategory
-        : ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+        : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
           dObject
           v
           d
@@ -45,7 +45,7 @@ in    λ ( cObject
                         λ(f : cat.arrow cObject dObject)
                       → dCategory.identity (f a)
                   }
-            , op =
+            , product =
                   λ(a : { _1 : cObject, _2 : cObject })
                 → λ ( p
                     :   ∀(r : Type)
@@ -58,7 +58,7 @@ in    λ ( cObject
                     )
                 → { subst =
                         λ(f : cat.arrow cObject dObject)
-                      → dCategory.op
+                      → dCategory.product
                         { _1 = f a._1, _2 = f a._2 }
                         (   λ(r : Type)
                           → λ ( arrowsOut
@@ -77,7 +77,7 @@ in    λ ( cObject
                         )
                   }
             }
-          : ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+          : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
             cObject
             v
             Leibniz

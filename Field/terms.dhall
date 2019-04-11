@@ -4,36 +4,36 @@ let kCat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       kCat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           vObject
           object
         )
     → let base =
-            ./../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+            ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
             kCat
             vObject
             object
             cat
       
       in    λ ( category
-              : ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+              : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
                 object
                 v
                 base
               )
           → λ ( bifunctor
-              : ./../Functor/Bifunctor/Type sha256:d8949693dfb049e8d09615a9e1e7037418bc3e654d2eeecfc61e41a99e7daf41
+              : ./../Functor/Bifunctor/Type sha256:caf45fd32cae3f88e6a8d93c3d81737e6d2abdf1a6ed90efc7b69906b65e7ba0
                 vObject
                 object
                 object
@@ -42,17 +42,17 @@ in    λ ( object
                 base
                 base
                 base
-                cat.op
+                cat.product
               )
           → λ(m : object)
           → λ ( field
-              : ./Type sha256:6ef655309a937164f95bda55fe839a7329b4629b1d2042213a01f103e413ff43
+              : ./Type sha256:8c807118f5787225c16876c89470140c694e961d2d31575b65c4ac6f2de985a4
                 object
                 cat
                 m
               )
           →   { divide =
-                  ./divide sha256:3c207876398d02b195cc13f97c587ab041b9d85d0b49cdd026013a3b1ab7baf8
+                  ./divide sha256:85812798c64a3b587c96a72ce52230862dde90a4790842a9a081e0b54ba2ea51
                   object
                   cat
                   category
@@ -62,13 +62,13 @@ in    λ ( object
               , reciprocal =
                   field.multiplicative.inverse
               }
-            ∧ ./../Ring/terms.dhall sha256:74ddd461df7e486bf8f9d94e5619d54528b0fb2c7ab9a20ab2eb393faff23594
+            ∧ ./../Ring/terms.dhall sha256:273a1461d814f66b337fa8741e39e184e5e818834a43a5d63e4850501e21cc90
               object
               cat
               category
               bifunctor
               m
-              ( ./extractRing sha256:67fa8191537dbbe8bef91fa8a4c19b4e39c03a07f3e589bf60a60bbbfe544ee3
+              ( ./extractRing sha256:c150e0e75a82686367dff30bc77780f394bc1e53961a8d5f1f6fe446815a23a4
                 object
                 cat
                 m

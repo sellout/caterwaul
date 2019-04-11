@@ -4,14 +4,14 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       cat
       vObject
       Type
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
-in  ./../Monoid/extractSemigroup sha256:dd1d77224129bcf8e11eb1e927b2a6d911e0b1147525ac902eacd7ead31e96ae
+in  ./../Monoid/extractSemigroup sha256:473fba2a269e006256d7fbba84fd802226e0364a09356ff7d70d6ca3a84f6522
     Type
     Set
     Text
-    ./monoid sha256:d0c39e0a56c58c726e841c59946a5e0ee3e276e9b7a64a2cfa3fbe60789c80f9
+    ./monoid sha256:a249ed7569e57d19d218db06f658829f9345f50939d03a255d3e19b25d800de1

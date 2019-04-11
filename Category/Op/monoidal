@@ -6,7 +6,7 @@ in    λ ( vObject
         )
     → λ(object : Kind)
     → λ ( cat
-        : ./../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           vObject
           object
@@ -14,16 +14,16 @@ in    λ ( vObject
     →     { identity =
               cat.identity
           }
-        ∧ ./semigroupal sha256:eaad804f395c9c41ba3d2f9ce3d7f78f4d2c1faf59d49b26bd73b2ff04987450
+        ∧ ./semigroupal sha256:f6304f172773862648c118b25f9cd1f27a1692e69609b7fb61eeb51bcaaaa0b7
           vObject
           object
-          ( ./../Monoidal/extractSemigroupal sha256:8fc720d6416e099e6943afa14eefa7bb86489af66eea29c4d5c9e11eab9c6808
+          ( ./../Monoidal/extractSemigroupal sha256:a5bbf4cdc598ec13d870022473eb80feeee8f9b2b10528f5df7f48edccb2c751
             kCat
             vObject
             object
             cat
           )
-      : ./../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      : ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
         kCat
         vObject
         object

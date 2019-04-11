@@ -4,33 +4,33 @@ let kCat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
       kCat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       kCat
       vObject
       object
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 in    λ ( m
         : kCat.arrow object object
         )
     → λ ( monoidal
-        : ./../Functor/Monoidal/Type sha256:7d4a68165b33b76bf9e8d8ab6fc8739699a1260549ebee624e57d8cab06f97c0
+        : ./../Functor/Monoidal/Type sha256:73d6a61a626107cf8fc9ee73e02b3116a2540bae6fa38881165eab9d8c0f8913
           object
           v
           cat
           cat
           m
         )
-    → ./../Ran/lower sha256:3adce0198c34a613e18ef09e5f89d6d80b18f5322d63320a0002f4e6d1ec7635
+    → ./../Ran/lower sha256:2d52196ecdba776ece8b44c9f9ad4a8d3a6babdc8ca171725b41080f70a4b7c3
       m
       monoidal
       m

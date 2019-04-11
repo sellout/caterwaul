@@ -2,7 +2,7 @@
     : ./../../Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
     )
 → λ(object : Kind)
-→ ./../../Cartesian/Kind sha256:4ac875e8c1c47c4aa92d3c46ef58468ec26b213dc8aa5fd6a8ceed3273f0e8e3
+→ ./../../Cartesian/Kind sha256:7bb821c96d6c062b6187841d1a758e3d7b3c69efa3167e54bca5b5907ac8e103
   cat
   object
   object

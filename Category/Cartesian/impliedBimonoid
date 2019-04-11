@@ -3,16 +3,16 @@ let kCat =
       ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let Bimonoid =
-      ./../../Bimonoid/Type sha256:4035bc62422e92370b5c223f0f503df357e71952226ecff88dcecddbf2766947
+      ./../../Bimonoid/Type sha256:9964284fa5ab49985d51ec1219fa75ff8a6607d113c3b1249a7cbc9e74786c8c
 
 let CartesianCategory =
-      ./Type sha256:f5c21da484fffdaa1b6e8847b80d5825d716578a81cd8694177aa84279439094
+      ./Type sha256:223ac3444e5e1fbce3fb19cebe82bd2879837b64e510fc5319c68ddf7ed7ab1b
 
 let Monoid =
-      ./../../Monoid/Type sha256:7ec2cac4a8bda85f6010a0a00ab0da221bcc0ea295863c1c6259c5aa14878500
+      ./../../Monoid/Type sha256:de30a2de2ca32bea0db95476b658e4220a53b26134becbe2e3b8a3d8e7ee1fa5
 
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
       kCat
 
 let vObject = Type

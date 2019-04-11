@@ -2,25 +2,25 @@ let kCat =
       ./../../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let base =
-      ./../../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+      ./../../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
       kCat
 
 let vObject = Type
 
 let v =
-      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
       kCat
       Type
       vObject
-      ./../../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let object = Type
 
 let Set =
-      ./../../../Category/Set/rig sha256:11dbf023e35a2fb89e364023c53cf9f99bb3fd25f3b650b3b925595e01049669
+      ./../../../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
 
 let cat =
-      ./../../../Category/Rig/extractMultiplicative sha256:fef92f72e30bf84551fae14ba281414b952d166146fc061b212ea3c0afef650d
+      ./../../../Category/Rig/extractMultiplicative sha256:fcce2925fbebe635a50151f4cd5e00b0807811c62395c6fa5c8a87a40b229f32
       kCat
       vObject
       object
@@ -30,7 +30,7 @@ in    λ ( m
         : kCat.arrow object object
         )
     → λ ( monoidal
-        : ./../../../Functor/Monoidal/Type sha256:7d4a68165b33b76bf9e8d8ab6fc8739699a1260549ebee624e57d8cab06f97c0
+        : ./../../../Functor/Monoidal/Type sha256:73d6a61a626107cf8fc9ee73e02b3116a2540bae6fa38881165eab9d8c0f8913
           object
           v
           cat
@@ -46,7 +46,7 @@ in    λ ( m
             → λ(f : cat.arrow { _1 = b, _2 = m c })
             → ( ./../pair sha256:601d2ccb1cde5c744bbc476c67fda8496a2467401ef848d520d26900f3476396
                 m
-                ( ./../../../Functor/Monoidal/extractFunctor sha256:50802ab7163dfae71084fa4a3027784d04e06fca7fd1b0e7cd59c30435e18946
+                ( ./../../../Functor/Monoidal/extractFunctor sha256:7b22b05708f299136b5165685f0740220fbec54cca37b329e44284c9da8bc50e
                   object
                   v
                   cat
@@ -69,4 +69,4 @@ in    λ ( m
         v
         (base vObject object cat)
         m
-        (λ(b : object) → Set.additive.op { _1 = a, _2 = b })
+        (λ(b : object) → Set.additive.product { _1 = a, _2 = b })

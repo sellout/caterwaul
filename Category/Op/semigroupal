@@ -6,24 +6,24 @@ in    λ ( vObject
         )
     → λ(object : Kind)
     → λ ( cat
-        : ./../Semigroupal/Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+        : ./../Semigroupal/Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
           kCat
           vObject
           object
         )
-    →     { op =
-              cat.op
+    →     { product =
+              cat.product
           }
         ∧ ./Kind sha256:e098dd6a242e1c53f07ac907a04e6196a2d8055fe8e95650872a5b89ff60c7b4
           vObject
           object
-          ( ./../../Category/Semigroupal/extractCategory sha256:6f1f56b9a2979d9d15d3f85459a5869f8122619c2dbd3b7ba0d982c6de320222
+          ( ./../../Category/Semigroupal/extractCategory sha256:e424ab1a06cccec93571da2bc08642157fd9e60030535233320a7e22c02d01b6
             kCat
             vObject
             object
             cat
           )
-      : ./../Semigroupal/Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+      : ./../Semigroupal/Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
         kCat
         vObject
         object

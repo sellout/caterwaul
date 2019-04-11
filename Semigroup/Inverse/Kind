@@ -5,6 +5,6 @@
 →   { inverse :
         cat.arrow m m
     }
-  ⩓ ./../../Semigroup/Kind sha256:d3bf6e41e5fe906bfbd8f9928c3510b3b4dc39119fa887d5d3200998011b79b9
+  ⩓ ./../../Semigroup/Kind sha256:ecf7d79d35cf9b77b623f7dc4a118350e91e5bc6ae881156f76428e79667ad2c
     cat
     m

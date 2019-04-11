@@ -2,4 +2,4 @@
     : ./../Category/Semigroupal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
     )
 → λ(m : Kind)
-→ { op : cat.arrow (cat.product m m) m }
+→ { product : cat.arrow (cat.product m m) m }

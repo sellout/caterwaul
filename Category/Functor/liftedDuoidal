@@ -11,7 +11,7 @@ let Category =
       cat
 
 let DuoidalCategory =
-      ./../Duoidal/Kind sha256:477d8185fbbe496496f87216c1204a2367ff703d5ca3b0c7495f17c43ac4dec6
+      ./../Duoidal/Kind sha256:9093c6472bbfa0939a07b1d0896b7856410c84b4e55175dce8978baf8ff28b07
       cat
 
 in    λ ( cObject
@@ -26,7 +26,7 @@ in    λ ( cObject
           → λ(c : Category vObject cObject)
           → λ(d : DuoidalCategory vObject dObject)
           → let base =
-                  ./../Duoidal/extractCategory sha256:bde612d19d314b7e0948fe034abeb4c6d06b7aafd95550ce115672c904792089
+                  ./../Duoidal/extractCategory sha256:82e77f240de082d8505dc9dc9b09e7c1479171cf01ffc2f474745d10c91b35e7
                   cat
                   vObject
             
@@ -41,10 +41,10 @@ in    λ ( cObject
                               dObject
                               cObject
                               { _1 = d.additive.identity, _2 = x }
-                        , op =
+                        , product =
                               λ(f : { _1 : object, _2 : object })
                             → λ(x : cObject)
-                            → d.additive.op { _1 = f._1 x, _2 = f._2 x }
+                            → d.additive.product { _1 = f._1 x, _2 = f._2 x }
                         }
                     , multiplicative =
                         { identity =
@@ -55,10 +55,11 @@ in    λ ( cObject
                               dObject
                               cObject
                               { _1 = d.multiplicative.identity, _2 = x }
-                        , op =
+                        , product =
                               λ(f : { _1 : object, _2 : object })
                             → λ(x : cObject)
-                            → d.multiplicative.op { _1 = f._1 x, _2 = f._2 x }
+                            → d.multiplicative.product
+                              { _1 = f._1 x, _2 = f._2 x }
                         }
                     }
                   ∧ ./category sha256:c69163eac75892504c9b6fd8b9637704c20e0baa23c5d428ecfb2b4587414bef

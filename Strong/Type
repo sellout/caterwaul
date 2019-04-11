@@ -8,7 +8,7 @@ in    λ ( cObject
         )
     → λ(dObject : Kind)
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           cat
           Type
           vObject
@@ -47,7 +47,7 @@ in    λ ( cObject
             → f { _1 = h, _2 = i }
             → f { _1 = h, _2 = j }
         }
-      ⩓ ./../Functor/Profunctor/Type sha256:cb60a14dd70d9116c64424b1368414ce44a425a238a17bf79efed6251fd8d13f
+      ⩓ ./../Functor/Profunctor/Type sha256:e47d2dd146c4c8665da2d6f5363fd37ff59971aaa354bfa1f1be9fca965ce307
         cObject
         dObject
         v

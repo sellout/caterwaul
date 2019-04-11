@@ -6,7 +6,7 @@ let Category =
       cat
 
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
       cat
 
 in    λ(vObject : Kind)
@@ -22,7 +22,7 @@ in    λ(vObject : Kind)
                 → { _1 : c.constraint obj._1, _2 : d.constraint obj._2 }
             , arrow =
                   λ(a : { _1 : object, _2 : object })
-                → v.op
+                → v.product
                   { _1 =
                       c.arrow { _1 = a._1._1, _2 = a._2._1 }
                   , _2 =

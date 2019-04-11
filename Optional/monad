@@ -4,18 +4,18 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
       cat
       vObject
       Type
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let category =
-      ./../Category/Set/category sha256:9d632babf74a31ec2425b5d25bf8627d2ae5ab22605a5168b33f84ece51d2f2e
+      ./../Category/Set/category sha256:6f1eaf6697638fb787cbd0d05026ffbfd9ae02c130dbb99f21efeffcbf3b7a6e
 
 in    { identity =
           λ(a : Type) → λ(x : a) → Some x
-      , op =
+      , product =
             λ(a : Type)
           → λ(mma : Optional (Optional a))
           → Optional/fold
@@ -25,7 +25,7 @@ in    { identity =
             (category.identity (Optional a))
             (None a)
       }
-    : ./../Monad/Type sha256:d47c5141940d87e0a1ed370c52c27ddb1be4330b8c6684c90247f1f72eb77876
+    : ./../Monad/Type sha256:0324dd40fc192581e566136f5cde4424ed653ecf7311b967b7d291d05484b78e
       Type
       Set
       Optional

@@ -16,14 +16,14 @@ in    λ ( cObject
         )
     → λ(dObject : Kind)
     → λ ( v
-        : ./../../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           cat
           Type
           vObject
         )
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
-    → ./../Bifunctor/Type sha256:d8949693dfb049e8d09615a9e1e7037418bc3e654d2eeecfc61e41a99e7daf41
+    → ./../Bifunctor/Type sha256:caf45fd32cae3f88e6a8d93c3d81737e6d2abdf1a6ed90efc7b69906b65e7ba0
       vObject
       dObject
       cObject
@@ -35,7 +35,7 @@ in    λ ( cObject
         d
       )
       c
-      ( ./../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+      ( ./../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
         cat
         Type
         vObject

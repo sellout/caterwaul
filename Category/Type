@@ -13,7 +13,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           Type
           vObject
@@ -27,7 +27,7 @@ in    λ ( object
     →   { identity :
             ∀(a : object) → cat.arrow { _1 = a, _2 = a }
         }
-      ⩓ ./../Semigroupoid/Type sha256:c43adcdb5e9cb39774277d7dcbeb77a8c85a6d64458b129d1a92bac3711f132d
+      ⩓ ./../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
         object
         v
         cat

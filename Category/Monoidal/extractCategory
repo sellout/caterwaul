@@ -1,4 +1,4 @@
-{- FIXME: Should be able to do `monoidal.{ arrow, op }`, but Dhall doesn’t like
+{- FIXME: Should be able to do `monoidal.{ arrow, product }`, but Dhall doesn’t like
           that for some reason.
 -}
   λ ( cat
@@ -7,7 +7,7 @@
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( monoidal
-    : ./Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+    : ./Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
       cat
       vObject
       object

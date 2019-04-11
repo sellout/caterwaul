@@ -2,5 +2,5 @@
 →   { le :
         m → m → Bool
     }
-  ⩓ ./../PartiallyOrdered/Type sha256:74347464c97f0377694a6b16680573fd88a8ee37aa78497228bae5b803c73670
+  ⩓ ./../PartiallyOrdered/Type sha256:181f3ed46722bb46e78795924c630cb78a60b2b56dd827da4ef1099064ea3616
     m

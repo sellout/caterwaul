@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           vObject
           object
@@ -16,7 +16,7 @@ in    λ ( object
     →   { antipode :
             cat.arrow { _1 = m, _2 = m }
         }
-      ⩓ ./../../Bimonoid/Type sha256:4035bc62422e92370b5c223f0f503df357e71952226ecff88dcecddbf2766947
+      ⩓ ./../../Bimonoid/Type sha256:9964284fa5ab49985d51ec1219fa75ff8a6607d113c3b1249a7cbc9e74786c8c
         object
         cat
         m

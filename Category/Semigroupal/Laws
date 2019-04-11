@@ -5,7 +5,7 @@ let Isomorphism =
       ./../../Isomorphism/Type sha256:aa416af42a745ed47476a9aa736340f4346442177a2396f368ba9659d2a23ad9
 
 let SemigroupalCategory =
-      ./Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+      ./Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
       kCat
 
 let vObject = Type
@@ -22,15 +22,15 @@ in    λ ( object
           → ∀(c : object)
           → Isomorphism
             object
-            ( ./extractCategory sha256:6f1f56b9a2979d9d15d3f85459a5869f8122619c2dbd3b7ba0d982c6de320222
+            ( ./extractCategory sha256:e424ab1a06cccec93571da2bc08642157fd9e60030535233320a7e22c02d01b6
               kCat
               vObject
               object
               cat
             )
             { _1 =
-                cat.op { _1 = cat.op { _1 = a, _2 = b }, _2 = c }
+                cat.product { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
             , _2 =
-                cat.op { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
+                cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
             }
       }

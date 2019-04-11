@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           Type
           vObject
@@ -19,19 +19,19 @@ in    λ ( object
           object
         )
     → λ ( category
-        : ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+        : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
           object
           v
           cat
         )
-    → ./monad sha256:45bf46f4ce7fee944bca234557508dbecbf8638c6dc75394703169b7a11c06ae
+    → ./monad sha256:f5958e7a5f201d85286d7a8992d1255f1b0bc13f36697cca43feae75c8de65e6
       object
       ( ./../Category/Op/Kind sha256:e098dd6a242e1c53f07ac907a04e6196a2d8055fe8e95650872a5b89ff60c7b4
         vObject
         object
         cat
       )
-      ( ./../Category/Op/category sha256:98567963caf123b76e98be4482a80d5273e91983a2b38c92a44d69e0e979b2c5
+      ( ./../Category/Op/category sha256:57b4f82bc2a2b701caf574b8d6c1276c5461793559b607305ad7ce06d8f6ee60
         object
         v
         cat

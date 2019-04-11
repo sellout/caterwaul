@@ -4,16 +4,16 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Monoidal/Cartesian/extractSemigroupal sha256:7e5d21f3576c085dca88a9b3bfa2cc01b21136397fbb7c9a6ffd9a990c0282cf
+      ./../Category/Monoidal/Cartesian/extractSemigroupal sha256:5ea36ef859f12ab3575e578d19b38bfd9b50e7540a62cad09b80504653da57e6
       cat
       vObject
       Type
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
-in    { op =
+in    { product =
           λ(p : { _1 : <>, _2 : <> }) → merge {=} p._1 : <>
       }
-    : ./../Semigroup/Type sha256:9c2ee52a412e914e1716a0b3210be32af44993029f703a15b183a3b0cce9002c
+    : ./../Semigroup/Type sha256:c141f4fb3c393804963be5ed72ffe07f5a7e90f588ead9065235240815a80c88
       Type
       Set
       <>

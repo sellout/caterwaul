@@ -8,7 +8,7 @@ let Category =
 let vObject = Type
 
 in    λ ( v
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           cat
           Type
           vObject
@@ -18,7 +18,7 @@ in    λ ( v
     → λ(dObject : Kind)
     → λ(d : Category vObject dObject)
     → λ ( dCategory
-        : ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+        : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
           dObject
           v
           d
@@ -34,7 +34,7 @@ in    λ ( v
       
       in    { identity =
                 λ(a : object) → λ(i : cObject) → dCategory.identity (a i)
-            , op =
+            , product =
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
                     :   ∀(r : Type)
@@ -46,7 +46,7 @@ in    λ ( v
                       → r
                     )
                 → λ(i : cObject)
-                → dCategory.op
+                → dCategory.product
                   { _1 = a._1 i, _2 = a._2 i }
                   (   λ(r : Type)
                     → λ ( arrowsOut
@@ -64,13 +64,13 @@ in    λ ( v
                       )
                   )
             }
-          : ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+          : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
             object
             v
             ( ./../Category/Functor/category sha256:c69163eac75892504c9b6fd8b9637704c20e0baa23c5d428ecfb2b4587414bef
               cObject
               dObject
-              ( ./../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+              ( ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
                 cat
                 Type
                 vObject

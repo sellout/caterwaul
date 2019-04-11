@@ -6,7 +6,7 @@ let vObject = Type
 let object = Type
 
 in    λ ( v
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           Type
           vObject
@@ -18,7 +18,7 @@ in    λ ( v
           object
         )
     → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:c43adcdb5e9cb39774277d7dcbeb77a8c85a6d64458b129d1a92bac3711f132d
+        : ./../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
           object
           v
           cat
@@ -26,7 +26,7 @@ in    λ ( v
         )
     → λ(f : kCat.arrow object object)
     → λ ( comonad
-        : ./../Comonad/Type sha256:d13db9e0b984aa3ad4e658ae2574973a4a477d0f8ca3b88c3b5a79d0799536c8
+        : ./../Comonad/Type sha256:6ddfa25c10ab6487474f62a2f4962d2a1ea8d2ef42a646a14add738717e861bf
           object
           cat
           f

@@ -1,18 +1,18 @@
 let Set =
-      ./../../../Category/Set/rig sha256:11dbf023e35a2fb89e364023c53cf9f99bb3fd25f3b650b3b925595e01049669
+      ./../../../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
 
 in    λ ( a
         : Type
         )
-    → ./../../../Monad/impliedMonoidalFunctor sha256:328ef14ad9512d5fe24dad615e353f3492884d312ea1bf0c536123fe7da06e60
-      (λ(b : Type) → Set.additive.op { _1 = a, _2 = b })
-      ( ./../endo/star sha256:714ba5c1401929dc0a33a3e319f65fe17dfdc7b0d896b3d022572b39f0bf1091
+    → ./../../../Monad/impliedMonoidalFunctor sha256:f86ffaf4b0bd9c7b090c2a89c2c7bf88ff023dc51d6d17e84816af0a10bf50bf
+      (λ(b : Type) → Set.additive.product { _1 = a, _2 = b })
+      ( ./../endo/star sha256:b87eef622146c7b43b2a16e492bc30bd03fdfedf037ed9ceebcf94f022500293
         ( ./../../../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
           Type
         )
-        ./../../../Identity/functor/monoidal sha256:c7b7bb7632523da1fcea63ad5d4c29fd51abf5f4464995b5e10621807fdecc1b
+        ./../../../Identity/functor/monoidal sha256:40c429fedb0d4632284b3665f35b06c09b8eb582fc39f6997676aa403a6efc1f
         a
       )
-      ( ./../../monad sha256:f9c54c8e8f1c0dfa0b83888a9c934e3063aa4ef67dd0157d60dff51f14534594
+      ( ./../../monad sha256:04a40a70f71d2aa7bd189f0255019b214640f44db8db26b76f5fe75c7107e518
         a
       )

@@ -2,24 +2,24 @@ let kCat =
       ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let base =
-      ./../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+      ./../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
       kCat
 
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       kCat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let Set =
-      ./../../Category/Rig/extractAdditive sha256:868060f11fb386ceaa98cb7dc5d6da8b7ddcde2c9674da7ce9f0e598269c2004
+      ./../../Category/Rig/extractAdditive sha256:5e68260653c471df3977a657c811c8ca7f0317e379bcd90886917b0f2ec52f2b
       kCat
       vObject
       Type
-      ./../../Category/Set/rig sha256:11dbf023e35a2fb89e364023c53cf9f99bb3fd25f3b650b3b925595e01049669
+      ./../../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
 
 let cat = base vObject Type Set
 
@@ -38,18 +38,20 @@ in    λ ( m
               λ(a : { _1 : Type, _2 : Type })
             → λ(b : { _1 : Type, _2 : Type })
             → λ(f : { _1 : a._1 → m b._1, _2 : a._2 → m b._2 })
-            → λ(e : Set.op a)
-            → let E = Set.op b
+            → λ(e : Set.product a)
+            → let E = Set.product b
               
               in  merge
                   { Left =
-                      λ(x : a._1) → functor.map b._1 (Set.op b) E.Left (f._1 x)
+                        λ(x : a._1)
+                      → functor.map b._1 (Set.product b) E.Left (f._1 x)
                   , Right =
-                      λ(x : a._2) → functor.map b._2 (Set.op b) E.Right (f._2 x)
+                        λ(x : a._2)
+                      → functor.map b._2 (Set.product b) E.Right (f._2 x)
                   }
                   e
         }
-      : ./../../Functor/Pair/Type sha256:7d67d4be164e26fc2ddc886d57887d14d55e6ab9a925f3189cfd1be5c5aedf6f
+      : ./../../Functor/Pair/Type sha256:51cd0825dd05a6c58e6afc0c4f95e00a5b8db9affd8b028137dac704e1f1457c
         vObject
         Type
         v
@@ -59,4 +61,4 @@ in    λ ( m
           cat
           m
         )
-        Set.op
+        Set.product

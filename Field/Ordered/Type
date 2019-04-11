@@ -4,9 +4,9 @@ in    λ ( m
         : object
         )
     → { additive :
-          ./../../Group/OrderedCommutative/Type sha256:c50fddc48ae62685496c44f2330fcea667eb0cfa92b3a24723d87a84fcb64152
+          ./../../Group/OrderedCommutative/Type sha256:aed4c1ad18353f23053475bf15a65ce6f8bb1ea8f95791ed276e56347f4b30e3
           m
       , multiplicative :
-          ./../../Group/Commutative/Set sha256:5a82659751c640f647bffa256c70b252e8650b23a381342e838d9d280024bbd4
+          ./../../Group/Commutative/Set sha256:f90b67104cd79c18f5092c91bf0747c5f869e5659cf2a69778fd6ecac25cdce1
           m
       }

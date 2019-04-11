@@ -1,17 +1,17 @@
 {- A duoid (also known as a “united monoid”) is actually a pair of monoids with
-   a shared `identity`. The `additive.op` distributes over the
-  `multiplicative.op` as well.
+   a shared `identity`. The `additive.product` distributes over the
+  `multiplicative.product` as well.
 -}
   λ ( cat
     : ./../Category/Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
     )
 → λ(m : Kind)
 → { additive :
-      ./../Semilattice/Bounded/Kind sha256:67630b8edf6802a33f3436591147b3531148ddd8b335075112ba59a120e1ea01
+      ./../Semilattice/Bounded/Kind sha256:1c48503e82acd9b323925e8b5b1c3f1d14945cfccc185f6485390ebd41a95454
       cat
       m
   , multiplicative :
-      ./../Monoid/Kind sha256:67630b8edf6802a33f3436591147b3531148ddd8b335075112ba59a120e1ea01
+      ./../Monoid/Kind sha256:1c48503e82acd9b323925e8b5b1c3f1d14945cfccc185f6485390ebd41a95454
       cat
       m
   }

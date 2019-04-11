@@ -6,28 +6,28 @@ let vObject = Type
 let object = Type
 
 let cat =
-      ./../../Category/Monoidal/Cartesian/extractCategory sha256:fe359f472fbc38300f29f9f50522e2e23d0bb16034bc98c93265a1f5aeb01349
+      ./../../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
       kCat
       vObject
       object
-      ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 let category =
-      ./../../Category/Set/category sha256:9d632babf74a31ec2425b5d25bf8627d2ae5ab22605a5168b33f84ece51d2f2e
+      ./../../Category/Set/category sha256:6f1eaf6697638fb787cbd0d05026ffbfd9ae02c130dbb99f21efeffcbf3b7a6e
 
 let semigroupoid =
-      ./../../Category/Set/semigroupoid sha256:3b8491b6aa3f60ae83a7ad46b6e13cdda79ae6d2348926fe8815a2549c5b5cc4
+      ./../../Category/Set/semigroupoid sha256:fd98b398b43b5fe73e6a1a17a26c8a9a6cf5d9c712bfcbb29b7e1d42d12a4d10
 
 in    λ ( m
         : kCat.arrow object object
         )
-    → ./../../Monad/impliedMonoidalFunctor sha256:328ef14ad9512d5fe24dad615e353f3492884d312ea1bf0c536123fe7da06e60
+    → ./../../Monad/impliedMonoidalFunctor sha256:f86ffaf4b0bd9c7b090c2a89c2c7bf88ff023dc51d6d17e84816af0a10bf50bf
       ( ./../Type sha256:b0945f99031bc91ed9a0bc7c25b48ef903bf0c3746ac6fcaaeb04fefa0b652e1
         object
         cat
         m
       )
-      ( ./../../Ran/functor sha256:753ab43e0d55452fd3459f311bbcee7e6eca3fbe34c99c14a00bff0e61b9ae98
+      ( ./../../Ran/functor sha256:953eca12f7c1a1293ae13f716ed34abc8daf5fd34f93d27678cff0c838c47c7e
         object
         object
         cat
@@ -35,7 +35,7 @@ in    λ ( m
         m
         m
       )
-      ( ./../monad sha256:68f2beed7d0a154d817c14858a698972c72c9c532350d83195111217eba13a65
+      ( ./../monad sha256:47e5cd8f427282be9d877c8c963d22860088e2b0bd93637c0270d2e0d04990d5
         category
         m
       )

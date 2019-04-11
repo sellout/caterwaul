@@ -4,7 +4,7 @@ let cat =
 let vObject = Type
 
 let MonoidalCategory =
-      ./../../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      ./../../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
       cat
       vObject
 
@@ -26,7 +26,7 @@ in    λ ( cObject
               )
           → λ(f : cat.arrow cObject dObject)
           → let base =
-                  ./../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+                  ./../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
                   cat
                   vObject
             
@@ -38,9 +38,9 @@ in    λ ( cObject
                   (base cObject c)
                   (base dObject d)
                   f
-                ⩓ ./../../Monoid/Type sha256:7ec2cac4a8bda85f6010a0a00ab0da221bcc0ea295863c1c6259c5aa14878500
+                ⩓ ./../../Monoid/Type sha256:de30a2de2ca32bea0db95476b658e4220a53b26134becbe2e3b8a3d8e7ee1fa5
                   (cat.arrow cObject dObject)
-                  ( ./../../Category/Functor/monoidal sha256:ca31ba197edb1e6fe3e901c7e628430170df1367d5ece052734749b4a757c054
+                  ( ./../../Category/Functor/monoidal sha256:c875c228da7431ca2e307e3889d06f7b6b85e11022c22b649d3d80cdc860e991
                     cObject
                     v
                     c

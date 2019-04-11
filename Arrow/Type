@@ -4,22 +4,22 @@ let kCat =
 let vObject = Type
 
 let Category/Semigroupal =
-      ./../Category/Semigroupal/Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+      ./../Category/Semigroupal/Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
 
 let extractCategory =
-      ./../Category/Semigroupal/extractCategory sha256:6f1f56b9a2979d9d15d3f85459a5869f8122619c2dbd3b7ba0d982c6de320222
+      ./../Category/Semigroupal/extractCategory sha256:e424ab1a06cccec93571da2bc08642157fd9e60030535233320a7e22c02d01b6
 
 let Category =
-      ./../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+      ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
 
 let Strong =
-      ./../Strong/Type sha256:7c36ad50721347c7e886786fe21b1ab6281c18682f378b5f5809ab7e53274a09
+      ./../Strong/Type sha256:f826a092356d88b7bc710c0552b54ab6f109219108cb032fdb6b0d58594b9c54
 
 in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
           kCat
           Type
           vObject
@@ -36,9 +36,9 @@ in    λ ( object
                 → cat.arrow { _1 = c, _2 = d }
                 → cat.arrow
                   { _1 =
-                      cat.op { _1 = a, _2 = c }
+                      cat.product { _1 = a, _2 = c }
                   , _2 =
-                      cat.op { _1 = b, _2 = d }
+                      cat.product { _1 = b, _2 = d }
                   }
             , fanout :
                   ∀(a : object)
@@ -46,7 +46,7 @@ in    λ ( object
                 → ∀(c : object)
                 → cat.arrow { _1 = a, _2 = b }
                 → cat.arrow { _1 = a, _2 = c }
-                → cat.arrow { _1 = a, _2 = cat.op { _1 = b, _2 = c } }
+                → cat.arrow { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
             }
           ⩓ Category object v base
           ⩓ Strong object object v base base cat.arrow

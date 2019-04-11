@@ -4,20 +4,20 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       cat
       vObject
       Type
-      ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 in    λ ( m
         : Type
         )
     → { additive :
-          ./../../Group/PartiallyOrderedCommutative/Type sha256:c5608774ec82836e55b006fe253a9580c90cd376491f561fd5819430eb5f4282
+          ./../../Group/PartiallyOrderedCommutative/Type sha256:05e41f5c97f79ac404c3e2b2c34e37270f8dae4b3eb4dc319e06114c6ee2870a
           m
       , multiplicative :
-          ./../../Monoid/Type sha256:7ec2cac4a8bda85f6010a0a00ab0da221bcc0ea295863c1c6259c5aa14878500
+          ./../../Monoid/Type sha256:de30a2de2ca32bea0db95476b658e4220a53b26134becbe2e3b8a3d8e7ee1fa5
           Type
           Set
           m

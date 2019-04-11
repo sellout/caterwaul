@@ -4,7 +4,7 @@ let cat =
 let vObject = Type
 
 let MonoidalCategory =
-      ./../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
       cat
 
 in    λ(cObject : Kind)
@@ -15,5 +15,5 @@ in    λ(cObject : Kind)
     → λ(a : cObject)
     → λ(r : vObject)
     →   ∀(b : { _1 : cObject, _2 : cObject })
-      → c.arrow { _1 = c.op b, _2 = a }
-      → v.arrow { _1 = v.op { _1 = f b._1, _2 = g b._2 }, _2 = r }
+      → c.arrow { _1 = c.product b, _2 = a }
+      → v.arrow { _1 = v.product { _1 = f b._1, _2 = g b._2 }, _2 = r }

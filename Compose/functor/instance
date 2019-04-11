@@ -13,13 +13,13 @@ in    λ ( vObject
         )
     → λ(v : Category Type vObject)
     → λ ( vCategory
-        : ./../../Category/Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+        : ./../../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
           vObject
-          ( ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+          ( ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
             cat
             Type
             Type
-            ./../../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+            ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
           )
           v
         )
@@ -36,7 +36,7 @@ in    λ ( vObject
     →   { map =
               λ(a : cObject)
             → λ(b : cObject)
-            → vCategory.op
+            → vCategory.product
               { _1 =
                   c.arrow { _1 = a, _2 = b }
               , _2 =

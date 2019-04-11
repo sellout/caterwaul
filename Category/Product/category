@@ -4,11 +4,11 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       cat
       Type
       vObject
-      ./../Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 in    λ ( cObject
         : Kind
@@ -20,7 +20,7 @@ in    λ ( cObject
           cObject
         )
     → λ ( cCategory
-        : ./../Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+        : ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
           cObject
           v
           c
@@ -33,7 +33,7 @@ in    λ ( cObject
           dObject
         )
     → λ ( dCategory
-        : ./../Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+        : ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
           dObject
           v
           d
@@ -42,7 +42,7 @@ in    λ ( cObject
             { _1 : cObject, _2 : dObject }
       
       let prod =
-            ./Type sha256:f3854340edaa7735c5bfa1436c98017e2b24ac6b615b05becd39bca0c30622d6
+            ./Type sha256:47428aa940d451cb89e88f2629e77492f9dadf2c831d932319fad5d4093b86cd
             vObject
             cObject
             dObject
@@ -53,7 +53,7 @@ in    λ ( cObject
       in    { identity =
                   λ(a : object)
                 → { _1 = cCategory.identity a._1, _2 = dCategory.identity a._2 }
-            , op =
+            , product =
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
                     :   ∀(r : Type)
@@ -65,7 +65,7 @@ in    λ ( cObject
                       → r
                     )
                 → { _1 =
-                      cCategory.op
+                      cCategory.product
                       { _1 = a._1._1, _2 = a._2._1 }
                       (   λ(r : Type)
                         → λ ( arrowsOut
@@ -83,7 +83,7 @@ in    λ ( cObject
                           )
                       )
                   , _2 =
-                      dCategory.op
+                      dCategory.product
                       { _1 = a._1._2, _2 = a._2._2 }
                       (   λ(r : Type)
                         → λ ( arrowsOut
@@ -102,7 +102,7 @@ in    λ ( cObject
                       )
                   }
             }
-          : ./../Type sha256:5792bd3a482ad0d318aecda464bd952a6561dc1119bdc1f5db574cfc3b66e095
+          : ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
             object
             v
             prod

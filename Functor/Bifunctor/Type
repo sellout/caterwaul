@@ -6,14 +6,14 @@ let Category =
       cat
 
 let MonoidalCategory =
-      ./../../Category/Monoidal/Kind sha256:6eb37e632903173c5ec1600564aa614697c4b58719773c4e4c66a76f095d1636
+      ./../../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
       cat
 
 let Functor =
       ./../Type sha256:bebd999f32d6a3fd9bd7151ca5f0942ed6aeded30809c4a7e6c91382bed2dbcb
 
 let Category/Product =
-      ./../../Category/Product/Type sha256:f3854340edaa7735c5bfa1436c98017e2b24ac6b615b05becd39bca0c30622d6
+      ./../../Category/Product/Type sha256:47428aa940d451cb89e88f2629e77492f9dadf2c831d932319fad5d4093b86cd
 
 in    λ ( vObject
         : Kind
@@ -28,7 +28,7 @@ in    λ ( vObject
       vObject
       { _1 : cObject, _2 : dObject }
       eObject
-      ( ./../../Category/Monoidal/extractCategory sha256:936b393338b8dcf60af6c25ecea2b0b02d83e18acfed60ff736754fe0c1d7b3d
+      ( ./../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
         cat
         Type
         vObject

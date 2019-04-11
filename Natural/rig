@@ -5,26 +5,26 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:25afdf2818357f9c4b9dac6652b82e730472c389a634f8417a6014d39c7cddc0
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
       cat
       vObject
       Type
-      ./../Category/Set/monoidal/cartesian sha256:48e8bea552638624a62335eab92acd1e0a04c28e8a0d8fe1c8974565065a9576
+      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
 
 in    { additive =
           { identity =
               λ(_ : {}) → 0
-          , op =
+          , product =
               λ(t : { _1 : Natural, _2 : Natural }) → t._1 + t._2
           }
       , multiplicative =
           { identity =
               λ(_ : {}) → 1
-          , op =
+          , product =
               λ(t : { _1 : Natural, _2 : Natural }) → t._1 * t._2
           }
       }
-    : ./../Rig/Type sha256:a9c861fad7547e485d9c2238266baa59221ed1c3f8b2f540a6a8fcabaa7ddd03
+    : ./../Rig/Type sha256:db5179b63bfe4cfec2face20845757f747a1fbe98c7e8ccdaf86487cfeec17f4
       Type
       Set
       Natural

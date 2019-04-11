@@ -4,16 +4,16 @@
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( cartesian
-    : ./Kind sha256:4ac875e8c1c47c4aa92d3c46ef58468ec26b213dc8aa5fd6a8ceed3273f0e8e3
+    : ./Kind sha256:7bb821c96d6c062b6187841d1a758e3d7b3c69efa3167e54bca5b5907ac8e103
       cat
       vObject
       object
     )
 →   cartesian.{ constraint
               , arrow
-              , op
+              , product
               }
-  : ./../../Semigroupal/Kind sha256:e76288137b213da343b09207c0c8a72bd551a21712d3d7f2089342e1968ba699
+  : ./../../Semigroupal/Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
     cat
     vObject
     object
