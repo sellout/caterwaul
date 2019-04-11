@@ -1,66 +1,34 @@
-let cat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../Category/Monoidal/Cartesian/extractMonoidal
       cat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../Category/Set/monoidal/cartesian
 
-let vBase =
-      ./../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
-      cat
-      Type
-      vObject
-      v
+let vBase = ./../Category/Monoidal/extractCategory cat Type vObject v
 
-let Category =
-      ./../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-      cat
-      vObject
+let Category = ./../Category/Kind cat vObject
 
-in    λ ( cObject
-        : Kind
-        )
+in    λ(cObject : Kind)
     → λ(c : Category cObject)
     → λ(dObject : Kind)
     → λ(d : Category dObject)
-    → λ ( dCategory
-        : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-          dObject
-          v
-          d
-        )
+    → λ(dCategory : ./../Category/Type dObject v d)
     → λ(f : cat.arrow cObject dObject)
-    → λ ( functor
-        : ./../Functor/Type sha256:bebd999f32d6a3fd9bd7151ca5f0942ed6aeded30809c4a7e6c91382bed2dbcb
-          vObject
-          cObject
-          dObject
-          vBase
-          c
-          d
-          f
-        )
-    → ./../Ran/lift sha256:867f98989f5df14f7116e39862348f28c71cf842c5b4ead99f9cda6713928359
+    → λ(functor : ./../Functor/Type vObject cObject dObject vBase c d f)
+    → ./../Ran/lift
       cObject
       cObject
       dObject
       c
       d
-      ( ./../Category/extractSemigroupoid sha256:c986f4139d8187a7ada93fd4850733b7533852666009d73a881cb0375f25e663
-        dObject
-        v
-        d
-        dCategory
-      )
+      (./../Category/extractSemigroupoid dObject v d dCategory)
       f
       functor
-      ( ./../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
-        cObject
-      )
+      (./../Identity/Type cObject)
       f
       (λ(a : cObject) → dCategory.unit (f a))

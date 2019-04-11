@@ -1,6 +1,4 @@
-  λ ( cat
-    : ./../Category/Sort sha256:12ff8c1a33d4884a1e981817b17701f26160240f9fc0d5fae305d14ec18e3770
-    )
+  λ(cat : ./../Category/Sort)
 → λ(a : Kind)
 → λ(b : Kind)
 → { to : cat.arrow a b, from : cat.arrow b a }

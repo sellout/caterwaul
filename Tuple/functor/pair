@@ -1,24 +1,18 @@
-let cat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
       cat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../../Category/Set/monoidal/cartesian
 
-let Set =
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+let Set = ./../../Category/Set/monoidal/cartesian
 
 let base =
-      ./../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
-      cat
-      vObject
-      Type
-      Set
+      ./../../Category/Monoidal/Cartesian/extractCategory cat vObject Type Set
 
 in    { map =
             λ(a : { _1 : Type, _2 : Type })
@@ -27,9 +21,4 @@ in    { map =
           → λ(t : Set.product a)
           → { _1 = f._1 t._1, _2 = f._2 t._2 }
       }
-    : ./../../Functor/Pair/Type sha256:32d90239bb9a45c9b9fea6589240178acd4c1206c5369a24ea0fbba5d9faef2d
-      vObject
-      Type
-      v
-      base
-      Set.product
+    : ./../../Functor/Pair/Type vObject Type v base Set.product

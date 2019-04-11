@@ -1,3 +1,1 @@
-./../Group/Ordered/extractPartiallyOrderedGroup sha256:dcd9bd1c1e91366212adcf280f9e528eef09ec658f54602bf633a018e1403320
-{}
-./orderedGroup sha256:093bd030b45cf54f7594debc82bd484c6c857b56aedaaff3955506872046ee3a
+./../Group/Ordered/extractPartiallyOrderedGroup {} ./orderedGroup

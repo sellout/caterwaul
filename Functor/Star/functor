@@ -1,78 +1,44 @@
 {- If there is a natural transformation from `n` to `m`, then a m-Star functor
    can be made into an n-Star functor.
 -}
-let kCat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
       kCat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../../Category/Set/monoidal/cartesian
 
 let Set =
-      ./../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
+      ./../../Category/Monoidal/Cartesian/extractCategory
       kCat
       vObject
       Type
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../../Category/Set/monoidal/cartesian
 
-in    λ ( object
-        : Kind
-        )
-    → λ ( cat
-        : ./../../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-          kCat
-          vObject
-          object
-        )
-    → λ ( category
-        : ./../../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-          object
-          v
-          cat
-        )
-    → let vBase =
-            ./../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
-            kCat
-            Type
-            vObject
-            v
+in    λ(object : Kind)
+    → λ(cat : ./../../Category/Kind kCat vObject object)
+    → λ(category : ./../../Category/Type object v cat)
+    → let vBase = ./../../Category/Monoidal/extractCategory kCat Type vObject v
       
       let endoObject = kCat.arrow object object
       
       let endo =
-            ./../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
+            ./../../Category/Monoidal/extractCategory
             kCat
             vObject
             endoObject
-            ( ./../../Category/Endofunctor/monoidal/monadic sha256:0e31b0338ba25f45a71547b40e327574afead7e8fdc0d1825e4a29e33b3734b4
-              object
-              vBase
-              cat
-            )
+            (./../../Category/Endofunctor/monoidal/monadic object vBase cat)
       
-      in    λ ( f
-              : endoObject
-              )
+      in    λ(f : endoObject)
           →   { map =
-                    λ ( m
-                      : endoObject
-                      )
+                    λ(m : endoObject)
                   → λ(n : endoObject)
                   → λ(natural : endo.arrow { _1 = n, _2 = m })
-                  → λ ( star
-                      : ./Type sha256:478e56de78e7bcfddaa56adfb8e10e97007303aee206e5a64080fe7210bfb539
-                        vObject
-                        object
-                        vBase
-                        cat
-                        m
-                        f
-                      )
+                  → λ(star : ./Type vObject object vBase cat m f)
                   → { map =
                           λ(a : object)
                         → λ(b : object)
@@ -94,21 +60,11 @@ in    λ ( object
                           )
                     }
               }
-            : ./../../Functor/Contravariant sha256:5cac00b722fed910bc5b8637f00ec1361decf3c8936a4336631a4cf3ba1d20e6
+            : ./../../Functor/Contravariant
               vObject
               endoObject
               Type
               vBase
               endo
               Set
-              (   λ ( a
-                    : endoObject
-                    )
-                → ./Type sha256:478e56de78e7bcfddaa56adfb8e10e97007303aee206e5a64080fe7210bfb539
-                  vObject
-                  object
-                  vBase
-                  cat
-                  a
-                  f
-              )
+              (λ(a : endoObject) → ./Type vObject object vBase cat a f)

@@ -4,27 +4,18 @@
    `Group/PartiallyOrdered` constrains the instances enough for a generic “less
    than” to be meaningful.
 -}
-let cat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
 let Set =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
       cat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../../Category/Set/monoidal/cartesian
 
-in    λ ( m
-        : Type
-        )
-    →   { partialLE :
-            m → m → Optional Bool
-        }
-      ⩓ ./../../Eq/Type sha256:16ec0250d1cd6f2d48bb5fe37d46d1db9ef640657c7b247b8d5be1aca30259b1
-        m
-      ⩓ ./../Type sha256:1c7379742fbce696180cd8e2660a489b7b7d8cbfe81406733459e37ffa961214
-        Type
-        Set
-        m
+in    λ(m : Type)
+    →   { partialLE : m → m → Optional Bool }
+      ⩓ ./../../Eq/Type m
+      ⩓ ./../Type Type Set m

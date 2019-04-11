@@ -1,41 +1,22 @@
-let kCat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../Category/Monoidal/Cartesian/extractMonoidal
       kCat
       vObject
       object
-      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../Category/Set/monoidal/cartesian
 
-in    λ ( m
-        : object
-        )
-    → λ ( eq
-        : ./../Eq/Type sha256:16ec0250d1cd6f2d48bb5fe37d46d1db9ef640657c7b247b8d5be1aca30259b1
-          m
-        )
-    → λ ( monoid
-        : ./Type sha256:f834d5fd5b1d9a58809d316e6660f485b2e2d342bf833dcfda8034634e3a8f76
-          object
-          cat
-          m
-        )
+in    λ(m : object)
+    → λ(eq : ./../Eq/Type m)
+    → λ(monoid : ./Type object cat m)
     →   { leftIdentity =
             λ(a : m) → eq.eq (monoid.product { _1 = monoid.unit {=}, _2 = a }) a
         , rightIdentity =
             λ(a : m) → eq.eq (monoid.product { _1 = a, _2 = monoid.unit {=} }) a
         }
-      ∧ ./../Semigroup/laws sha256:d806ea17c17102ce4941a607afb1c027b2079d3febc38375db62e5eafa4441b3
-        m
-        eq
-        ( ./extractSemigroup sha256:9b762677815796b68ea55b35e00afb063cf92285a4e3b4fc16cca8df7f1fe0a0
-          object
-          cat
-          m
-          monoid
-        )
+      ∧ ./../Semigroup/laws m eq (./extractSemigroup object cat m monoid)

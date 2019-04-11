@@ -1,52 +1,35 @@
-let cat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../Category/Monoidal/Cartesian/extractMonoidal
       cat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../Category/Set/monoidal/cartesian
 
-in    λ ( cObject
-        : Kind
-        )
-    → let dObject =
-            Type
+in    λ(cObject : Kind)
+    → let dObject = Type
       
-      in    λ ( c
-              : ./../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-                cat
-                vObject
-                cObject
-              )
-          → λ ( cCategory
-              : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-                cObject
-                v
-                c
-              )
+      in    λ(c : ./../Category/Kind cat vObject cObject)
+          → λ(cCategory : ./../Category/Type cObject v c)
           → let d =
-                  ./../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
+                  ./../Category/Monoidal/Cartesian/extractCategory
                   cat
                   vObject
                   dObject
-                  ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+                  ./../Category/Set/monoidal/cartesian
             
-            let dCategory =
-                  ./../Category/Set/category sha256:9af6edd3937b2f3cada47051820a676475fd3e583b9ceecf60eeb544ec8c9b46
+            let dCategory = ./../Category/Set/category
             
-            in    λ ( f
-                    : cat.arrow cObject dObject
-                    )
+            in    λ(f : cat.arrow cObject dObject)
                 → λ ( functor
-                    : ./Type sha256:bebd999f32d6a3fd9bd7151ca5f0942ed6aeded30809c4a7e6c91382bed2dbcb
+                    : ./Type
                       vObject
                       cObject
                       dObject
-                      ( ./../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
+                      ( ./../Category/Monoidal/extractCategory
                         cat
                         Type
                         vObject
@@ -57,32 +40,22 @@ in    λ ( cObject
                       f
                     )
                 → { unit =
-                        λ ( a
-                          : cObject
-                          )
-                      → λ ( eq
-                          : ./../Eq/Type sha256:16ec0250d1cd6f2d48bb5fe37d46d1db9ef640657c7b247b8d5be1aca30259b1
-                            (f a)
-                          )
-                      → ./../Eq/eqfn sha256:6c0871046404917eb6fa8b4177f76d4a33aad3eeb86ee5422abf565ac851805f
+                        λ(a : cObject)
+                      → λ(eq : ./../Eq/Type (f a))
+                      → ./../Eq/eqfn
                         (f a)
                         (f a)
                         eq
                         (functor.map a a (cCategory.unit a))
                         (dCategory.unit (f a))
                   , composition =
-                        λ ( a
-                          : cObject
-                          )
+                        λ(a : cObject)
                       → λ(b : cObject)
                       → λ(e : cObject)
-                      → λ ( eq
-                          : ./../Eq/Type sha256:16ec0250d1cd6f2d48bb5fe37d46d1db9ef640657c7b247b8d5be1aca30259b1
-                            (f e)
-                          )
+                      → λ(eq : ./../Eq/Type (f e))
                       → λ(fn : c.arrow { _1 = b, _2 = e })
                       → λ(gn : c.arrow { _1 = a, _2 = b })
-                      → ./../Eq/eqfn sha256:6c0871046404917eb6fa8b4177f76d4a33aad3eeb86ee5422abf565ac851805f
+                      → ./../Eq/eqfn
                         (f a)
                         (f e)
                         eq

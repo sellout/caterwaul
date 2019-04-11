@@ -1,43 +1,28 @@
 {- For any rig category 𝒞, any 𝒞-valued functor category is a rig category in
    the same way by “lifting” the rig structure of 𝒞.
 -}
-let cat =
-      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../Cat/semigroupal
 
 let vObject = Type
 
-let Category =
-      ./../Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-      cat
+let Category = ./../Kind cat
 
-let DuoidalCategory =
-      ./../Duoidal/Kind sha256:f81dfc0c5d6068531dea30420720beec80a7cd1d0481cfb44fc9fecb3c35611a
-      cat
+let DuoidalCategory = ./../Duoidal/Kind cat
 
-in    λ ( cObject
-        : Kind
-        )
-    → let dObject =
-            Type
+in    λ(cObject : Kind)
+    → let dObject = Type
       
-      in    λ ( v
-              : Category Type vObject
-              )
+      in    λ(v : Category Type vObject)
           → λ(c : Category vObject cObject)
           → λ(d : DuoidalCategory vObject dObject)
-          → let base =
-                  ./../Duoidal/extractCategory sha256:7c0bcbd29731e19cbfd3c760c60f9e54eb85815bee92a9580f97899825951d88
-                  cat
-                  vObject
+          → let base = ./../Duoidal/extractCategory cat vObject
             
             let object = cat.arrow cObject dObject
             
             in      { additive =
                         { unit =
-                              λ ( x
-                                : cObject
-                                )
-                            → ./../../Const/Type sha256:d0d255964e7701c8f9aa67f01b9f97dac9fbbda16e9c326faa48cddc1cf63740
+                              λ(x : cObject)
+                            → ./../../Const/Type
                               dObject
                               cObject
                               { _1 = d.additive.unit, _2 = x }
@@ -48,10 +33,8 @@ in    λ ( cObject
                         }
                     , multiplicative =
                         { unit =
-                              λ ( x
-                                : cObject
-                                )
-                            → ./../../Const/Type sha256:d0d255964e7701c8f9aa67f01b9f97dac9fbbda16e9c326faa48cddc1cf63740
+                              λ(x : cObject)
+                            → ./../../Const/Type
                               dObject
                               cObject
                               { _1 = d.multiplicative.unit, _2 = x }
@@ -62,10 +45,5 @@ in    λ ( cObject
                               { _1 = f._1 x, _2 = f._2 x }
                         }
                     }
-                  ∧ ./category sha256:c69163eac75892504c9b6fd8b9637704c20e0baa23c5d428ecfb2b4587414bef
-                    cObject
-                    dObject
-                    v
-                    c
-                    (base dObject d)
+                  ∧ ./category cObject dObject v c (base dObject d)
                 : DuoidalCategory vObject object

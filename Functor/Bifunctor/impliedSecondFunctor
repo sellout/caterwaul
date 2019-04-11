@@ -1,47 +1,25 @@
-let cat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
       cat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../../Category/Set/monoidal/cartesian
 
-let Category =
-      ./../../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-      cat
-      vObject
+let Category = ./../../Category/Kind cat vObject
 
-in    λ ( cObject
-        : Kind
-        )
+in    λ(cObject : Kind)
     → λ(c : Category cObject)
-    → λ ( cCategory
-        : ./../../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-          cObject
-          v
-          c
-        )
+    → λ(cCategory : ./../../Category/Type cObject v c)
     → λ(dObject : Kind)
     → λ(d : Category dObject)
     → λ(eObject : Kind)
     → λ(e : Category eObject)
     → λ(f : cat.arrow (cat.product cObject dObject) eObject)
-    → λ ( bifunctor
-        : ./Type sha256:5d415a75b8765b342fa599191990337e1a14767512f5714217a95b7adeac171c
-          vObject
-          cObject
-          dObject
-          eObject
-          v
-          c
-          d
-          e
-          f
-        )
+    → λ(bifunctor : ./Type vObject cObject dObject eObject v c d e f)
     → λ(a : cObject)
     →   { map =
               λ(b : dObject)
@@ -52,16 +30,11 @@ in    λ ( cObject
               { _1 = a, _2 = c }
               { _1 = cCategory.unit a, _2 = fn }
         }
-      : ./../Type sha256:bebd999f32d6a3fd9bd7151ca5f0942ed6aeded30809c4a7e6c91382bed2dbcb
+      : ./../Type
         vObject
         dObject
         eObject
-        ( ./../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
-          cat
-          Type
-          vObject
-          v
-        )
+        (./../../Category/Monoidal/extractCategory cat Type vObject v)
         d
         e
         (λ(b : dObject) → f { _1 = a, _2 = b })

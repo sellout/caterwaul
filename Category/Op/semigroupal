@@ -1,29 +1,11 @@
-let kCat =
-      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../Cat/semigroupal
 
-in    λ ( vObject
-        : Kind
-        )
+in    λ(vObject : Kind)
     → λ(object : Kind)
-    → λ ( cat
-        : ./../Semigroupal/Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
-          kCat
+    → λ(cat : ./../Semigroupal/Kind kCat vObject object)
+    →     { product = cat.product }
+        ∧ ./Kind
           vObject
           object
-        )
-    →     { product =
-              cat.product
-          }
-        ∧ ./Kind sha256:e098dd6a242e1c53f07ac907a04e6196a2d8055fe8e95650872a5b89ff60c7b4
-          vObject
-          object
-          ( ./../../Category/Semigroupal/extractCategory sha256:e424ab1a06cccec93571da2bc08642157fd9e60030535233320a7e22c02d01b6
-            kCat
-            vObject
-            object
-            cat
-          )
-      : ./../Semigroupal/Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
-        kCat
-        vObject
-        object
+          (./../../Category/Semigroupal/extractCategory kCat vObject object cat)
+      : ./../Semigroupal/Kind kCat vObject object

@@ -1,14 +1,10 @@
-let cat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
-let Set =
-      ./../Category/Set/rig sha256:a7cbfba2e5127e953bcfa00748bcedb7daef637f931d7bce2ac14a21b103b8b8
+let Set = ./../Category/Set/rig
 
-in    λ ( a
-        : Type
-        )
+in    λ(a : Type)
     →   { unit =
             λ(b : Type) → λ(x : b) → < Right = x | Left : a >
         , product =
@@ -38,12 +34,12 @@ in    λ ( a
                 fa
               )
         }
-      : ./../Monad/Type sha256:f29e46a0fad45deefe74dbaf6daf7ff1abaaf7b02d672dfc254245ebc0cd651a
+      : ./../Monad/Type
         Type
-        ( ./../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
+        ( ./../Category/Monoidal/Cartesian/extractCategory
           cat
           vObject
           Type
-          ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+          ./../Category/Set/monoidal/cartesian
         )
         (λ(b : Type) → Set.additive.product { _1 = a, _2 = b })

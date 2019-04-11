@@ -1,17 +1,10 @@
 {- FIXME: Should be able to do `monoidal.{ arrow, product }`, but Dhall doesn’t like
           that for some reason.
 -}
-  λ ( cat
-    : ./Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
-    )
+  λ(cat : ./Sort)
 → λ(vObject : Kind)
 → λ(object : Kind)
-→ λ ( monoidal
-    : ./Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
-      cat
-      vObject
-      object
-    )
+→ λ(monoidal : ./Kind cat vObject object)
 →   { constraint =
         monoidal.constraint
     , arrow =
@@ -19,7 +12,4 @@
     , product =
         monoidal.product
     }
-  : ./../Semigroupal/Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
-    cat
-    vObject
-    object
+  : ./../Semigroupal/Kind cat vObject object

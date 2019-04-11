@@ -1,69 +1,41 @@
-let cat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
       cat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../../Category/Set/monoidal/cartesian
 
-let vBase =
-      ./../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
-      cat
-      Type
-      vObject
-      v
+let vBase = ./../../Category/Monoidal/extractCategory cat Type vObject v
 
-in    λ ( cObject
-        : Kind
-        )
-    → λ ( c
-        : ./../../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-          cat
-          vObject
-          cObject
-        )
-    → λ ( cSemigroupoid
-        : ./../../Semigroupoid/Type sha256:40a8e489fddee04bb4fda6df908b24c2143a7f75b4c5e25eec9fd34e7947bbb8
-          cObject
-          v
-          c
-          c.arrow
-        )
-    → let dObject =
-            Type
+in    λ(cObject : Kind)
+    → λ(c : ./../../Category/Kind cat vObject cObject)
+    → λ(cSemigroupoid : ./../../Semigroupoid/Type cObject v c c.arrow)
+    → let dObject = Type
       
       let d =
-            ./../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
+            ./../../Category/Monoidal/Cartesian/extractCategory
             cat
             vObject
             dObject
-            ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+            ./../../Category/Set/monoidal/cartesian
       
-      in    λ ( f
-              : cat.arrow cObject dObject
-              )
-          →   ./../../Ran/functor sha256:953eca12f7c1a1293ae13f716ed34abc8daf5fd34f93d27678cff0c838c47c7e
+      in    λ(f : cat.arrow cObject dObject)
+          →   ./../../Ran/functor
               cObject
               cObject
               c
               cSemigroupoid
-              ( ./../../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
-                cObject
-              )
+              (./../../Identity/Type cObject)
               f
-            : ./../../Functor/Type sha256:bebd999f32d6a3fd9bd7151ca5f0942ed6aeded30809c4a7e6c91382bed2dbcb
+            : ./../../Functor/Type
               vObject
               cObject
               dObject
               vBase
               c
               d
-              ( ./../Type sha256:d83e9e99b0ed861bb05e89d49a6e73e857510a600045c199ebb555234538f4e5
-                cObject
-                c
-                f
-              )
+              (./../Type cObject c f)

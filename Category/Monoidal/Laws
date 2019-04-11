@@ -1,26 +1,13 @@
-let kCat =
-      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../Cat/semigroupal
 
 let vObject = Type
 
-in    λ ( object
-        : Kind
-        )
-    → λ ( cat
-        : ./Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
-          kCat
-          vObject
-          object
-        )
+in    λ(object : Kind)
+    → λ(cat : ./Kind kCat vObject object)
     → let Isomorphism =
-            ./../../Isomorphism/Type sha256:aa416af42a745ed47476a9aa736340f4346442177a2396f368ba9659d2a23ad9
+            ./../../Isomorphism/Type
             object
-            ( ./extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
-              kCat
-              vObject
-              object
-              cat
-            )
+            (./extractCategory kCat vObject object cat)
       
       in    { leftIdentity :
                   ∀(a : object)
@@ -31,11 +18,6 @@ in    λ ( object
                 → Isomorphism
                   { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
-          ⩓ ./../Semigroupal/Laws sha256:2a543ae31fbf5ba35d9555aa6077dd540b5e523e634772f29d9945fceec489bc
+          ⩓ ./../Semigroupal/Laws
             object
-            ( ./extractSemigroupal sha256:aae542624e23cbcccf4d3331b84d3ff664b425e0e186fead04853f01637a1e9c
-              kCat
-              vObject
-              object
-              cat
-            )
+            (./extractSemigroupal kCat vObject object cat)

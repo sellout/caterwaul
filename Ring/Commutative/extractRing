@@ -1,32 +1,21 @@
-let kCat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
 let object = Type
 
 let cat =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
       kCat
       vObject
       object
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../../Category/Set/monoidal/cartesian
 
-in    λ ( m
-        : object
-        )
-    → λ ( ring
-        : ./Set sha256:5a70399900f3dd388614680f3f91335af703a30f24a1c1ad2f972c8090a4f100
-          m
-        )
+in    λ(m : object)
+    → λ(ring : ./Set m)
     →   { additive =
             ring.additive.{ unit, inverse, product }
         , multiplicative =
-            ./../../Monoid/Commutative/extractMonoid sha256:20c3e03e214431cc388ceceb4601a9b6f5e9f053f4cefe4e24d04f5d4867a328
-            m
-            ring.multiplicative
+            ./../../Monoid/Commutative/extractMonoid m ring.multiplicative
         }
-      : ./../Type sha256:d42266a1fcdaa3bc46ba0463630a92354a2aa04281130768ae2d7cdcbe45d482
-        object
-        cat
-        m
+      : ./../Type object cat m

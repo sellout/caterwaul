@@ -3,16 +3,12 @@ let object = Type
 in    λ ( m
         : object
         )
-    → λ ( field
-        : ./Type sha256:4ee213242564da484628126b5639755c932eef8cf8afa4b011719e2d4b59b848
-          m
-        )
+    → λ(field : ./Type m)
     →   { additive =
-            ./../../Group/OrderedCommutative/extractPartiallyOrderedCommutativeGroup sha256:5cb1da882ef98565ba0f7448fa7c15942c49c2fdc9699022fa804c1b66b897ad
+            ./../../Group/OrderedCommutative/extractPartiallyOrderedCommutativeGroup
             m
             field.additive
         , multiplicative =
             field.multiplicative
         }
-      : ./../PartiallyOrdered/Type sha256:b582c0166857eaf6b528764afe6ba90abc905b9f0d57fd4f288f710d7662c5be
-        m
+      : ./../PartiallyOrdered/Type m

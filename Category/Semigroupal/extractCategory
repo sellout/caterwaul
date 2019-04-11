@@ -1,23 +1,9 @@
 {- FIXME: Should be able to do `semigroupal.{ arrow, product }`, but Dhall doesn’t like
           that for some reason.
 -}
-  λ ( cat
-    : ./Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
-    )
+  λ(cat : ./Sort)
 → λ(vObject : Kind)
 → λ(object : Kind)
-→ λ ( semigroupal
-    : ./Kind sha256:5d216a5d95721e6086fab2cd85f039d15a9d06b8a986ef170823a57a0c0d02d6
-      cat
-      vObject
-      object
-    )
-→   { constraint =
-        semigroupal.constraint
-    , arrow =
-        semigroupal.arrow
-    }
-  : ./../Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-    cat
-    vObject
-    object
+→ λ(semigroupal : ./Kind cat vObject object)
+→   { constraint = semigroupal.constraint, arrow = semigroupal.arrow }
+  : ./../Kind cat vObject object

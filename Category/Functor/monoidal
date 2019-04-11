@@ -1,44 +1,26 @@
 {- This cheats a bit on the unit, since `dObject` is Type, we don’t need a
    functor **Set** → 𝒟.
 -}
-let cat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
-let MonoidalCategory =
-      ./../Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
-      cat
-      vObject
+let MonoidalCategory = ./../Monoidal/Kind cat vObject
 
-in    λ ( cObject
-        : Kind
-        )
-    → let dObject =
-            Type
+in    λ(cObject : Kind)
+    → let dObject = Type
       
-      in    λ ( v
-              : ./../Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-                cat
-                Type
-                vObject
-              )
+      in    λ(v : ./../Kind cat Type vObject)
           → λ(c : MonoidalCategory cObject)
           → λ(d : MonoidalCategory dObject)
-          → let base =
-                  ./../Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
-                  cat
-                  vObject
+          → let base = ./../Monoidal/extractCategory cat vObject
             
             in      { unit =
                         λ(x : cObject) → c.arrow { _1 = c.unit, _2 = x }
                     , product =
-                        ./../../Day/Type sha256:f2b5b6fb9d2fead2e46f0fe8362e08133d5f552c932d9ca03126f256d24b8520
-                        cObject
-                        d
-                        c
+                        ./../../Day/Type cObject d c
                     }
-                  ∧ ./category sha256:c69163eac75892504c9b6fd8b9637704c20e0baa23c5d428ecfb2b4587414bef
+                  ∧ ./category
                     cObject
                     dObject
                     v

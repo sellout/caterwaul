@@ -1,38 +1,27 @@
-let kCat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../Category/Monoidal/Cartesian/extractMonoidal
       kCat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../Category/Set/monoidal/cartesian
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
+      ./../Category/Monoidal/Cartesian/extractCategory
       kCat
       vObject
       object
-      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../Category/Set/monoidal/cartesian
 
-in    λ ( category
-        : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-          object
-          v
-          cat
-        )
-    → let Codensity =
-            ./Type sha256:b0945f99031bc91ed9a0bc7c25b48ef903bf0c3746ac6fcaaeb04fefa0b652e1
-            object
-            cat
+in    λ(category : ./../Category/Type object v cat)
+    → let Codensity = ./Type object cat
       
-      in    λ ( m
-              : kCat.arrow object object
-              )
+      in    λ(m : kCat.arrow object object)
           →   { unit =
                     λ(a : object)
                   → λ(x : a)
@@ -48,7 +37,4 @@ in    λ ( category
                     c
                     (λ(x : Codensity m a) → category.unit (Codensity m a) x c l)
               }
-            : ./../Monad/Type sha256:f29e46a0fad45deefe74dbaf6daf7ff1abaaf7b02d672dfc254245ebc0cd651a
-              object
-              cat
-              (Codensity m)
+            : ./../Monad/Type object cat (Codensity m)

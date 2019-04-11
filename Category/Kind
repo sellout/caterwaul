@@ -1,6 +1,4 @@
-  λ ( cat
-    : ./Semigroupal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
-    )
+  λ(cat : ./Semigroupal/Sort)
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { constraint :

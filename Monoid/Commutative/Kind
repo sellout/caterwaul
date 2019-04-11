@@ -2,4 +2,4 @@
    into *Set*, so we instead just alias the non-commutative type to avoid
    specializing.
 -}
-./../Kind sha256:9525cd27cfa590fbac20cae49b893cc33ad3b224bd09d8d7979d4ebbe637c208
+./../Kind

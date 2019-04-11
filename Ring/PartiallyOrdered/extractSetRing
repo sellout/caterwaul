@@ -1,18 +1,12 @@
 let object = Type
 
-in    λ ( m
-        : object
-        )
-    → λ ( ring
-        : ./Type sha256:2819a5a39da54b220650858111e24f6c43d89b06b4074151b27c8679d6f127f2
-          m
-        )
+in    λ(m : object)
+    → λ(ring : ./Type m)
     →   { additive =
-            ./../../Group/PartiallyOrderedCommutative/extractSetCommutativeGroup sha256:4a3244c74900809de3a618a73e96ec62685e6e8d66c011f8e7ded90a3cbda968
+            ./../../Group/PartiallyOrderedCommutative/extractSetCommutativeGroup
             m
             ring.additive
         , multiplicative =
             ring.multiplicative
         }
-      : ./../Set sha256:e329ffbd35b9f077ebecabfc060287f1ccb5fdeb69408bb08f93d282d07a3939
-        m
+      : ./../Set m

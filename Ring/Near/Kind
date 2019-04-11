@@ -1,13 +1,7 @@
-  λ ( cat
-    : ./../../Category/Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
-    )
+  λ(cat : ./../../Category/Monoidal/Sort)
 → λ(m : Kind)
 → { additive :
-      ./../../Group/Kind sha256:bce735622cad0db970bff8dededd14f6a3ac254e49e8cd6c4634b298741a1e17
-      cat
-      m
+      ./../../Group/Kind cat m
   , multiplicative :
-      ./../../Monoid/Kind sha256:9525cd27cfa590fbac20cae49b893cc33ad3b224bd09d8d7979d4ebbe637c208
-      cat
-      m
+      ./../../Monoid/Kind cat m
   }

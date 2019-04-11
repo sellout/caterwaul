@@ -1,43 +1,15 @@
 {- In a Leibniz category, unit is refl, and product is transitivity. -}
-let cat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
-in    λ ( cObject
-        : Kind
-        )
+in    λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ ( v
-        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
-          cat
-          Type
-          vObject
-        )
-    → λ ( c
-        : ./../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-          cat
-          vObject
-          cObject
-        )
-    → λ ( d
-        : ./../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-          cat
-          vObject
-          dObject
-        )
-    → λ ( dCategory
-        : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-          dObject
-          v
-          d
-        )
-    → let Leibniz =
-            ./Kind sha256:a5b66002e6e42543925c88fc6fc8d6b528eda12277cc998a0cc254be408ae193
-            cObject
-            dObject
-            c
-            d
+    → λ(v : ./../Category/Monoidal/Kind cat Type vObject)
+    → λ(c : ./../Category/Kind cat vObject cObject)
+    → λ(d : ./../Category/Kind cat vObject dObject)
+    → λ(dCategory : ./../Category/Type dObject v d)
+    → let Leibniz = ./Kind cObject dObject c d
       
       in    { unit =
                   λ(a : cObject)
@@ -76,7 +48,4 @@ in    λ ( cObject
                         )
                   }
             }
-          : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-            cObject
-            v
-            Leibniz
+          : ./../Category/Type cObject v Leibniz

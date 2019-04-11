@@ -1,24 +1,19 @@
-let cat =
-      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../Monoidal/Cartesian/extractMonoidal
       cat
       Type
       vObject
-      ./monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./monoidal/cartesian
 
 let Set =
-      ./../Monoidal/Cartesian/extractSemigroupal sha256:239a4e0b126d58dfe79bdd73558817e8c85697571aebbcb47c47e48e6202d82e
+      ./../Monoidal/Cartesian/extractSemigroupal
       cat
       vObject
       Type
-      ./monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./monoidal/cartesian
 
-in  ./../../Arrow/extractStrong sha256:512f82e04b0546cd06fd5653788eca182b46f1893abc5221b05913cec31fbf31
-    Type
-    v
-    Set
-    ./arrow sha256:bd80ea4b1cacec4a035b677ef928d8bfa9fba355a79e9440833a0329b160c06a
+in  ./../../Arrow/extractStrong Type v Set ./arrow

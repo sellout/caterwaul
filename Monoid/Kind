@@ -1,13 +1,6 @@
 {- NB: `unit` would ideally be defined with `: cat.arrow cat.unit m`, but
        there’s no Kind-level `{}` to use there.
 -}
-  λ ( cat
-    : ./../Category/Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
-    )
+  λ(cat : ./../Category/Monoidal/Sort)
 → λ(m : Kind)
-→   { unit :
-        m
-    }
-  ⩓ ./../Semigroup/Kind sha256:ecf7d79d35cf9b77b623f7dc4a118350e91e5bc6ae881156f76428e79667ad2c
-    cat
-    m
+→ { unit : m } ⩓ ./../Semigroup/Kind cat m

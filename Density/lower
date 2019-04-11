@@ -1,49 +1,16 @@
-let kCat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../Category/Cat/semigroupal
 
-let base =
-      ./../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
-      kCat
+let base = ./../Category/Monoidal/Cartesian/extractCategory kCat
 
 let vObject = Type
 
-let v =
-      base
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+let v = base Type vObject ./../Category/Set/monoidal/cartesian
 
 let object = Type
 
-let cat =
-      base
-      vObject
-      object
-      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+let cat = base vObject object ./../Category/Set/monoidal/cartesian
 
-in    λ ( f
-        : kCat.arrow object object
-        )
-    → λ ( functor
-        : ./../Functor/Endo/Type sha256:158c6ae27571d27adefd3b94b6b9ce3ed48e1130d406ec72c62ccadcf931dcd0
-          vObject
-          object
-          v
-          cat
-          f
-        )
-    → λ ( comonad
-        : ./../Comonad/Type sha256:5ef8ab824c6bf670bbf787d84043177e063e0b3d4565907c2d70a54afd5cbd84
-          object
-          cat
-          f
-        )
-    → ./../Lan/lower sha256:72f66cd2613ce0d4fc51c9e9cd082d3d0d2493e561b13fd5cb8e7bd87455c1c8
-      object
-      object
-      cat
-      f
-      functor
-      f
-      f
-      comonad.product
+in    λ(f : kCat.arrow object object)
+    → λ(functor : ./../Functor/Endo/Type vObject object v cat f)
+    → λ(comonad : ./../Comonad/Type object cat f)
+    → ./../Lan/lower object object cat f functor f f comonad.product

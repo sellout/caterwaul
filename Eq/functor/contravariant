@@ -1,26 +1,14 @@
-let cat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../../Category/Cat/semigroupal
 
-let base =
-      ./../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
-      cat
+let base = ./../../Category/Monoidal/Cartesian/extractCategory cat
 
 let vObject = Type
 
-let v =
-      base
-      Type
-      vObject
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+let v = base Type vObject ./../../Category/Set/monoidal/cartesian
 
-let Set =
-      base
-      vObject
-      Type
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+let Set = base vObject Type ./../../Category/Set/monoidal/cartesian
 
-let Eq =
-      ./../Type sha256:16ec0250d1cd6f2d48bb5fe37d46d1db9ef640657c7b247b8d5be1aca30259b1
+let Eq = ./../Type
 
 in    { map =
             λ(a : Type)
@@ -29,11 +17,4 @@ in    { map =
           → λ(fa : Eq a)
           → { eq = λ(x : b) → λ(y : b) → fa.eq (fn x) (fn y) }
       }
-    : ./../../Functor/Contravariant sha256:5cac00b722fed910bc5b8637f00ec1361decf3c8936a4336631a4cf3ba1d20e6
-      vObject
-      Type
-      Type
-      v
-      Set
-      Set
-      Eq
+    : ./../../Functor/Contravariant vObject Type Type v Set Set Eq

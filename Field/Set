@@ -1,12 +1,8 @@
 let object = Type
 
-in    λ ( m
-        : object
-        )
+in    λ(m : object)
     → { additive :
-          ./../Group/Commutative/Set sha256:1c095df5d2aee7fc28b9ff94f91ef765b7e08a170c6a01aaba93a3e4277ec40d
-          m
+          ./../Group/Commutative/Set m
       , multiplicative :
-          ./../Group/Commutative/Set sha256:1c095df5d2aee7fc28b9ff94f91ef765b7e08a170c6a01aaba93a3e4277ec40d
-          m
+          ./../Group/Commutative/Set m
       }

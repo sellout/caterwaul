@@ -1,43 +1,15 @@
-let kCat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
 let object = Type
 
-in    λ ( v
-        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
-          kCat
-          Type
-          vObject
-        )
-    → λ ( cat
-        : ./../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-          kCat
-          vObject
-          object
-        )
-    → λ ( category
-        : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-          object
-          v
-          cat
-        )
-    → ./../Lan/lift sha256:aae6dd908da8f7647965af3a4604e65a3325cadc727fe41a13993d38bf860e2a
+in    λ(v : ./../Category/Monoidal/Kind kCat Type vObject)
+    → λ(cat : ./../Category/Kind kCat vObject object)
+    → λ(category : ./../Category/Type object v cat)
+    → ./../Lan/lift
       v
       cat
-      ( ./../Category/extractSemigroupoid sha256:c986f4139d8187a7ada93fd4850733b7533852666009d73a881cb0375f25e663
-        object
-        v
-        cat
-        category
-      )
-      ( ./../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
-        object
-      )
-      ( ./../Identity/comonad sha256:69cce1acd062615db847d3f29fc9b34f57d728ffaceb0350e8f36faf86881643
-        object
-        v
-        cat
-        category
-      )
+      (./../Category/extractSemigroupoid object v cat category)
+      (./../Identity/Type object)
+      (./../Identity/comonad object v cat category)

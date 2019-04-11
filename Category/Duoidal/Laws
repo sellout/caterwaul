@@ -1,30 +1,12 @@
-let kCat =
-      ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../Cat/semigroupal
 
 let vObject = Type
 
-in    λ ( object
-        : Kind
-        )
-    → λ ( cat
-        : ./Kind sha256:f81dfc0c5d6068531dea30420720beec80a7cd1d0481cfb44fc9fecb3c35611a
-          kCat
-          vObject
-          object
-        )
-    → let additive =
-            ./extractAdditive sha256:7f197abeac966ef17fd2c847e0fd4a0c52630e55833e090537b494818a6e3ef5
-            kCat
-            vObject
-            object
-            cat
+in    λ(object : Kind)
+    → λ(cat : ./Kind kCat vObject object)
+    → let additive = ./extractAdditive kCat vObject object cat
       
-      let multiplicative =
-            ./extractMultiplicative sha256:5e6489a35a0eef6ac23ed4078707105247c59293c3a8dc6791c405f10b653859
-            kCat
-            vObject
-            object
-            cat
+      let multiplicative = ./extractMultiplicative kCat vObject object cat
       
       in  { swap :
                 ∀(a : object)
@@ -66,11 +48,7 @@ in    λ ( object
           , switch :
               cat.arrow { _1 = additive.unit, _2 = multiplicative.unit }
           , additive :
-              ./../Monoidal/Laws sha256:dd8763fe3be580db2ad354d975171a48ac32a3790efc7bf3870717cc6d679739
-              object
-              additive
+              ./../Monoidal/Laws object additive
           , multiplicative :
-              ./../Monoidal/Laws sha256:dd8763fe3be580db2ad354d975171a48ac32a3790efc7bf3870717cc6d679739
-              object
-              multiplicative
+              ./../Monoidal/Laws object multiplicative
           }

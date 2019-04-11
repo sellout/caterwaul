@@ -1,18 +1,6 @@
 let object = Type
 
-in    λ ( m
-        : object
-        )
-    → λ ( group
-        : ./Type sha256:47f0b690a6558d14f31cffd29cf9c907c51b15a0f42babd95f3053c012d04980
-          m
-        )
-    →   group.{ eq
-              , unit
-              , inverse
-              , product
-              , partialLE
-              , preLE
-              }
-      : ./../PartiallyOrderedCommutative/Type sha256:f509c999e45d517d27fbe9e995422fb406e2fa4de1862afea1fad90c88ec85f1
-        m
+in    λ(m : object)
+    → λ(group : ./Type m)
+    →   group.{ eq, unit, inverse, product, partialLE, preLE }
+      : ./../PartiallyOrderedCommutative/Type m

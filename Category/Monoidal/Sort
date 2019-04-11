@@ -2,4 +2,4 @@
    rather than making a type that can’t be used, we just stick with Semigroupal,
    and let the desired type be _named_ even if it can’t be implemented yet.
 -}
-./../Semigroupal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
+./../Semigroupal/Sort

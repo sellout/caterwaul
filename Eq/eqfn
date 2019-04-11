@@ -3,10 +3,7 @@
 -}
   λ(a : Type)
 → λ(b : Type)
-→ λ ( eq
-    : ./Type sha256:16ec0250d1cd6f2d48bb5fe37d46d1db9ef640657c7b247b8d5be1aca30259b1
-      b
-    )
+→ λ(eq : ./Type b)
 → λ(f : a → b)
 → λ(g : a → b)
 → λ(x : a)

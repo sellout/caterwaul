@@ -2,23 +2,12 @@
   `Profunctor`. Not to be confused with Dhall’s `./Profunctor`, which is more
    general.
 -}
-let cat =
-      ./../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
-in    λ ( v
-        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
-          cat
-          Type
-          vObject
-        )
-    → ./Hom sha256:ee7d283804ed20f17af0b6169d2cbeb87532973668d49b25b7810578fcc57e1a
+in    λ(v : ./../Category/Monoidal/Kind cat Type vObject)
+    → ./Hom
       vObject
       v
-      ( ./../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
-        cat
-        Type
-        vObject
-        v
-      )
+      (./../Category/Monoidal/extractCategory cat Type vObject v)

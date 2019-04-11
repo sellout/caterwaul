@@ -1,20 +1,6 @@
-  λ ( cat
-    : ./../Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
-    )
+  λ(cat : ./../Monoidal/Sort)
 → λ(vObject : Kind)
 → λ(object : Kind)
-→ λ ( rig
-    : ./Kind sha256:f81dfc0c5d6068531dea30420720beec80a7cd1d0481cfb44fc9fecb3c35611a
-      cat
-      vObject
-      object
-    )
-→   { constraint =
-        rig.constraint
-    , arrow =
-        rig.arrow
-    }
-  : ./../Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-    cat
-    vObject
-    object
+→ λ(rig : ./Kind cat vObject object)
+→   { constraint = rig.constraint, arrow = rig.arrow }
+  : ./../Kind cat vObject object

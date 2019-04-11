@@ -1,37 +1,19 @@
-let kCat =
-      ./Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./Monoidal/Cartesian/extractMonoidal
       kCat
       Type
       vObject
-      ./Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./Set/monoidal/cartesian
 
-let vBase =
-      ./Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
-      kCat
-      Type
-      vObject
-      v
+let vBase = ./Monoidal/extractCategory kCat Type vObject v
 
-in    λ ( object
-        : Kind
-        )
-    → λ ( cat
-        : ./Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
-          kCat
-          vObject
-          object
-        )
-    → λ ( category
-        : ./Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
-          object
-          v
-          cat
-        )
+in    λ(object : Kind)
+    → λ(cat : ./Kind kCat vObject object)
+    → λ(category : ./Type object v cat)
     → λ(c : object)
     →   { map =
               λ(x : object)
@@ -50,7 +32,7 @@ in    λ ( object
                 → arrowsOut x fn input
               )
         }
-      : ./../Functor/Type sha256:bebd999f32d6a3fd9bd7151ca5f0942ed6aeded30809c4a7e6c91382bed2dbcb
+      : ./../Functor/Type
         vObject
         object
         vObject

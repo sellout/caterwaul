@@ -1,32 +1,23 @@
-let kCat =
-      ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
+let kCat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
 let object = Type
 
 let cat =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
       kCat
       vObject
       object
-      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
+      ./../../Category/Set/monoidal/cartesian
 
-in    λ ( m
-        : object
-        )
-    → λ ( field
-        : ./Type sha256:b582c0166857eaf6b528764afe6ba90abc905b9f0d57fd4f288f710d7662c5be
-          m
-        )
+in    λ(m : object)
+    → λ(field : ./Type m)
     →   { additive =
-            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup sha256:43c401f0cc8adb3ba2f205b0c3642674f287eb71ea820a7405f2b739998585b8
+            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup
             m
             field.additive
         , multiplicative =
             field.multiplicative.{ unit, inverse, product }
         }
-      : ./../Type sha256:839042c2c40cdd15c50a5c225907ebcab972da26c36ec2a1ec1a64a6359f6466
-        object
-        cat
-        m
+      : ./../Type object cat m
