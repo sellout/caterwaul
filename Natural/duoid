@@ -4,21 +4,21 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       vObject
       Type
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( max
         : { _1 : Natural, _2 : Natural } → Natural
         )
     →   { additive =
-            { identity = λ(_ : {}) → 0, product = max }
+            { unit = λ(_ : {}) → 0, product = max }
         , multiplicative =
-            ./monoid sha256:d0b4e543f38fabb9348aa548802ef09ebf6f1b036e6dbb1abe0f8ba91b6788d7
+            ./monoid sha256:b94e2920e1ddb10ccbc63d8e708b1bcfefa3354540ce58f35cb9d2cfc294352a
         }
-      : ./../Duoid/Type sha256:db5179b63bfe4cfec2face20845757f747a1fbe98c7e8ccdaf86487cfeec17f4
+      : ./../Duoid/Type sha256:b2f1a0e4848f04f5571b52a37fc82400f298f021f978fee48375f25590e4af9c
         Type
         Set
         Natural

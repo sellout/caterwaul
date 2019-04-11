@@ -4,11 +4,11 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       Type
       vObject
-      ./../Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( cObject
         : Kind
@@ -20,7 +20,7 @@ in    λ ( cObject
           cObject
         )
     → λ ( cCategory
-        : ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+        : ./../Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           cObject
           v
           c
@@ -33,7 +33,7 @@ in    λ ( cObject
           dObject
         )
     → λ ( dCategory
-        : ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+        : ./../Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           dObject
           v
           d
@@ -42,7 +42,7 @@ in    λ ( cObject
             { _1 : cObject, _2 : dObject }
       
       let prod =
-            ./Type sha256:47428aa940d451cb89e88f2629e77492f9dadf2c831d932319fad5d4093b86cd
+            ./Type sha256:1c84902078292321b4b132194c28ad459565b1b644925dec59e3517ea01f47dc
             vObject
             cObject
             dObject
@@ -50,9 +50,9 @@ in    λ ( cObject
             c
             d
       
-      in    { identity =
+      in    { unit =
                   λ(a : object)
-                → { _1 = cCategory.identity a._1, _2 = dCategory.identity a._2 }
+                → { _1 = cCategory.unit a._1, _2 = dCategory.unit a._2 }
             , product =
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
@@ -102,7 +102,7 @@ in    λ ( cObject
                       )
                   }
             }
-          : ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+          : ./../Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
             object
             v
             prod

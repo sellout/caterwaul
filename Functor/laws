@@ -4,11 +4,11 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( cObject
         : Kind
@@ -23,20 +23,20 @@ in    λ ( cObject
                 cObject
               )
           → λ ( cCategory
-              : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+              : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
                 cObject
                 v
                 c
               )
           → let d =
-                  ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
+                  ./../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
                   cat
                   vObject
                   dObject
-                  ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+                  ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
             
             let dCategory =
-                  ./../Category/Set/category sha256:6f1eaf6697638fb787cbd0d05026ffbfd9ae02c130dbb99f21efeffcbf3b7a6e
+                  ./../Category/Set/category sha256:9af6edd3937b2f3cada47051820a676475fd3e583b9ceecf60eeb544ec8c9b46
             
             in    λ ( f
                     : cat.arrow cObject dObject
@@ -46,7 +46,7 @@ in    λ ( cObject
                       vObject
                       cObject
                       dObject
-                      ( ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+                      ( ./../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
                         cat
                         Type
                         vObject
@@ -56,7 +56,7 @@ in    λ ( cObject
                       d
                       f
                     )
-                → { identity =
+                → { unit =
                         λ ( a
                           : cObject
                           )
@@ -68,8 +68,8 @@ in    λ ( cObject
                         (f a)
                         (f a)
                         eq
-                        (functor.map a a (cCategory.identity a))
-                        (dCategory.identity (f a))
+                        (functor.map a a (cCategory.unit a))
+                        (dCategory.unit (f a))
                   , composition =
                         λ ( a
                           : cObject

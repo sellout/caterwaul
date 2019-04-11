@@ -4,26 +4,26 @@ let Cat =
 let vObject = Type
 
 let v =
-      ./../Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       Cat
       Type
       vObject
-      ./monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let Set =
-      ./../Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       Cat
       vObject
       Type
-      ./monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
-in  ./../../Arrow/extractCategory sha256:3c647fd3042fae64f4bf44e5cf935156b30a6099d4f6a1631dd8d5d6e3b6d7a9
+in  ./../../Arrow/extractCategory sha256:dcbc34b7b6ad4127fd7e4d7b65f231c7b459b12502fc142b2b0057a8d03ec774
     Type
     v
-    ( ./../Monoidal/extractSemigroupal sha256:a5bbf4cdc598ec13d870022473eb80feeee8f9b2b10528f5df7f48edccb2c751
+    ( ./../Monoidal/extractSemigroupal sha256:aae542624e23cbcccf4d3331b84d3ff664b425e0e186fead04853f01637a1e9c
       Cat
       vObject
       Type
       Set
     )
-    ./arrow sha256:ac1d9d5933e7a16fdca237015a614744a382ffbef0b864d6747ea6066613a5ca
+    ./arrow sha256:bd80ea4b1cacec4a035b677ef928d8bfa9fba355a79e9440833a0329b160c06a

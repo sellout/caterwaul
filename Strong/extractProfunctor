@@ -4,7 +4,7 @@ let cat =
 let vObject = Type
 
 in    λ ( v
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           cat
           Type
           vObject
@@ -25,7 +25,7 @@ in    λ ( v
         )
     → λ(f : cat.arrow (cat.product dObject cObject) Type)
     → λ ( strong
-        : ./Type sha256:f826a092356d88b7bc710c0552b54ab6f109219108cb032fdb6b0d58594b9c54
+        : ./Type sha256:8d15bf8a05c49b4d54bdcf05cbbbcb61976fe0e5723d2e2396693a9b4d6f4dc3
           cObject
           dObject
           v
@@ -35,7 +35,7 @@ in    λ ( v
         )
     →   strong.{ map
                }
-      : ./../Functor/Profunctor/Type sha256:e47d2dd146c4c8665da2d6f5363fd37ff59971aaa354bfa1f1be9fca965ce307
+      : ./../Functor/Profunctor/Type sha256:ecb32be3f9e51adf178db451061685e4ffccdf7267970e9dd77d91042a642a04
         cObject
         dObject
         v

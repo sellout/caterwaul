@@ -1,17 +1,17 @@
 {- This is what is often called a “semiring”, but here we follow the convention
    described in https://ncatlab.org/nlab/show/rig, reserving “semiring” for a
-   rig without multiplicative identity.
+   rig without multiplicative unit.
 -}
   λ ( cat
     : ./../Category/Monoidal/Sort sha256:72342ec48d53abbae614f0b81e98ebab702080a1a232672c19d6e48f95497d70
     )
 → λ(m : Kind)
 → { additive :
-      ./../Monoid/Commutative/Kind sha256:1c48503e82acd9b323925e8b5b1c3f1d14945cfccc185f6485390ebd41a95454
+      ./../Monoid/Commutative/Kind sha256:9525cd27cfa590fbac20cae49b893cc33ad3b224bd09d8d7979d4ebbe637c208
       cat
       m
   , multiplicative :
-      ./../Monoid/Kind sha256:1c48503e82acd9b323925e8b5b1c3f1d14945cfccc185f6485390ebd41a95454
+      ./../Monoid/Kind sha256:9525cd27cfa590fbac20cae49b893cc33ad3b224bd09d8d7979d4ebbe637c208
       cat
       m
   }

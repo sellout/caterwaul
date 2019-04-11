@@ -6,24 +6,24 @@ let vObject = Type
 let object = Type
 
 let cat =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       kCat
       vObject
       object
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( m
         : object
         )
     → λ ( group
-        : ./Type sha256:181f3ed46722bb46e78795924c630cb78a60b2b56dd827da4ef1099064ea3616
+        : ./Type sha256:84f92a69fcce9eec85c1f1de8b1e0a4f9a0ff824f73dee6531818f5636be320b
           m
         )
-    →   group.{ identity
+    →   group.{ unit
               , inverse
               , product
               }
-      : ./../Type sha256:cac478dd8354b05c1af60acb85d82d4898c35cda2ea44ccf0b7cd61938c80c14
+      : ./../Type sha256:1c7379742fbce696180cd8e2660a489b7b7d8cbfe81406733459e37ffa961214
         object
         cat
         m

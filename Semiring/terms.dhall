@@ -7,14 +7,14 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           vObject
           object
         )
     → λ(m : object)
     → λ ( semiring
-        : ./Type sha256:ec7047a55d67ea9aa8ca67b6dc6c3a7735dc62d714a90d50cedc199af6e56d73
+        : ./Type sha256:901a4a366211f30b023e3903bebf5bf71a3680950035742394cb79c0c4d7d655
           object
           cat
           m
@@ -24,5 +24,5 @@ in    λ ( object
       , multiply =
           semiring.multiplicative.product
       , one =
-          semiring.multiplicative.identity
+          semiring.multiplicative.unit
       }

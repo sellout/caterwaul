@@ -4,22 +4,22 @@
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( rig
-    : ./Kind sha256:9093c6472bbfa0939a07b1d0896b7856410c84b4e55175dce8978baf8ff28b07
+    : ./Kind sha256:f81dfc0c5d6068531dea30420720beec80a7cd1d0481cfb44fc9fecb3c35611a
       cat
       vObject
       object
     )
-→     { identity =
-          rig.additive.identity
+→     { unit =
+          rig.additive.unit
       , product =
           rig.additive.product
       }
-    ∧ ./extractCategory sha256:82e77f240de082d8505dc9dc9b09e7c1479171cf01ffc2f474745d10c91b35e7
+    ∧ ./extractCategory sha256:7c0bcbd29731e19cbfd3c760c60f9e54eb85815bee92a9580f97899825951d88
       cat
       vObject
       object
       rig
-  : ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+  : ./../Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
     cat
     vObject
     object

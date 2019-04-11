@@ -7,22 +7,22 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           Type
           vObject
         )
     → λ ( cat
-        : ./Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           vObject
           object
         )
     → { category :
-          ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+          ./../Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           object
           v
-          ( ./extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+          ( ./extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
             kCat
             vObject
             object
@@ -32,7 +32,7 @@ in    λ ( object
             ∀ ( m
               : object
               )
-          → ./../../Monoid/Type sha256:de30a2de2ca32bea0db95476b658e4220a53b26134becbe2e3b8a3d8e7ee1fa5
+          → ./../../Monoid/Type sha256:f834d5fd5b1d9a58809d316e6660f485b2e2d342bf833dcfda8034634e3a8f76
             object
             cat
             m

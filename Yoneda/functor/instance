@@ -4,14 +4,14 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let vBase =
-      ./../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+      ./../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
       cat
       Type
       vObject
@@ -27,7 +27,7 @@ in    λ ( cObject
           cObject
         )
     → λ ( cSemigroupoid
-        : ./../../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
+        : ./../../Semigroupoid/Type sha256:40a8e489fddee04bb4fda6df908b24c2143a7f75b4c5e25eec9fd34e7947bbb8
           cObject
           v
           c
@@ -37,11 +37,11 @@ in    λ ( cObject
             Type
       
       let d =
-            ./../../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
+            ./../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
             cat
             vObject
             dObject
-            ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+            ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
       
       in    λ ( f
               : cat.arrow cObject dObject

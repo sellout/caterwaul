@@ -4,17 +4,17 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let Set =
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let base =
-      ./../../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
+      ./../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
       cat
       vObject
       Type
@@ -27,7 +27,7 @@ in    { map =
           → λ(t : Set.product a)
           → { _1 = f._1 t._1, _2 = f._2 t._2 }
       }
-    : ./../../Functor/Pair/Type sha256:51cd0825dd05a6c58e6afc0c4f95e00a5b8db9affd8b028137dac704e1f1457c
+    : ./../../Functor/Pair/Type sha256:32d90239bb9a45c9b9fea6589240178acd4c1206c5369a24ea0fbba5d9faef2d
       vObject
       Type
       v

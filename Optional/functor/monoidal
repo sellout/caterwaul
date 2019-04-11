@@ -1,9 +1,9 @@
-./../../Monad/impliedMonoidalFunctor sha256:f86ffaf4b0bd9c7b090c2a89c2c7bf88ff023dc51d6d17e84816af0a10bf50bf
+./../../Monad/impliedMonoidalFunctor sha256:74f73b3c473e5996bd72b3a531f4026ecb258e88be18af831e81b5f4cda85cb5
 Optional
-( ./endo/star sha256:153e636c926a3533404326a80188d807cbbc37919d64348fbe65448280f3585d
+( ./endo/star sha256:5f6805ee2155cb6bf91c74f3f2845f4bcc0a9d95d3698713d0b8addbe7e53a28
   ( ./../../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
     Type
   )
-  ./../../Identity/functor/monoidal sha256:40c429fedb0d4632284b3665f35b06c09b8eb582fc39f6997676aa403a6efc1f
+  ./../../Identity/functor/monoidal sha256:4805c7ad013fa87550f2dcfe1db22d3bbfd7e18ef37a53ecfff9b73ea23d0caa
 )
-./../monad sha256:a3da9546006b4ae902c9564c460590cecb11b74d235b19849a8b198989a9ee7c
+./../monad sha256:61bf221268be6f39ca1a2299adaa7c309052fac175212d0f6a6a86503a9ca3f8

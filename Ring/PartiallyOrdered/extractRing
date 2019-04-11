@@ -4,27 +4,27 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       vObject
       Type
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( m
         : Type
         )
     → λ ( ring
-        : ./Type sha256:d8d9beaac8e30ac8062aadbcb25aae2f7e5a0612743d6f30151444159860501a
+        : ./Type sha256:2819a5a39da54b220650858111e24f6c43d89b06b4074151b27c8679d6f127f2
           m
         )
     →   { additive =
-            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup sha256:581a2789bf3c61a7dc74b97ec06bc938c8acb3486b40fd1f0c1cc39f71470f25
+            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup sha256:43c401f0cc8adb3ba2f205b0c3642674f287eb71ea820a7405f2b739998585b8
             m
             ring.additive
         , multiplicative =
             ring.multiplicative
         }
-      : ./../Type sha256:82080727e85b7171a739ae0f8259f23f5c7df3bc8a1f27ce81c4b1fbccf5126f
+      : ./../Type sha256:d42266a1fcdaa3bc46ba0463630a92354a2aa04281130768ae2d7cdcbe45d482
         Type
         Set
         m

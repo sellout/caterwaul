@@ -4,26 +4,26 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       vObject
       Type
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    { join =
-          { identity =
+          { unit =
               λ(_ : {}) → False
           , product =
               λ(p : { _1 : Bool, _2 : Bool }) → p._1 || p._2
           }
       , meet =
-          { identity =
+          { unit =
               λ(_ : {}) → True
           , product =
               λ(p : { _1 : Bool, _2 : Bool }) → p._1 && p._2
           }
       }
-    : ./../Lattice/Type sha256:7559612cbb1da570e27f827f108bda2a6e1244e349180f761637b1da5cb86a45
+    : ./../Lattice/Type sha256:b97eaa011b83efd6f88466f23aa642ed59e0685f6377b85a313e213ddb86449b
       Type
       Set
       Bool

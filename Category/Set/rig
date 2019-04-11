@@ -16,20 +16,20 @@ in    { constraint =
       , arrow =
           λ(a : { _1 : object, _2 : object }) → a._1 → a._2
       , additive =
-          { identity =
+          { unit =
               <>
           , product =
                 λ(a : { _1 : object, _2 : object })
               → < Left : a._1 | Right : a._2 >
           }
       , multiplicative =
-          { identity =
+          { unit =
               {}
           , product =
               λ(a : { _1 : Type, _2 : Type }) → { _1 : a._1, _2 : a._2 }
           }
       }
-    : ./../Rig/Kind sha256:9093c6472bbfa0939a07b1d0896b7856410c84b4e55175dce8978baf8ff28b07
+    : ./../Rig/Kind sha256:f81dfc0c5d6068531dea30420720beec80a7cd1d0481cfb44fc9fecb3c35611a
       cat
       vObject
       object

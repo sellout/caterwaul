@@ -4,18 +4,18 @@ let Cat =
 let vObject = Type
 
 let v =
-      ./../Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       Cat
       Type
       vObject
-      ./monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let Set =
-      ./../Monoidal/Cartesian/extractSemigroupal sha256:5ea36ef859f12ab3575e578d19b38bfd9b50e7540a62cad09b80504653da57e6
+      ./../Monoidal/Cartesian/extractSemigroupal sha256:239a4e0b126d58dfe79bdd73558817e8c85697571aebbcb47c47e48e6202d82e
       Cat
       vObject
       Type
-      ./monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    { split =
             λ(a : Type)
@@ -34,7 +34,7 @@ in    { split =
           → λ(g : a → c)
           → λ(x : a)
           → { _1 = f x, _2 = g x }
-      , identity =
+      , unit =
           λ(a : Type) → λ(x : a) → x
       , product =
             λ(a : { _1 : Type, _2 : Type })
@@ -71,7 +71,7 @@ in    { split =
           → λ(x : b._1)
           → f._2 (fn (f._1 x))
       }
-    : ./../../Arrow/Type sha256:e2050044f4f51e126b329c08e88ad827636c005cf4111d5847558d19c0512759
+    : ./../../Arrow/Type sha256:cadeea2fc253655ecbc484a159bc5f8c4d32f9b26ef7ffe9aabda193c8d5fe0c
       Type
       v
       Set

@@ -4,14 +4,14 @@ let kCat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       kCat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let base =
-      ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+      ./../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
       kCat
       vObject
 
@@ -19,20 +19,20 @@ in    λ ( cObject
         : Kind
         )
     → λ ( c
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           vObject
           cObject
         )
     → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
+        : ./../Semigroupoid/Type sha256:40a8e489fddee04bb4fda6df908b24c2143a7f75b4c5e25eec9fd34e7947bbb8
           cObject
           v
           (base cObject c)
           c.arrow
         )
     → let Day =
-            ./Type sha256:ba33d670ee62e655ba9a4e6345ce1dca028a782f36a37bb8e0fcd3ae3881f9c7
+            ./Type sha256:f2b5b6fb9d2fead2e46f0fe8362e08133d5f552c932d9ca03126f256d24b8520
             cObject
             v
             c
@@ -57,7 +57,7 @@ in    λ ( cObject
                       → λ(e : v.product { _1 = f d._1, _2 = g d._2 })
                       → λ(r0 : vObject)
                       → λ ( day0
-                          : ./convolution sha256:9c319003951ddc83300318bd31dee48bc16d2f48890593ed4363470ab6763426
+                          : ./convolution sha256:ed0886d09259f7be70d35f7735d511b586438cc026f26fcf254b617f9a59610f
                             cObject
                             v
                             c

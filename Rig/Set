@@ -6,20 +6,20 @@ let vObject = Type
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       kCat
       vObject
       object
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( m
         : object
         )
     → { additive :
-          ./../Monoid/Commutative/Set sha256:d88d0901dd9cdbd6d745e477998b5977749fc03f51f172d378ce2de39e40dd7a
+          ./../Monoid/Commutative/Set sha256:cca405c33c9a287eb951d163e23e8c473f18a05eb768c0004d251fd3829b6bee
           m
       , multiplicative :
-          ./../Monoid/Type sha256:de30a2de2ca32bea0db95476b658e4220a53b26134becbe2e3b8a3d8e7ee1fa5
+          ./../Monoid/Type sha256:f834d5fd5b1d9a58809d316e6660f485b2e2d342bf833dcfda8034634e3a8f76
           object
           cat
           m

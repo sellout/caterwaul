@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           Type
           vObject
@@ -19,7 +19,7 @@ in    λ ( object
           object
         )
     →   { Arrow =
-            ./../../Arrow/Type sha256:e2050044f4f51e126b329c08e88ad827636c005cf4111d5847558d19c0512759
+            ./../../Arrow/Type sha256:cadeea2fc253655ecbc484a159bc5f8c4d32f9b26ef7ffe9aabda193c8d5fe0c
             object
             v
             cat
@@ -28,7 +28,7 @@ in    λ ( object
             object
             cat
         }
-      ∧ ./../types.dhall sha256:5287842c5c29b3aa5fb475aaccca0f2c411c4d0de9221baa8536c47f819d50b3
+      ∧ ./../types.dhall sha256:a033d62a66986b7c6cfdc1909a323c4e56ad63aad60ea1439579176ca9b4c7fe
         object
         v
         ( ./extractCategory sha256:e424ab1a06cccec93571da2bc08642157fd9e60030535233320a7e22c02d01b6

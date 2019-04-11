@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           Type
           vObject
@@ -19,14 +19,14 @@ in    λ ( object
           object
         )
     → λ ( category
-        : ./Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+        : ./Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           object
           v
           cat
         )
     →   category.{ product
                  }
-      : ./../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
+      : ./../Semigroupoid/Type sha256:40a8e489fddee04bb4fda6df908b24c2143a7f75b4c5e25eec9fd34e7947bbb8
         object
         v
         cat

@@ -7,26 +7,26 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           vObject
           object
         )
     → λ(m : object)
     → λ ( rig
-        : ./Type sha256:db5179b63bfe4cfec2face20845757f747a1fbe98c7e8ccdaf86487cfeec17f4
+        : ./Type sha256:b2f1a0e4848f04f5571b52a37fc82400f298f021f978fee48375f25590e4af9c
           object
           cat
           m
         )
     →   { zero =
-            rig.additive.identity
+            rig.additive.unit
         }
-      ∧ ./../Semiring/terms.dhall sha256:cc3eeca20387af90354a0cc181b9e3b062460ae1da1326295e67e4becbe600da
+      ∧ ./../Semiring/terms.dhall sha256:9455c8209766d8998a578767c8722a903526c5ec5096fe5538041403071dceb2
         object
         cat
         m
-        ( ./extractSemiring sha256:4e08fb38756f5e00454f03829ff9f33c663ea53f8ba1803714bcc7585842861a
+        ( ./extractSemiring sha256:7248b5b944438e889543ff6510d901f730464161ada651f867566471da8c5876
           object
           cat
           m

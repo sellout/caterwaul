@@ -4,15 +4,15 @@ in    λ ( m
         : object
         )
     → λ ( field
-        : ./Type sha256:6aaeace90df1f726ff530ea9decd9d086288a32a1db3616515105dc658d78bf0
+        : ./Type sha256:4ee213242564da484628126b5639755c932eef8cf8afa4b011719e2d4b59b848
           m
         )
     →   { le =
             field.additive.le
         }
-      ∧ ./../PartiallyOrdered/terms.dhall sha256:9662be3e86e72b7b9c6a60751baa462995a935585396c619f66ee26229c8650d
+      ∧ ./../PartiallyOrdered/terms.dhall sha256:8cb27c45abbc58a5caf4c5e4095625e0d17ee33832894498368bb2497f37790e
         m
-        ( ./extractPartiallyOrderedField sha256:1f5ce8454a6e3381ec9815ec73bb1b87f3e4beaa58793447ff1f89dc00edcb2f
+        ( ./extractPartiallyOrderedField sha256:c380351df9cc63a2aabe35d6a0b44f032bbfc68375bf1115e7f5507082964422
           m
           field
         )

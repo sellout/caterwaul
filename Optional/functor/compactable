@@ -2,7 +2,7 @@ let cat =
       ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let base =
-      ./../../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
+      ./../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
       cat
 
 let vObject = Type
@@ -11,26 +11,26 @@ let v =
       base
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let Set =
       base
       vObject
       Type
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
-in    ./../../Monad/impliedStarfunctor sha256:6abee7f440f314c1d05b0fd96c62d0abf28be7e1380d75f4feef8c5702abc0d0
+in    ./../../Monad/impliedStarfunctor sha256:072a0dfab807d859a0edd17ea79a7ab65a3e5e502105bf0379b1267181aa6e33
       Type
       Set
       ./../../Category/Set/semigroupoid sha256:fd98b398b43b5fe73e6a1a17a26c8a9a6cf5d9c712bfcbb29b7e1d42d12a4d10
       Optional
-      ( ./../functor/endo/star sha256:153e636c926a3533404326a80188d807cbbc37919d64348fbe65448280f3585d
+      ( ./../functor/endo/star sha256:5f6805ee2155cb6bf91c74f3f2845f4bcc0a9d95d3698713d0b8addbe7e53a28
         ( ./../../Identity/Type sha256:0d22fa254c96551228894f2adaedd4f45c0401759d18775e412ae41694f1d3e0
           Type
         )
-        ./../../Identity/functor/monoidal sha256:40c429fedb0d4632284b3665f35b06c09b8eb582fc39f6997676aa403a6efc1f
+        ./../../Identity/functor/monoidal sha256:4805c7ad013fa87550f2dcfe1db22d3bbfd7e18ef37a53ecfff9b73ea23d0caa
       )
-      ./../monad sha256:a3da9546006b4ae902c9564c460590cecb11b74d235b19849a8b198989a9ee7c
+      ./../monad sha256:61bf221268be6f39ca1a2299adaa7c309052fac175212d0f6a6a86503a9ca3f8
     : ./../../Functor/Star/Type sha256:478e56de78e7bcfddaa56adfb8e10e97007303aee206e5a64080fe7210bfb539
       vObject
       Type

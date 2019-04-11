@@ -6,5 +6,5 @@ in    λ ( m
     →   { le :
             m → m → Bool
         }
-      ⩓ ./../PartiallyOrderedCommutative/Type sha256:05e41f5c97f79ac404c3e2b2c34e37270f8dae4b3eb4dc319e06114c6ee2870a
+      ⩓ ./../PartiallyOrderedCommutative/Type sha256:f509c999e45d517d27fbe9e995422fb406e2fa4de1862afea1fad90c88ec85f1
         m

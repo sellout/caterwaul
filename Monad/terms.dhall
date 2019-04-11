@@ -4,14 +4,14 @@ let kCat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       kCat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let vBase =
-      ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+      ./../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
       kCat
       Type
       vObject
@@ -27,7 +27,7 @@ in    λ ( object
           object
         )
     → λ ( semigroupoid
-        : ./../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
+        : ./../Semigroupoid/Type sha256:40a8e489fddee04bb4fda6df908b24c2143a7f75b4c5e25eec9fd34e7947bbb8
           object
           v
           cat
@@ -43,13 +43,13 @@ in    λ ( object
           m
         )
     → λ ( monad
-        : ./Type sha256:0324dd40fc192581e566136f5cde4424ed653ecf7311b967b7d291d05484b78e
+        : ./Type sha256:f29e46a0fad45deefe74dbaf6daf7ff1abaaf7b02d672dfc254245ebc0cd651a
           object
           cat
           m
         )
     → let extractStarfunctor =
-            ./impliedStarfunctor sha256:6abee7f440f314c1d05b0fd96c62d0abf28be7e1380d75f4feef8c5702abc0d0
+            ./impliedStarfunctor sha256:072a0dfab807d859a0edd17ea79a7ab65a3e5e502105bf0379b1267181aa6e33
             object
             cat
             semigroupoid
@@ -60,7 +60,7 @@ in    λ ( object
       in  { map =
               functor.map
           , pure =
-              monad.identity
+              monad.unit
           , join =
               monad.product
           , bind =

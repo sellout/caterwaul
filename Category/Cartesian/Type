@@ -2,11 +2,11 @@ let kCat =
       ./../Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+      ./../Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
       kCat
 
 let base =
-      ./../Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+      ./../Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
       kCat
 
 let vObject = Type
@@ -18,12 +18,12 @@ in    λ ( object
     → λ(cat : MonoidalCategory vObject object)
     → λ(m : object)
     →   { category :
-            ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+            ./../Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
             object
             v
             (base vObject object cat)
         }
-      ⩓ ./../../Bimonoid/Type sha256:9964284fa5ab49985d51ec1219fa75ff8a6607d113c3b1249a7cbc9e74786c8c
+      ⩓ ./../../Bimonoid/Type sha256:d371a11768e0a8abf7413326146d21a4c7827d648b64d0de74b33dbd52839640
         object
         cat
         m

@@ -7,14 +7,14 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           vObject
           object
         )
     → λ(m : object)
     → λ ( field
-        : ./Type sha256:8c807118f5787225c16876c89470140c694e961d2d31575b65c4ac6f2de985a4
+        : ./Type sha256:839042c2c40cdd15c50a5c225907ebcab972da26c36ec2a1ec1a64a6359f6466
           object
           cat
           m
@@ -22,13 +22,13 @@ in    λ ( object
     →   { additive =
             field.additive
         , multiplicative =
-            ./../Group/Commutative/extractCommutativeMonoid sha256:4af2369ebfed14dd040a969eafa09413110ca5d2ee0dafa00ff261e96066d996
+            ./../Group/Commutative/extractCommutativeMonoid sha256:87ba7a505f82db6ae28745477cfd9bf713a4a645757e1b20cfc1ac63449841b8
             object
             cat
             m
             field.multiplicative
         }
-      : ./../Ring/Commutative/Type sha256:82080727e85b7171a739ae0f8259f23f5c7df3bc8a1f27ce81c4b1fbccf5126f
+      : ./../Ring/Commutative/Type sha256:d42266a1fcdaa3bc46ba0463630a92354a2aa04281130768ae2d7cdcbe45d482
         object
         cat
         m

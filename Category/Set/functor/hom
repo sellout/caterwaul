@@ -4,21 +4,21 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../../Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       Type
       vObject
-      ./../monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let Set =
-      ./../../Monoidal/Cartesian/extractSemigroupal sha256:5ea36ef859f12ab3575e578d19b38bfd9b50e7540a62cad09b80504653da57e6
+      ./../../Monoidal/Cartesian/extractSemigroupal sha256:239a4e0b126d58dfe79bdd73558817e8c85697571aebbcb47c47e48e6202d82e
       cat
       vObject
       Type
-      ./../monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
-in  ./../../../Arrow/extractProfunctor sha256:412ce63c341690d7a51b3d29f88c6cc67c8ed443b5b151a44b5d974ad25c8c78
+in  ./../../../Arrow/extractProfunctor sha256:b2d112c03131f92b996cf838cf00897aaf3082671bd34666962491c444083e60
     Type
     v
     Set
-    ./../arrow sha256:ac1d9d5933e7a16fdca237015a614744a382ffbef0b864d6747ea6066613a5ca
+    ./../arrow sha256:bd80ea4b1cacec4a035b677ef928d8bfa9fba355a79e9440833a0329b160c06a

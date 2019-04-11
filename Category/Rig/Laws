@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( cat
-        : ./Kind sha256:9093c6472bbfa0939a07b1d0896b7856410c84b4e55175dce8978baf8ff28b07
+        : ./Kind sha256:f81dfc0c5d6068531dea30420720beec80a7cd1d0481cfb44fc9fecb3c35611a
           kCat
           vObject
           object
@@ -15,7 +15,7 @@ in    λ ( object
     → let Isomorphism =
             ./../../Isomorphism/Type sha256:aa416af42a745ed47476a9aa736340f4346442177a2396f368ba9659d2a23ad9
             object
-            ( ./extractCategory sha256:82e77f240de082d8505dc9dc9b09e7c1479171cf01ffc2f474745d10c91b35e7
+            ( ./extractCategory sha256:7c0bcbd29731e19cbfd3c760c60f9e54eb85815bee92a9580f97899825951d88
               kCat
               vObject
               object
@@ -23,14 +23,14 @@ in    λ ( object
             )
       
       let additive =
-            ./extractAdditive sha256:5e68260653c471df3977a657c811c8ca7f0317e379bcd90886917b0f2ec52f2b
+            ./extractAdditive sha256:7f197abeac966ef17fd2c847e0fd4a0c52630e55833e090537b494818a6e3ef5
             kCat
             vObject
             object
             cat
       
       let multiplicative =
-            ./extractMultiplicative sha256:fcce2925fbebe635a50151f4cd5e00b0807811c62395c6fa5c8a87a40b229f32
+            ./extractMultiplicative sha256:5e6489a35a0eef6ac23ed4078707105247c59293c3a8dc6791c405f10b653859
             kCat
             vObject
             object
@@ -56,24 +56,24 @@ in    λ ( object
                 ∀(a : object)
               → Isomorphism
                 { _1 =
-                    multiplicative.product { _1 = additive.identity, _2 = a }
+                    multiplicative.product { _1 = additive.unit, _2 = a }
                 , _2 =
-                    additive.identity
+                    additive.unit
                 }
           , rightAnnihilation :
                 ∀(a : object)
               → Isomorphism
                 { _1 =
-                    multiplicative.product { _1 = a, _2 = additive.identity }
+                    multiplicative.product { _1 = a, _2 = additive.unit }
                 , _2 =
-                    additive.identity
+                    additive.unit
                 }
           , additive :
-              ./../Monoidal/Laws sha256:9c4494b45285d0d1a961b74a896ffc20009a3020d9b5b84a5b47ba22cb09c97e
+              ./../Monoidal/Laws sha256:dd8763fe3be580db2ad354d975171a48ac32a3790efc7bf3870717cc6d679739
               object
               additive
           , multiplicative :
-              ./../Monoidal/Laws sha256:9c4494b45285d0d1a961b74a896ffc20009a3020d9b5b84a5b47ba22cb09c97e
+              ./../Monoidal/Laws sha256:dd8763fe3be580db2ad354d975171a48ac32a3790efc7bf3870717cc6d679739
               object
               multiplicative
           }

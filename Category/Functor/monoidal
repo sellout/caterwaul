@@ -1,4 +1,4 @@
-{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
+{- This cheats a bit on the unit, since `dObject` is Type, we don’t need a
    functor **Set** → 𝒟.
 -}
 let cat =
@@ -7,7 +7,7 @@ let cat =
 let vObject = Type
 
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+      ./../Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
       cat
       vObject
 
@@ -26,14 +26,14 @@ in    λ ( cObject
           → λ(c : MonoidalCategory cObject)
           → λ(d : MonoidalCategory dObject)
           → let base =
-                  ./../Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+                  ./../Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
                   cat
                   vObject
             
-            in      { identity =
-                        λ(x : cObject) → c.arrow { _1 = c.identity, _2 = x }
+            in      { unit =
+                        λ(x : cObject) → c.arrow { _1 = c.unit, _2 = x }
                     , product =
-                        ./../../Day/Type sha256:ba33d670ee62e655ba9a4e6345ce1dca028a782f36a37bb8e0fcd3ae3881f9c7
+                        ./../../Day/Type sha256:f2b5b6fb9d2fead2e46f0fe8362e08133d5f552c932d9ca03126f256d24b8520
                         cObject
                         d
                         c

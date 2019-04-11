@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           Type
           vObject
@@ -19,7 +19,7 @@ in    λ ( object
           object
         )
     → λ ( category
-        : ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+        : ./../Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           object
           v
           cat
@@ -31,7 +31,7 @@ in    λ ( object
             cat
       
       let opCategory =
-            ./../Op/category sha256:57b4f82bc2a2b701caf574b8d6c1276c5461793559b607305ad7ce06d8f6ee60
+            ./../Op/category sha256:ff0becdbd2b76091173456e80e66f7bc8b427e7ffeeb583204b3ec6f9a35d792
             object
             v
             cat
@@ -42,9 +42,9 @@ in    λ ( object
             object
             cat
       
-      in    { identity =
+      in    { unit =
                   λ(a : object)
-                → { to = category.identity a, from = opCategory.identity a }
+                → { to = category.unit a, from = opCategory.unit a }
             , product =
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
@@ -94,7 +94,7 @@ in    λ ( object
                       )
                   }
             }
-          : ./../Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+          : ./../Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
             object
             v
             Dagger

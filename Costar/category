@@ -14,8 +14,8 @@
 --                     comonad
 --                   ).map
         
---         in    { identity =
---                   comonad.identity
+--         in    { unit =
+--                   comonad.unit
 --               , compose =
 --                     λ(a : object)
 --                   → λ(b : object)

@@ -4,23 +4,23 @@ let kCat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       kCat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
+      ./../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
       kCat
       vObject
       object
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( category
-        : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+        : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           object
           v
           cat
@@ -33,7 +33,7 @@ in    λ ( category
       in    λ ( m
               : kCat.arrow object object
               )
-          →   { identity =
+          →   { unit =
                     λ(a : object)
                   → λ(x : a)
                   → λ(b : object)
@@ -46,11 +46,9 @@ in    λ ( category
                   → λ(l : cat.arrow { _1 = a, _2 = m c })
                   → codensity
                     c
-                    (   λ(x : Codensity m a)
-                      → category.identity (Codensity m a) x c l
-                    )
+                    (λ(x : Codensity m a) → category.unit (Codensity m a) x c l)
               }
-            : ./../Monad/Type sha256:0324dd40fc192581e566136f5cde4424ed653ecf7311b967b7d291d05484b78e
+            : ./../Monad/Type sha256:f29e46a0fad45deefe74dbaf6daf7ff1abaaf7b02d672dfc254245ebc0cd651a
               object
               cat
               (Codensity m)

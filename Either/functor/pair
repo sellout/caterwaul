@@ -2,24 +2,24 @@ let kCat =
       ./../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let base =
-      ./../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+      ./../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
       kCat
 
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       kCat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let Set =
-      ./../../Category/Rig/extractAdditive sha256:5e68260653c471df3977a657c811c8ca7f0317e379bcd90886917b0f2ec52f2b
+      ./../../Category/Rig/extractAdditive sha256:7f197abeac966ef17fd2c847e0fd4a0c52630e55833e090537b494818a6e3ef5
       kCat
       vObject
       Type
-      ./../../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
+      ./../../Category/Set/rig sha256:a7cbfba2e5127e953bcfa00748bcedb7daef637f931d7bce2ac14a21b103b8b8
 
 let cat = base vObject Type Set
 
@@ -51,7 +51,7 @@ in    λ ( m
                   }
                   e
         }
-      : ./../../Functor/Pair/Type sha256:51cd0825dd05a6c58e6afc0c4f95e00a5b8db9affd8b028137dac704e1f1457c
+      : ./../../Functor/Pair/Type sha256:32d90239bb9a45c9b9fea6589240178acd4c1206c5369a24ea0fbba5d9faef2d
         vObject
         Type
         v

@@ -4,12 +4,12 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
+      ./../Category/Set/rig sha256:a7cbfba2e5127e953bcfa00748bcedb7daef637f931d7bce2ac14a21b103b8b8
 
 in    λ ( a
         : Type
         )
-    →   { identity =
+    →   { unit =
             λ(b : Type) → λ(x : b) → < Right = x | Left : a >
         , product =
               λ(b : Type)
@@ -38,12 +38,12 @@ in    λ ( a
                 fa
               )
         }
-      : ./../Monad/Type sha256:0324dd40fc192581e566136f5cde4424ed653ecf7311b967b7d291d05484b78e
+      : ./../Monad/Type sha256:f29e46a0fad45deefe74dbaf6daf7ff1abaaf7b02d672dfc254245ebc0cd651a
         Type
-        ( ./../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
+        ( ./../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
           cat
           vObject
           Type
-          ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+          ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
         )
         (λ(b : Type) → Set.additive.product { _1 = a, _2 = b })

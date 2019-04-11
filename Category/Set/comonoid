@@ -4,21 +4,21 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       vObject
       Type
-      ./monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( a
         : Type
         )
-    →   { identity =
+    →   { unit =
             λ(_ : a) → {=}
         , product =
             λ(x : a) → { _1 = x, _2 = x }
         }
-      : ./../../Comonoid/Type sha256:c71de9616659fb6877f0eca9f683b07d6655d2bd50e3c49f1b6b81f8be1dc99a
+      : ./../../Comonoid/Type sha256:a7dca5f97954993fc38ccd040232753dc797fc3d5c9ab10ee0df2268388dfddb
         Type
         Set
         a

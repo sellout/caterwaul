@@ -1,5 +1,5 @@
 let Set =
-      ./rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
+      ./rig sha256:a7cbfba2e5127e953bcfa00748bcedb7daef637f931d7bce2ac14a21b103b8b8
 
 let Either = Set.additive.product
 
@@ -154,6 +154,6 @@ in    { distributivity =
                 }
           }
       }
-    : ./../Rig/Laws sha256:4f87c9d47a27d528e2755d7ea3a5c72df9f8dd2105eba93e90f4d11f940c7a8f
+    : ./../Rig/Laws sha256:f766403d3711e4f9cd958e28c625400007b9bb32a8bd2da6c772360d3cdf4153
       Type
-      ./rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
+      ./rig sha256:a7cbfba2e5127e953bcfa00748bcedb7daef637f931d7bce2ac14a21b103b8b8

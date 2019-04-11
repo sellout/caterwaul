@@ -1,4 +1,4 @@
-{- This cheats a bit on the identity, since `dObject` is Type, we don’t need a
+{- This cheats a bit on the unit, since `dObject` is Type, we don’t need a
    functor **Set** → 𝒟.
 -}
 let cat =

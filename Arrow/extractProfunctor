@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           Type
           vObject
@@ -26,14 +26,14 @@ in    λ ( object
             cat
       
       in    λ ( arrow
-              : ./Type sha256:e2050044f4f51e126b329c08e88ad827636c005cf4111d5847558d19c0512759
+              : ./Type sha256:cadeea2fc253655ecbc484a159bc5f8c4d32f9b26ef7ffe9aabda193c8d5fe0c
                 object
                 v
                 cat
               )
           →   arrow.{ map
                     }
-            : ./../Functor/Profunctor/Type sha256:e47d2dd146c4c8665da2d6f5363fd37ff59971aaa354bfa1f1be9fca965ce307
+            : ./../Functor/Profunctor/Type sha256:ecb32be3f9e51adf178db451061685e4ffccdf7267970e9dd77d91042a642a04
               object
               object
               v

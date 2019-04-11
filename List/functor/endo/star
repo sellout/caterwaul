@@ -4,24 +4,24 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
+      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
       cat
       Type
       vObject
-      ./../../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let Set =
-      ./../../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       vObject
       Type
-      ./../../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 in    λ ( m
         : cat.arrow Type Type
         )
     → λ ( monoidal
-        : ./../../../Functor/Monoidal/Type sha256:73d6a61a626107cf8fc9ee73e02b3116a2540bae6fa38881165eab9d8c0f8913
+        : ./../../../Functor/Monoidal/Type sha256:bf8111231d2f34c80be8863044f587a617c364172c46684ce6480c5c96764e74
           Type
           v
           Set
@@ -46,7 +46,7 @@ in    λ ( m
                             : Type
                             )
                         → λ ( day
-                            : ./../../../Day/convolution sha256:9c319003951ddc83300318bd31dee48bc16d2f48890593ed4363470ab6763426
+                            : ./../../../Day/convolution sha256:ed0886d09259f7be70d35f7735d511b586438cc026f26fcf254b617f9a59610f
                               Type
                               Set
                               Set
@@ -66,16 +66,13 @@ in    λ ( m
                   fa
                   (m (List b))
                   (λ(x : a) → liftCons (f x))
-                  ( monoidal.identity
-                    (List b)
-                    (λ(_ : Set.identity) → [] : List b)
-                  )
+                  (monoidal.unit (List b) (λ(_ : Set.unit) → [] : List b))
         }
       : ./../../../Functor/Endo/Star/Type sha256:fc8ac120351147c630fb970d16a63ab71aaf0db1cef9764f6988f65b318c199a
         vObject
         Type
         v
-        ( ./../../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+        ( ./../../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
           cat
           vObject
           Type

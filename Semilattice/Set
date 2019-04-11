@@ -6,5 +6,5 @@ in    λ ( m
     →   { partialLE :
             m → m → Optional Bool
         }
-      ⩓ ./../Monoid/Commutative/Set sha256:d88d0901dd9cdbd6d745e477998b5977749fc03f51f172d378ce2de39e40dd7a
+      ⩓ ./../Monoid/Commutative/Set sha256:cca405c33c9a287eb951d163e23e8c473f18a05eb768c0004d251fd3829b6bee
         m

@@ -3,11 +3,11 @@
     )
 → λ(m : Kind)
 → { additive :
-      ./../../Group/Kind sha256:908f03375197e4389fb2c3c5410a58f8eb930515ae19c3f8184a45bf3faf65d3
+      ./../../Group/Kind sha256:bce735622cad0db970bff8dededd14f6a3ac254e49e8cd6c4634b298741a1e17
       cat
       m
   , multiplicative :
-      ./../../Monoid/Kind sha256:1c48503e82acd9b323925e8b5b1c3f1d14945cfccc185f6485390ebd41a95454
+      ./../../Monoid/Kind sha256:9525cd27cfa590fbac20cae49b893cc33ad3b224bd09d8d7979d4ebbe637c208
       cat
       m
   }

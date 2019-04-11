@@ -2,25 +2,25 @@ let kCat =
       ./../../../Category/Cat/semigroupal sha256:de5b05c9640ea3ca0ee586c7102a982db79d3c0f0c92230cb2df19c7b986b513
 
 let base =
-      ./../../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+      ./../../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
       kCat
 
 let vObject = Type
 
 let v =
-      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:fef093587bdc97a914e4e30469579c22f8fb63653ea5f511606e0e8109662a4b
+      ./../../../Category/Monoidal/Cartesian/extractCategory sha256:5d481c2c40201add9d14edc5a5ff6471a11fa9c58fea348279927339cfd60456
       kCat
       Type
       vObject
-      ./../../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let object = Type
 
 let Set =
-      ./../../../Category/Set/rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
+      ./../../../Category/Set/rig sha256:a7cbfba2e5127e953bcfa00748bcedb7daef637f931d7bce2ac14a21b103b8b8
 
 let cat =
-      ./../../../Category/Rig/extractMultiplicative sha256:fcce2925fbebe635a50151f4cd5e00b0807811c62395c6fa5c8a87a40b229f32
+      ./../../../Category/Rig/extractMultiplicative sha256:5e6489a35a0eef6ac23ed4078707105247c59293c3a8dc6791c405f10b653859
       kCat
       vObject
       object
@@ -30,7 +30,7 @@ in    λ ( m
         : kCat.arrow object object
         )
     → λ ( monoidal
-        : ./../../../Functor/Monoidal/Type sha256:73d6a61a626107cf8fc9ee73e02b3116a2540bae6fa38881165eab9d8c0f8913
+        : ./../../../Functor/Monoidal/Type sha256:bf8111231d2f34c80be8863044f587a617c364172c46684ce6480c5c96764e74
           object
           v
           cat
@@ -46,7 +46,7 @@ in    λ ( m
             → λ(f : cat.arrow { _1 = b, _2 = m c })
             → ( ./../pair sha256:601d2ccb1cde5c744bbc476c67fda8496a2467401ef848d520d26900f3476396
                 m
-                ( ./../../../Functor/Monoidal/extractFunctor sha256:7b22b05708f299136b5165685f0740220fbec54cca37b329e44284c9da8bc50e
+                ( ./../../../Functor/Monoidal/extractFunctor sha256:e37113c934a0a4e2e8ec49180b28b9bf98d3737a6f5c36664e43b062084274a3
                   object
                   v
                   cat
@@ -57,11 +57,7 @@ in    λ ( m
               ).map
               { _1 = a, _2 = b }
               { _1 = a, _2 = c }
-              { _1 =
-                  λ(x : a) → monoidal.identity a (λ(_ : cat.identity) → x)
-              , _2 =
-                  f
-              }
+              { _1 = λ(x : a) → monoidal.unit a (λ(_ : cat.unit) → x), _2 = f }
         }
       : ./../../../Functor/Endo/Star/Type sha256:fc8ac120351147c630fb970d16a63ab71aaf0db1cef9764f6988f65b318c199a
         vObject

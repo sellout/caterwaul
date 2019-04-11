@@ -4,11 +4,11 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       Type
       vObject
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let Category =
       ./../../Category/Kind sha256:c73426d12cddcdfc44b6e687fc897f7ef91fcda0c4da116a91acdca4d15c68a2
@@ -20,7 +20,7 @@ in    λ ( cObject
         )
     → λ(c : Category cObject)
     → λ ( cCategory
-        : ./../../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+        : ./../../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           cObject
           v
           c
@@ -31,7 +31,7 @@ in    λ ( cObject
     → λ(e : Category eObject)
     → λ(f : cat.arrow (cat.product cObject dObject) eObject)
     → λ ( bifunctor
-        : ./Type sha256:caf45fd32cae3f88e6a8d93c3d81737e6d2abdf1a6ed90efc7b69906b65e7ba0
+        : ./Type sha256:5d415a75b8765b342fa599191990337e1a14767512f5714217a95b7adeac171c
           vObject
           cObject
           dObject
@@ -50,13 +50,13 @@ in    λ ( cObject
             → bifunctor.map
               { _1 = a, _2 = b }
               { _1 = a, _2 = c }
-              { _1 = cCategory.identity a, _2 = fn }
+              { _1 = cCategory.unit a, _2 = fn }
         }
       : ./../Type sha256:bebd999f32d6a3fd9bd7151ca5f0942ed6aeded30809c4a7e6c91382bed2dbcb
         vObject
         dObject
         eObject
-        ( ./../../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+        ( ./../../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
           cat
           Type
           vObject

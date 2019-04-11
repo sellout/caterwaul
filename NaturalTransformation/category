@@ -8,7 +8,7 @@ let Category =
 let vObject = Type
 
 in    λ ( v
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           cat
           Type
           vObject
@@ -18,7 +18,7 @@ in    λ ( v
     → λ(dObject : Kind)
     → λ(d : Category vObject dObject)
     → λ ( dCategory
-        : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+        : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           dObject
           v
           d
@@ -32,8 +32,8 @@ in    λ ( v
             dObject
             d
       
-      in    { identity =
-                λ(a : object) → λ(i : cObject) → dCategory.identity (a i)
+      in    { unit =
+                λ(a : object) → λ(i : cObject) → dCategory.unit (a i)
             , product =
                   λ(a : { _1 : object, _2 : object })
                 → λ ( p
@@ -64,13 +64,13 @@ in    λ ( v
                       )
                   )
             }
-          : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+          : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
             object
             v
             ( ./../Category/Functor/category sha256:c69163eac75892504c9b6fd8b9637704c20e0baa23c5d428ecfb2b4587414bef
               cObject
               dObject
-              ( ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+              ( ./../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
                 cat
                 Type
                 vObject

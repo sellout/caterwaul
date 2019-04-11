@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           Type
           vObject
@@ -19,7 +19,7 @@ in    λ ( object
           object
         )
     → let vBase =
-            ./Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+            ./Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
             kCat
             Type
             vObject
@@ -36,7 +36,7 @@ in    λ ( object
               cat
               cat
           , Bifunctor =
-              ./../Functor/Bifunctor/Type sha256:caf45fd32cae3f88e6a8d93c3d81737e6d2abdf1a6ed90efc7b69906b65e7ba0
+              ./../Functor/Bifunctor/Type sha256:5d415a75b8765b342fa599191990337e1a14767512f5714217a95b7adeac171c
               vObject
               object
               object
@@ -46,13 +46,13 @@ in    λ ( object
               cat
               cat
           , Category =
-              ./Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+              ./Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
               object
           , Codensity =
               ./../Codensity/Type sha256:b0945f99031bc91ed9a0bc7c25b48ef903bf0c3746ac6fcaaeb04fefa0b652e1
               object
           , Comonad =
-              ./../Comonad/Type sha256:6ddfa25c10ab6487474f62a2f4962d2a1ea8d2ef42a646a14add738717e861bf
+              ./../Comonad/Type sha256:5ef8ab824c6bf670bbf787d84043177e063e0b3d4565907c2d70a54afd5cbd84
               object
               cat
           , Compose =
@@ -79,7 +79,7 @@ in    λ ( object
           , Endofunctor =
               Endofunctor object vBase cat
           , HomFunctor =
-              ./../Functor/Hom sha256:4b7bbe0c0fe08ad3dce24f104e1e282429ef8058c97060e36ce90f92012708a6
+              ./../Functor/Hom sha256:ee7d283804ed20f17af0b6169d2cbeb87532973668d49b25b7810578fcc57e1a
               object
               v
               cat
@@ -98,7 +98,7 @@ in    λ ( object
               cat
               cat
           , Monad =
-              ./../Monad/Type sha256:0324dd40fc192581e566136f5cde4424ed653ecf7311b967b7d291d05484b78e
+              ./../Monad/Type sha256:f29e46a0fad45deefe74dbaf6daf7ff1abaaf7b02d672dfc254245ebc0cd651a
               object
               cat
           , NaturalTransformation =
@@ -107,7 +107,7 @@ in    λ ( object
               object
               cat
           , Profunctor =
-              ./../Functor/Profunctor/Type sha256:e47d2dd146c4c8665da2d6f5363fd37ff59971aaa354bfa1f1be9fca965ce307
+              ./../Functor/Profunctor/Type sha256:ecb32be3f9e51adf178db451061685e4ffccdf7267970e9dd77d91042a642a04
               object
               object
               v
@@ -119,7 +119,7 @@ in    λ ( object
               object
               cat
           , Semigroupoid =
-              ./../Semigroupoid/Type sha256:b5492226c5be6bd719ab035c9286b707b273e6b191f3b8b572e51394688717c6
+              ./../Semigroupoid/Type sha256:40a8e489fddee04bb4fda6df908b24c2143a7f75b4c5e25eec9fd34e7947bbb8
               object
           , Star =
               ./../Star/Type sha256:40299f511a6a0ec179c2752f6efb313ce65db208c3ea894a096e0bd59602d6fc
@@ -127,7 +127,7 @@ in    λ ( object
               object
               cat
           , Strong =
-              ./../Strong/Type sha256:f826a092356d88b7bc710c0552b54ab6f109219108cb032fdb6b0d58594b9c54
+              ./../Strong/Type sha256:8d15bf8a05c49b4d54bdcf05cbbbcb61976fe0e5723d2e2396693a9b4d6f4dc3
               object
               object
               v

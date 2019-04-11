@@ -8,11 +8,11 @@ let Category =
       cat
 
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+      ./../Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
       cat
 
 let base =
-      ./../Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+      ./../Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
       cat
 
 in    λ ( cObject
@@ -22,7 +22,7 @@ in    λ ( cObject
     → λ(v : MonoidalCategory Type vObject)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
-    → ./../types.dhall sha256:5287842c5c29b3aa5fb475aaccca0f2c411c4d0de9221baa8536c47f819d50b3
+    → ./../types.dhall sha256:a033d62a66986b7c6cfdc1909a323c4e56ad63aad60ea1439579176ca9b4c7fe
       (cat.arrow cObject dObject)
       v
       ( ./category sha256:c69163eac75892504c9b6fd8b9637704c20e0baa23c5d428ecfb2b4587414bef

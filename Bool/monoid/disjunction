@@ -4,14 +4,14 @@ let cat =
 let vObject = Type
 
 let Set =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       vObject
       Type
-      ./../../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
-in  ./../../Lattice/extractJoin sha256:0376fd6aff74cc7875cd3ae6b6aeb3ec2b40ad1ab3b65c8c5ed0f9e9e39da579
+in  ./../../Lattice/extractJoin sha256:994d4b0e8863ef230593d476a1cbdf6504e951eb7c005ced5835acd1e5e2f45d
     Type
     Set
     Bool
-    ./../lattice sha256:39c1447c4ca7d48a52a2a67c86cf937520c1e6dc38ca81e87786cd307d7c33d5
+    ./../lattice sha256:ff60494e2558bfaac3d0d07d50cdc361d1441129a43ef13e4f944d8b524263cb

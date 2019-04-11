@@ -12,7 +12,7 @@ in    λ ( object
           vObject
           object
         )
-    → ./../Monad/Type sha256:0324dd40fc192581e566136f5cde4424ed653ecf7311b967b7d291d05484b78e
+    → ./../Monad/Type sha256:f29e46a0fad45deefe74dbaf6daf7ff1abaaf7b02d672dfc254245ebc0cd651a
       object
       ( ./../Category/Op/Kind sha256:e098dd6a242e1c53f07ac907a04e6196a2d8055fe8e95650872a5b89ff60c7b4
         vObject

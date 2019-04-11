@@ -21,7 +21,7 @@ let NaturalTransformation =
       ./../../NaturalTransformation/Type sha256:ae103806c5d0da8f35ba65b9c08afdcc86ed1d5d71eb2ed4a0d631119df51bbc
 
 let Set =
-      ./../Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let vObject = Type
 

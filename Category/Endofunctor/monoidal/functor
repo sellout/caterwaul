@@ -12,16 +12,16 @@ in    λ ( v
           vObject
         )
     → λ ( cat
-        : ./../../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../../Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           vObject
           object
         )
-    → ./../../Duoidal/extractAdditive sha256:5e68260653c471df3977a657c811c8ca7f0317e379bcd90886917b0f2ec52f2b
+    → ./../../Duoidal/extractAdditive sha256:7f197abeac966ef17fd2c847e0fd4a0c52630e55833e090537b494818a6e3ef5
       kCat
       vObject
       (kCat.arrow object object)
-      ( ./../duoidal sha256:11a3809ddd44c943e375a354d95a52619a908484122c8f49da127f55685bffd9
+      ( ./../duoidal sha256:8d55fc27418f49834f6f08abe38a45442d7de18713e0bbaa65c2f9cb52bd4d0d
         v
         cat
       )

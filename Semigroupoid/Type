@@ -7,7 +7,7 @@ in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           Type
           vObject
@@ -23,7 +23,7 @@ in    λ ( object
       
       in  ./../Semigroup/Type sha256:c141f4fb3c393804963be5ed72ffe07f5a7e90f588ead9065235240815a80c88
           profunctor
-          ( ./../Category/Profunctor/semigroupal sha256:d5815c7bb2a27b70391bab244ececa40c93e5deed7186662ee4e9c96d8fcf578
+          ( ./../Category/Profunctor/semigroupal sha256:c81fb247341878786996c103f9495e5ec38b37adbb945ebe3fea7f3481dd2263
             object
             v
             cat

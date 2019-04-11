@@ -2,12 +2,12 @@
 
 -- in    λ(f : Type → Type)
 --     → λ(applicative : Applicative f)
---     →   { identity =
+--     →   { unit =
 --               λ(a : Type)
 --             → λ(x : a)
 --             → λ(b : Type)
 --             → λ(f : a → b)
---             → applicative.identity b (f x)
+--             → applicative.unit b (f x)
 --         , ap =
 --               λ(a : Type)
 --             → λ(b : Type)

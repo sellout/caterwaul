@@ -1,6 +1,6 @@
   { eq =
       λ(_ : {}) → λ(_ : {}) → True
-  , identity =
+  , unit =
       λ(_ : {}) → {=}
   , inverse =
       λ(_ : {}) → {=}
@@ -11,5 +11,5 @@
   , partialLE =
       λ(_ : {}) → λ(_ : {}) → Some True
   }
-: ./../Group/Ordered/Type sha256:eca0fcdc9d9d4ef5327269dd6312ed1eb03b3035b683cc72cd68f9a198bdb0fe
+: ./../Group/Ordered/Type sha256:683f0a6a858fb166094138922df58facef8ead3d26deeefc236b514a37b3ea98
   {}

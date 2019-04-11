@@ -4,7 +4,7 @@
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ ( cartesian
-    : ./Kind sha256:7bb821c96d6c062b6187841d1a758e3d7b3c69efa3167e54bca5b5907ac8e103
+    : ./Kind sha256:8199b4690a8023b4740fac4179cab17cd5c0f8dd042aab6506bbcad1d19196c1
       cat
       vObject
       object

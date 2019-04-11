@@ -4,15 +4,15 @@ in    λ ( m
         : object
         )
     → λ ( group
-        : ./Type sha256:aed4c1ad18353f23053475bf15a65ce6f8bb1ea8f95791ed276e56347f4b30e3
+        : ./Type sha256:47f0b690a6558d14f31cffd29cf9c907c51b15a0f42babd95f3053c012d04980
           m
         )
     →   group.{ eq
-              , identity
+              , unit
               , inverse
               , product
               , partialLE
               , preLE
               }
-      : ./../PartiallyOrderedCommutative/Type sha256:05e41f5c97f79ac404c3e2b2c34e37270f8dae4b3eb4dc319e06114c6ee2870a
+      : ./../PartiallyOrderedCommutative/Type sha256:f509c999e45d517d27fbe9e995422fb406e2fa4de1862afea1fad90c88ec85f1
         m

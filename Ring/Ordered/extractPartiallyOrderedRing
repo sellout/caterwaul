@@ -4,15 +4,15 @@ in    λ ( m
         : object
         )
     → λ ( ring
-        : ./Type sha256:e62f4362db38b5c5317218c80b1cc1b3aee8830532894c7f35d2aad72a60d17e
+        : ./Type sha256:dff016e32cda935c2d5c7b6cf2de0bf7a5a509a48bfde5b401c79ede14f44120
           m
         )
     →   { additive =
-            ./../../Group/OrderedCommutative/extractPartiallyOrderedCommutativeGroup sha256:e3d600d551a98f98f22dda96b84ce61ec109f18dad9b1b2c1d98c45c9074b3f4
+            ./../../Group/OrderedCommutative/extractPartiallyOrderedCommutativeGroup sha256:5cb1da882ef98565ba0f7448fa7c15942c49c2fdc9699022fa804c1b66b897ad
             m
             ring.additive
         , multiplicative =
             ring.multiplicative
         }
-      : ./../PartiallyOrdered/Type sha256:d8d9beaac8e30ac8062aadbcb25aae2f7e5a0612743d6f30151444159860501a
+      : ./../PartiallyOrdered/Type sha256:2819a5a39da54b220650858111e24f6c43d89b06b4074151b27c8679d6f127f2
         m

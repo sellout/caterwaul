@@ -10,16 +10,16 @@ let extractCategory =
       ./../Category/Semigroupal/extractCategory sha256:e424ab1a06cccec93571da2bc08642157fd9e60030535233320a7e22c02d01b6
 
 let Category =
-      ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+      ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
 
 let Strong =
-      ./../Strong/Type sha256:f826a092356d88b7bc710c0552b54ab6f109219108cb032fdb6b0d58594b9c54
+      ./../Strong/Type sha256:8d15bf8a05c49b4d54bdcf05cbbbcb61976fe0e5723d2e2396693a9b4d6f4dc3
 
 in    λ ( object
         : Kind
         )
     → λ ( v
-        : ./../Category/Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+        : ./../Category/Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
           kCat
           Type
           vObject

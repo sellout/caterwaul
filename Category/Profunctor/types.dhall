@@ -6,7 +6,7 @@ let Category =
       kCat
 
 let MonoidalCategory =
-      ./../Monoidal/Kind sha256:96b5eca83adb85b7bc744975b530210da2aec17c9c70b45d3b241ccfdb47e772
+      ./../Monoidal/Kind sha256:8e77a076f4c2f6e1d0ad07cfec37dfd04782e1a0a7e98a72a305233f69c494ca
       kCat
 
 let vObject = Type
@@ -16,10 +16,10 @@ in    λ ( object
         )
     → λ(v : MonoidalCategory Type vObject)
     → λ(cat : Category vObject object)
-    → ./../Semigroupal/types.dhall sha256:c6c794d2687e17e6a7baecf869512fb5a4bdaa7c591a77f313a4f38bdecf2cb2
+    → ./../Semigroupal/types.dhall sha256:50c585338c288129b91178b0e9992065893a34a43dbe1ceeaa0d7b6af0036df8
       (kCat.arrow (kCat.product object object) vObject)
       v
-      ( ./semigroupal sha256:d5815c7bb2a27b70391bab244ececa40c93e5deed7186662ee4e9c96d8fcf578
+      ( ./semigroupal sha256:c81fb247341878786996c103f9495e5ec38b37adbb945ebe3fea7f3481dd2263
         object
         v
         cat

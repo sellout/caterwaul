@@ -4,14 +4,14 @@ let cat =
 let vObject = Type
 
 let v =
-      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:0fcc63fc837459ca2866d31c5b11400b56fcb8f7d1846b774e98b47995c1879a
+      ./../Category/Monoidal/Cartesian/extractMonoidal sha256:8112e73d82fd63e4e8bb5628a8cea43f92518a02e56ad351c7f9558546e7f81a
       cat
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:b6efbdc0effbca1bc7427c980f2579012808494a8195fdf9fb52aea37ae91116
+      ./../Category/Set/monoidal/cartesian sha256:3a79a17d1c39a3df58efcc62fd96a2da0147bb29b524f57aa7c35942f653f164
 
 let vBase =
-      ./../Category/Monoidal/extractCategory sha256:be63455106b8fe90ee7366a02f05b29c1aa42e63243bb9994d55011052eab6ec
+      ./../Category/Monoidal/extractCategory sha256:c9807a603a6bd9f0ef13debb0f11e63d6f7133870fef175f27d08dd81c2ff695
       cat
       Type
       vObject
@@ -29,7 +29,7 @@ in    λ ( cObject
     → λ(dObject : Kind)
     → λ(d : Category dObject)
     → λ ( dCategory
-        : ./../Category/Type sha256:a3968397f7c9a309d7c4eed545517a4e6f451eff463aaaf274fd1c7d37cb3004
+        : ./../Category/Type sha256:3983e08568dd06043567236a0b0ceb489d34346ea7cc29bd9c4d98bd567e03b9
           dObject
           v
           d
@@ -51,7 +51,7 @@ in    λ ( cObject
       dObject
       c
       d
-      ( ./../Category/extractSemigroupoid sha256:f8f6cc15f45b46e8483658eeebe5dfb3da2a2a19411e37071ea3d345523df6dc
+      ( ./../Category/extractSemigroupoid sha256:c986f4139d8187a7ada93fd4850733b7533852666009d73a881cb0375f25e663
         dObject
         v
         d
@@ -63,4 +63,4 @@ in    λ ( cObject
         cObject
       )
       f
-      (λ(a : cObject) → dCategory.identity (f a))
+      (λ(a : cObject) → dCategory.unit (f a))

@@ -4,11 +4,11 @@ let cat =
 in      { diagonal =
             λ(a : Type) → { _1 = a, _2 = a }
         }
-      ∧ ./../../Rig/extractMultiplicative sha256:fcce2925fbebe635a50151f4cd5e00b0807811c62395c6fa5c8a87a40b229f32
+      ∧ ./../../Rig/extractMultiplicative sha256:5e6489a35a0eef6ac23ed4078707105247c59293c3a8dc6791c405f10b653859
         cat
         Type
         Type
-        ./../rig sha256:99e5c0b51dc280856faa2d331627ba6ace4b7d7b278ec47f8a5844beb1c08052
-    : ./../../../Category/Monoidal/Closed/Cartesian/Kind sha256:c3d985a32cf67634fb8c5de6ab8bae813ac8d6ad9df59af75de378093f873747
+        ./../rig sha256:a7cbfba2e5127e953bcfa00748bcedb7daef637f931d7bce2ac14a21b103b8b8
+    : ./../../../Category/Monoidal/Closed/Cartesian/Kind sha256:3bba7fdc9435d0aebc30d3339d76b5d51e3226f22bd191e8ba38a5c30960577c
       cat
       Type
