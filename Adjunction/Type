@@ -6,6 +6,7 @@ let vObject = Type
 
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
+    → λ(v : Category Type vObject)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
     → λ(f : cat.arrow dObject cObject)
@@ -17,11 +18,19 @@ in    λ(cObject : Kind)
       , leftAdjunct :
             ∀(a : dObject)
           → ∀(b : cObject)
-          → c.arrow { _1 = f a, _2 = b }
-          → d.arrow { _1 = a, _2 = g b }
+          → v.arrow
+            { _1 =
+                c.arrow { _1 = f a, _2 = b }
+            , _2 =
+                d.arrow { _1 = a, _2 = g b }
+            }
       , rightAdjunct :
             ∀(a : dObject)
           → ∀(b : cObject)
-          → d.arrow { _1 = a, _2 = g b }
-          → c.arrow { _1 = f a, _2 = b }
+          → v.arrow
+            { _1 =
+                d.arrow { _1 = a, _2 = g b }
+            , _2 =
+                c.arrow { _1 = f a, _2 = b }
+            }
       }

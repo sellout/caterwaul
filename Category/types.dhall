@@ -10,7 +10,7 @@ in    λ(object : Kind)
       let Endofunctor = ./../Functor/Endo/Type vObject
       
       in  { Adjunction =
-              ./../Adjunction/Type object object cat cat
+              ./../Adjunction/Type object object vBase cat cat
           , Bifunctor =
               ./../Functor/Bifunctor/Type
               vObject

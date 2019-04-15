@@ -26,7 +26,7 @@ in    λ(cObject : Kind)
     → λ(f : cat.arrow dObject cObject)
     → λ(functor : Functor vObject dObject cObject v d c f)
     → λ(g : cat.arrow cObject dObject)
-    → λ(adjunction : Adjunction cObject dObject c d f g)
+    → λ(adjunction : Adjunction cObject dObject v c d f g)
     →   { unit =
             adjunction.counit
         , product =

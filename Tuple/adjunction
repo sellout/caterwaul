@@ -1,10 +1,12 @@
 let cat = ./../Category/Cat/semigroupal
 
+let base = ./../Category/Monoidal/Cartesian/extractCategory cat
+
 let vObject = Type
 
-let Set = ./../Category/Set/monoidal/cartesian
+let v = base Type vObject ./../Category/Set/monoidal/cartesian
 
-let base = ./../Category/Monoidal/Cartesian/extractCategory cat vObject Type Set
+let Set = ./../Category/Set/monoidal/cartesian
 
 in    λ(s : Type)
     →   { unit =
@@ -28,7 +30,8 @@ in    λ(s : Type)
       : ./../Adjunction/Type
         Type
         Type
-        base
-        base
+        v
+        (base vObject Type Set)
+        (base vObject Type Set)
         (λ(a : Type) → Set.product { _1 = s, _2 = a })
         (λ(a : Type) → Set.arrow { _1 = s, _2 = a })
