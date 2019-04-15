@@ -6,13 +6,13 @@ let vObject = Type
 
 let v = base Type vObject ./../../Category/Set/monoidal/cartesian
 
-let vCategory = ./../../Category/Set/category
+let vCategory = ./../../Category/Set/category/instance
 
 let object = Type
 
 let cat = base vObject object ./../../Category/Set/monoidal/cartesian
 
-let category = ./../../Category/Set/category
+let category = ./../../Category/Set/category/instance
 
 in  ./../../Monad/impliedMonoidalFunctor
     (./../Type object)

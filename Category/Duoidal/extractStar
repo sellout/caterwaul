@@ -2,6 +2,5 @@
 → λ(vObject : Kind)
 → λ(object : Kind)
 → λ(duoidal : ./Kind cat vObject object)
-→     { unit = duoidal.additive.unit, product = duoidal.additive.product }
-    ∧ ./extractCategory cat vObject object duoidal
+→   duoidal.star ∧ ./extractCategory cat vObject object duoidal
   : ./../Monoidal/Kind cat vObject object

@@ -1,11 +1,10 @@
 {- A duoid (also known as a “united monoid”) is actually a pair of monoids with
-   a shared `unit`. The `additive.product` distributes over the
-  `multiplicative.product` as well.
+   a shared `unit`.
 -}
   λ(cat : ./../Category/Monoidal/Sort)
 → λ(m : Kind)
-→ { additive :
+→ { diamond :
       ./../Semilattice/Bounded/Kind cat m
-  , multiplicative :
+  , star :
       ./../Monoid/Kind cat m
   }

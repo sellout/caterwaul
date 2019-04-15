@@ -6,7 +6,7 @@ let object = Type
 
 in    λ(v : ./../../Kind kCat Type vObject)
     → λ(cat : ./../../Monoidal/Kind kCat vObject object)
-    → ./../../Duoidal/extractAdditive
+    → ./../../Duoidal/extractDiamond
       kCat
       vObject
       (kCat.arrow object object)

@@ -11,49 +11,47 @@ let v =
 
 in    λ(object : Kind)
     → λ(cat : ./../Category/Monoidal/Kind kCat vObject object)
+    → λ(category : ./../Category/Monoidal/Type object v cat)
+    → λ(m : object)
+    → λ(group : ./Type object cat m)
     → let base = ./../Category/Monoidal/extractCategory kCat vObject object cat
       
-      in    λ(category : ./../Category/Type object v base)
-          → λ ( bifunctor
-              : ./../Functor/Bifunctor/Type
-                vObject
-                object
-                object
-                object
-                v
-                base
-                base
-                base
-                cat.product
-              )
-          → λ(m : object)
-          → λ(group : ./Type object cat m)
-          → category.product
-            { _1 = cat.product { _1 = m, _2 = m }, _2 = m }
-            (   λ(r : Type)
-              → λ ( arrowsOut
-                  :   ∀(z : object)
-                    → cat.arrow { _1 = z, _2 = m }
-                    → cat.arrow { _1 = cat.product { _1 = m, _2 = m }, _2 = z }
-                    → r
-                  )
-              → arrowsOut
-                (cat.product { _1 = m, _2 = m })
-                group.product
-                ( ( ./../Functor/Bifunctor/impliedFirstFunctor
-                    object
-                    base
-                    object
-                    base
-                    category
-                    object
-                    base
-                    cat.product
-                    bifunctor
-                    m
-                  ).map
-                  m
-                  m
-                  group.inverse
+      in  category.product
+          { _1 = cat.product { _1 = m, _2 = m }, _2 = m }
+          (   λ(r : Type)
+            → λ ( arrowsOut
+                :   ∀(z : object)
+                  → cat.arrow { _1 = z, _2 = m }
+                  → cat.arrow { _1 = cat.product { _1 = m, _2 = m }, _2 = z }
+                  → r
                 )
-            )
+            → arrowsOut
+              (cat.product { _1 = m, _2 = m })
+              group.product
+              ( ( ./../Functor/Bifunctor/impliedFirstFunctor
+                  object
+                  base
+                  object
+                  base
+                  ( ./../Category/Monoidal/extractCategoryInstance
+                    object
+                    v
+                    cat
+                    category
+                  )
+                  object
+                  base
+                  cat.product
+                  ( ./../Category/Monoidal/extractBifunctor
+                    object
+                    v
+                    cat
+                    category
+                  )
+                  m
+                ).map
+                m
+                m
+                group.inverse
+              )
+          )

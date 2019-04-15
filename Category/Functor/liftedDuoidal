@@ -19,30 +19,29 @@ in    λ(cObject : Kind)
             
             let object = cat.arrow cObject dObject
             
-            in      { additive =
+            in      { diamond =
                         { unit =
                               λ(x : cObject)
                             → ./../../Const/Type
                               dObject
                               cObject
-                              { _1 = d.additive.unit, _2 = x }
+                              { _1 = d.diamond.unit, _2 = x }
                         , product =
                               λ(f : { _1 : object, _2 : object })
                             → λ(x : cObject)
-                            → d.additive.product { _1 = f._1 x, _2 = f._2 x }
+                            → d.diamond.product { _1 = f._1 x, _2 = f._2 x }
                         }
-                    , multiplicative =
+                    , star =
                         { unit =
                               λ(x : cObject)
                             → ./../../Const/Type
                               dObject
                               cObject
-                              { _1 = d.multiplicative.unit, _2 = x }
+                              { _1 = d.star.unit, _2 = x }
                         , product =
                               λ(f : { _1 : object, _2 : object })
                             → λ(x : cObject)
-                            → d.multiplicative.product
-                              { _1 = f._1 x, _2 = f._2 x }
+                            → d.star.product { _1 = f._1 x, _2 = f._2 x }
                         }
                     }
                   ∧ ./category cObject dObject v c (base dObject d)

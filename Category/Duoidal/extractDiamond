@@ -1,0 +1,6 @@
+  λ(cat : ./../Monoidal/Sort)
+→ λ(vObject : Kind)
+→ λ(object : Kind)
+→ λ(duoidal : ./Kind cat vObject object)
+→   duoidal.diamond ∧ ./extractCategory cat vObject object duoidal
+  : ./../Monoidal/Kind cat vObject object

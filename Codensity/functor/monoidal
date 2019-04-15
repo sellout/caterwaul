@@ -2,6 +2,13 @@ let kCat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
+let v =
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
+      kCat
+      Type
+      vObject
+      ./../../Category/Set/monoidal/cartesian
+
 let object = Type
 
 let cat =
@@ -11,7 +18,7 @@ let cat =
       object
       ./../../Category/Set/monoidal/cartesian
 
-let category = ./../../Category/Set/category
+let category = ./../../Category/Set/category/instance
 
 let semigroupoid = ./../../Category/Set/semigroupoid
 

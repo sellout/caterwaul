@@ -12,7 +12,7 @@ in    λ(cObject : Kind)
       
       let d = base vObject dObject ./../Category/Set/monoidal/cartesian
       
-      let dCategory = ./../Category/Set/category
+      let dCategory = ./../Category/Set/category/instance
       
       in    λ(f : cat.arrow cObject dObject)
           → λ(functor : ./../Functor/Type vObject cObject dObject v c d f)

@@ -3,7 +3,7 @@ let kCat = ./../Cat/semigroupal
 in    λ(vObject : Kind)
     → λ(object : Kind)
     → λ(cat : ./../Duoidal/Kind kCat vObject object)
-    →     { additive = cat.additive, multiplicative = cat.multiplicative }
+    →     { diamond = cat.diamond, star = cat.star }
         ∧ ./Kind
           vObject
           object

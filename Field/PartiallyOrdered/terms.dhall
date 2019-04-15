@@ -11,17 +11,9 @@ let cat =
       object
       ./../../Category/Set/monoidal/cartesian
 
-let category = ./../../Category/Set/category
-
-let bifunctor = ./../../Tuple/functor/pair
+let category = ./../../Category/Set/category/monoidal
 
 in    λ(m : object)
     → λ(field : ./Type m)
     →   { eq = field.additive.eq, partialLE = field.additive.partialLE }
-      ∧ ./../terms.dhall
-        object
-        cat
-        category
-        bifunctor
-        m
-        (./extractField m field)
+      ∧ ./../terms.dhall object cat category m (./extractField m field)

@@ -21,7 +21,7 @@ in    λ(cObject : Kind)
                   dObject
                   ./../Category/Set/monoidal/cartesian
             
-            let dCategory = ./../Category/Set/category
+            let dCategory = ./../Category/Set/category/instance
             
             in    λ(f : cat.arrow cObject dObject)
                 → λ ( functor

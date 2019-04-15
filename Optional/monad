@@ -9,7 +9,7 @@ let Set =
       Type
       ./../Category/Set/monoidal/cartesian
 
-let category = ./../Category/Set/category
+let category = ./../Category/Set/category/instance
 
 in    { unit =
           λ(a : Type) → λ(x : a) → Some x

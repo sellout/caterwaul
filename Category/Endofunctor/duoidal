@@ -26,9 +26,9 @@ in    λ(v : ./../../Category/Kind kCat Type vObject)
                 monadic.constraint
             , arrow =
                 applicative.arrow
-            , additive =
+            , diamond =
                 { unit = applicative.unit, product = applicative.product }
-            , multiplicative =
+            , star =
                 { unit = monadic.unit, product = monadic.product }
             }
           : ./../Duoidal/Kind kCat vObject (kCat.arrow object object)
