@@ -153,20 +153,22 @@ in      { distributivity =
                     , from =
                         (Either { _1 = a, _2 = <> }).Left
                     }
-              , map =
-                    λ(a : { _1 : Type, _2 : Type })
-                  → λ(b : { _1 : Type, _2 : Type })
-                  → λ(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
-                  → λ(e : Either a)
-                  → let E = Either b
-                    
-                    in  merge
-                        { Left =
-                            λ(x : a._1) → E.Left (f._1 x)
-                        , Right =
-                            λ(x : a._2) → E.Right (f._2 x)
-                        }
-                        e
+              , tensor =
+                  { map =
+                        λ(a : { _1 : Type, _2 : Type })
+                      → λ(b : { _1 : Type, _2 : Type })
+                      → λ(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
+                      → λ(e : Either a)
+                      → let E = Either b
+                        
+                        in  merge
+                            { Left =
+                                λ(x : a._1) → E.Left (f._1 x)
+                            , Right =
+                                λ(x : a._2) → E.Right (f._2 x)
+                            }
+                            e
+                  }
               }
             ∧ categoryInstance
         , multiplicative =
@@ -195,12 +197,14 @@ in      { distributivity =
                     , from =
                         λ(x : a) → { _1 = x, _2 = {=} }
                     }
-              , map =
-                    λ(a : { _1 : Type, _2 : Type })
-                  → λ(b : { _1 : Type, _2 : Type })
-                  → λ(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
-                  → λ(t : Tuple a)
-                  → { _1 = f._1 t._1, _2 = f._2 t._2 }
+              , tensor =
+                  { map =
+                        λ(a : { _1 : Type, _2 : Type })
+                      → λ(b : { _1 : Type, _2 : Type })
+                      → λ(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
+                      → λ(t : Tuple a)
+                      → { _1 = f._1 t._1, _2 = f._2 t._2 }
+                  }
               }
             ∧ categoryInstance
         }

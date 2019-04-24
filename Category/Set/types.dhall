@@ -12,8 +12,6 @@ in    λ(v : ./../Monoidal/Kind cat Type vObject)
       
       in    { Eq =
                 ./../../Eq/Type
-            , InternalHomFunctor =
-                ./../../Functor/InternalHom v
             , OrderedField =
                 ./../../Field/Ordered/Type
             , OrderedGroup =

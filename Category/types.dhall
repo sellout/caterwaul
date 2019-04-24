@@ -39,8 +39,6 @@ in    λ(object : Kind)
               ./../Density/Type object
           , Endofunctor =
               Endofunctor object vBase cat
-          , HomFunctor =
-              ./../Functor/Hom object v cat
           , Identity =
               ./../Identity/Type object
           , Lan =

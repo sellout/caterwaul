@@ -42,12 +42,7 @@ in    λ(object : Kind)
                   object
                   base
                   cat.product
-                  ( ./../Category/Monoidal/extractBifunctor
-                    object
-                    v
-                    cat
-                    category
-                  )
+                  category.tensor
                   m
                 ).map
                 m
