@@ -57,8 +57,6 @@ in    λ(object : Kind)
               ./../Semigroupoid/Type object
           , Star =
               ./../Star/Type vObject object cat
-          , Strong =
-              ./../Strong/Type object object v cat cat
           , Traversable =
                 λ(m : kCat.arrow object object)
               → Endofunctor

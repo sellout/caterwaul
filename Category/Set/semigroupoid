@@ -16,8 +16,18 @@ let Set =
       Type
       ./monoidal/cartesian
 
-in  ./../../Arrow/extractSemigroupoid
+in  ./../../Category/extractSemigroupoid
     Type
     v
-    (./../Monoidal/extractSemigroupal cat vObject Type Set)
-    ./arrow
+    (./../Monoidal/extractCategory cat vObject Type Set)
+    ( ./../../Category/Monoidal/extractCategoryInstance
+      Type
+      v
+      Set
+      ( ./../../Category/Rig/extractMultiplicativeInstance
+        Type
+        v
+        ./rig
+        ./category/rig
+      )
+    )

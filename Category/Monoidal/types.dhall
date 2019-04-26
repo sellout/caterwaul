@@ -12,6 +12,8 @@ in    λ(object : Kind)
             Type
             ./../Set/monoidal/cartesian
       
+      let vBase = ./extractcategory kCat Type vObject v
+      
       in    { CommutativeGroup =
                 ./../../Group/Commutative/Type object cat
             , CommutativeMonoid =
@@ -25,17 +27,15 @@ in    λ(object : Kind)
             , Monoid =
                 ./../../Monoid/Type object cat
             , MonoidalFunctor =
-                ./../../Functor/Monoidal/Type
-                object
-                (./extractcategory kCat Type vObject v)
-                cat
-                Set
+                ./../../Functor/Monoidal/Type object vBase cat Set
             , Rig =
                 ./../../Rig/Type object cat
             , Ring =
                 ./../../Ring/Type object cat
             , Semiring =
                 ./../../Semiring/Type object cat
+            , StrongFunctor =
+                ./../../Functor/Strong/Type object vBase cat
             }
           ∧ ./../Semigroupal/types.dhall
             object
