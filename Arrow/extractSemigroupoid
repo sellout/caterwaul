@@ -6,7 +6,7 @@ in    λ(object : Kind)
     → λ(v : ./../Category/Monoidal/Kind kCat Type vObject)
     → λ(cat : ./../Category/Semigroupal/Kind kCat vObject object)
     → λ(arrow : ./Type object v cat)
-    →   arrow.{ product }
+    →   arrow.{ product, hom }
       : ./../Semigroupoid/Type
         object
         v

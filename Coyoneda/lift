@@ -4,12 +4,18 @@ let vObject = Type
 
 let object = Type
 
-in    λ(v : ./../Category/Monoidal/Kind kCat Type vObject)
-    → λ(cat : ./../Category/Kind kCat vObject object)
+let v =
+      ./../Category/Monoidal/Cartesian/extractMonoidal
+      kCat
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian
+
+in    λ(cat : ./../Category/Kind kCat vObject object)
     → λ(category : ./../Category/Type object v cat)
     → ./../Lan/lift
       v
       cat
       (./../Category/extractSemigroupoid object v cat category)
       (./../Identity/Type object)
-      (./../Identity/comonad object v cat category)
+      (./../Identity/comonad object cat category)

@@ -3,13 +3,51 @@ let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
+let v =
+      ./../Category/Monoidal/Cartesian/extractMonoidal
+      cat
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian
+
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ(v : ./../Category/Monoidal/Kind cat Type vObject)
     → λ(c : ./../Category/Kind cat vObject cObject)
     → λ(d : ./../Category/Kind cat vObject dObject)
     → λ(dCategory : ./../Category/Type dObject v d)
     → let Leibniz = ./Kind cObject dObject c d
+      
+      let compose =
+              λ(a : { _1 : cObject, _2 : cObject })
+            → λ ( p
+                :   ∀(r : Type)
+                  → (   ∀(z : cObject)
+                      → Leibniz.arrow { _1 = z, _2 = a._2 }
+                      → Leibniz.arrow { _1 = a._1, _2 = z }
+                      → r
+                    )
+                  → r
+                )
+            → { subst =
+                    λ(f : cat.arrow cObject dObject)
+                  → dCategory.product
+                    { _1 = f a._1, _2 = f a._2 }
+                    (   λ(r : Type)
+                      → λ ( arrowsOut
+                          :   ∀(z : dObject)
+                            → d.arrow { _1 = z, _2 = f a._2 }
+                            → d.arrow { _1 = f a._1, _2 = z }
+                            → r
+                          )
+                      → p
+                        r
+                        (   λ(z : cObject)
+                          → λ(g : Leibniz.arrow { _1 = z, _2 = a._2 })
+                          → λ(h : Leibniz.arrow { _1 = a._1, _2 = z })
+                          → arrowsOut (f z) (g.subst f) (h.subst f)
+                        )
+                    )
+              }
       
       in    { unit =
                   λ(a : cObject)
@@ -17,35 +55,45 @@ in    λ(cObject : Kind)
                       λ(f : cat.arrow cObject dObject) → dCategory.unit (f a)
                   }
             , product =
-                  λ(a : { _1 : cObject, _2 : cObject })
-                → λ ( p
-                    :   ∀(r : Type)
-                      → (   ∀(z : cObject)
-                          → Leibniz.arrow { _1 = z, _2 = a._2 }
-                          → Leibniz.arrow { _1 = a._1, _2 = z }
-                          → r
+                compose
+            , hom =
+                { map =
+                      λ(a : cat.product cObject cObject)
+                    → λ(b : cat.product cObject cObject)
+                    → λ ( f
+                        : v.product
+                          { _1 =
+                              Leibniz.arrow { _1 = b._1, _2 = a._1 }
+                          , _2 =
+                              Leibniz.arrow { _1 = a._2, _2 = b._2 }
+                          }
                         )
-                      → r
-                    )
-                → { subst =
-                        λ(f : cat.arrow cObject dObject)
-                      → dCategory.product
-                        { _1 = f a._1, _2 = f a._2 }
-                        (   λ(r : Type)
-                          → λ ( arrowsOut
-                              :   ∀(z : dObject)
-                                → d.arrow { _1 = z, _2 = f a._2 }
-                                → d.arrow { _1 = f a._1, _2 = z }
-                                → r
-                              )
-                          → p
-                            r
-                            (   λ(z : cObject)
-                              → λ(g : Leibniz.arrow { _1 = z, _2 = a._2 })
-                              → λ(h : Leibniz.arrow { _1 = a._1, _2 = z })
-                              → arrowsOut (f z) (g.subst f) (h.subst f)
+                    → λ(fn : Leibniz.arrow a)
+                    → compose
+                      { _1 = b._1, _2 = b._2 }
+                      (   λ(r : Type)
+                        → λ ( arrowsOut
+                            :   ∀(z : cObject)
+                              → Leibniz.arrow { _1 = z, _2 = b._2 }
+                              → Leibniz.arrow { _1 = b._1, _2 = z }
+                              → r
                             )
-                        )
-                  }
+                        → arrowsOut
+                          a._1
+                          ( compose
+                            { _1 = a._1, _2 = b._2 }
+                            (   λ(r : Type)
+                              → λ ( arrowsOut
+                                  :   ∀(z : cObject)
+                                    → Leibniz.arrow { _1 = z, _2 = b._2 }
+                                    → Leibniz.arrow { _1 = a._1, _2 = z }
+                                    → r
+                                  )
+                              → arrowsOut a._2 f._2 fn
+                            )
+                          )
+                          f._1
+                      )
+                }
             }
           : ./../Category/Type cObject v Leibniz

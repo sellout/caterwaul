@@ -69,5 +69,14 @@ in    { split =
           → λ(fn : a._1 → a._2)
           → λ(x : b._1)
           → f._2 (fn (f._1 x))
+      , hom =
+          { map =
+                λ(a : { _1 : Type, _2 : Type })
+              → λ(b : { _1 : Type, _2 : Type })
+              → λ(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+              → λ(fn : a._1 → a._2)
+              → λ(x : b._1)
+              → f._2 (fn (f._1 x))
+          }
       }
     : ./../../Arrow/Type Type v Set

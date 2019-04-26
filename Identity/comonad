@@ -2,11 +2,17 @@ let kCat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
+let v =
+      ./../Category/Monoidal/Cartesian/extractMonoidal
+      kCat
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian
+
 in    λ(object : Kind)
-    → λ(v : ./../Category/Monoidal/Kind kCat Type vObject)
     → λ(cat : ./../Category/Kind kCat vObject object)
     → λ(category : ./../Category/Type object v cat)
     → ./monad
       object
       (./../Category/Op/Kind vObject object cat)
-      (./../Category/Op/category object v cat category)
+      (./../Category/Op/category object cat category)

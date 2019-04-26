@@ -17,7 +17,7 @@ in    λ(vObject : Kind)
     → λ(d : Category vObject dObject)
     → Functor
       vObject
-      { _1 : cObject, _2 : dObject }
+      (cat.product cObject dObject)
       eObject
       (./../../Category/Monoidal/extractCategory cat Type vObject v)
       (Category/Product vObject cObject dObject v c d)

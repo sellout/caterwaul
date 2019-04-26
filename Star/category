@@ -29,35 +29,77 @@ in    λ(object : Kind)
                     monad
                   ).map
             
+            let compose =
+                    λ(a : { _1 : object, _2 : object })
+                  → λ ( p
+                      :   ∀(r : Type)
+                        → (   ∀(z : object)
+                            → star.arrow { _1 = z, _2 = a._2 }
+                            → star.arrow { _1 = a._1, _2 = z }
+                            → r
+                          )
+                        → r
+                      )
+                  → semigroupoid.product
+                    { _1 = a._1, _2 = m a._2 }
+                    (   λ(r : Type)
+                      → λ ( arrowsOut
+                          :   ∀(z : object)
+                            → cat.arrow { _1 = z, _2 = m a._2 }
+                            → cat.arrow { _1 = a._1, _2 = z }
+                            → r
+                          )
+                      → p
+                        r
+                        (   λ(z : object)
+                          → λ(f : star.arrow { _1 = z, _2 = a._2 })
+                          → λ(g : star.arrow { _1 = a._1, _2 = z })
+                          → arrowsOut (m z) (bind z a._2 f) g
+                        )
+                    )
+            
             in    { unit =
                       monad.unit
                   , product =
-                        λ(a : { _1 : object, _2 : object })
-                      → λ ( p
-                          :   ∀(r : Type)
-                            → (   ∀(z : object)
-                                → star.arrow { _1 = z, _2 = a._2 }
-                                → star.arrow { _1 = a._1, _2 = z }
-                                → r
+                      compose
+                  , hom =
+                      { map =
+                            λ(a : kCat.product object object)
+                          → λ(b : kCat.product object object)
+                          → λ ( f
+                              : v.product
+                                { _1 =
+                                    star.arrow { _1 = b._1, _2 = a._1 }
+                                , _2 =
+                                    star.arrow { _1 = a._2, _2 = b._2 }
+                                }
                               )
-                            → r
-                          )
-                      → semigroupoid.product
-                        { _1 = a._1, _2 = m a._2 }
-                        (   λ(r : Type)
-                          → λ ( arrowsOut
-                              :   ∀(z : object)
-                                → cat.arrow { _1 = z, _2 = m a._2 }
-                                → cat.arrow { _1 = a._1, _2 = z }
-                                → r
-                              )
-                          → p
-                            r
-                            (   λ(z : object)
-                              → λ(f : star.arrow { _1 = z, _2 = a._2 })
-                              → λ(g : star.arrow { _1 = a._1, _2 = z })
-                              → arrowsOut (m z) (bind z a._2 f) g
+                          → λ(fn : star.arrow a)
+                          → compose
+                            { _1 = b._1, _2 = b._2 }
+                            (   λ(r : Type)
+                              → λ ( arrowsOut
+                                  :   ∀(z : object)
+                                    → star.arrow { _1 = z, _2 = b._2 }
+                                    → star.arrow { _1 = b._1, _2 = z }
+                                    → r
+                                  )
+                              → arrowsOut
+                                a._1
+                                ( compose
+                                  { _1 = a._1, _2 = b._2 }
+                                  (   λ(r : Type)
+                                    → λ ( arrowsOut
+                                        :   ∀(z : object)
+                                          → star.arrow { _1 = z, _2 = b._2 }
+                                          → star.arrow { _1 = a._1, _2 = z }
+                                          → r
+                                        )
+                                    → arrowsOut a._2 f._2 fn
+                                  )
+                                )
+                                f._1
                             )
-                        )
+                      }
                   }
                 : ./../Category/Type object v star

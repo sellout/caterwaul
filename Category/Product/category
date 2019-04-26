@@ -70,5 +70,31 @@ in    λ(cObject : Kind)
                           )
                       )
                   }
+            , hom =
+                { map =
+                      λ(a : { _1 : object, _2 : object })
+                    → λ(b : { _1 : object, _2 : object })
+                    → λ ( fn
+                        : { _1 :
+                              prod.arrow { _1 = b._1, _2 = a._1 }
+                          , _2 :
+                              prod.arrow { _1 = a._2, _2 = b._2 }
+                          }
+                        )
+                    → λ(f : prod.arrow a)
+                    → { _1 =
+                          cCategory.hom.map
+                          { _1 = a._1._1, _2 = a._2._1 }
+                          { _1 = b._1._1, _2 = b._2._1 }
+                          { _1 = fn._1._1, _2 = fn._2._1 }
+                          f._1
+                      , _2 =
+                          dCategory.hom.map
+                          { _1 = a._1._2, _2 = a._2._2 }
+                          { _1 = b._1._2, _2 = b._2._2 }
+                          { _1 = fn._1._2, _2 = fn._2._2 }
+                          f._2
+                      }
+                }
             }
           : ./../Type object v prod

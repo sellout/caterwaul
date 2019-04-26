@@ -14,4 +14,10 @@ in    λ(cObject : Kind)
     → ./../types.dhall
       { _1 : cObject, _2 : dObject }
       v
-      (./Kind cObject dObject c d)
+      ( ./Kind
+        cObject
+        dObject
+        (./../Monoidal/extractSemigroupal cat Type vObject v)
+        c
+        d
+      )

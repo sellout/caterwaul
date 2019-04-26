@@ -2,13 +2,19 @@ let kCat = ./../Cat/semigroupal
 
 let vObject = Type
 
+let v =
+      ./../Monoidal/Cartesian/extractMonoidal
+      kCat
+      Type
+      vObject
+      ./../Set/monoidal/cartesian
+
 in    λ(object : Kind)
-    → λ(v : ./../../Category/Monoidal/Kind kCat Type vObject)
     → λ(cat : ./../Kind kCat vObject object)
     → λ(category : ./../Type object v cat)
     → let op = ./../Op/Kind vObject object cat
       
-      let opCategory = ./../Op/category object v cat category
+      let opCategory = ./../Op/category object cat category
       
       let Dagger = ./Kind object cat
       
@@ -63,5 +69,31 @@ in    λ(object : Kind)
                           )
                       )
                   }
+            , hom =
+                { map =
+                      λ(a : { _1 : object, _2 : object })
+                    → λ(b : { _1 : object, _2 : object })
+                    → λ ( fn
+                        : { _1 :
+                              Dagger.arrow { _1 = b._1, _2 = a._1 }
+                          , _2 :
+                              Dagger.arrow { _1 = a._2, _2 = b._2 }
+                          }
+                        )
+                    → λ(f : Dagger.arrow a)
+                    → { to =
+                          category.hom.map
+                          a
+                          b
+                          { _1 = fn._1.to, _2 = fn._2.to }
+                          f.to
+                      , from =
+                          opCategory.hom.map
+                          a
+                          b
+                          { _1 = fn._1.from, _2 = fn._2.from }
+                          f.from
+                      }
+                }
             }
           : ./../Type object v Dagger
