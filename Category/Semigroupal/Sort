@@ -1,3 +1,1 @@
-{- Should use ` ⩓ ./../Sort`.
--}
-{ product : Kind → Kind → Kind } ⩓ ./../Sort
+./../Sort ⩓ ./../../Semigroup/Sort

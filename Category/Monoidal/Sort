@@ -1,5 +1,1 @@
-{- Unfortunately, we don’t have the common kind-level identities available. So
-   rather than making a type that can’t be used, we just stick with Semigroupal,
-   and let the desired type be _named_ even if it can’t be implemented yet.
--}
-./../Semigroupal/Sort
+./../Sort ⩓ ./../../Monoid/Sort
