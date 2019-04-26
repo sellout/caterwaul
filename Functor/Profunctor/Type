@@ -1,6 +1,6 @@
-{- A profunctor `C ↛ D` is represented as the bifunctor `(D^op, C) → Set`. This
-   is much more general than Haskell’s `Profunctor`. See `Hom` and `InternalHom`
-   for that.
+{- A profunctor `𝒞 ↛ 𝒟` is represented as the bifunctor `(𝒟^op, 𝒞) → 𝒱`. This is
+   much more general than Haskell’s `Profunctor`. It also requires that 𝒱 is
+   closed.
 -}
 let cat = ./../../Category/Cat/semigroupal
 
@@ -10,7 +10,7 @@ let vObject = Type
 
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ(v : ./../../Category/Monoidal/Kind cat Type vObject)
+    → λ(v : ./../../Category/Monoidal/Closed/Kind cat vObject)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
     → ./../Bifunctor/Type
@@ -21,4 +21,4 @@ in    λ(cObject : Kind)
       v
       (./../../Category/Op/Kind vObject dObject d)
       c
-      (./../../Category/Monoidal/extractCategory cat Type vObject v)
+      (./../../Category/Monoidal/extractCategory cat vObject vObject v)
