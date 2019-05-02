@@ -177,554 +177,6 @@
   }
 </pre></dd>
 </dl>
-<h2 style="background-color: #bbb; width: 100%">./Arrow</h2>
-<h4>Type (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , product :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-  λ(object : Kind)
-→ λ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ λ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , product :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ { fanout :
-        ∀(a : object)
-      → ∀(b : object)
-      → ∀(c : object)
-      → cat.arrow { _1 = a, _2 = b }
-      → cat.arrow { _1 = a, _2 = c }
-      → cat.arrow { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-  , lmap :
-        ∀(h : object)
-      → ∀(i : object)
-      → ∀(j : object)
-      → cat.arrow { _1 = i, _2 = h }
-      → cat.arrow { _1 = h, _2 = j }
-      → cat.arrow { _1 = i, _2 = j }
-  , map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = b._1, _2 = a._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
-        }
-  , product :
-        ∀(a : { _1 : object, _2 : object })
-      → (   ∀(r : Type)
-          → (   ∀(z : object)
-              → cat.arrow { _1 = z, _2 = a._2 }
-              → cat.arrow { _1 = a._1, _2 = z }
-              → r
-            )
-          → r
-        )
-      → cat.arrow a
-  , rmap :
-        ∀(h : object)
-      → ∀(i : object)
-      → ∀(j : object)
-      → cat.arrow { _1 = i, _2 = j }
-      → cat.arrow { _1 = h, _2 = i }
-      → cat.arrow { _1 = h, _2 = j }
-  , split :
-        ∀(a : object)
-      → ∀(b : object)
-      → ∀(c : object)
-      → ∀(d : object)
-      → cat.arrow { _1 = a, _2 = b }
-      → cat.arrow { _1 = c, _2 = d }
-      → cat.arrow
-        { _1 =
-            cat.product { _1 = a, _2 = c }
-        , _2 =
-            cat.product { _1 = b, _2 = d }
-        }
-  , unit :
-      ∀(a : object) → cat.arrow { _1 = a, _2 = a }
-  }
-</pre></dd>
-</dl>
-<h4>extractCategory (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , product :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀ ( arrow
-    : { fanout :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → cat.arrow { _1 = a, _2 = b }
-          → cat.arrow { _1 = a, _2 = c }
-          → cat.arrow { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-      , lmap :
-            ∀(h : object)
-          → ∀(i : object)
-          → ∀(j : object)
-          → cat.arrow { _1 = i, _2 = h }
-          → cat.arrow { _1 = h, _2 = j }
-          → cat.arrow { _1 = i, _2 = j }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    cat.arrow { _1 = b._1, _2 = a._1 }
-                , _2 =
-                    cat.arrow { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
-            }
-      , product :
-            ∀(a : { _1 : object, _2 : object })
-          → (   ∀(r : Type)
-              → (   ∀(z : object)
-                  → cat.arrow { _1 = z, _2 = a._2 }
-                  → cat.arrow { _1 = a._1, _2 = z }
-                  → r
-                )
-              → r
-            )
-          → cat.arrow a
-      , rmap :
-            ∀(h : object)
-          → ∀(i : object)
-          → ∀(j : object)
-          → cat.arrow { _1 = i, _2 = j }
-          → cat.arrow { _1 = h, _2 = i }
-          → cat.arrow { _1 = h, _2 = j }
-      , split :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → ∀(d : object)
-          → cat.arrow { _1 = a, _2 = b }
-          → cat.arrow { _1 = c, _2 = d }
-          → cat.arrow
-            { _1 =
-                cat.product { _1 = a, _2 = c }
-            , _2 =
-                cat.product { _1 = b, _2 = d }
-            }
-      , unit :
-          ∀(a : object) → cat.arrow { _1 = a, _2 = a }
-      }
-    )
-→ { product :
-        ∀(a : { _1 : object, _2 : object })
-      → (   ∀(r : Type)
-          → (   ∀(z : object)
-              → cat.arrow { _1 = z, _2 = a._2 }
-              → cat.arrow { _1 = a._1, _2 = z }
-              → r
-            )
-          → r
-        )
-      → cat.arrow a
-  , unit :
-      ∀(a : object) → cat.arrow { _1 = a, _2 = a }
-  }
-</pre></dd>
-</dl>
-<h4>extractProfunctor (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , product :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀ ( arrow
-    : { fanout :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → cat.arrow { _1 = a, _2 = b }
-          → cat.arrow { _1 = a, _2 = c }
-          → cat.arrow { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-      , lmap :
-            ∀(h : object)
-          → ∀(i : object)
-          → ∀(j : object)
-          → cat.arrow { _1 = i, _2 = h }
-          → cat.arrow { _1 = h, _2 = j }
-          → cat.arrow { _1 = i, _2 = j }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    cat.arrow { _1 = b._1, _2 = a._1 }
-                , _2 =
-                    cat.arrow { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
-            }
-      , product :
-            ∀(a : { _1 : object, _2 : object })
-          → (   ∀(r : Type)
-              → (   ∀(z : object)
-                  → cat.arrow { _1 = z, _2 = a._2 }
-                  → cat.arrow { _1 = a._1, _2 = z }
-                  → r
-                )
-              → r
-            )
-          → cat.arrow a
-      , rmap :
-            ∀(h : object)
-          → ∀(i : object)
-          → ∀(j : object)
-          → cat.arrow { _1 = i, _2 = j }
-          → cat.arrow { _1 = h, _2 = i }
-          → cat.arrow { _1 = h, _2 = j }
-      , split :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → ∀(d : object)
-          → cat.arrow { _1 = a, _2 = b }
-          → cat.arrow { _1 = c, _2 = d }
-          → cat.arrow
-            { _1 =
-                cat.product { _1 = a, _2 = c }
-            , _2 =
-                cat.product { _1 = b, _2 = d }
-            }
-      , unit :
-          ∀(a : object) → cat.arrow { _1 = a, _2 = a }
-      }
-    )
-→ { map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = b._1, _2 = a._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
-        }
-  }
-</pre></dd>
-</dl>
-<h4>extractSemigroupoid (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , product :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀ ( arrow
-    : { fanout :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → cat.arrow { _1 = a, _2 = b }
-          → cat.arrow { _1 = a, _2 = c }
-          → cat.arrow { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-      , lmap :
-            ∀(h : object)
-          → ∀(i : object)
-          → ∀(j : object)
-          → cat.arrow { _1 = i, _2 = h }
-          → cat.arrow { _1 = h, _2 = j }
-          → cat.arrow { _1 = i, _2 = j }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    cat.arrow { _1 = b._1, _2 = a._1 }
-                , _2 =
-                    cat.arrow { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
-            }
-      , product :
-            ∀(a : { _1 : object, _2 : object })
-          → (   ∀(r : Type)
-              → (   ∀(z : object)
-                  → cat.arrow { _1 = z, _2 = a._2 }
-                  → cat.arrow { _1 = a._1, _2 = z }
-                  → r
-                )
-              → r
-            )
-          → cat.arrow a
-      , rmap :
-            ∀(h : object)
-          → ∀(i : object)
-          → ∀(j : object)
-          → cat.arrow { _1 = i, _2 = j }
-          → cat.arrow { _1 = h, _2 = i }
-          → cat.arrow { _1 = h, _2 = j }
-      , split :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → ∀(d : object)
-          → cat.arrow { _1 = a, _2 = b }
-          → cat.arrow { _1 = c, _2 = d }
-          → cat.arrow
-            { _1 =
-                cat.product { _1 = a, _2 = c }
-            , _2 =
-                cat.product { _1 = b, _2 = d }
-            }
-      , unit :
-          ∀(a : object) → cat.arrow { _1 = a, _2 = a }
-      }
-    )
-→ { product :
-        ∀(a : { _1 : object, _2 : object })
-      → (   ∀(r : Type)
-          → (   ∀(z : object)
-              → cat.arrow { _1 = z, _2 = a._2 }
-              → cat.arrow { _1 = a._1, _2 = z }
-              → r
-            )
-          → r
-        )
-      → cat.arrow a
-  }
-</pre></dd>
-</dl>
-<h4>extractStrong (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , product :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀ ( arrow
-    : { fanout :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → cat.arrow { _1 = a, _2 = b }
-          → cat.arrow { _1 = a, _2 = c }
-          → cat.arrow { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-      , lmap :
-            ∀(h : object)
-          → ∀(i : object)
-          → ∀(j : object)
-          → cat.arrow { _1 = i, _2 = h }
-          → cat.arrow { _1 = h, _2 = j }
-          → cat.arrow { _1 = i, _2 = j }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    cat.arrow { _1 = b._1, _2 = a._1 }
-                , _2 =
-                    cat.arrow { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
-            }
-      , product :
-            ∀(a : { _1 : object, _2 : object })
-          → (   ∀(r : Type)
-              → (   ∀(z : object)
-                  → cat.arrow { _1 = z, _2 = a._2 }
-                  → cat.arrow { _1 = a._1, _2 = z }
-                  → r
-                )
-              → r
-            )
-          → cat.arrow a
-      , rmap :
-            ∀(h : object)
-          → ∀(i : object)
-          → ∀(j : object)
-          → cat.arrow { _1 = i, _2 = j }
-          → cat.arrow { _1 = h, _2 = i }
-          → cat.arrow { _1 = h, _2 = j }
-      , split :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → ∀(d : object)
-          → cat.arrow { _1 = a, _2 = b }
-          → cat.arrow { _1 = c, _2 = d }
-          → cat.arrow
-            { _1 =
-                cat.product { _1 = a, _2 = c }
-            , _2 =
-                cat.product { _1 = b, _2 = d }
-            }
-      , unit :
-          ∀(a : object) → cat.arrow { _1 = a, _2 = a }
-      }
-    )
-→ { lmap :
-        ∀(h : object)
-      → ∀(i : object)
-      → ∀(j : object)
-      → cat.arrow { _1 = i, _2 = h }
-      → cat.arrow { _1 = h, _2 = j }
-      → cat.arrow { _1 = i, _2 = j }
-  , map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = b._1, _2 = a._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
-        }
-  , rmap :
-        ∀(h : object)
-      → ∀(i : object)
-      → ∀(j : object)
-      → cat.arrow { _1 = i, _2 = j }
-      → cat.arrow { _1 = h, _2 = i }
-      → cat.arrow { _1 = h, _2 = j }
-  }
-</pre></dd>
-</dl>
 <h2 style="background-color: #bbb; width: 100%">./Bimonad</h2>
 <h4>Type (type)</h4>
 <p></p>
@@ -936,7 +388,23 @@
     )
 → λ(m : object)
 → { category :
-      { product :
+      { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -1024,7 +492,23 @@
 → ∀(m : object)
 → ∀ ( cartesian
     : { category :
-          { product :
+          { hom :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = b._1, _2 = a._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                    }
+              }
+          , product :
                 ∀(a : { _1 : object, _2 : object })
               → (   ∀(r : Type)
                   → (   ∀(z : object)
@@ -1104,7 +588,23 @@
 → ∀(m : object)
 → ∀ ( cartesian
     : { category :
-          { product :
+          { hom :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = b._1, _2 = a._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                    }
+              }
+          , product :
                 ∀(a : { _1 : object, _2 : object })
               → (   ∀(r : Type)
                   → (   ∀(z : object)
@@ -1218,17 +718,6 @@
 <dl>
 <dt>type</dt><dd><pre>
   ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
 → ∀ ( cat
     : { arrow :
           { _1 : object, _2 : object } → Type
@@ -1237,7 +726,19 @@
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -1252,7 +753,31 @@
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → ∀ ( fn
+              : { _1 :
+                    { from :
+                        cat.arrow { _1 = a._1, _2 = b._1 }
+                    , to :
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    }
+                , _2 :
+                    { from :
+                        cat.arrow { _1 = b._2, _2 = a._2 }
+                    , to :
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                }
+              )
+          → ∀ ( f
+              : { from : cat.arrow { _1 = a._2, _2 = a._1 }, to : cat.arrow a }
+              )
+          → { from : cat.arrow { _1 = b._2, _2 = b._1 }, to : cat.arrow b }
+      }
+  , product :
         ∀(a : { _1 : object, _2 : object })
       → ∀ ( p
           :   ∀(r : Type)
@@ -1305,6 +830,13 @@
   , star :
       { product : cat.arrow (cat.product object object) object, unit : object }
   }
+</pre></dd>
+</dl>
+<h4>Sort (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+Sort
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -1442,6 +974,39 @@
                     }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        (   cat.diamond
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        (   cat.diamond
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow
+                    { _1 =
+                        (   cat.diamond
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        a
+                    , _2 =
+                        (   cat.diamond
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        b
+                    }
+                }
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -1479,39 +1044,6 @@
                     }
                 , _2 =
                     a
-                }
-            }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    (   cat.diamond
-                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                    ).arrow
-                    { _1 = a._1, _2 = b._1 }
-                , _2 =
-                    (   cat.diamond
-                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                    ).arrow
-                    { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                (   cat.diamond
-                  ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                ).arrow
-                { _1 =
-                    (   cat.diamond
-                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                    ).product
-                    a
-                , _2 =
-                    (   cat.diamond
-                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                    ).product
-                    b
                 }
             }
       , product :
@@ -1572,11 +1104,62 @@
                     a
                 }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        (   cat.diamond
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        { _1 = a._1, _2 = b._1 }
+                    , _2 =
+                        (   cat.diamond
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    (   cat.diamond
+                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                    ).arrow
+                    { _1 =
+                        (   cat.diamond
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).product
+                        a
+                    , _2 =
+                        (   cat.diamond
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).product
+                        b
+                    }
+                }
+          }
       , unit :
             ∀(a : object)
           → ( cat.diamond ∧ { arrow = cat.arrow, constraint = cat.constraint }
             ).arrow
             { _1 = a, _2 = a }
+      }
+  , hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
       }
   , product :
         ∀(a : { _1 : object, _2 : object })
@@ -1667,6 +1250,39 @@
                     }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        (   cat.star
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        (   cat.star
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow
+                    { _1 =
+                        (   cat.star
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        a
+                    , _2 =
+                        (   cat.star
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        b
+                    }
+                }
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -1702,38 +1318,6 @@
                     }
                 , _2 =
                     a
-                }
-            }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    (   cat.star
-                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                    ).arrow
-                    { _1 = a._1, _2 = b._1 }
-                , _2 =
-                    (   cat.star
-                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                    ).arrow
-                    { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                ( cat.star ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                ).arrow
-                { _1 =
-                    (   cat.star
-                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                    ).product
-                    a
-                , _2 =
-                    (   cat.star
-                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
-                    ).product
-                    b
                 }
             }
       , product :
@@ -1792,6 +1376,41 @@
                     a
                 }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        (   cat.star
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        { _1 = a._1, _2 = b._1 }
+                    , _2 =
+                        (   cat.star
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).arrow
+                        { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    (   cat.star
+                      ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                    ).arrow
+                    { _1 =
+                        (   cat.star
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).product
+                        a
+                    , _2 =
+                        (   cat.star
+                          ∧ { arrow = cat.arrow, constraint = cat.constraint }
+                        ).product
+                        b
+                    }
+                }
+          }
       , unit :
             ∀(a : object)
           → ( cat.star ∧ { arrow = cat.arrow, constraint = cat.constraint }
@@ -2412,8 +2031,6 @@
       → Type
   , Endofunctor :
       ∀(f : (cObject → dObject) → cObject → dObject) → Type
-  , HomFunctor :
-      ∀(f : { _1 : cObject → dObject, _2 : cObject → dObject } → Type) → Type
   , Identity :
       ∀(a : cObject → dObject) → cObject → dObject
   , Lan :
@@ -2470,8 +2087,6 @@
         ∀(m : (cObject → dObject) → cObject → dObject)
       → ∀(a : { _1 : cObject → dObject, _2 : cObject → dObject })
       → Type
-  , Strong :
-      ∀(f : { _1 : cObject → dObject, _2 : cObject → dObject } → Type) → Type
   , Traversable :
         ∀(m : (cObject → dObject) → cObject → dObject)
       → ∀(f : (cObject → dObject) → cObject → dObject)
@@ -2606,26 +2221,28 @@
         , _2 =
             cat.product { _1 = y, _2 = x }
         }
+  , hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
   , leftIdentity :
         ∀(a : object)
       → { from :
             cat.arrow { _1 = a, _2 = cat.product { _1 = cat.unit, _2 = a } }
         , to :
             cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
-        }
-  , map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            cat.arrow { _1 = cat.product a, _2 = cat.product b }
         }
   , product :
         ∀(a : { _1 : object, _2 : object })
@@ -2645,6 +2262,22 @@
         , to :
             cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
         }
+  , tensor :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                cat.arrow { _1 = cat.product a, _2 = cat.product b }
+            }
+      }
   , unit :
       ∀(a : object) → cat.arrow { _1 = a, _2 = a }
   }
@@ -2813,6 +2446,62 @@
   }
 </pre></dd>
 </dl>
+<h4>curry (type)</h4>
+<p>{- The currying isomorphism is defined for any closed monoidal (semigroupal?)
+   category (semigroupoid?), based on the – ⊗ X ⊣ Hom(X, –) odjunction.
+
+   FIXME: Because closed categories are self-enriched and `Isomorphism`
+          currently has to be enriched by a category where the objects are
+          types, this is currently restricted to categories where the objects
+          are types.
+-}</p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀ ( cat
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , product :
+          { _1 : Type, _2 : Type } → Type
+      , unit :
+          Type
+      }
+    )
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ ( cat
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , product :
+          { _1 : Type, _2 : Type } → Type
+      , unit :
+          Type
+      }
+    )
+→   ∀(a : Type)
+  → ∀(b : Type)
+  → ∀(c : Type)
+  → { from :
+        cat.arrow
+        { _1 =
+            cat.arrow { _1 = a, _2 = cat.arrow { _1 = b, _2 = c } }
+        , _2 =
+            cat.arrow { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
+        }
+    , to :
+        cat.arrow
+        { _1 =
+            cat.arrow { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
+        , _2 =
+            cat.arrow { _1 = a, _2 = cat.arrow { _1 = b, _2 = c } }
+        }
+    }
+</pre></dd>
+</dl>
 <h4>Kind (kind)</h4>
 <p></p>
 <dl>
@@ -2838,10 +2527,7 @@
 </pre></dd>
 </dl>
 <h4>Sort (term)</h4>
-<p>{- Unfortunately, we don’t have the common kind-level identities available. So
-   rather than making a type that can’t be used, we just stick with Semigroupal,
-   and let the desired type be _named_ even if it can’t be implemented yet.
--}</p>
+<p></p>
 <dl>
 <dt>type</dt><dd><pre>
 Sort
@@ -2929,26 +2615,28 @@ Sort
         , _2 =
             cat.product { _1 = y, _2 = x }
         }
+  , hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
   , leftIdentity :
         ∀(a : object)
       → { from :
             cat.arrow { _1 = a, _2 = cat.product { _1 = cat.unit, _2 = a } }
         , to :
             cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
-        }
-  , map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            cat.arrow { _1 = cat.product a, _2 = cat.product b }
         }
   , product :
         ∀(a : { _1 : object, _2 : object })
@@ -2968,6 +2656,22 @@ Sort
         , to :
             cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
         }
+  , tensor :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                cat.arrow { _1 = cat.product a, _2 = cat.product b }
+            }
+      }
   , unit :
       ∀(a : object) → cat.arrow { _1 = a, _2 = a }
   }
@@ -3045,26 +2749,28 @@ Sort
                 cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
             }
         }
+  , hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
   , leftIdentity :
         ∀(a : object)
       → { from :
             cat.arrow { _1 = a, _2 = cat.product { _1 = cat.unit, _2 = a } }
         , to :
             cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
-        }
-  , map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            cat.arrow { _1 = cat.product a, _2 = cat.product b }
         }
   , product :
         ∀(a : { _1 : object, _2 : object })
@@ -3084,66 +2790,8 @@ Sort
         , to :
             cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
         }
-  , unit :
-      ∀(a : object) → cat.arrow { _1 = a, _2 = a }
-  }
-</pre></dd>
-</dl>
-<h4>extractBifunctor (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , product :
-          { _1 : object, _2 : object } → object
-      , unit :
-          object
-      }
-    )
-→ ∀ ( category
-    : { associativity :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → { from :
-                cat.arrow
-                { _1 =
-                    cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-                , _2 =
-                    cat.product { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
-                }
-            , to :
-                cat.arrow
-                { _1 =
-                    cat.product { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
-                , _2 =
-                    cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-                }
-            }
-      , leftIdentity :
-            ∀(a : object)
-          → { from :
-                cat.arrow { _1 = a, _2 = cat.product { _1 = cat.unit, _2 = a } }
-            , to :
-                cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
-            }
-      , map :
+  , tensor :
+      { map :
             ∀(a : { _1 : object, _2 : object })
           → ∀(b : { _1 : object, _2 : object })
           → v.arrow
@@ -3157,42 +2805,9 @@ Sort
             , _2 =
                 cat.arrow { _1 = cat.product a, _2 = cat.product b }
             }
-      , product :
-            ∀(a : { _1 : object, _2 : object })
-          → (   ∀(r : Type)
-              → (   ∀(z : object)
-                  → cat.arrow { _1 = z, _2 = a._2 }
-                  → cat.arrow { _1 = a._1, _2 = z }
-                  → r
-                )
-              → r
-            )
-          → cat.arrow a
-      , rightIdentity :
-            ∀(a : object)
-          → { from :
-                cat.arrow { _1 = a, _2 = cat.product { _1 = a, _2 = cat.unit } }
-            , to :
-                cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
-            }
-      , unit :
-          ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
-    )
-→ { map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            cat.arrow { _1 = cat.product a, _2 = cat.product b }
-        }
+  , unit :
+      ∀(a : object) → cat.arrow { _1 = a, _2 = a }
   }
 </pre></dd>
 </dl>
@@ -3270,26 +2885,28 @@ Sort
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
                 cat.arrow { _1 = a, _2 = cat.product { _1 = cat.unit, _2 = a } }
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
-            }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    cat.arrow { _1 = a._1, _2 = b._1 }
-                , _2 =
-                    cat.arrow { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                cat.arrow { _1 = cat.product a, _2 = cat.product b }
             }
       , product :
             ∀(a : { _1 : object, _2 : object })
@@ -3309,11 +2926,43 @@ Sort
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = a._1, _2 = b._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    cat.arrow { _1 = cat.product a, _2 = cat.product b }
+                }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
+  , product :
         ∀(a : { _1 : object, _2 : object })
       → (   ∀(r : Type)
           → (   ∀(z : object)
@@ -3387,8 +3036,6 @@ Sort
     )
 → { Adjunction :
       ∀(f : object → object) → ∀(g : object → object) → Type
-  , Arrow :
-      Type
   , Bifunctor :
       ∀(f : { _1 : object, _2 : object } → object) → Type
   , Category :
@@ -3457,8 +3104,6 @@ Sort
       ∀(m : object) → Type
   , Group :
       ∀(m : object) → Type
-  , HomFunctor :
-      ∀(f : { _1 : object, _2 : object } → Type) → Type
   , Identity :
       ∀(a : object) → object
   , Lan :
@@ -3512,8 +3157,8 @@ Sort
       ∀(m : object) → Type
   , Star :
       ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
-  , Strong :
-      ∀(f : { _1 : object, _2 : object } → Type) → Type
+  , StrongFunctor :
+      ∀(f : object → object) → Type
   , Traversable :
       ∀(m : object → object) → ∀(f : object → object) → Type
   , Yoneda :
@@ -3543,21 +3188,13 @@ Sort
 </pre></dd>
 </dl>
 <h4>category (term)</h4>
-<p></p>
+<p>{- TODO: This currently forces 𝒱 = 𝐒𝐞𝐭, because of the Hom instance. It would be
+         good to abstract that via composition with some symmetric category,
+         like `category.product (hom.map a b) flip`.
+-}</p>
 <dl>
 <dt>type</dt><dd><pre>
   ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
 → ∀ ( cat
     : { arrow :
           { _1 : object, _2 : object } → Type
@@ -3566,7 +3203,19 @@ Sort
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -3581,7 +3230,21 @@ Sort
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → ∀ ( f
+              : { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = b._2, _2 = a._2 }
+                }
+              )
+          → cat.arrow { _1 = a._2, _2 = a._1 }
+          → cat.arrow { _1 = b._2, _2 = b._1 }
+      }
+  , product :
         ∀(a : { _1 : object, _2 : object })
       → ∀ ( p
           :   ∀(r : Type)
@@ -3723,8 +3386,6 @@ Sort
     )
 → { Adjunction :
       ∀(f : object → object) → ∀(g : object → object) → Type
-  , Arrow :
-      Type
   , Bifunctor :
       ∀(f : { _1 : object, _2 : object } → object) → Type
   , Category :
@@ -3793,8 +3454,6 @@ Sort
       ∀(m : object) → Type
   , Group :
       ∀(m : object) → Type
-  , HomFunctor :
-      ∀(f : { _1 : object, _2 : object } → Type) → Type
   , Identity :
       ∀(a : object) → object
   , Lan :
@@ -3848,8 +3507,8 @@ Sort
       ∀(m : object) → Type
   , Star :
       ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
-  , Strong :
-      ∀(f : { _1 : object, _2 : object } → Type) → Type
+  , StrongFunctor :
+      ∀(f : object → object) → Type
   , Traversable :
       ∀(m : object → object) → ∀(f : object → object) → Type
   , Yoneda :
@@ -3864,6 +3523,15 @@ Sort
 <dt>type</dt><dd><pre>
   ∀(cObject : Kind)
 → ∀(dObject : Kind)
+→ ∀ ( v
+    : { arrow :
+          { _1 : Type, _2 : Type } → Type
+      , constraint :
+          Type → Type
+      , product :
+          { _1 : Type, _2 : Type } → Type
+      }
+    )
 → ∀ ( c
     : { arrow :
           { _1 : cObject, _2 : cObject } → Type
@@ -3951,7 +3619,19 @@ Sort
       }
     )
 → ∀ ( cCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : cObject, _2 : cObject })
+              → ∀(b : { _1 : cObject, _2 : cObject })
+              → { _1 :
+                    c.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    c.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → c.arrow a
+              → c.arrow b
+          }
+      , product :
             ∀(a : { _1 : cObject, _2 : cObject })
           → (   ∀(r : Type)
               → (   ∀(z : cObject)
@@ -3975,7 +3655,19 @@ Sort
       }
     )
 → ∀ ( dCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : dObject, _2 : dObject })
+              → ∀(b : { _1 : dObject, _2 : dObject })
+              → { _1 :
+                    d.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    d.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → d.arrow a
+              → d.arrow b
+          }
+      , product :
             ∀(a : { _1 : dObject, _2 : dObject })
           → (   ∀(r : Type)
               → (   ∀(z : dObject)
@@ -3990,7 +3682,51 @@ Sort
           ∀(a : dObject) → d.arrow { _1 = a, _2 = a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀ ( a
+              : { _1 :
+                    { _1 : cObject, _2 : dObject }
+                , _2 :
+                    { _1 : cObject, _2 : dObject }
+                }
+              )
+          → ∀ ( b
+              : { _1 :
+                    { _1 : cObject, _2 : dObject }
+                , _2 :
+                    { _1 : cObject, _2 : dObject }
+                }
+              )
+          → ∀ ( fn
+              : { _1 :
+                    { _1 :
+                        c.arrow { _1 = b._1._1, _2 = a._1._1 }
+                    , _2 :
+                        d.arrow { _1 = b._1._2, _2 = a._1._2 }
+                    }
+                , _2 :
+                    { _1 :
+                        c.arrow { _1 = a._2._1, _2 = b._2._1 }
+                    , _2 :
+                        d.arrow { _1 = a._2._2, _2 = b._2._2 }
+                    }
+                }
+              )
+          → ∀ ( f
+              : { _1 :
+                    c.arrow { _1 = a._1._1, _2 = a._2._1 }
+                , _2 :
+                    d.arrow { _1 = a._1._2, _2 = a._2._2 }
+                }
+              )
+          → { _1 :
+                c.arrow { _1 = b._1._1, _2 = b._2._1 }
+            , _2 :
+                d.arrow { _1 = b._1._2, _2 = b._2._2 }
+            }
+      }
+  , product :
         ∀ ( a
           : { _1 :
                 { _1 : cObject, _2 : dObject }
@@ -4161,16 +3897,6 @@ Sort
   , Endofunctor :
         ∀(f : { _1 : cObject, _2 : dObject } → { _1 : cObject, _2 : dObject })
       → Type
-  , HomFunctor :
-        ∀ ( f
-          :   { _1 :
-                  { _1 : cObject, _2 : dObject }
-              , _2 :
-                  { _1 : cObject, _2 : dObject }
-              }
-            → Type
-          )
-      → Type
   , Identity :
       ∀(a : { _1 : cObject, _2 : dObject }) → { _1 : cObject, _2 : dObject }
   , Lan :
@@ -4259,16 +3985,6 @@ Sort
             , _2 :
                 { _1 : cObject, _2 : dObject }
             }
-          )
-      → Type
-  , Strong :
-        ∀ ( f
-          :   { _1 :
-                  { _1 : cObject, _2 : dObject }
-              , _2 :
-                  { _1 : cObject, _2 : dObject }
-              }
-            → Type
           )
       → Type
   , Traversable :
@@ -4417,8 +4133,6 @@ Sort
             → Type
           )
       → Type
-  , Arrow :
-      Type
   , Bifunctor :
         ∀ ( f
           :   { _1 :
@@ -4531,16 +4245,6 @@ Sort
         ∀ ( f
           :   ({ _1 : object, _2 : object } → Type)
             → { _1 : object, _2 : object }
-            → Type
-          )
-      → Type
-  , HomFunctor :
-        ∀ ( f
-          :   { _1 :
-                  { _1 : object, _2 : object } → Type
-              , _2 :
-                  { _1 : object, _2 : object } → Type
-              }
             → Type
           )
       → Type
@@ -4658,16 +4362,6 @@ Sort
             }
           )
       → Type
-  , Strong :
-        ∀ ( f
-          :   { _1 :
-                  { _1 : object, _2 : object } → Type
-              , _2 :
-                  { _1 : object, _2 : object } → Type
-              }
-            → Type
-          )
-      → Type
   , Traversable :
         ∀ ( m
           :   ({ _1 : object, _2 : object } → Type)
@@ -4710,6 +4404,13 @@ Sort
   , multiplicative :
       { product : cat.arrow (cat.product object object) object, unit : object }
   }
+</pre></dd>
+</dl>
+<h4>Sort (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+Sort
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
@@ -4792,6 +4493,22 @@ Sort
                     { _1 = a, _2 = cat.additive.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -4808,21 +4525,6 @@ Sort
                 , _2 =
                     a
                 }
-            }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    cat.arrow { _1 = a._1, _2 = b._1 }
-                , _2 =
-                    cat.arrow { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                cat.arrow
-                { _1 = cat.additive.product a, _2 = cat.additive.product b }
             }
       , product :
             ∀(a : { _1 : object, _2 : object })
@@ -4852,6 +4554,23 @@ Sort
                     a
                 }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = a._1, _2 = b._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    cat.arrow
+                    { _1 = cat.additive.product a, _2 = cat.additive.product b }
+                }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -4886,6 +4605,22 @@ Sort
                 }
             }
         }
+  , hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
   , leftAnnihilation :
         ∀(a : object)
       → { from :
@@ -4943,6 +4678,22 @@ Sort
                     }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -4960,25 +4711,6 @@ Sort
                     { _1 = cat.multiplicative.unit, _2 = a }
                 , _2 =
                     a
-                }
-            }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    cat.arrow { _1 = a._1, _2 = b._1 }
-                , _2 =
-                    cat.arrow { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                cat.arrow
-                { _1 =
-                    cat.multiplicative.product a
-                , _2 =
-                    cat.multiplicative.product b
                 }
             }
       , product :
@@ -5011,6 +4743,27 @@ Sort
                     a
                 }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = a._1, _2 = b._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    cat.arrow
+                    { _1 =
+                        cat.multiplicative.product a
+                    , _2 =
+                        cat.multiplicative.product b
+                    }
+                }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -5136,6 +4889,22 @@ Sort
                         { _1 = a, _2 = cat.additive.product { _1 = b, _2 = c } }
                     }
                 }
+          , hom :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = b._1, _2 = a._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                    }
+              }
           , leftIdentity :
                 ∀(a : object)
               → { from :
@@ -5152,21 +4921,6 @@ Sort
                     , _2 =
                         a
                     }
-                }
-          , map :
-                ∀(a : { _1 : object, _2 : object })
-              → ∀(b : { _1 : object, _2 : object })
-              → v.arrow
-                { _1 =
-                    v.product
-                    { _1 =
-                        cat.arrow { _1 = a._1, _2 = b._1 }
-                    , _2 =
-                        cat.arrow { _1 = a._2, _2 = b._2 }
-                    }
-                , _2 =
-                    cat.arrow
-                    { _1 = cat.additive.product a, _2 = cat.additive.product b }
                 }
           , product :
                 ∀(a : { _1 : object, _2 : object })
@@ -5196,6 +4950,27 @@ Sort
                         a
                     }
                 }
+          , tensor :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = a._1, _2 = b._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        cat.arrow
+                        { _1 =
+                            cat.additive.product a
+                        , _2 =
+                            cat.additive.product b
+                        }
+                    }
+              }
           , unit :
               ∀(a : object) → cat.arrow { _1 = a, _2 = a }
           }
@@ -5230,6 +5005,22 @@ Sort
                     }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
       , leftAnnihilation :
             ∀(a : object)
           → { from :
@@ -5289,6 +5080,22 @@ Sort
                         }
                     }
                 }
+          , hom :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = b._1, _2 = a._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                    }
+              }
           , leftIdentity :
                 ∀(a : object)
               → { from :
@@ -5306,25 +5113,6 @@ Sort
                         { _1 = cat.multiplicative.unit, _2 = a }
                     , _2 =
                         a
-                    }
-                }
-          , map :
-                ∀(a : { _1 : object, _2 : object })
-              → ∀(b : { _1 : object, _2 : object })
-              → v.arrow
-                { _1 =
-                    v.product
-                    { _1 =
-                        cat.arrow { _1 = a._1, _2 = b._1 }
-                    , _2 =
-                        cat.arrow { _1 = a._2, _2 = b._2 }
-                    }
-                , _2 =
-                    cat.arrow
-                    { _1 =
-                        cat.multiplicative.product a
-                    , _2 =
-                        cat.multiplicative.product b
                     }
                 }
           , product :
@@ -5357,6 +5145,27 @@ Sort
                         a
                     }
                 }
+          , tensor :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = a._1, _2 = b._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        cat.arrow
+                        { _1 =
+                            cat.multiplicative.product a
+                        , _2 =
+                            cat.multiplicative.product b
+                        }
+                    }
+              }
           , unit :
               ∀(a : object) → cat.arrow { _1 = a, _2 = a }
           }
@@ -5417,6 +5226,22 @@ Sort
                 { _1 = a, _2 = cat.additive.product { _1 = b, _2 = c } }
             }
         }
+  , hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
   , leftIdentity :
         ∀(a : object)
       → { from :
@@ -5433,21 +5258,6 @@ Sort
             , _2 =
                 a
             }
-        }
-  , map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            cat.arrow
-            { _1 = cat.additive.product a, _2 = cat.additive.product b }
         }
   , product :
         ∀(a : { _1 : object, _2 : object })
@@ -5477,6 +5287,23 @@ Sort
                 a
             }
         }
+  , tensor :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                cat.arrow
+                { _1 = cat.additive.product a, _2 = cat.additive.product b }
+            }
+      }
   , unit :
       ∀(a : object) → cat.arrow { _1 = a, _2 = a }
   }
@@ -5604,6 +5431,22 @@ Sort
                         { _1 = a, _2 = cat.additive.product { _1 = b, _2 = c } }
                     }
                 }
+          , hom :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = b._1, _2 = a._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                    }
+              }
           , leftIdentity :
                 ∀(a : object)
               → { from :
@@ -5620,21 +5463,6 @@ Sort
                     , _2 =
                         a
                     }
-                }
-          , map :
-                ∀(a : { _1 : object, _2 : object })
-              → ∀(b : { _1 : object, _2 : object })
-              → v.arrow
-                { _1 =
-                    v.product
-                    { _1 =
-                        cat.arrow { _1 = a._1, _2 = b._1 }
-                    , _2 =
-                        cat.arrow { _1 = a._2, _2 = b._2 }
-                    }
-                , _2 =
-                    cat.arrow
-                    { _1 = cat.additive.product a, _2 = cat.additive.product b }
                 }
           , product :
                 ∀(a : { _1 : object, _2 : object })
@@ -5664,6 +5492,27 @@ Sort
                         a
                     }
                 }
+          , tensor :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = a._1, _2 = b._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        cat.arrow
+                        { _1 =
+                            cat.additive.product a
+                        , _2 =
+                            cat.additive.product b
+                        }
+                    }
+              }
           , unit :
               ∀(a : object) → cat.arrow { _1 = a, _2 = a }
           }
@@ -5698,6 +5547,22 @@ Sort
                     }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
       , leftAnnihilation :
             ∀(a : object)
           → { from :
@@ -5757,6 +5622,22 @@ Sort
                         }
                     }
                 }
+          , hom :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = b._1, _2 = a._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                    }
+              }
           , leftIdentity :
                 ∀(a : object)
               → { from :
@@ -5774,25 +5655,6 @@ Sort
                         { _1 = cat.multiplicative.unit, _2 = a }
                     , _2 =
                         a
-                    }
-                }
-          , map :
-                ∀(a : { _1 : object, _2 : object })
-              → ∀(b : { _1 : object, _2 : object })
-              → v.arrow
-                { _1 =
-                    v.product
-                    { _1 =
-                        cat.arrow { _1 = a._1, _2 = b._1 }
-                    , _2 =
-                        cat.arrow { _1 = a._2, _2 = b._2 }
-                    }
-                , _2 =
-                    cat.arrow
-                    { _1 =
-                        cat.multiplicative.product a
-                    , _2 =
-                        cat.multiplicative.product b
                     }
                 }
           , product :
@@ -5825,6 +5687,27 @@ Sort
                         a
                     }
                 }
+          , tensor :
+              { map :
+                    ∀(a : { _1 : object, _2 : object })
+                  → ∀(b : { _1 : object, _2 : object })
+                  → v.arrow
+                    { _1 =
+                        v.product
+                        { _1 =
+                            cat.arrow { _1 = a._1, _2 = b._1 }
+                        , _2 =
+                            cat.arrow { _1 = a._2, _2 = b._2 }
+                        }
+                    , _2 =
+                        cat.arrow
+                        { _1 =
+                            cat.multiplicative.product a
+                        , _2 =
+                            cat.multiplicative.product b
+                        }
+                    }
+              }
           , unit :
               ∀(a : object) → cat.arrow { _1 = a, _2 = a }
           }
@@ -5885,6 +5768,22 @@ Sort
                 { _1 = a, _2 = cat.multiplicative.product { _1 = b, _2 = c } }
             }
         }
+  , hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
   , leftIdentity :
         ∀(a : object)
       → { from :
@@ -5902,25 +5801,6 @@ Sort
                 { _1 = cat.multiplicative.unit, _2 = a }
             , _2 =
                 a
-            }
-        }
-  , map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            cat.arrow
-            { _1 =
-                cat.multiplicative.product a
-            , _2 =
-                cat.multiplicative.product b
             }
         }
   , product :
@@ -5953,6 +5833,27 @@ Sort
                 a
             }
         }
+  , tensor :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                cat.arrow
+                { _1 =
+                    cat.multiplicative.product a
+                , _2 =
+                    cat.multiplicative.product b
+                }
+            }
+      }
   , unit :
       ∀(a : object) → cat.arrow { _1 = a, _2 = a }
   }
@@ -5982,8 +5883,7 @@ Sort
 </pre></dd>
 </dl>
 <h4>Sort (term)</h4>
-<p>{- Should use ` ⩓ ./../Sort`.
--}</p>
+<p></p>
 <dl>
 <dt>type</dt><dd><pre>
 Sort
@@ -6057,20 +5957,22 @@ Sort
                 cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
             }
         }
-  , map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
+  , hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
             { _1 =
-                cat.arrow { _1 = a._1, _2 = b._1 }
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
             , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
             }
-        , _2 =
-            cat.arrow { _1 = cat.product a, _2 = cat.product b }
-        }
+      }
   , product :
         ∀(a : { _1 : object, _2 : object })
       → (   ∀(r : Type)
@@ -6082,57 +5984,8 @@ Sort
           → r
         )
       → cat.arrow a
-  , unit :
-      ∀(a : object) → cat.arrow { _1 = a, _2 = a }
-  }
-</pre></dd>
-</dl>
-<h4>extractBifunctor (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      , product :
-          { _1 : object, _2 : object } → object
-      }
-    )
-→ ∀ ( category
-    : { associativity :
-            ∀(a : object)
-          → ∀(b : object)
-          → ∀(c : object)
-          → { from :
-                cat.arrow
-                { _1 =
-                    cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-                , _2 =
-                    cat.product { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
-                }
-            , to :
-                cat.arrow
-                { _1 =
-                    cat.product { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
-                , _2 =
-                    cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-                }
-            }
-      , map :
+  , tensor :
+      { map :
             ∀(a : { _1 : object, _2 : object })
           → ∀(b : { _1 : object, _2 : object })
           → v.arrow
@@ -6146,35 +5999,9 @@ Sort
             , _2 =
                 cat.arrow { _1 = cat.product a, _2 = cat.product b }
             }
-      , product :
-            ∀(a : { _1 : object, _2 : object })
-          → (   ∀(r : Type)
-              → (   ∀(z : object)
-                  → cat.arrow { _1 = z, _2 = a._2 }
-                  → cat.arrow { _1 = a._1, _2 = z }
-                  → r
-                )
-              → r
-            )
-          → cat.arrow a
-      , unit :
-          ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
-    )
-→ { map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            cat.arrow { _1 = cat.product a, _2 = cat.product b }
-        }
+  , unit :
+      ∀(a : object) → cat.arrow { _1 = a, _2 = a }
   }
 </pre></dd>
 </dl>
@@ -6248,20 +6075,22 @@ Sort
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → v.arrow
-            { _1 =
-                v.product
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
                 { _1 =
-                    cat.arrow { _1 = a._1, _2 = b._1 }
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
                 , _2 =
-                    cat.arrow { _1 = a._2, _2 = b._2 }
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
                 }
-            , _2 =
-                cat.arrow { _1 = cat.product a, _2 = cat.product b }
-            }
+          }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -6273,11 +6102,43 @@ Sort
               → r
             )
           → cat.arrow a
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = a._1, _2 = b._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    cat.arrow { _1 = cat.product a, _2 = cat.product b }
+                }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
+  , product :
         ∀(a : { _1 : object, _2 : object })
       → (   ∀(r : Type)
           → (   ∀(z : object)
@@ -6328,8 +6189,6 @@ Sort
     )
 → { Adjunction :
       ∀(f : object → object) → ∀(g : object → object) → Type
-  , Arrow :
-      Type
   , Bifunctor :
       ∀(f : { _1 : object, _2 : object } → object) → Type
   , Category :
@@ -6388,8 +6247,6 @@ Sort
       → Type
   , Endofunctor :
       ∀(f : object → object) → Type
-  , HomFunctor :
-      ∀(f : { _1 : object, _2 : object } → Type) → Type
   , Identity :
       ∀(a : object) → object
   , Lan :
@@ -6433,8 +6290,6 @@ Sort
       → Type
   , Star :
       ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
-  , Strong :
-      ∀(f : { _1 : object, _2 : object } → Type) → Type
   , Traversable :
       ∀(m : object → object) → ∀(f : object → object) → Type
   , Yoneda :
@@ -6443,66 +6298,21 @@ Sort
 </pre></dd>
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Category/Set</h3>
-<h4>arrow (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-{ fanout :
-      ∀(a : Type)
-    → ∀(b : Type)
-    → ∀(c : Type)
-    → ∀(f : a → b)
-    → ∀(g : a → c)
-    → ∀(x : a)
-    → { _1 : b, _2 : c }
-, lmap :
-      ∀(a : Type)
-    → ∀(b : Type)
-    → ∀(c : Type)
-    → ∀(f : b → a)
-    → ∀(p : a → c)
-    → ∀(x : b)
-    → c
-, map :
-      ∀(a : { _1 : Type, _2 : Type })
-    → ∀(b : { _1 : Type, _2 : Type })
-    → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
-    → ∀(fn : a._1 → a._2)
-    → ∀(x : b._1)
-    → b._2
-, product :
-      ∀(a : { _1 : Type, _2 : Type })
-    → ∀(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
-    → a._1
-    → a._2
-, rmap :
-      ∀(a : Type)
-    → ∀(b : Type)
-    → ∀(c : Type)
-    → ∀(f : b → c)
-    → ∀(p : a → b)
-    → ∀(x : a)
-    → c
-, split :
-      ∀(a : Type)
-    → ∀(b : Type)
-    → ∀(c : Type)
-    → ∀(d : Type)
-    → ∀(f : a → b)
-    → ∀(g : c → d)
-    → ∀(p : { _1 : a, _2 : c })
-    → { _1 : b, _2 : d }
-, unit :
-    ∀(a : Type) → ∀(x : a) → a
-}
-</pre></dd>
-</dl>
 <h4 style="background-color: #bbb; width: 100%">./Category/Set/category</h4>
 <h4>instance (term)</h4>
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-{ product :
+{ hom :
+    { map :
+          ∀(a : { _1 : Type, _2 : Type })
+        → ∀(b : { _1 : Type, _2 : Type })
+        → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+        → ∀(fn : a._1 → a._2)
+        → ∀(x : b._1)
+        → b._2
+    }
+, product :
       ∀(a : { _1 : Type, _2 : Type })
     → ∀(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
     → a._1
@@ -6527,6 +6337,15 @@ Sort
             ∀(p : { _1 : { _1 : a, _2 : b }, _2 : c })
           → { _1 : a, _2 : { _1 : b, _2 : c } }
       }
+, hom :
+    { map :
+          ∀(a : { _1 : Type, _2 : Type })
+        → ∀(b : { _1 : Type, _2 : Type })
+        → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+        → ∀(fn : a._1 → a._2)
+        → ∀(x : b._1)
+        → b._2
+    }
 , leftIdentity :
       ∀(a : Type)
     → { from :
@@ -6534,12 +6353,6 @@ Sort
       , to :
           ∀(p : { _1 : {}, _2 : a }) → a
       }
-, map :
-      ∀(a : { _1 : Type, _2 : Type })
-    → ∀(b : { _1 : Type, _2 : Type })
-    → ∀(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
-    → ∀(t : { _1 : a._1, _2 : a._2 })
-    → { _1 : b._1, _2 : b._2 }
 , product :
       ∀(a : { _1 : Type, _2 : Type })
     → ∀(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
@@ -6552,6 +6365,14 @@ Sort
       , to :
           ∀(p : { _1 : a, _2 : {} }) → a
       }
+, tensor :
+    { map :
+          ∀(a : { _1 : Type, _2 : Type })
+        → ∀(b : { _1 : Type, _2 : Type })
+        → ∀(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
+        → ∀(t : { _1 : a._1, _2 : a._2 })
+        → { _1 : b._1, _2 : b._2 }
+    }
 , unit :
     ∀(a : Type) → ∀(x : a) → a
 }
@@ -6573,6 +6394,15 @@ Sort
                 ∀(e : < Left : < Left : a | Right : b > | Right : c >)
               → < Left : a | Right : < Left : b | Right : c > >
           }
+    , hom :
+        { map :
+              ∀(a : { _1 : Type, _2 : Type })
+            → ∀(b : { _1 : Type, _2 : Type })
+            → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+            → ∀(fn : a._1 → a._2)
+            → ∀(x : b._1)
+            → b._2
+        }
     , leftIdentity :
           ∀(a : Type)
         → { from :
@@ -6580,12 +6410,6 @@ Sort
           , to :
               ∀(e : < Left : <> | Right : a >) → a
           }
-    , map :
-          ∀(a : { _1 : Type, _2 : Type })
-        → ∀(b : { _1 : Type, _2 : Type })
-        → ∀(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
-        → ∀(e : < Left : a._1 | Right : a._2 >)
-        → < Left : b._1 | Right : b._2 >
     , product :
           ∀(a : { _1 : Type, _2 : Type })
         → ∀(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
@@ -6598,6 +6422,14 @@ Sort
           , to :
               ∀(e : < Left : a | Right : <> >) → a
           }
+    , tensor :
+        { map :
+              ∀(a : { _1 : Type, _2 : Type })
+            → ∀(b : { _1 : Type, _2 : Type })
+            → ∀(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
+            → ∀(e : < Left : a._1 | Right : a._2 >)
+            → < Left : b._1 | Right : b._2 >
+        }
     , unit :
         ∀(a : Type) → ∀(x : a) → a
     }
@@ -6612,6 +6444,15 @@ Sort
             ∀(p : { _1 : a, _2 : < Left : b | Right : c > })
           → < Left : { _1 : a, _2 : b } | Right : { _1 : a, _2 : c } >
       }
+, hom :
+    { map :
+          ∀(a : { _1 : Type, _2 : Type })
+        → ∀(b : { _1 : Type, _2 : Type })
+        → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+        → ∀(fn : a._1 → a._2)
+        → ∀(x : b._1)
+        → b._2
+    }
 , leftAnnihilation :
       ∀(a : Type)
     → { from :
@@ -6631,6 +6472,15 @@ Sort
                 ∀(p : { _1 : { _1 : a, _2 : b }, _2 : c })
               → { _1 : a, _2 : { _1 : b, _2 : c } }
           }
+    , hom :
+        { map :
+              ∀(a : { _1 : Type, _2 : Type })
+            → ∀(b : { _1 : Type, _2 : Type })
+            → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+            → ∀(fn : a._1 → a._2)
+            → ∀(x : b._1)
+            → b._2
+        }
     , leftIdentity :
           ∀(a : Type)
         → { from :
@@ -6638,12 +6488,6 @@ Sort
           , to :
               ∀(p : { _1 : {}, _2 : a }) → a
           }
-    , map :
-          ∀(a : { _1 : Type, _2 : Type })
-        → ∀(b : { _1 : Type, _2 : Type })
-        → ∀(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
-        → ∀(t : { _1 : a._1, _2 : a._2 })
-        → { _1 : b._1, _2 : b._2 }
     , product :
           ∀(a : { _1 : Type, _2 : Type })
         → ∀(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
@@ -6656,6 +6500,14 @@ Sort
           , to :
               ∀(p : { _1 : a, _2 : {} }) → a
           }
+    , tensor :
+        { map :
+              ∀(a : { _1 : Type, _2 : Type })
+            → ∀(b : { _1 : Type, _2 : Type })
+            → ∀(f : { _1 : a._1 → b._1, _2 : a._2 → b._2 })
+            → ∀(t : { _1 : a._1, _2 : a._2 })
+            → { _1 : b._1, _2 : b._2 }
+        }
     , unit :
         ∀(a : Type) → ∀(x : a) → a
     }
@@ -6683,19 +6535,18 @@ Sort
 ∀(a : Type) → { product : ∀(x : a) → { _1 : a, _2 : a }, unit : a → {} }
 </pre></dd>
 </dl>
-<h4 style="background-color: #bbb; width: 100%">./Category/Set/functor</h4>
-<h4>hom (term)</h4>
+<h4>curry (term)</h4>
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-{ map :
-      ∀(a : { _1 : Type, _2 : Type })
-    → ∀(b : { _1 : Type, _2 : Type })
-    → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
-    → ∀(fn : a._1 → a._2)
-    → ∀(x : b._1)
-    → b._2
-}
+  ∀(a : Type)
+→ ∀(b : Type)
+→ ∀(c : Type)
+→ { from :
+      ∀(f : a → b → c) → ∀(p : { _1 : a, _2 : b }) → c
+  , to :
+      ∀(f : { _1 : a, _2 : b } → c) → ∀(x : a) → ∀(y : b) → c
+  }
 </pre></dd>
 </dl>
 <h4 style="background-color: #bbb; width: 100%">./Category/Set/monoidal</h4>
@@ -6735,41 +6586,20 @@ Sort
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-{ product :
+{ hom :
+    { map :
+          ∀(a : { _1 : Type, _2 : Type })
+        → ∀(b : { _1 : Type, _2 : Type })
+        → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
+        → ∀(fn : a._1 → a._2)
+        → ∀(x : b._1)
+        → b._2
+    }
+, product :
       ∀(a : { _1 : Type, _2 : Type })
     → ∀(p : ∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
     → a._1
     → a._2
-}
-</pre></dd>
-</dl>
-<h4>strong (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-{ lmap :
-      ∀(a : Type)
-    → ∀(b : Type)
-    → ∀(c : Type)
-    → ∀(f : b → a)
-    → ∀(p : a → c)
-    → ∀(x : b)
-    → c
-, map :
-      ∀(a : { _1 : Type, _2 : Type })
-    → ∀(b : { _1 : Type, _2 : Type })
-    → ∀(f : { _1 : b._1 → a._1, _2 : a._2 → b._2 })
-    → ∀(fn : a._1 → a._2)
-    → ∀(x : b._1)
-    → b._2
-, rmap :
-      ∀(a : Type)
-    → ∀(b : Type)
-    → ∀(c : Type)
-    → ∀(f : b → c)
-    → ∀(p : a → b)
-    → ∀(x : a)
-    → c
 }
 </pre></dd>
 </dl>
@@ -6790,8 +6620,6 @@ Sort
     )
 → { Adjunction :
       ∀(f : Type → Type) → ∀(g : Type → Type) → Type
-  , Arrow :
-      Type
   , Bifunctor :
       ∀(f : { _1 : Type, _2 : Type } → Type) → Type
   , Category :
@@ -6860,12 +6688,8 @@ Sort
       ∀(m : Type) → Type
   , Group :
       ∀(m : Type) → Type
-  , HomFunctor :
-      ∀(f : { _1 : Type, _2 : Type } → Type) → Type
   , Identity :
       ∀(a : Type) → Type
-  , InternalHomFunctor :
-      ∀(f : { _1 : Type, _2 : Type } → Type) → Type
   , Lan :
       ∀(p : Type → Type) → ∀(f : Type → Type) → ∀(a : Type) → Type
   , Leibniz :
@@ -6929,8 +6753,8 @@ Sort
       ∀(m : Type) → Type
   , Star :
       ∀(m : Type → Type) → ∀(a : { _1 : Type, _2 : Type }) → Type
-  , Strong :
-      ∀(f : { _1 : Type, _2 : Type } → Type) → Type
+  , StrongFunctor :
+      ∀(f : Type → Type) → Type
   , Traversable :
       ∀(m : Type → Type) → ∀(f : Type → Type) → Type
   , Yoneda :
@@ -6995,7 +6819,23 @@ Sort
           object → Type
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
+  , product :
         ∀(a : { _1 : object, _2 : object })
       → (   ∀(r : Type)
           → (   ∀(z : object)
@@ -7035,7 +6875,23 @@ Sort
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -7050,7 +6906,23 @@ Sort
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
+  , product :
         ∀(a : { _1 : object, _2 : object })
       → (   ∀(r : Type)
           → (   ∀(z : object)
@@ -7077,7 +6949,19 @@ Sort
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -7115,7 +6999,19 @@ Sort
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -7223,8 +7119,6 @@ Sort
       → Type
   , Endofunctor :
       ∀(f : object → object) → Type
-  , HomFunctor :
-      ∀(f : { _1 : object, _2 : object } → Type) → Type
   , Identity :
       ∀(a : object) → object
   , Lan :
@@ -7266,8 +7160,6 @@ Sort
       → Type
   , Star :
       ∀(m : object → object) → ∀(a : { _1 : object, _2 : object }) → Type
-  , Strong :
-      ∀(f : { _1 : object, _2 : object } → Type) → Type
   , Traversable :
       ∀(m : object → object) → ∀(f : object → object) → Type
   , Yoneda :
@@ -7360,7 +7252,19 @@ Sort
       }
     )
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -7428,7 +7332,16 @@ Sort
 <dl>
 <dt>type</dt><dd><pre>
   ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : Type, _2 : Type })
+              → ∀(b : { _1 : Type, _2 : Type })
+              → { _1 : b._1 → a._1, _2 : a._2 → b._2 }
+              → (a._1 → a._2)
+              → b._1
+              → b._2
+          }
+      , product :
             ∀(a : { _1 : Type, _2 : Type })
           → (∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
           → a._1
@@ -7630,7 +7543,19 @@ Type
       }
     )
 → ∀ ( vCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : vObject, _2 : vObject })
+              → ∀(b : { _1 : vObject, _2 : vObject })
+              → { _1 :
+                    v.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    v.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → v.arrow a
+              → v.arrow b
+          }
+      , product :
             ∀(a : { _1 : vObject, _2 : vObject })
           → (   ∀(r : Type)
               → (   ∀(z : vObject)
@@ -7718,7 +7643,19 @@ Type
   ∀(cObject : Kind)
 → ∀(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
 → ∀ ( vCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : Type, _2 : Type })
+              → ∀(b : { _1 : Type, _2 : Type })
+              → { _1 :
+                    v.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    v.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → v.arrow a
+              → v.arrow b
+          }
+      , product :
             ∀(a : { _1 : Type, _2 : Type })
           → (   ∀(r : Type)
               → (   ∀(z : Type)
@@ -7893,7 +7830,19 @@ Type
       }
     )
 → ∀ ( cCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : cObject, _2 : cObject })
+              → ∀(b : { _1 : cObject, _2 : cObject })
+              → { _1 :
+                    c.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    c.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → c.arrow a
+              → c.arrow b
+          }
+      , product :
             ∀(a : { _1 : cObject, _2 : cObject })
           → (   ∀(r : Type)
               → (   ∀(z : cObject)
@@ -8056,7 +8005,19 @@ Type
       }
     )
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -8089,20 +8050,21 @@ Type
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀(cat : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+  ∀(cat : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : Type, _2 : Type })
+              → ∀(b : { _1 : Type, _2 : Type })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : Type, _2 : Type })
           → (   ∀(r : Type)
               → (   ∀(z : Type)
@@ -8226,7 +8188,16 @@ Type
 <dl>
 <dt>type</dt><dd><pre>
   ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : Type, _2 : Type })
+              → ∀(b : { _1 : Type, _2 : Type })
+              → { _1 : b._1 → a._1, _2 : a._2 → b._2 }
+              → (a._1 → a._2)
+              → b._1
+              → b._2
+          }
+      , product :
             ∀(a : { _1 : Type, _2 : Type })
           → (∀(r : Type) → (∀(z : Type) → (z → a._2) → (a._1 → z) → r) → r)
           → a._1
@@ -8365,7 +8336,19 @@ Type
       }
     )
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : cObject, _2 : cObject })
+              → ∀(b : { _1 : cObject, _2 : cObject })
+              → { _1 :
+                    c.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    c.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → c.arrow a
+              → c.arrow b
+          }
+      , product :
             ∀(a : { _1 : cObject, _2 : cObject })
           → (   ∀(r : Type)
               → (   ∀(z : cObject)
@@ -8429,7 +8412,19 @@ Type
   ∀(cObject : Kind)
 → ∀(d : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
 → ∀ ( dSemigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : Type, _2 : Type })
+              → ∀(b : { _1 : Type, _2 : Type })
+              → { _1 :
+                    d.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    d.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → d.arrow a
+              → d.arrow b
+          }
+      , product :
             ∀(a : { _1 : Type, _2 : Type })
           → (   ∀(r : Type)
               → (   ∀(z : Type)
@@ -8475,7 +8470,23 @@ Type
     )
 → ∀(cat : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : Type, _2 : Type })
+              → ∀(b : { _1 : Type, _2 : Type })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
+      , product :
             ∀(a : { _1 : Type, _2 : Type })
           → (   ∀(r : Type)
               → (   ∀(z : Type)
@@ -9259,6 +9270,18 @@ Type
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -9266,15 +9289,6 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → { _1 :
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 :
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-          → cat.arrow { _1 = cat.product a, _2 = cat.product b }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -9293,6 +9307,17 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow { _1 = cat.product a, _2 = cat.product b }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -9462,6 +9487,18 @@ Type
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -9469,15 +9506,6 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → { _1 :
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 :
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-          → cat.arrow { _1 = cat.product a, _2 = cat.product b }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -9496,6 +9524,17 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow { _1 = cat.product a, _2 = cat.product b }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -9660,7 +9699,19 @@ Type
       }
     )
 → ∀ ( dCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : dObject, _2 : dObject })
+              → ∀(b : { _1 : dObject, _2 : dObject })
+              → { _1 :
+                    d.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    d.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → d.arrow a
+              → d.arrow b
+          }
+      , product :
             ∀(a : { _1 : dObject, _2 : dObject })
           → (   ∀(r : Type)
               → (   ∀(z : dObject)
@@ -9718,7 +9769,19 @@ Type
       }
     )
 → ∀ ( cCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : cObject, _2 : cObject })
+              → ∀(b : { _1 : cObject, _2 : cObject })
+              → { _1 :
+                    c.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    c.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → c.arrow a
+              → c.arrow b
+          }
+      , product :
             ∀(a : { _1 : cObject, _2 : cObject })
           → (   ∀(r : Type)
               → (   ∀(z : cObject)
@@ -9966,7 +10029,19 @@ Type
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -10044,124 +10119,6 @@ Type
             cat.arrow { _1 = a, _2 = b }
         , _2 =
             cat.arrow { _1 = f a, _2 = f b }
-        }
-  }
-</pre></dd>
-</dl>
-<h4>Hom (type)</h4>
-<p>{- This, specialized to `Type ../Category/Set/type`, is equivalent to Haskell’s
-  `Profunctor`. Not to be confused with Dhall’s `./Profunctor`, which is more
-   general.
--}</p>
-<dl>
-<dt>kind</dt><dd><pre>
-  ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      }
-    )
-→ ∀(f : { _1 : object, _2 : object } → Type)
-→ Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-  λ(object : Kind)
-→ λ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ λ ( cat
-    : { arrow :
-          { _1 : object, _2 : object } → Type
-      , constraint :
-          object → Type
-      }
-    )
-→ λ(f : { _1 : object, _2 : object } → Type)
-→ { map :
-        ∀(a : { _1 : object, _2 : object })
-      → ∀(b : { _1 : object, _2 : object })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                cat.arrow { _1 = b._1, _2 = a._1 }
-            , _2 =
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            v.arrow { _1 = f a, _2 = f b }
-        }
-  }
-</pre></dd>
-</dl>
-<h4>InternalHom (type)</h4>
-<p>{- This, specialized to `Type ../Category/Set/type`, is equivalent to Haskell’s
-  `Profunctor`. Not to be confused with Dhall’s `./Profunctor`, which is more
-   general.
--}</p>
-<dl>
-<dt>kind</dt><dd><pre>
-  ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀(f : { _1 : Type, _2 : Type } → Type)
-→ Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-  λ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ λ(f : { _1 : Type, _2 : Type } → Type)
-→ { map :
-        ∀(a : { _1 : Type, _2 : Type })
-      → ∀(b : { _1 : Type, _2 : Type })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                v.arrow { _1 = b._1, _2 = a._1 }
-            , _2 =
-                v.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            v.arrow { _1 = f a, _2 = f b }
         }
   }
 </pre></dd>
@@ -10462,9 +10419,9 @@ Type
 </dl>
 <h3 style="background-color: #bbb; width: 100%">./Functor/Profunctor</h3>
 <h4>Type (type)</h4>
-<p>{- A profunctor `C ↛ D` is represented as the bifunctor `(D^op, C) → Set`. This
-   is much more general than Haskell’s `Profunctor`. See `Hom` and `InternalHom`
-   for that.
+<p>{- A profunctor `𝒞 ↛ 𝒟` is represented as the bifunctor `(𝒟^op, 𝒞) → 𝒱`. This is
+   much more general than Haskell’s `Profunctor`. It also requires that 𝒱 is
+   closed.
 -}</p>
 <dl>
 <dt>kind</dt><dd><pre>
@@ -10651,7 +10608,19 @@ Type
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -10684,6 +10653,63 @@ Type
             → ∀(b : object)
             → ∀(fn : cat.arrow { _1 = a, _2 = n b })
             → cat.arrow { _1 = f a, _2 = f b }
+        }
+  }
+</pre></dd>
+</dl>
+<h3 style="background-color: #bbb; width: 100%">./Functor/Strong</h3>
+<h4>Type (type)</h4>
+<p></p>
+<dl>
+<dt>kind</dt><dd><pre>
+  ∀(object : Kind)
+→ ∀(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ ∀ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , product :
+          { _1 : object, _2 : object } → object
+      , unit :
+          object
+      }
+    )
+→ ∀(f : object → object)
+→ Type
+</pre></dd>
+<dt>type</dt><dd><pre>
+  λ(object : Kind)
+→ λ(v : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
+→ λ ( cat
+    : { arrow :
+          { _1 : object, _2 : object } → Type
+      , constraint :
+          object → Type
+      , product :
+          { _1 : object, _2 : object } → object
+      , unit :
+          object
+      }
+    )
+→ λ(f : object → object)
+→ { map :
+        ∀(a : object)
+      → ∀(b : object)
+      → v.arrow
+        { _1 =
+            cat.arrow { _1 = a, _2 = b }
+        , _2 =
+            cat.arrow { _1 = f a, _2 = f b }
+        }
+  , strengthen :
+        ∀(a : object)
+      → ∀(b : object)
+      → cat.arrow
+        { _1 =
+            cat.product { _1 = a, _2 = f b }
+        , _2 =
+            f (cat.product { _1 = a, _2 = b })
         }
   }
 </pre></dd>
@@ -10766,7 +10792,19 @@ Type
       }
     )
 → ∀ ( cCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : cObject, _2 : cObject })
+              → ∀(b : { _1 : cObject, _2 : cObject })
+              → { _1 :
+                    c.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    c.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → c.arrow a
+              → c.arrow b
+          }
+      , product :
             ∀(a : { _1 : cObject, _2 : cObject })
           → (   ∀(r : Type)
               → (   ∀(z : cObject)
@@ -11094,6 +11132,18 @@ Type
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -11101,15 +11151,6 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → { _1 :
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 :
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-          → cat.arrow { _1 = cat.product a, _2 = cat.product b }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -11128,6 +11169,17 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow { _1 = cat.product a, _2 = cat.product b }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -11537,6 +11589,18 @@ Type
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -11544,15 +11608,6 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → { _1 :
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 :
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-          → cat.arrow { _1 = cat.product a, _2 = cat.product b }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -11571,6 +11626,17 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow { _1 = cat.product a, _2 = cat.product b }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -11624,6 +11690,18 @@ Type
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -11631,15 +11709,6 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → { _1 :
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 :
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-          → cat.arrow { _1 = cat.product a, _2 = cat.product b }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -11658,6 +11727,17 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow { _1 = cat.product a, _2 = cat.product b }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -11711,6 +11791,18 @@ Type
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -11718,15 +11810,6 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → { _1 :
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 :
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-          → cat.arrow { _1 = cat.product a, _2 = cat.product b }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -11745,6 +11828,17 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow { _1 = cat.product a, _2 = cat.product b }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -11823,7 +11917,23 @@ Type
       }
     )
 → λ(morphism : { _1 : object, _2 : object } → Type)
-→ { inverse :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+            }
+      }
+  , inverse :
       ∀(a : { _1 : object, _2 : object }) → morphism a → morphism a
   , product :
         ∀(a : { _1 : object, _2 : object })
@@ -11869,17 +11979,6 @@ Type
 <dl>
 <dt>type</dt><dd><pre>
   ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
 → ∀ ( cat
     : { arrow :
           { _1 : object, _2 : object } → Type
@@ -11888,7 +11987,19 @@ Type
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -11923,17 +12034,6 @@ Type
 <dl>
 <dt>type</dt><dd><pre>
   ∀(object : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
 → ∀ ( cat
     : { arrow :
           { _1 : object, _2 : object } → Type
@@ -11942,7 +12042,19 @@ Type
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -11979,7 +12091,19 @@ Type
       }
     )
 → ∀ ( vCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : vObject, _2 : vObject })
+              → ∀(b : { _1 : vObject, _2 : vObject })
+              → { _1 :
+                    v.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    v.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → v.arrow a
+              → v.arrow b
+          }
+      , product :
             ∀(a : { _1 : vObject, _2 : vObject })
           → (   ∀(r : Type)
               → (   ∀(z : vObject)
@@ -12045,7 +12169,19 @@ Type
       }
     )
 → ∀ ( category
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -12082,7 +12218,8 @@ Type
 </pre></dd>
 </dl>
 <h4>Type (type)</h4>
-<p></p>
+<p>{- The 2-morphism in the 2-category 𝐂𝐚𝐭.
+-}</p>
 <dl>
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
@@ -12158,7 +12295,19 @@ Type
       }
     )
 → ∀ ( cpSemigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : cpObject, _2 : cpObject })
+              → ∀(b : { _1 : cpObject, _2 : cpObject })
+              → { _1 :
+                    cp.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cp.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cp.arrow a
+              → cp.arrow b
+          }
+      , product :
             ∀(a : { _1 : cpObject, _2 : cpObject })
           → (   ∀(r : Type)
               → (   ∀(z : cpObject)
@@ -12205,7 +12354,23 @@ Type
     )
 → ∀(cat : { arrow : { _1 : Type, _2 : Type } → Type, constraint : Type → Type })
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : Type, _2 : Type })
+              → ∀(b : { _1 : Type, _2 : Type })
+              → v.arrow
+                { _1 =
+                    v.product
+                    { _1 =
+                        cat.arrow { _1 = b._1, _2 = a._1 }
+                    , _2 =
+                        cat.arrow { _1 = a._2, _2 = b._2 }
+                    }
+                , _2 =
+                    v.arrow { _1 = cat.arrow a, _2 = cat.arrow b }
+                }
+          }
+      , product :
             ∀(a : { _1 : Type, _2 : Type })
           → (   ∀(r : Type)
               → (   ∀(z : Type)
@@ -12481,17 +12646,6 @@ Type
 <dt>type</dt><dd><pre>
   ∀(cObject : Kind)
 → ∀(dObject : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
 → ∀ ( c
     : { arrow :
           { _1 : cObject, _2 : cObject } → Type
@@ -12507,7 +12661,19 @@ Type
       }
     )
 → ∀ ( dCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : dObject, _2 : dObject })
+              → ∀(b : { _1 : dObject, _2 : dObject })
+              → { _1 :
+                    d.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    d.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → d.arrow a
+              → d.arrow b
+          }
+      , product :
             ∀(a : { _1 : dObject, _2 : dObject })
           → (   ∀(r : Type)
               → (   ∀(z : dObject)
@@ -12522,7 +12688,34 @@ Type
           ∀(a : dObject) → d.arrow { _1 = a, _2 = a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : cObject, _2 : cObject })
+          → ∀(b : { _1 : cObject, _2 : cObject })
+          → ∀ ( f
+              : { _1 :
+                    { subst :
+                          ∀(f : cObject → dObject)
+                        → d.arrow { _1 = f b._1, _2 = f a._1 }
+                    }
+                , _2 :
+                    { subst :
+                          ∀(f : cObject → dObject)
+                        → d.arrow { _1 = f a._2, _2 = f b._2 }
+                    }
+                }
+              )
+          → ∀ ( fn
+              : { subst :
+                      ∀(f : cObject → dObject)
+                    → d.arrow { _1 = f a._1, _2 = f a._2 }
+                }
+              )
+          → { subst :
+                ∀(f : cObject → dObject) → d.arrow { _1 = f b._1, _2 = f b._2 }
+            }
+      }
+  , product :
         ∀(a : { _1 : cObject, _2 : cObject })
       → ∀ ( p
           :   ∀(r : Type)
@@ -12711,6 +12904,13 @@ Type
 → { product : cat.arrow (cat.product m m) m }
 </pre></dd>
 </dl>
+<h4>Sort (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+Sort
+</pre></dd>
+</dl>
 <h4>Type (type)</h4>
 <p></p>
 <dl>
@@ -12819,7 +13019,19 @@ Type
       }
     )
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -12869,7 +13081,19 @@ Type
       }
     )
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -13115,6 +13339,17 @@ Type
 → { product : cat.arrow (cat.product m m) m, unit : m }
 </pre></dd>
 </dl>
+<h4>Sort (term)</h4>
+<p>{- TODO: Unfortunately, we don’t have the common kind-level units available. So
+         rather than making a type that can’t be used, we just stick with
+         Semigroup, and let the desired type be _named_ even if it can’t be
+         implemented yet.
+-}</p>
+<dl>
+<dt>type</dt><dd><pre>
+Sort
+</pre></dd>
+</dl>
 <h4>Type (type)</h4>
 <p></p>
 <dl>
@@ -13325,18 +13560,7 @@ Type
 <p></p>
 <dl>
 <dt>type</dt><dd><pre>
-  ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀(cObject : Kind)
+  ∀(cObject : Kind)
 → ∀ ( c
     : { arrow :
           { _1 : cObject, _2 : cObject } → Type
@@ -13353,7 +13577,19 @@ Type
       }
     )
 → ∀ ( dCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : dObject, _2 : dObject })
+              → ∀(b : { _1 : dObject, _2 : dObject })
+              → { _1 :
+                    d.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    d.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → d.arrow a
+              → d.arrow b
+          }
+      , product :
             ∀(a : { _1 : dObject, _2 : dObject })
           → (   ∀(r : Type)
               → (   ∀(z : dObject)
@@ -13368,7 +13604,22 @@ Type
           ∀(a : dObject) → d.arrow { _1 = a, _2 = a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : cObject → dObject, _2 : cObject → dObject })
+          → ∀(b : { _1 : cObject → dObject, _2 : cObject → dObject })
+          → ∀ ( f
+              : { _1 :
+                    ∀(a : cObject) → d.arrow { _1 = b._1 a, _2 = a@1._1 a }
+                , _2 :
+                    ∀(a : cObject) → d.arrow { _1 = a@1._2 a, _2 = b._2 a }
+                }
+              )
+          → ∀(fn : ∀(a : cObject) → d.arrow { _1 = a@1._1 a, _2 = a@1._2 a })
+          → ∀(i : cObject)
+          → d.arrow { _1 = b._1 i, _2 = b._2 i }
+      }
+  , product :
         ∀(a : { _1 : cObject → dObject, _2 : cObject → dObject })
       → ∀ ( p
           :   ∀(r : Type)
@@ -13577,7 +13828,19 @@ Type
       }
     )
 → ∀ ( cpSemigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : cpObject, _2 : cpObject })
+              → ∀(b : { _1 : cpObject, _2 : cpObject })
+              → { _1 :
+                    cp.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cp.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cp.arrow a
+              → cp.arrow b
+          }
+      , product :
             ∀(a : { _1 : cpObject, _2 : cpObject })
           → (   ∀(r : Type)
               → (   ∀(z : cpObject)
@@ -13625,7 +13888,19 @@ Type
       }
     )
 → ∀ ( dSemigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : dObject, _2 : dObject })
+              → ∀(b : { _1 : dObject, _2 : dObject })
+              → { _1 :
+                    d.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    d.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → d.arrow a
+              → d.arrow b
+          }
+      , product :
             ∀(a : { _1 : dObject, _2 : dObject })
           → (   ∀(r : Type)
               → (   ∀(z : dObject)
@@ -14476,6 +14751,18 @@ Type
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -14483,15 +14770,6 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → { _1 :
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 :
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-          → cat.arrow { _1 = cat.product a, _2 = cat.product b }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -14510,6 +14788,17 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow { _1 = cat.product a, _2 = cat.product b }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -14571,6 +14860,18 @@ Type
                     cat.product { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
                 }
             }
+      , hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
       , leftIdentity :
             ∀(a : object)
           → { from :
@@ -14578,15 +14879,6 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = cat.unit, _2 = a }, _2 = a }
             }
-      , map :
-            ∀(a : { _1 : object, _2 : object })
-          → ∀(b : { _1 : object, _2 : object })
-          → { _1 :
-                cat.arrow { _1 = a._1, _2 = b._1 }
-            , _2 :
-                cat.arrow { _1 = a._2, _2 = b._2 }
-            }
-          → cat.arrow { _1 = cat.product a, _2 = cat.product b }
       , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
@@ -14605,6 +14897,17 @@ Type
             , to :
                 cat.arrow { _1 = cat.product { _1 = a, _2 = cat.unit }, _2 = a }
             }
+      , tensor :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = a._1, _2 = b._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow { _1 = cat.product a, _2 = cat.product b }
+          }
       , unit :
           ∀(a : object) → cat.arrow { _1 = a, _2 = a }
       }
@@ -14826,6 +15129,13 @@ Type
 → { product : cat.arrow (cat.product m m) m }
 </pre></dd>
 </dl>
+<h4>Sort (term)</h4>
+<p></p>
+<dl>
+<dt>type</dt><dd><pre>
+Sort
+</pre></dd>
+</dl>
 <h4>Type (type)</h4>
 <p></p>
 <dl>
@@ -14873,7 +15183,19 @@ Type
       }
     )
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -14950,7 +15272,12 @@ Type
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Semigroupoid</h2>
 <h4>Type (type)</h4>
-<p></p>
+<p>{- FIXME: The `hom` profunctor should be implementable generically, however I
+          can‘t currently get it to compile with Dhall, so it’s a member here,
+          and every implementation is basically a copy/paste of
+         `compose (compose f g) h`. Embedding the definition here also basically
+          forces every category to be enriched over 𝐒𝐞𝐭.
+-}</p>
 <dl>
 <dt>kind</dt><dd><pre>
   ∀(object : Kind)
@@ -14996,7 +15323,23 @@ Type
       }
     )
 → λ(m : { _1 : object, _2 : object } → Type)
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → v.arrow
+            { _1 =
+                v.product
+                { _1 =
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 =
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+            , _2 =
+                v.arrow { _1 = m a, _2 = m b }
+            }
+      }
+  , product :
         ∀(a : { _1 : object, _2 : object })
       → (   ∀(r : Type)
           → (   ∀(z : object)
@@ -15318,7 +15661,19 @@ Type
       }
     )
 → ∀ ( semigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : object, _2 : object })
+              → ∀(b : { _1 : object, _2 : object })
+              → { _1 :
+                    cat.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → cat.arrow a
+              → cat.arrow b
+          }
+      , product :
             ∀(a : { _1 : object, _2 : object })
           → (   ∀(r : Type)
               → (   ∀(z : object)
@@ -15347,7 +15702,21 @@ Type
           ∀(a : object) → cat.arrow { _1 = a, _2 = m a }
       }
     )
-→ { product :
+→ { hom :
+      { map :
+            ∀(a : { _1 : object, _2 : object })
+          → ∀(b : { _1 : object, _2 : object })
+          → ∀ ( f
+              : { _1 :
+                    cat.arrow { _1 = b._1, _2 = m a._1 }
+                , _2 :
+                    cat.arrow { _1 = a._2, _2 = m b._2 }
+                }
+              )
+          → ∀(fn : cat.arrow { _1 = a._1, _2 = m a._2 })
+          → cat.arrow { _1 = b._1, _2 = m b._2 }
+      }
+  , product :
         ∀(a : { _1 : object, _2 : object })
       → ∀ ( p
           :   ∀(r : Type)
@@ -15372,181 +15741,6 @@ Type
 </pre></dd>
 <dt>type</dt><dd><pre>
 <>
-</pre></dd>
-</dl>
-<h2 style="background-color: #bbb; width: 100%">./Strong</h2>
-<h4>Type (type)</h4>
-<p></p>
-<dl>
-<dt>kind</dt><dd><pre>
-  ∀(cObject : Kind)
-→ ∀(dObject : Kind)
-→ ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀ ( c
-    : { arrow :
-          { _1 : cObject, _2 : cObject } → Type
-      , constraint :
-          cObject → Type
-      }
-    )
-→ ∀ ( d
-    : { arrow :
-          { _1 : dObject, _2 : dObject } → Type
-      , constraint :
-          dObject → Type
-      }
-    )
-→ ∀(f : { _1 : dObject, _2 : cObject } → Type)
-→ Type
-</pre></dd>
-<dt>type</dt><dd><pre>
-  λ(cObject : Kind)
-→ λ(dObject : Kind)
-→ λ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ λ ( c
-    : { arrow :
-          { _1 : cObject, _2 : cObject } → Type
-      , constraint :
-          cObject → Type
-      }
-    )
-→ λ ( d
-    : { arrow :
-          { _1 : dObject, _2 : dObject } → Type
-      , constraint :
-          dObject → Type
-      }
-    )
-→ λ(f : { _1 : dObject, _2 : cObject } → Type)
-→ { lmap :
-        ∀(h : dObject)
-      → ∀(i : dObject)
-      → ∀(j : cObject)
-      → d.arrow { _1 = i, _2 = h }
-      → f { _1 = h, _2 = j }
-      → f { _1 = i, _2 = j }
-  , map :
-        ∀(a : { _1 : dObject, _2 : cObject })
-      → ∀(b : { _1 : dObject, _2 : cObject })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                d.arrow { _1 = b._1, _2 = a._1 }
-            , _2 =
-                c.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            v.arrow { _1 = f a, _2 = f b }
-        }
-  , rmap :
-        ∀(h : dObject)
-      → ∀(i : cObject)
-      → ∀(j : cObject)
-      → c.arrow { _1 = i, _2 = j }
-      → f { _1 = h, _2 = i }
-      → f { _1 = h, _2 = j }
-  }
-</pre></dd>
-</dl>
-<h4>extractProfunctor (term)</h4>
-<p></p>
-<dl>
-<dt>type</dt><dd><pre>
-  ∀ ( v
-    : { arrow :
-          { _1 : Type, _2 : Type } → Type
-      , constraint :
-          Type → Type
-      , product :
-          { _1 : Type, _2 : Type } → Type
-      , unit :
-          Type
-      }
-    )
-→ ∀(cObject : Kind)
-→ ∀ ( c
-    : { arrow :
-          { _1 : cObject, _2 : cObject } → Type
-      , constraint :
-          cObject → Type
-      }
-    )
-→ ∀(dObject : Kind)
-→ ∀ ( d
-    : { arrow :
-          { _1 : dObject, _2 : dObject } → Type
-      , constraint :
-          dObject → Type
-      }
-    )
-→ ∀(f : { _1 : dObject, _2 : cObject } → Type)
-→ ∀ ( strong
-    : { lmap :
-            ∀(h : dObject)
-          → ∀(i : dObject)
-          → ∀(j : cObject)
-          → d.arrow { _1 = i, _2 = h }
-          → f { _1 = h, _2 = j }
-          → f { _1 = i, _2 = j }
-      , map :
-            ∀(a : { _1 : dObject, _2 : cObject })
-          → ∀(b : { _1 : dObject, _2 : cObject })
-          → v.arrow
-            { _1 =
-                v.product
-                { _1 =
-                    d.arrow { _1 = b._1, _2 = a._1 }
-                , _2 =
-                    c.arrow { _1 = a._2, _2 = b._2 }
-                }
-            , _2 =
-                v.arrow { _1 = f a, _2 = f b }
-            }
-      , rmap :
-            ∀(h : dObject)
-          → ∀(i : cObject)
-          → ∀(j : cObject)
-          → c.arrow { _1 = i, _2 = j }
-          → f { _1 = h, _2 = i }
-          → f { _1 = h, _2 = j }
-      }
-    )
-→ { map :
-        ∀(a : { _1 : dObject, _2 : cObject })
-      → ∀(b : { _1 : dObject, _2 : cObject })
-      → v.arrow
-        { _1 =
-            v.product
-            { _1 =
-                d.arrow { _1 = b._1, _2 = a._1 }
-            , _2 =
-                c.arrow { _1 = a._2, _2 = b._2 }
-            }
-        , _2 =
-            v.arrow { _1 = f a, _2 = f b }
-        }
-  }
 </pre></dd>
 </dl>
 <h2 style="background-color: #bbb; width: 100%">./Text</h2>
@@ -15719,7 +15913,19 @@ Type
       }
     )
 → ∀ ( cSemigroupoid
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : cObject, _2 : cObject })
+              → ∀(b : { _1 : cObject, _2 : cObject })
+              → { _1 :
+                    c.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    c.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → c.arrow a
+              → c.arrow b
+          }
+      , product :
             ∀(a : { _1 : cObject, _2 : cObject })
           → (   ∀(r : Type)
               → (   ∀(z : cObject)
@@ -15775,7 +15981,19 @@ Type
       }
     )
 → ∀ ( dCategory
-    : { product :
+    : { hom :
+          { map :
+                ∀(a : { _1 : dObject, _2 : dObject })
+              → ∀(b : { _1 : dObject, _2 : dObject })
+              → { _1 :
+                    d.arrow { _1 = b._1, _2 = a._1 }
+                , _2 :
+                    d.arrow { _1 = a._2, _2 = b._2 }
+                }
+              → d.arrow a
+              → d.arrow b
+          }
+      , product :
             ∀(a : { _1 : dObject, _2 : dObject })
           → (   ∀(r : Type)
               → (   ∀(z : dObject)
