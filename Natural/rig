@@ -1,23 +1,26 @@
 {- TODO: Should be a Rig/Commutative -}
-let object = Type
+let cat = ./../Category/Cat/semigroupal
 
-let cat =
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+let vObject = Type
+
+let Set =
+      ./../Category/Monoidal/Cartesian/extractMonoidal
+      cat
+      vObject
+      Type
+      ./../Category/Set/monoidal/cartesian
 
 in    { additive =
-          { identity =
+          { unit =
               λ(_ : {}) → 0
-          , op =
+          , product =
               λ(t : { _1 : Natural, _2 : Natural }) → t._1 + t._2
           }
       , multiplicative =
-          { identity =
+          { unit =
               λ(_ : {}) → 1
-          , op =
+          , product =
               λ(t : { _1 : Natural, _2 : Natural }) → t._1 * t._2
           }
       }
-    : ./../Rig/Type sha256:3baff106e4b8032968b2fe0645306289090cac86c85317ab4281353146780a27
-      object
-      cat
-      Natural
+    : ./../Rig/Type Type Set Natural

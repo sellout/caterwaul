@@ -1,6 +1,3 @@
-  λ(kArrow : Kind → Kind → Kind)
+  λ(cat : ./../../Sort)
 → λ(object : Kind)
-→ ./../../Cartesian/Kind sha256:edee9e2d33baceab0581ad04ccc9e63f17f259d7ae782533fb53d39b49988b80
-  kArrow
-  object
-  object
+→ ./../../Cartesian/Kind cat object object

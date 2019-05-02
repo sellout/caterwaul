@@ -1,0 +1,10 @@
+let kCat = ./../../Category/Cat/semigroupal
+
+let MonoidalCategory = ./../../Category/Monoidal/Kind kCat
+
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(cat : MonoidalCategory vObject object)
+    → λ(m : object)
+    → { complement : cat.arrow { _1 = m, _2 = m } } ⩓ ./../Type object cat m

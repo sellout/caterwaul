@@ -1,3 +1,1 @@
-  { eq = λ(x : Bool) → λ(y : Bool) → x == y }
-: ./../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
-  Bool
+{ eq = λ(x : Bool) → λ(y : Bool) → x == y } : ./../Eq/Type Bool

@@ -1,23 +1,16 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
-let MonoidalCategory =
-      ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-      kArrow
-      kProduct
+let MonoidalCategory = ./../Category/Monoidal/Kind cat
 
 in    λ(cObject : Kind)
     → λ(v : MonoidalCategory Type vObject)
     → λ(c : MonoidalCategory vObject cObject)
-    → λ(f : kArrow cObject vObject)
-    → λ(g : kArrow cObject vObject)
+    → λ(f : cat.arrow cObject vObject)
+    → λ(g : cat.arrow cObject vObject)
     → λ(a : cObject)
     → λ(r : vObject)
     →   ∀(b : { _1 : cObject, _2 : cObject })
-      → c.arrow { _1 = c.op b, _2 = a }
-      → v.arrow { _1 = v.op { _1 = f b._1, _2 = g b._2 }, _2 = r }
+      → c.arrow { _1 = c.product b, _2 = a }
+      → v.arrow { _1 = v.product { _1 = f b._1, _2 = g b._2 }, _2 = r }

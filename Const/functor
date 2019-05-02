@@ -1,38 +1,19 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
 let v =
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Category/Monoidal/Cartesian/extractMonoidal
+      cat
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian
 
-in    λ ( cObject
-        : Kind
-        )
-    → λ ( c
-        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-          kArrow
-          kProduct
-          vObject
-          cObject
-        )
-    → λ ( cCategory
-        : ./../Category/Type sha256:b5245b1f92f65f1b72bbfac6c53ebc19dc3c778b775b19ea4ad73fa6d2569dcb
-          cObject
-          v
-          c
-        )
+in    λ(cObject : Kind)
+    → λ(c : ./../Category/Kind cat vObject cObject)
+    → λ(cCategory : ./../Category/Type cObject v c)
     → λ(dObject : Kind)
-    → λ ( d
-        : ./../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-          kArrow
-          kProduct
-          vObject
-          dObject
-        )
+    → λ(d : ./../Category/Kind cat vObject dObject)
     →   { map =
               λ(a : { _1 : cObject, _2 : dObject })
             → λ(b : { _1 : cObject, _2 : dObject })
@@ -45,7 +26,7 @@ in    λ ( cObject
                 )
             → f._1
         }
-      : ./../Functor/Bifunctor/Type sha256:36f2a4b32c8e3b6a9a6d24d1289772f6aed01f9b314c9c8c5624e2dc42695d30
+      : ./../Functor/Bifunctor/Type
         vObject
         cObject
         dObject
@@ -54,7 +35,4 @@ in    λ ( cObject
         c
         d
         c
-        ( ./Type sha256:afc07425afed62cb4caa3f39fad3d935f236f71c056585b7dc4f1c7ecba31dbc
-          cObject
-          dObject
-        )
+        (./Type cObject dObject)

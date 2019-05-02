@@ -1,13 +1,6 @@
-{- NB: `identity` would ideally be defined with `: kArrow kIdentity m`, but
+{- NB: `unit` would ideally be defined with `: cat.arrow cat.unit m`, but
        there’s no Kind-level `{}` to use there.
 -}
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : ./../Category/Monoidal/Sort)
 → λ(m : Kind)
-→   { identity :
-        m
-    }
-  ⩓ ./../Quasigroup/Kind sha256:924074dd7fad2020dac935df468149c138c53a3ed040a54a4827646739c210bb
-    kArrow
-    kProduct
-    m
+→ { unit : m } ⩓ ./../Quasigroup/Kind cat m

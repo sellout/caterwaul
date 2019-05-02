@@ -1,35 +1,20 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
-let setObject = Type
+let Set = ./../Category/Set/monoidal/cartesian
 
-let Set =
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+let base = ./../Category/Monoidal/Cartesian/extractCategory cat vObject Type Set
 
-let base =
-      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-      kArrow
-      kProduct
-      vObject
-      setObject
-      Set
-
-in    λ ( a
-        : Type
-        )
-    →   { identity =
-            λ(b : setObject) → λ(tup : Set.op { _1 = a, _2 = b }) → tup._2
-        , op =
-              λ(b : setObject)
-            → λ(tup : Set.op { _1 = a, _2 = b })
+in    λ(a : Type)
+    →   { unit =
+            λ(b : Type) → λ(tup : Set.product { _1 = a, _2 = b }) → tup._2
+        , product =
+              λ(b : Type)
+            → λ(tup : Set.product { _1 = a, _2 = b })
             → { _1 = tup._1, _2 = tup }
         }
-      : ./../Comonad/Type sha256:a197cedf53d6fab62ebbf59d0139b243e3bd71ff5a4b1bbfd9bd3b476762f9b7
-        setObject
+      : ./../Comonad/Type
+        Type
         base
-        (λ(b : setObject) → Set.op { _1 = a, _2 = b })
+        (λ(b : Type) → Set.product { _1 = a, _2 = b })

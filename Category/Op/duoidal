@@ -1,37 +1,11 @@
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let kCat = ./../Cat/semigroupal
 
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
-
-in    λ ( vObject
-        : Kind
-        )
+in    λ(vObject : Kind)
     → λ(object : Kind)
-    → λ ( cat
-        : ./../Duoidal/Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
-          kArrow
-          kProduct
+    → λ(cat : ./../Duoidal/Kind kCat vObject object)
+    →     { diamond = cat.diamond, star = cat.star }
+        ∧ ./Kind
           vObject
           object
-        )
-    →     { additive =
-              cat.additive
-          , multiplicative =
-              cat.multiplicative
-          }
-        ∧ ./Kind sha256:e9734284b447322a4da84aed6be9d3c9df5ed65f9428ad99e6b519ebe13a4c0a
-          vObject
-          object
-          ( ./../Duoidal/extractCategory sha256:13edc37f9a72c61a67d57688ffa461b3bbfe2abb8ece6498ed0b42f160905db2
-            kArrow
-            kProduct
-            vObject
-            object
-            cat
-          )
-      : ./../Duoidal/Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
-        kArrow
-        kProduct
-        vObject
-        object
+          (./../Duoidal/extractCategory kCat vObject object cat)
+      : ./../Duoidal/Kind kCat vObject object

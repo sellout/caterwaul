@@ -1,24 +1,9 @@
-{- FIXME: Should be able to do `duoidal.{ arrow, op }`, but Dhall doesn’t like
+{- FIXME: Should be able to do `duoidal.{ arrow, product }`, but Dhall doesn’t like
           that for some reason.
 -}
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : ./../Monoidal/Sort)
 → λ(vObject : Kind)
 → λ(object : Kind)
-→ λ ( duoidal
-    : ./Kind sha256:305fbe8b5acbd3df07c4ea2a4f29c3765d5a4ddf8a640cc121f0ce303b311e85
-      kArrow
-      kProduct
-      vObject
-      object
-    )
-→   { constraint =
-        duoidal.constraint
-    , arrow =
-        duoidal.arrow
-    }
-  : ./../Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-    kArrow
-    kProduct
-    vObject
-    object
+→ λ(duoidal : ./Kind cat vObject object)
+→   { constraint = duoidal.constraint, arrow = duoidal.arrow }
+  : ./../Kind cat vObject object

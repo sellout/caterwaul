@@ -1,8 +1,12 @@
-  λ(a : Type)
-→ ./../Monoid/extractSemigroup sha256:4b5ff7433a08e9031f92fe19b46bfe1f5952956040d78858e908f702782c9856
-  Type
-  ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
-  (List a)
-  ( ./monoid sha256:1ccb3738f59ba4aa9255fbe26a62141fb44097012365f16f8a4a5bfae9aad4d1
-    a
-  )
+let cat = ./../Category/Cat/semigroupal
+
+let vObject = Type
+
+let Set =
+      ./../Category/Monoidal/Cartesian/extractMonoidal
+      cat
+      vObject
+      Type
+      ./../Category/Set/monoidal/cartesian
+
+in  λ(a : Type) → ./../Monoid/extractSemigroup Type Set (List a) (./monoid a)

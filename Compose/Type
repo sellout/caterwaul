@@ -1,16 +1,18 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let cat = ./../Category/Cat/semigroupal
 
 in    λ(cObject : Kind)
     → λ(dObject : Kind)
     → λ(eObject : Kind)
-    →   (   λ(f : { _1 : kArrow dObject eObject, _2 : kArrow cObject dObject })
+    →   (   λ ( f
+              : { _1 :
+                    cat.arrow dObject eObject
+                , _2 :
+                    cat.arrow cObject dObject
+                }
+              )
           → λ(a : cObject)
           → f._1 (f._2 a)
         )
-      : kArrow
-        (kProduct (kArrow dObject eObject) (kArrow cObject dObject))
-        (kArrow cObject eObject)
+      : cat.arrow
+        (cat.product (cat.arrow dObject eObject) (cat.arrow cObject dObject))
+        (cat.arrow cObject eObject)

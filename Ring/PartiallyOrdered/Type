@@ -1,15 +1,17 @@
-let Set =
-      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+let cat = ./../../Category/Cat/semigroupal
 
-in    λ ( m
-        : Type
-        )
+let vObject = Type
+
+let Set =
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
+      cat
+      vObject
+      Type
+      ./../../Category/Set/monoidal/cartesian
+
+in    λ(m : Type)
     → { additive :
-          ./../../Group/PartiallyOrderedCommutative/Type sha256:51ca56ae40f3f0edeea6dde973c0009e6eb2ecd511374f31b438a368bf7d8cd0
-          m
+          ./../../Group/PartiallyOrderedCommutative/Type m
       , multiplicative :
-          ./../../Monoid/Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
-          Type
-          Set
-          m
+          ./../../Monoid/Type Type Set m
       }

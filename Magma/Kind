@@ -1,4 +1,3 @@
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : ./../Category/Semigroupal/Sort)
 → λ(m : Kind)
-→ { op : kArrow (kProduct m m) m }
+→ { product : cat.arrow (cat.product m m) m }

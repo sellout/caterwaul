@@ -1,9 +1,1 @@
-  λ(m : Type)
-→ λ ( group
-    : ./Type sha256:5917fd022b0a2614b362fc6beac71ec4303c8cf654e38985bda5a5705cc7bd00
-      m
-    )
-→   group.{ eq
-          }
-  : ./../../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
-    m
+λ(m : Type) → λ(group : ./Type m) → group.{ eq } : ./../../Eq/Type m

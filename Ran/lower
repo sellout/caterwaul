@@ -1,13 +1,8 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let cat = ./../Category/Cat/semigroupal
 
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let monoidalBase = ./../Category/Monoidal/Cartesian/extractMonoidal cat
 
-let base =
-      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-      kArrow
-      kProduct
+let base = ./../Category/Monoidal/extractCategory cat
 
 let vObject = Type
 
@@ -15,7 +10,7 @@ let v =
       base
       Type
       vObject
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      (monoidalBase Type vObject ./../Category/Set/monoidal/cartesian)
 
 let cObject = Type
 
@@ -23,32 +18,13 @@ let cpObject = Type
 
 let dObject = Type
 
-let c =
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+let c = monoidalBase vObject cObject ./../Category/Set/monoidal/cartesian
 
-let cp =
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+let cp = monoidalBase vObject cpObject ./../Category/Set/monoidal/cartesian
 
-in    λ ( p
-        : kArrow cObject cpObject
-        )
-    → λ ( monoidal
-        : ./../Functor/Monoidal/Type sha256:3fd0a2398dd1d3c0cb029ce034f09d4c1b6f51e622139f06ad1086ceea926567
-          cObject
-          v
-          c
-          cp
-          p
-        )
-    → λ(f : kArrow cObject dObject)
+in    λ(p : cat.arrow cObject cpObject)
+    → λ(monoidal : ./../Functor/Monoidal/Type cObject v c cp p)
+    → λ(f : cat.arrow cObject dObject)
     → λ(a : cpObject)
-    → λ ( ran
-        : ./Type sha256:14da02cb2fa4ad84be6ff3180eab70fe7c2055572124171e2ee754e2a6a72b33
-          cObject
-          cpObject
-          (base vObject cpObject cp)
-          p
-          f
-          a
-        )
-    → ran a (λ(x : a) → monoidal.identity a (λ(_ : c.identity) → x))
+    → λ(ran : ./Type cObject cpObject (base vObject cpObject cp) p f a)
+    → ran a (λ(x : a) → monoidal.unit a (λ(_ : c.unit) → x))

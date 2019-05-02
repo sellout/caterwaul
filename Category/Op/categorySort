@@ -1,0 +1,2 @@
+  λ(cat : ./../Sort)
+→ { arrow = λ(a : Kind) → λ(b : Kind) → cat.arrow b a } : ./../Sort

@@ -1,39 +1,28 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
-      kArrow
-      kProduct
+      ./../Category/Monoidal/Cartesian/extractSemigroupal
+      kCat
       vObject
       object
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Category/Set/monoidal/cartesian
 
-in    λ ( m
-        : object
-        )
-    → λ ( eq
-        : ./../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
-          m
-        )
-    → λ ( semigroup
-        : ./Type sha256:55c25eb9497197855d422125e85bac2769f31104b33c1ac1df40da0e4957990f
-          object
-          cat
-          m
-        )
+in    λ(m : object)
+    → λ(eq : ./../Eq/Type m)
+    → λ(semigroup : ./Type object cat m)
     → { associativity =
             λ(a : m)
           → λ(b : m)
           → λ(c : m)
           → eq.eq
-            (semigroup.op { _1 = semigroup.op { _1 = a, _2 = b }, _2 = c })
-            (semigroup.op { _1 = a, _2 = semigroup.op { _1 = b, _2 = c } })
+            ( semigroup.product
+              { _1 = semigroup.product { _1 = a, _2 = b }, _2 = c }
+            )
+            ( semigroup.product
+              { _1 = a, _2 = semigroup.product { _1 = b, _2 = c } }
+            )
       }

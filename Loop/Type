@@ -1,32 +1,12 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
-in    λ ( object
-        : Kind
-        )
-    → λ ( cat
-        : ./../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
-          vObject
-          object
-        )
+in    λ(object : Kind)
+    → λ(cat : ./../Category/Monoidal/Kind kCat vObject object)
     → λ(m : object)
-    →   { identity :
-            cat.arrow { _1 = cat.identity, _2 = m }
-        }
-      ⩓ ./../Quasigroup/Type sha256:d221ace2ade9db2740c190e31c706bdbd4f5e58bf635808be1c3ac271dcc8662
+    →   { unit : cat.arrow { _1 = cat.unit, _2 = m } }
+      ⩓ ./../Quasigroup/Type
         object
-        ( ./../Category/Monoidal/extractSemigroupal sha256:f514d5b9277f7d727be8a367e89c224c82cfc6fab5624132973a240d8e13c01e
-          kArrow
-          kProduct
-          vObject
-          object
-          cat
-        )
+        (./../Category/Monoidal/extractSemigroupal kCat vObject object cat)
         m

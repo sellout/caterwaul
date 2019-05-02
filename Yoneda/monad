@@ -2,12 +2,12 @@
 
 -- in    λ(f : Type → Type)
 --     → λ(monad : Monad f)
---     →   { identity =
+--     →   { unit =
 --               λ(a : Type)
 --             → λ(x : a)
 --             → λ(b : Type)
 --             → λ(f : a → b)
---             → monad.identity b (f x)
+--             → monad.unit b (f x)
 --         , bind =
 --               λ(a : Type)
 --             → λ(b : Type)

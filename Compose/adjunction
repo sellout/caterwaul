@@ -1,18 +1,16 @@
---     let kArrow = ./../Function/Kind
-
--- in  let kProduct = ./../Tuple/Kind
+--     let cat = ./../Category/Cat/semigroupal
 
 -- in    λ(bObject : Kind)
 --     → λ(cObject : Kind)
 --     → λ(dObject : Kind)
---     → λ(bArrow : kArrow (kProduct dObject dObject) Type)
---     → λ(cArrow : kArrow (kProduct cObject cObject) Type)
---     → λ(dArrow : kArrow (kProduct dObject dObject) Type)
---     → λ(f : kArrow dObject cObject)
---     → λ(g : kArrow cObject dObject)
+--     → λ(bArrow : cat.arrow (cat.product dObject dObject) Type)
+--     → λ(cArrow : cat.arrow (cat.product cObject cObject) Type)
+--     → λ(dArrow : cat.arrow (cat.product dObject dObject) Type)
+--     → λ(f : cat.arrow dObject cObject)
+--     → λ(g : cat.arrow cObject dObject)
 --     → λ(l : ./Type cObject dObject cArrow dArrow f g)
---     → λ(h : kArrow cObject bObject)
---     → λ(i : kArrow bObject cObject)
+--     → λ(h : cat.arrow cObject bObject)
+--     → λ(i : cat.arrow bObject cObject)
 --     → λ(r : ./Type bObject cObject bArrow cArrow h i)
 --     →   { unit = 
 --             l.leftAdjunct r.leftAdjunct

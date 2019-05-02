@@ -1,15 +1,14 @@
   { eq =
       λ(_ : {}) → λ(_ : {}) → True
-  , identity =
+  , unit =
       λ(_ : {}) → {=}
   , inverse =
       λ(_ : {}) → {=}
   , le =
       λ(_ : {}) → λ(_ : {}) → True
-  , op =
+  , product =
       λ(_ : { _1 : {}, _2 : {} }) → {=}
   , partialLE =
       λ(_ : {}) → λ(_ : {}) → Some True
   }
-: ./../Group/Ordered/Type sha256:b6fbc7bc6aaee3da63e7efb2c717e9a204eb903ad0b81c6d972b26625a3f393b
-  {}
+: ./../Group/Ordered/Type {}

@@ -1,17 +1,25 @@
-  { join =
-      { identity =
-          λ(_ : {}) → False
-      , op =
-          λ(p : { _1 : Bool, _2 : Bool }) → p._1 || p._2
+let cat = ./../Category/Cat/semigroupal
+
+let vObject = Type
+
+let Set =
+      ./../Category/Monoidal/Cartesian/extractMonoidal
+      cat
+      vObject
+      Type
+      ./../Category/Set/monoidal/cartesian
+
+in    { join =
+          { unit =
+              λ(_ : {}) → False
+          , product =
+              λ(p : { _1 : Bool, _2 : Bool }) → p._1 || p._2
+          }
+      , meet =
+          { unit =
+              λ(_ : {}) → True
+          , product =
+              λ(p : { _1 : Bool, _2 : Bool }) → p._1 && p._2
+          }
       }
-  , meet =
-      { identity =
-          λ(_ : {}) → True
-      , op =
-          λ(p : { _1 : Bool, _2 : Bool }) → p._1 && p._2
-      }
-  }
-: ./../Lattice/Type sha256:48ddff28e19534fa345bb64a25ae2d981be3193c272cf19b39c2a5307fff088b
-  Type
-  ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
-  Bool
+    : ./../Lattice/Type Type Set Bool

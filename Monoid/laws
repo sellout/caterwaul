@@ -1,32 +1,22 @@
+let kCat = ./../Category/Cat/semigroupal
+
+let vObject = Type
+
 let object = Type
 
 let cat =
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Category/Monoidal/Cartesian/extractMonoidal
+      kCat
+      vObject
+      object
+      ./../Category/Set/monoidal/cartesian
 
-in    λ ( m
-        : object
-        )
-    → λ ( eq
-        : ./../Eq/Type sha256:6084124c32c2894f3ef6aff7f8762769b309face3a6b507b3cd1108d2fa6b179
-          m
-        )
-    → λ ( monoid
-        : ./Type sha256:e77cd694d6adbfc7e642969bbe8da7bcbbd8966cc245076b4e192f9af5948f67
-          object
-          cat
-          m
-        )
+in    λ(m : object)
+    → λ(eq : ./../Eq/Type m)
+    → λ(monoid : ./Type object cat m)
     →   { leftIdentity =
-            λ(a : m) → eq.eq (monoid.op { _1 = monoid.identity {=}, _2 = a }) a
+            λ(a : m) → eq.eq (monoid.product { _1 = monoid.unit {=}, _2 = a }) a
         , rightIdentity =
-            λ(a : m) → eq.eq (monoid.op { _1 = a, _2 = monoid.identity {=} }) a
+            λ(a : m) → eq.eq (monoid.product { _1 = a, _2 = monoid.unit {=} }) a
         }
-      ∧ ./../Semigroup/laws sha256:73b89c20cd922c6b941c1071ac9fa5e2ef8c385aa41f12a0782a9413f0cc44af
-        m
-        eq
-        ( ./extractSemigroup sha256:4b5ff7433a08e9031f92fe19b46bfe1f5952956040d78858e908f702782c9856
-          object
-          cat
-          m
-          monoid
-        )
+      ∧ ./../Semigroup/laws m eq (./extractSemigroup object cat m monoid)

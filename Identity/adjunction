@@ -1,20 +1,22 @@
-let kArrow =
-      ./../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
-
-let kProduct =
-      ./../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
+let kCat = ./../Category/Cat/semigroupal
 
 let vObject = Type
+
+let v =
+      ./../Category/Monoidal/Cartesian/extractCategory
+      kCat
+      Type
+      vObject
+      ./../Category/Set/monoidal/cartesian
 
 let object = Type
 
 let cat =
-      ./../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-      kArrow
-      kProduct
+      ./../Category/Monoidal/Cartesian/extractCategory
+      kCat
       vObject
       object
-      ./../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+      ./../Category/Set/monoidal/cartesian
 
 in    { unit =
           λ(a : object) → λ(x : a) → x
@@ -25,14 +27,11 @@ in    { unit =
       , rightAdjunct =
           λ(a : object) → λ(b : object) → λ(f : a → b) → f
       }
-    : ./../Adjunction/Type sha256:51ae2b2aced57c2ce57608835fd4331ac08731d0186f42dcf4149fac498b6862
+    : ./../Adjunction/Type
       object
       object
+      v
       cat
       cat
-      ( ./Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
-        object
-      )
-      ( ./Type sha256:0f2ca3c3cd4682978197536d6365c4002a9b95ebbe882e8562879ee16736c3ae
-        object
-      )
+      (./Type object)
+      (./Type object)

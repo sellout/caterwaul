@@ -1,0 +1,6 @@
+  { arrow =
+      λ(a : Kind) → λ(b : Kind) → a → b
+  , product =
+      λ(a : Kind) → λ(b : Kind) → { _1 : a, _2 : b }
+  }
+: ./../Semigroupal/Sort

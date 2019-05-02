@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-DHALL=dhall
+DHALL=${DHALL:-dhall}
 project=$(basename -- $(realpath "./"))
 kind_pattern='Kind$'
 type_pattern='Type$'

@@ -1,9 +1,8 @@
-  λ(kArrow : Kind → Kind → Kind)
-→ λ(kProduct : Kind → Kind → Kind)
+  λ(cat : ./Semigroupal/Sort)
 → λ(vObject : Kind)
 → λ(object : Kind)
 → { constraint :
       object → Type
   , arrow :
-      kArrow (kProduct object object) vObject
+      cat.arrow (cat.product object object) vObject
   }

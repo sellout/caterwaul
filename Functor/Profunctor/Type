@@ -1,49 +1,24 @@
-{- A profunctor `C ↛ D` is represented as the bifunctor `(D^op, C) → Set`. This
-   is much more general than Haskell’s `Profunctor`. See `Hom` and `InternalHom`
-   for that.
+{- A profunctor `𝒞 ↛ 𝒟` is represented as the bifunctor `(𝒟^op, 𝒞) → 𝒱`. This is
+   much more general than Haskell’s `Profunctor`. It also requires that 𝒱 is
+   closed.
 -}
-let kArrow =
-      ./../../Function/Kind sha256:0b6372c593badac5fe880699fd1cf19dfba07c62fab935a8bad96915866f466e
+let cat = ./../../Category/Cat/semigroupal
 
-let kProduct =
-      ./../../Tuple/Kind sha256:03e1c52890f0cda1a2181cd3eb045d5344fc7c907fcbf836736c0e3222c5ffd8
-
-let Category =
-      ./../../Category/Kind sha256:41ea86fd34226d0dc3c87cc12f9ce042e3b54e7eb77b451cdbfb085ba3f66916
-      kArrow
-      kProduct
+let Category = ./../../Category/Kind cat
 
 let vObject = Type
 
-in    λ ( cObject
-        : Kind
-        )
+in    λ(cObject : Kind)
     → λ(dObject : Kind)
-    → λ ( v
-        : ./../../Category/Monoidal/Kind sha256:f05d8665b46c686b6b930ad18aad6e1daa8c7a9c104d7bbeec947389d4d83e48
-          kArrow
-          kProduct
-          Type
-          vObject
-        )
+    → λ(v : ./../../Category/Monoidal/Closed/Kind cat vObject)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
-    → ./../Bifunctor/Type sha256:36f2a4b32c8e3b6a9a6d24d1289772f6aed01f9b314c9c8c5624e2dc42695d30
+    → ./../Bifunctor/Type
       vObject
       dObject
       cObject
       vObject
       v
-      ( ./../../Category/Op/Kind sha256:e9734284b447322a4da84aed6be9d3c9df5ed65f9428ad99e6b519ebe13a4c0a
-        vObject
-        dObject
-        d
-      )
+      (./../../Category/Op/Kind vObject dObject d)
       c
-      ( ./../../Category/Monoidal/extractCategory sha256:f8fd8dd2ec93dac14e091587db11696f084c1d8eb9de88b71b625151904db9ff
-        kArrow
-        kProduct
-        Type
-        vObject
-        v
-      )
+      (./../../Category/Monoidal/extractCategory cat vObject vObject v)

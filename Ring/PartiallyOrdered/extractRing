@@ -1,23 +1,21 @@
-let object = Type
+let cat = ./../../Category/Cat/semigroupal
 
-let cat =
-      ./../../Category/Set/monoidal/cartesian sha256:b017581ee66eec1995d52c80d527598dd5614254bf7217768c035c3a5e2103bd
+let vObject = Type
 
-in    λ ( m
-        : object
-        )
-    → λ ( ring
-        : ./Type sha256:346b20efe579120254fa39b5d93cf2fab5fc690abf811bd8bf0b373fef297f0e
-          m
-        )
+let Set =
+      ./../../Category/Monoidal/Cartesian/extractMonoidal
+      cat
+      vObject
+      Type
+      ./../../Category/Set/monoidal/cartesian
+
+in    λ(m : Type)
+    → λ(ring : ./Type m)
     →   { additive =
-            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup sha256:1a54bc2c708aec2d9b61ff04c4878c529537a15d13d714cfbb74f8c16c970628
+            ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup
             m
             ring.additive
         , multiplicative =
             ring.multiplicative
         }
-      : ./../Type sha256:77b44df8cc75bc4287fe797e2d655776283097caed2e17d0ccadf43eb96ee046
-        object
-        cat
-        m
+      : ./../Type Type Set m
