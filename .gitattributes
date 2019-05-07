@@ -1,9 +1,2 @@
-*	linguist-language=Haskell # actually Dhall
+!scripts/*	linguist-language=Haskell # actually Dhall
 docs/*	linguist-documentation
-
-# The rest of this is just un-Dhalling the other bits of the repo.
-.*	linguist-language=false
-LICENSE	linguist-language=false
-README.md	linguist-language=false
-scripts/*	linguist-language=false
-shell.nix	linguist-language=false
