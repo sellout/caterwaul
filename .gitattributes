@@ -1,9 +1,9 @@
 *	linguist-language=Haskell # actually Dhall
-docs/*	linguist-documentation
+docs/	linguist-documentation
 
 # The rest of this is just un-Dhalling the other bits of the repo.
 .*	linguist-language
 LICENSE	linguist-language
 README.md	linguist-language
-scripts/*	linguist-language
+scripts/	linguist-language=Shell
 shell.nix	linguist-language
