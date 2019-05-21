@@ -12,9 +12,7 @@ in    λ(cObject : Kind)
             c.constraint
         , arrow =
               λ(a : { _1 : cObject, _2 : cObject })
-            → { subst :
-                    ∀(f : cat.arrow cObject dObject)
-                  → d.arrow { _1 = f a._1, _2 = f a._2 }
-              }
+            →   ∀(f : cat.arrow cObject dObject)
+              → d.arrow { _1 = f a._1, _2 = f a._2 }
         }
       : ./../Category/Kind cat vObject cObject
