@@ -1,4 +1,4 @@
-*	linguist-language=Haskell # actually Dhall
+*	linguist-language=Dhall
 
 # The rest of this is just un-Dhalling the other bits of the repo.
 .*	-linguist-language
