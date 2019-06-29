@@ -1,0 +1,5 @@
+  λ(m : Type)
+→ λ(partialLE : m → m → Bool)
+→ λ(a : m)
+→ λ(b : m)
+→ partialLE a b && partialLE b a

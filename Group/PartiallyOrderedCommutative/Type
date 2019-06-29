@@ -1,4 +1,1 @@
-let object = Type
-
-in    λ(m : object)
-    → { preLE : m → m → Optional Bool } ⩓ ./../PartiallyOrdered/Type m
+./../PartiallyOrdered/Type

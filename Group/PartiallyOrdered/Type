@@ -16,6 +16,4 @@ let Set =
       ./../../Category/Set/monoidal/cartesian
 
 in    λ(m : Type)
-    →   { partialLE : m → m → Optional Bool }
-      ⩓ ./../../Eq/Type m
-      ⩓ ./../Type Type Set m
+    → { le : m → m → Bool } ⩓ ./../../Eq/Type m ⩓ ./../Type Type Set m

@@ -2,5 +2,5 @@ let object = Type
 
 in    λ(m : object)
     → λ(group : ./Type m)
-    →   group.{ eq, unit, inverse, product, partialLE, preLE }
+    →   group.{ eq, unit, inverse, le, product }
       : ./../PartiallyOrderedCommutative/Type m

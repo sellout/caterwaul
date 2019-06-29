@@ -1,0 +1,11 @@
+let Order = ./Order
+
+in    λ(m : Type)
+    → λ(totalLE : m → m → Bool)
+    → λ(a : m)
+    → λ(b : m)
+    →       if totalLE a b
+      
+      then  if totalLE b a then Order.EQ else Order.LT
+      
+      else  Order.GT

@@ -3,7 +3,7 @@ let kCat = ./../Category/Cat/semigroupal
 let vObject = Type
 
 in    λ(object : Kind)
-    → λ(cat : ./../Category/Monoidal/Kind kCat vObject object)
+    → λ(cat : ./../Category/Semigroupal/Kind kCat vObject object)
     → λ(m : object)
     → λ(lattice : ./Type object cat m)
-    → lattice.meet : ./../Monoid/Commutative/Type object cat m
+    → lattice.meet : ./../Semilattice/Type object cat m

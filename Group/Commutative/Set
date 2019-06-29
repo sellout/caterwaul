@@ -9,4 +9,4 @@ let Set =
       Type
       ./../../Category/Set/monoidal/cartesian
 
-in  λ(m : Type) → { preLE : m → m → Optional Bool } ⩓ ./../Type Type Set m
+in  λ(m : Type) → { le : m → m → Bool } ⩓ ./../Type Type Set m

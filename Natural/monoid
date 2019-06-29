@@ -1,3 +1,6 @@
+{- Should use ../Monoid/Commutative/Monus/Type, but `monus` is complicated with
+   recursion, so need to figure out how dada ties into this.
+-}
 let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
@@ -14,4 +17,4 @@ in    { unit =
       , product =
           λ(t : { _1 : Natural, _2 : Natural }) → t._1 + t._2
       }
-    : ./../Monoid/Type Type Set Natural
+    : ./../Monoid/Commutative/Type Type Set Natural

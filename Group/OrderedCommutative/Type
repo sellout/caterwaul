@@ -1,4 +1,5 @@
 let object = Type
 
 in    λ(m : object)
-    → { le : m → m → Bool } ⩓ ./../PartiallyOrderedCommutative/Type m
+    →   { compare : m → m → ./../Ordered/Order }
+      ⩓ ./../PartiallyOrderedCommutative/Type m

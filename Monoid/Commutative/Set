@@ -16,4 +16,4 @@ let cat =
       object
       ./../../Category/Set/monoidal/cartesian
 
-in  λ(m : object) → { preLE : m → m → Optional Bool } ⩓ ./Type object cat m
+in  λ(m : object) → { le : m → m → Bool } ⩓ ./Type object cat m

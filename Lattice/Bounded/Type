@@ -5,5 +5,8 @@ let vObject = Type
 in    λ(object : Kind)
     → λ(cat : ./../../Category/Monoidal/Kind kCat vObject object)
     → λ(m : object)
-    →   { complement : cat.arrow { _1 = m, _2 = m } }
-      ⩓ ./../Bounded/Type object cat m
+    → { join :
+          ./../../Semilattice/Bounded/Type object cat m
+      , meet :
+          ./../../Semilattice/Bounded/Type object cat m
+      }

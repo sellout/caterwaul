@@ -1,0 +1,5 @@
+  λ(m : Type)
+→ λ(compare : m → m → ./Order)
+→ λ(a : m)
+→ λ(b : m)
+→ merge { LT = True, EQ = True, GT = False } (compare a b)

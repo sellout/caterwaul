@@ -2,5 +2,4 @@ let object = Type
 
 in    λ(m : object)
     → λ(group : ./Type m)
-    →   group.{ eq, unit, inverse, product, partialLE }
-      : ./../PartiallyOrdered/Type m
+    → group.{ eq, unit, inverse, le, product } : ./../PartiallyOrdered/Type m

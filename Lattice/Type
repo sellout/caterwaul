@@ -3,10 +3,10 @@ let kCat = ./../Category/Cat/semigroupal
 let vObject = Type
 
 in    λ(object : Kind)
-    → λ(cat : ./../Category/Monoidal/Kind kCat vObject object)
+    → λ(cat : ./../Category/Semigroupal/Kind kCat vObject object)
     → λ(m : object)
     → { join :
-          ./../Monoid/Commutative/Type object cat m
+          ./../Semilattice/Type object cat m
       , meet :
-          ./../Monoid/Commutative/Type object cat m
+          ./../Semilattice/Type object cat m
       }

@@ -2,4 +2,4 @@ let object = Type
 
 in    λ(m : object)
     → λ(group : ./Type m)
-    → group.{ unit, inverse, product, preLE } : ./../Commutative/Set m
+    → group.{ unit, inverse, le, product } : ./../Commutative/Set m
