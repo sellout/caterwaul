@@ -1,0 +1,16 @@
+{- Monus (`∸`, to illustrate its similarity to subtraction) is an operation on
+   some commutative monoids that aren’t groups. It has the following laws:
+ • a + (b ∸ a) = b + (a ∸ b)
+ • (a ∸ b) ∸ c = a ∸ (b + c)
+ • a ∸ a = unit
+ • unit ∸ a = unit
+-}
+let kCat = ./../../../Category/Cat/semigroupal
+
+let vObject = Type
+
+in    λ(object : Kind)
+    → λ(cat : ./../../../Category/Monoidal/Kind kCat vObject object)
+    → λ(m : object)
+    →   { monus : cat.arrow { _1 = cat.product { _1 = m, _2 = m }, _2 = m } }
+      ⩓ ./../Type object cat m
