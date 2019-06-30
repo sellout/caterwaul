@@ -9,10 +9,9 @@ let vObject = Type
 in    λ(object : Kind)
     → λ(v : ./../Category/Monoidal/Kind kCat Type vObject)
     → λ(cat : ./../Category/Kind kCat vObject object)
-    → let profunctor = kCat.arrow (kCat.product object object) vObject
-      
-      in    λ(morphism : profunctor)
-          →   { inverse :
-                  ∀(a : { _1 : object, _2 : object }) → morphism a → morphism a
-              }
-            ⩓ ./../Category/Type object v cat
+    →   { inverse :
+              ∀(a : kCat.product object object)
+            → cat.arrow a
+            → cat.arrow { _1 = a._2, _2 = a._1 }
+        }
+      ⩓ ./../Category/Type object v cat
