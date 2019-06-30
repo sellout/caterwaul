@@ -2,7 +2,8 @@ let cat = ./../Category/Cat/semigroupal
 
 let vObject = Type
 
-let Set = ./../Category/Set/rig
+let Set =
+      ./../Category/Rig/extractAdditive cat vObject Type ./../Category/Set/rig
 
 in    λ(a : Type)
     →   { unit =
@@ -10,8 +11,7 @@ in    λ(a : Type)
         , product =
               λ(b : Type)
             → λ ( fa
-                : Set.additive.product
-                  { _1 = a, _2 = Set.additive.product { _1 = a, _2 = b } }
+                : Set.product { _1 = a, _2 = Set.product { _1 = a, _2 = b } }
                 )
             → merge
               { Left =
@@ -22,13 +22,9 @@ in    λ(a : Type)
               ( merge
                 { Left =
                       λ(x : a)
-                    → < Left =
-                          x
-                      | Right :
-                          Set.additive.product { _1 = a, _2 = b }
-                      >
+                    → < Left = x | Right : Set.product { _1 = a, _2 = b } >
                 , Right =
-                      λ(x : Set.additive.product { _1 = a, _2 = b })
+                      λ(x : Set.product { _1 = a, _2 = b })
                     → < Right = x | Left : a >
                 }
                 fa
@@ -42,4 +38,4 @@ in    λ(a : Type)
           Type
           ./../Category/Set/monoidal/cartesian
         )
-        (λ(b : Type) → Set.additive.product { _1 = a, _2 = b })
+        (λ(b : Type) → Set.product { _1 = a, _2 = b })

@@ -1,1 +1,1 @@
-{ arrow : Kind → Kind → Kind }
+let object = Kind let vObject = Kind in { arrow : object → object → vObject }
