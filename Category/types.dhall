@@ -29,8 +29,8 @@ in    λ(object : Kind)
               ./../Comonad/Type object cat
           , Compose =
               ./../Compose/Type object object object
-          , Const =
-              ./../Const/Type object object
+          , ConstantFunctor =
+              ./../Functor/Constant/Type object object
           , Costar =
               ./../Costar/Type vObject object cat
           , Coyoneda =

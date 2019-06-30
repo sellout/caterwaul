@@ -22,7 +22,7 @@ in    λ(cObject : Kind)
             in      { diamond =
                         { unit =
                               λ(x : cObject)
-                            → ./../../Const/Type
+                            → ./../../Functor/Constant/Type
                               dObject
                               cObject
                               { _1 = d.diamond.unit, _2 = x }
@@ -34,7 +34,7 @@ in    λ(cObject : Kind)
                     , star =
                         { unit =
                               λ(x : cObject)
-                            → ./../../Const/Type
+                            → ./../../Functor/Constant/Type
                               dObject
                               cObject
                               { _1 = d.star.unit, _2 = x }

@@ -22,7 +22,7 @@ in    λ(cObject : Kind)
             in      { additive =
                         { unit =
                               λ(x : cObject)
-                            → ./../../Const/Type
+                            → ./../../Functor/Constant/Type
                               dObject
                               cObject
                               { _1 = d.additive.unit, _2 = x }
@@ -34,7 +34,7 @@ in    λ(cObject : Kind)
                     , multiplicative =
                         { unit =
                               λ(x : cObject)
-                            → ./../../Const/Type
+                            → ./../../Functor/Constant/Type
                               dObject
                               cObject
                               { _1 = d.multiplicative.unit, _2 = x }

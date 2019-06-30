@@ -21,7 +21,7 @@ in    λ(cObject : Kind)
             
             in      { unit =
                           λ(x : cObject)
-                        → ./../../Const/Type
+                        → ./../../Functor/Constant/Type
                           dObject
                           cObject
                           { _1 = d.unit, _2 = x }
