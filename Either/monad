@@ -7,7 +7,7 @@ let Set =
 
 in    λ(a : Type)
     →   { unit =
-            λ(b : Type) → λ(x : b) → < Right = x | Left : a >
+            λ(b : Type) → (Set.product { _1 = a, _2 = b }).Right
         , product =
               λ(b : Type)
             → λ ( fa
@@ -15,17 +15,15 @@ in    λ(a : Type)
                 )
             → merge
               { Left =
-                  λ(l : a) → < Left = l | Right : b >
+                  (Set.product { _1 = a, _2 = b }).Left
               , Right =
-                  λ(e : < Left : a | Right : b >) → e
+                  λ(e : Set.product { _1 = a, _2 = b }) → e
               }
               ( merge
                 { Left =
-                      λ(x : a)
-                    → < Left = x | Right : Set.product { _1 = a, _2 = b } >
+                    (Set.product { _1 = a, _2 = Set.product { _1 = a, _2 = b } }).Left
                 , Right =
-                      λ(x : Set.product { _1 = a, _2 = b })
-                    → < Right = x | Left : a >
+				    (Set.product { _1 = a, _2 = Set.product { _1 = a, _2 = b } }).Right
                 }
                 fa
               )

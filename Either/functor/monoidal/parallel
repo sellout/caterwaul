@@ -29,7 +29,7 @@ in    λ(a : object)
         ∧ { unit =
                 λ(b : object)
               → λ(fn : Set.arrow { _1 = Set.multiplicative.unit, _2 = b })
-              → < Right = fn {=} | Left : a >
+              → (Set.additive.product { _1 = a, _2 = b }).Right (fn {=})
           , product =
                 λ(i : object)
               → λ ( day
@@ -65,35 +65,25 @@ in    λ(a : object)
                         → merge
                           { Left =
                                 λ(ll : a)
-                              → < Left =
-                                    semigroup.product { _1 = l, _2 = ll }
-                                | Right :
-                                    i
-                                >
+                              → (Set.additive.product { _1 = a, _2 = i }).Left (semigroup.product { _1 = l, _2 = ll })
                           , Right =
-                              λ(_ : p._2) → < Left = l | Right : i >
+                              λ(_ : p._2) → (Set.additive.product { _1 = a, _2 = i }).Left l
                           }
                           args._2
                     , Right =
                           λ(f : Set.arrow { _1 = p._2, _2 = i })
                         → merge
-                          { Left =
-                              λ(x : a) → < Left = x | Right : i >
-                          , Right =
-                              λ(x : p._2) → < Right = f x | Left : a >
+                          { Left = (Set.additive.product { _1 = a, _2 = i }).Left
+                          , Right = 
+                              λ(x : p._2) → (Set.additive.product { _1 = a, _2 = i }).Right (f x)
                           }
                           args._2
                     }
                     ( merge
-                      { Left =
-                          λ(x : a) → < Left = x | Right : p._2 → i >
+                      { Left = (Set.additive.product { _1 = a, _2 = p._2 → i }).Left
                       , Right =
                             λ(x : p._1)
-                          → < Right =
-                                λ(y : p._2) → fn { _1 = x, _2 = y }
-                            | Left :
-                                a
-                            >
+                          → (Set.additive.product { _1 = a, _2 = p._2 → i }).Right (λ(y : p._2) → fn { _1 = x, _2 = y })
                       }
                       args._1
                     )
