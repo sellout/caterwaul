@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let vBase = ./../Category/Monoidal/extractCategory kCat Type vObject v
 

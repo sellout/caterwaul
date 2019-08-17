@@ -36,12 +36,12 @@ in    λ(cObject : Kind)
             → fn (p i)
         }
       : Functor
-        vObject
-        (cat.arrow cpObject dObject)
-        (cat.arrow cObject dObject)
-        v
-        (FunctorCategory cpObject dObject v cp d)
-        (FunctorCategory cObject dObject v c d)
-        (   λ(h : cat.arrow cpObject dObject)
-          → Compose cObject cpObject dObject { _1 = h, _2 = p }
-        )
+          vObject
+          (cat.arrow cpObject dObject)
+          (cat.arrow cObject dObject)
+          v
+          (FunctorCategory cpObject dObject v cp d)
+          (FunctorCategory cObject dObject v c d)
+          (   λ(h : cat.arrow cpObject dObject)
+            → Compose cObject cpObject dObject { _1 = h, _2 = p }
+          )

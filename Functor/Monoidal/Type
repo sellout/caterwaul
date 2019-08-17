@@ -14,14 +14,14 @@ in    λ(cObject : Kind)
           → let base = ./../../Category/Monoidal/extractCategory cat vObject
             
             in    ./../Type
-                  vObject
-                  cObject
-                  dObject
-                  v
-                  (base cObject c)
-                  (base dObject d)
-                  f
+                    vObject
+                    cObject
+                    dObject
+                    v
+                    (base cObject c)
+                    (base dObject d)
+                    f
                 ⩓ ./../../Monoid/Type
-                  (cat.arrow cObject dObject)
-                  (./../../Category/Functor/monoidal cObject v c d)
-                  f
+                    (cat.arrow cObject dObject)
+                    (./../../Category/Functor/monoidal cObject v c d)
+                    f

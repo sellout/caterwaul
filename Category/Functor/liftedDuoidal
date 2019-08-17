@@ -23,9 +23,9 @@ in    λ(cObject : Kind)
                         { unit =
                               λ(x : cObject)
                             → ./../../Functor/Constant/Type
-                              dObject
-                              cObject
-                              { _1 = d.diamond.unit, _2 = x }
+                                dObject
+                                cObject
+                                { _1 = d.diamond.unit, _2 = x }
                         , product =
                               λ(f : { _1 : object, _2 : object })
                             → λ(x : cObject)
@@ -35,9 +35,9 @@ in    λ(cObject : Kind)
                         { unit =
                               λ(x : cObject)
                             → ./../../Functor/Constant/Type
-                              dObject
-                              cObject
-                              { _1 = d.star.unit, _2 = x }
+                                dObject
+                                cObject
+                                { _1 = d.star.unit, _2 = x }
                         , product =
                               λ(f : { _1 : object, _2 : object })
                             → λ(x : cObject)

@@ -4,10 +4,10 @@ let vObject = Type
 
 let Set =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      vObject
-      Type
-      ./../Category/Set/monoidal/cartesian
+        cat
+        vObject
+        Type
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(a : Type)
     →   { unit =

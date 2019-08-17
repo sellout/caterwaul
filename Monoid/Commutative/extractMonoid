@@ -6,10 +6,10 @@ let object = Type
 
 let cat =
       ./../../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      vObject
-      object
-      ./../../Category/Set/monoidal/cartesian
+        cat
+        vObject
+        object
+        ./../../Category/Set/monoidal/cartesian
 
 in    λ(m : object)
     → λ(monoid : ./Set m)

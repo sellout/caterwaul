@@ -14,11 +14,11 @@ in    λ(cObject : Kind)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
     → ./../Bifunctor/Type
-      vObject
-      dObject
-      cObject
-      vObject
-      v
-      (./../../Category/Op/Kind vObject dObject d)
-      c
-      (./../../Category/Monoidal/extractCategory cat vObject vObject v)
+        vObject
+        dObject
+        cObject
+        vObject
+        v
+        (./../../Category/Op/Kind vObject dObject d)
+        c
+        (./../../Category/Monoidal/extractCategory cat vObject vObject v)

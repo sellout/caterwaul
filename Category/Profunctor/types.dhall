@@ -10,6 +10,6 @@ in    λ(object : Kind)
     → λ(v : MonoidalCategory Type vObject)
     → λ(cat : Category vObject object)
     → ./../Semigroupal/types.dhall
-      (kCat.arrow (kCat.product object object) vObject)
-      v
-      (./semigroupal object v cat)
+        (kCat.arrow (kCat.product object object) vObject)
+        v
+        (./semigroupal object v cat)

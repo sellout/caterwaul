@@ -14,6 +14,6 @@ in    λ(cObject : Kind)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
     → ./../types.dhall
-      (cat.arrow cObject dObject)
-      v
-      (./category cObject dObject (base Type vObject v) c d)
+        (cat.arrow cObject dObject)
+        v
+        (./category cObject dObject (base Type vObject v) c d)

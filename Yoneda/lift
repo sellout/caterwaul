@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let vBase = ./../Category/Monoidal/extractCategory cat Type vObject v
 
@@ -21,14 +21,14 @@ in    λ(cObject : Kind)
     → λ(f : cat.arrow cObject dObject)
     → λ(functor : ./../Functor/Type vObject cObject dObject vBase c d f)
     → ./../Ran/lift
-      cObject
-      cObject
-      dObject
-      c
-      d
-      (./../Category/extractSemigroupoid dObject v d dCategory)
-      f
-      functor
-      (./../Identity/Type cObject)
-      f
-      (λ(a : cObject) → dCategory.unit (f a))
+        cObject
+        cObject
+        dObject
+        c
+        d
+        (./../Category/extractSemigroupoid dObject v d dCategory)
+        f
+        functor
+        (./../Identity/Type cObject)
+        f
+        (λ(a : cObject) → dCategory.unit (f a))

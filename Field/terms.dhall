@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(object : Kind)
     → λ(cat : ./../Category/Monoidal/Kind kCat vObject object)
@@ -20,8 +20,8 @@ in    λ(object : Kind)
             field.multiplicative.inverse
         }
       ∧ ./../Ring/terms.dhall
-        object
-        cat
-        category
-        m
-        (./extractRing object cat m field)
+          object
+          cat
+          category
+          m
+          (./extractRing object cat m field)

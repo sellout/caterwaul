@@ -8,10 +8,10 @@ let vObject = Type
 
 let v =
       ./../Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Set/monoidal/cartesian
 
 in    λ(object : Kind)
     → λ(cat : ./../Kind kCat vObject object)
@@ -32,22 +32,22 @@ in    λ(object : Kind)
                       → r
                     )
                 → category.product
-                  { _1 = a._2, _2 = a._1 }
-                  (   λ(r : Type)
-                    → λ ( arrowsOut
-                        :   ∀(z : object)
-                          → cat.arrow { _1 = z, _2 = a._1 }
-                          → cat.arrow { _1 = a._2, _2 = z }
-                          → r
-                        )
-                    → p
-                      r
-                      (   λ(z : object)
-                        → λ(f : Op.arrow { _1 = z, _2 = a._2 })
-                        → λ(g : Op.arrow { _1 = a._1, _2 = z })
-                        → arrowsOut z g f
-                      )
-                  )
+                    { _1 = a._2, _2 = a._1 }
+                    (   λ(r : Type)
+                      → λ ( arrowsOut
+                          :   ∀(z : object)
+                            → cat.arrow { _1 = z, _2 = a._1 }
+                            → cat.arrow { _1 = a._2, _2 = z }
+                            → r
+                          )
+                      → p
+                          r
+                          (   λ(z : object)
+                            → λ(f : Op.arrow { _1 = z, _2 = a._2 })
+                            → λ(g : Op.arrow { _1 = a._1, _2 = z })
+                            → arrowsOut z g f
+                          )
+                    )
             , hom =
                 { map =
                       λ(a : { _1 : object, _2 : object })
@@ -60,9 +60,9 @@ in    λ(object : Kind)
                           }
                         )
                     → category.hom.map
-                      { _1 = a._2, _2 = a._1 }
-                      { _1 = b._2, _2 = b._1 }
-                      { _1 = f._2, _2 = f._1 }
+                        { _1 = a._2, _2 = a._1 }
+                        { _1 = b._2, _2 = b._1 }
+                        { _1 = f._2, _2 = f._1 }
                 }
             }
           : ./../Type object v Op

@@ -4,30 +4,30 @@ let vObject = Type
 
 let v =
       ./../Monoidal/Cartesian/extractMonoidal
-      cat
-      Type
-      vObject
-      ./monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./monoidal/cartesian
 
 let Set =
       ./../Monoidal/Cartesian/extractMonoidal
-      cat
-      vObject
-      Type
-      ./monoidal/cartesian
+        cat
+        vObject
+        Type
+        ./monoidal/cartesian
 
 in  ./../../Category/extractSemigroupoid
-    Type
-    v
-    (./../Monoidal/extractCategory cat vObject Type Set)
-    ( ./../../Category/Monoidal/extractCategoryInstance
       Type
       v
-      Set
-      ( ./../../Category/Rig/extractMultiplicativeInstance
-        Type
-        v
-        ./rig
-        ./category/rig
+      (./../Monoidal/extractCategory cat vObject Type Set)
+      ( ./../../Category/Monoidal/extractCategoryInstance
+          Type
+          v
+          Set
+          ( ./../../Category/Rig/extractMultiplicativeInstance
+              Type
+              v
+              ./rig
+              ./category/rig
+          )
       )
-    )

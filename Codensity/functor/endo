@@ -8,9 +8,9 @@ let vObject = Type
 
 let v =
       base
-      Type
-      vObject
-      (monoidalBase Type vObject ./../../Category/Set/monoidal/cartesian)
+        Type
+        vObject
+        (monoidalBase Type vObject ./../../Category/Set/monoidal/cartesian)
 
 let object = Type
 
@@ -18,9 +18,9 @@ let cat = monoidalBase vObject object ./../../Category/Set/monoidal/cartesian
 
 in    λ(m : kCat.arrow object object)
     → ./../../Functor/Monoidal/extractFunctor
-      object
-      v
-      cat
-      cat
-      (./../Type object (base vObject object cat) m)
-      (./monoidal m)
+        object
+        v
+        cat
+        cat
+        (./../Type object (base vObject object cat) m)
+        (./monoidal m)

@@ -10,14 +10,14 @@ in    λ(cObject : Kind)
     → λ(v : Category Type vObject)
     → λ(c : Category vObject cObject)
     → ./../Functor/Type
-      vObject
-      cObject
-      Type
-      v
-      (./../Category/Op/Kind vObject cObject c)
-      ( ./../Category/Monoidal/Cartesian/extractCategory
-        cat
         vObject
+        cObject
         Type
-        ./../Category/Set/monoidal/cartesian
-      )
+        v
+        (./../Category/Op/Kind vObject cObject c)
+        ( ./../Category/Monoidal/Cartesian/extractCategory
+            cat
+            vObject
+            Type
+            ./../Category/Set/monoidal/cartesian
+        )

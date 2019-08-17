@@ -8,7 +8,7 @@ in    λ(object : Kind)
     → λ(monoid : ./Type object cat m)
     →   monoid.{ unit }
       ∧ ./../Semigroup/terms.dhall
-        object
-        (./../Category/Monoidal/extractSemigroupal kCat vObject object cat)
-        m
-        (./extractSemigroup object cat m monoid)
+          object
+          (./../Category/Monoidal/extractSemigroupal kCat vObject object cat)
+          m
+          (./extractSemigroup object cat m monoid)

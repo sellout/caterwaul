@@ -8,14 +8,14 @@ in    λ(object : Kind)
     → λ(v : ./../Category/Kind kCat Type vObject)
     → λ(cat : ./../Category/Kind kCat vObject object)
     → ./Type
-      vObject
-      object
-      Type
-      v
-      cat
-      ( ./../Category/Monoidal/Cartesian/extractCategory
-        kCat
         vObject
+        object
         Type
-        ./../Category/Set/monoidal/cartesian
-      )
+        v
+        cat
+        ( ./../Category/Monoidal/Cartesian/extractCategory
+            kCat
+            vObject
+            Type
+            ./../Category/Set/monoidal/cartesian
+        )

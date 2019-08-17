@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Set/monoidal/cartesian
 
 in    λ(object : Kind)
     → λ(cat : ./../Kind kCat vObject object)
@@ -34,40 +34,40 @@ in    λ(object : Kind)
                     )
                 → { to =
                       category.product
-                      a
-                      (   λ(r : Type)
-                        → λ ( arrowsOut
-                            :   ∀(z : object)
-                              → cat.arrow { _1 = z, _2 = a._2 }
-                              → cat.arrow { _1 = a._1, _2 = z }
-                              → r
-                            )
-                        → p
-                          r
-                          (   λ(z : object)
-                            → λ(f : Dagger.arrow { _1 = z, _2 = a._2 })
-                            → λ(g : Dagger.arrow { _1 = a._1, _2 = z })
-                            → arrowsOut z f.to g.to
-                          )
-                      )
+                        a
+                        (   λ(r : Type)
+                          → λ ( arrowsOut
+                              :   ∀(z : object)
+                                → cat.arrow { _1 = z, _2 = a._2 }
+                                → cat.arrow { _1 = a._1, _2 = z }
+                                → r
+                              )
+                          → p
+                              r
+                              (   λ(z : object)
+                                → λ(f : Dagger.arrow { _1 = z, _2 = a._2 })
+                                → λ(g : Dagger.arrow { _1 = a._1, _2 = z })
+                                → arrowsOut z f.to g.to
+                              )
+                        )
                   , from =
                       opCategory.product
-                      a
-                      (   λ(r : Type)
-                        → λ ( arrowsOut
-                            :   ∀(z : object)
-                              → op.arrow { _1 = z, _2 = a._2 }
-                              → op.arrow { _1 = a._1, _2 = z }
-                              → r
-                            )
-                        → p
-                          r
-                          (   λ(z : object)
-                            → λ(f : Dagger.arrow { _1 = z, _2 = a._2 })
-                            → λ(g : Dagger.arrow { _1 = a._1, _2 = z })
-                            → arrowsOut z f.from g.from
-                          )
-                      )
+                        a
+                        (   λ(r : Type)
+                          → λ ( arrowsOut
+                              :   ∀(z : object)
+                                → op.arrow { _1 = z, _2 = a._2 }
+                                → op.arrow { _1 = a._1, _2 = z }
+                                → r
+                              )
+                          → p
+                              r
+                              (   λ(z : object)
+                                → λ(f : Dagger.arrow { _1 = z, _2 = a._2 })
+                                → λ(g : Dagger.arrow { _1 = a._1, _2 = z })
+                                → arrowsOut z f.from g.from
+                              )
+                        )
                   }
             , hom =
                 { map =
@@ -83,16 +83,16 @@ in    λ(object : Kind)
                     → λ(f : Dagger.arrow a)
                     → { to =
                           category.hom.map
-                          a
-                          b
-                          { _1 = fn._1.to, _2 = fn._2.to }
-                          f.to
+                            a
+                            b
+                            { _1 = fn._1.to, _2 = fn._2.to }
+                            f.to
                       , from =
                           opCategory.hom.map
-                          a
-                          b
-                          { _1 = fn._1.from, _2 = fn._2.from }
-                          f.from
+                            a
+                            b
+                            { _1 = fn._1.from, _2 = fn._2.from }
+                            f.from
                       }
                 }
             }

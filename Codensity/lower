@@ -4,19 +4,19 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractCategory
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let object = Type
 
 let cat =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      vObject
-      object
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        vObject
+        object
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(m : kCat.arrow object object)
     → λ(monoidal : ./../Functor/Monoidal/Type object v cat cat m)

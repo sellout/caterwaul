@@ -7,17 +7,17 @@ let vObject = Type
 
 let v =
       ./../../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../../Category/Set/monoidal/cartesian
 
 let Set =
       ./../../Category/Monoidal/Cartesian/extractCategory
-      kCat
-      vObject
-      Type
-      ./../../Category/Set/monoidal/cartesian
+        kCat
+        vObject
+        Type
+        ./../../Category/Set/monoidal/cartesian
 
 in    λ(object : Kind)
     → λ(cat : ./../../Category/Kind kCat vObject object)
@@ -28,10 +28,10 @@ in    λ(object : Kind)
       
       let endo =
             ./../../Category/Monoidal/extractCategory
-            kCat
-            vObject
-            endoObject
-            (./../../Category/Endofunctor/monoidal/monadic object vBase cat)
+              kCat
+              vObject
+              endoObject
+              (./../../Category/Endofunctor/monoidal/monadic object vBase cat)
       
       in    λ(f : endoObject)
           →   { map =
@@ -44,27 +44,27 @@ in    λ(object : Kind)
                         → λ(b : object)
                         → λ(fn : cat.arrow { _1 = a, _2 = n b })
                         → star.map
-                          a
-                          b
-                          ( category.product
-                            { _1 = a, _2 = m b }
-                            (   λ(r : Type)
-                              → λ ( arrowsOut
-                                  :   ∀(z : object)
-                                    → cat.arrow { _1 = z, _2 = m b }
-                                    → cat.arrow { _1 = a, _2 = z }
-                                    → r
-                                  )
-                              → arrowsOut (n b) (natural b) fn
+                            a
+                            b
+                            ( category.product
+                                { _1 = a, _2 = m b }
+                                (   λ(r : Type)
+                                  → λ ( arrowsOut
+                                      :   ∀(z : object)
+                                        → cat.arrow { _1 = z, _2 = m b }
+                                        → cat.arrow { _1 = a, _2 = z }
+                                        → r
+                                      )
+                                  → arrowsOut (n b) (natural b) fn
+                                )
                             )
-                          )
                     }
               }
             : ./../../Functor/Contravariant
-              vObject
-              endoObject
-              Type
-              vBase
-              endo
-              Set
-              (λ(a : endoObject) → ./Type vObject object vBase cat a f)
+                vObject
+                endoObject
+                Type
+                vBase
+                endo
+                Set
+                (λ(a : endoObject) → ./Type vObject object vBase cat a f)

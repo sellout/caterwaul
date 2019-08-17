@@ -10,10 +10,10 @@ let vObject = Type
 
 let Set =
       ./../../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      Type
-      vObject
-      ./../../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../../Category/Set/monoidal/cartesian
 
 in    λ(m : Type)
     → { le : m → m → Bool } ⩓ ./../../Eq/Type m ⩓ ./../Type Type Set m

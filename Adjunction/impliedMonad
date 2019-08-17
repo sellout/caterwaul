@@ -12,10 +12,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractCategory
-      cat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let Category = ./../Category/Kind cat vObject
 

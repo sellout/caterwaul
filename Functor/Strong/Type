@@ -10,15 +10,15 @@ in    λ(object : Kind)
               ∀(a : object)
             → ∀(b : object)
             → cat.arrow
-              { _1 =
-                  cat.product { _1 = a, _2 = f b }
-              , _2 =
-                  f (cat.product { _1 = a, _2 = b })
-              }
+                { _1 =
+                    cat.product { _1 = a, _2 = f b }
+                , _2 =
+                    f (cat.product { _1 = a, _2 = b })
+                }
         }
       ⩓ ./../Endo/Type
-        vObject
-        object
-        v
-        (./../../Category/Monoidal/extractCategory kCat vObject object cat)
-        f
+          vObject
+          object
+          v
+          (./../../Category/Monoidal/extractCategory kCat vObject object cat)
+          f

@@ -6,17 +6,17 @@ let object = Type
 
 let cat =
       ./../../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      vObject
-      object
-      ./../../Category/Set/monoidal/cartesian
+        kCat
+        vObject
+        object
+        ./../../Category/Set/monoidal/cartesian
 
 in    λ(m : object)
     → λ(field : ./Type m)
     →   { additive =
             ./../../Group/PartiallyOrderedCommutative/extractCommutativeGroup
-            m
-            field.additive
+              m
+              field.additive
         , multiplicative =
             field.multiplicative.{ unit, inverse, product }
         }

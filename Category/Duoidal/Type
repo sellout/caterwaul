@@ -19,35 +19,35 @@ in    λ(object : Kind)
                 → ∀(c : object)
                 → ∀(d : object)
                 → cat.arrow
-                  { _1 =
-                      diamond.product
-                      { _1 =
-                          star.product { _1 = a, _2 = b }
-                      , _2 =
-                          star.product { _1 = c, _2 = d }
-                      }
-                  , _2 =
-                      star.product
-                      { _1 =
-                          diamond.product { _1 = a, _2 = c }
-                      , _2 =
-                          diamond.product { _1 = b, _2 = d }
-                      }
-                  }
+                    { _1 =
+                        diamond.product
+                          { _1 =
+                              star.product { _1 = a, _2 = b }
+                          , _2 =
+                              star.product { _1 = c, _2 = d }
+                          }
+                    , _2 =
+                        star.product
+                          { _1 =
+                              diamond.product { _1 = a, _2 = c }
+                          , _2 =
+                              diamond.product { _1 = b, _2 = d }
+                          }
+                    }
             , split :
                 cat.arrow
-                { _1 =
-                    diamond.unit
-                , _2 =
-                    star.product { _1 = diamond.unit, _2 = diamond.unit }
-                }
+                  { _1 =
+                      diamond.unit
+                  , _2 =
+                      star.product { _1 = diamond.unit, _2 = diamond.unit }
+                  }
             , combine :
                 cat.arrow
-                { _1 =
-                    diamond.product { _1 = star.unit, _2 = star.unit }
-                , _2 =
-                    star.unit
-                }
+                  { _1 =
+                      diamond.product { _1 = star.unit, _2 = star.unit }
+                  , _2 =
+                      star.unit
+                  }
             , switch :
                 cat.arrow { _1 = diamond.unit, _2 = star.unit }
             , diamond :

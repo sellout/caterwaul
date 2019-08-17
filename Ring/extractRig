@@ -8,10 +8,10 @@ in    λ(object : Kind)
     → λ(ring : ./Type object cat m)
     →   { additive =
             ./../Group/Commutative/extractCommutativeMonoid
-            object
-            cat
-            m
-            ring.additive
+              object
+              cat
+              m
+              ring.additive
         , multiplicative =
             ring.multiplicative
         }

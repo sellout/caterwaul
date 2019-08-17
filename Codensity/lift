@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(object : Kind)
     → λ(cat : ./../Category/Kind kCat vObject object)
@@ -15,22 +15,22 @@ in    λ(object : Kind)
     → λ(f : kCat.arrow object object)
     → λ ( functor
         : ./../Functor/Endo/Type
-          vObject
-          object
-          (./../Category/Monoidal/extractCategory kCat Type vObject v)
-          cat
-          f
+            vObject
+            object
+            (./../Category/Monoidal/extractCategory kCat Type vObject v)
+            cat
+            f
         )
     → λ(monad : ./../Monad/Type object cat f)
     → ./../Ran/lift
-      object
-      object
-      object
-      cat
-      cat
-      semigroupoid
-      f
-      functor
-      f
-      f
-      monad.product
+        object
+        object
+        object
+        cat
+        cat
+        semigroupoid
+        f
+        functor
+        f
+        f
+        monad.product

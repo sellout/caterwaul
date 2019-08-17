@@ -12,9 +12,9 @@ in    λ(object : Kind)
     → λ(m : object)
     → { additive :
           ./../Semigroup/Commutative/Type
-          object
-          (./../Category/Monoidal/extractSemigroupal kCat vObject object cat)
-          m
+            object
+            (./../Category/Monoidal/extractSemigroupal kCat vObject object cat)
+            m
       , multiplicative :
           ./../Monoid/Type object cat m
       }

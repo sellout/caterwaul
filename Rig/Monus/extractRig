@@ -8,10 +8,10 @@ in    λ(object : Kind)
     → λ(rig : ./Type object cat m)
     →   { additive =
             ./../../Monoid/Commutative/Monus/extractCommutativeMonoid
-            object
-            cat
-            m
-            rig.additive
+              object
+              cat
+              m
+              rig.additive
         , multiplicative =
             rig.multiplicative
         }

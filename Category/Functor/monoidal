@@ -21,9 +21,9 @@ in    λ(cObject : Kind)
                         ./../../Day/Type cObject d c
                     }
                   ∧ ./category
-                    cObject
-                    dObject
-                    v
-                    (base cObject c)
-                    (base dObject d)
+                      cObject
+                      dObject
+                      v
+                      (base cObject c)
+                      (base dObject d)
                 : MonoidalCategory (cat.arrow cObject dObject)

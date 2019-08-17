@@ -4,10 +4,10 @@ let vObject = Type
 
 let Set =
       ./../Category/Monoidal/Cartesian/extractSemigroupal
-      cat
-      vObject
-      Type
-      ./../Category/Set/monoidal/cartesian
+        cat
+        vObject
+        Type
+        ./../Category/Set/monoidal/cartesian
 
 in    { product = λ(p : { _1 : <>, _2 : <> }) → merge {=} p._1 : <> }
     : ./../Semigroup/Type Type Set <>

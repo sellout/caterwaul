@@ -5,5 +5,5 @@ let vObject = Type
 in    λ(object : Kind)
     → λ(cat : ./../Category/Semigroupal/Kind kCat vObject object)
     → ./../Semigroup/Type
-      object
-      (./../Category/Op/semigroupal vObject object cat)
+        object
+        (./../Category/Op/semigroupal vObject object cat)

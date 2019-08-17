@@ -5,7 +5,7 @@ in    λ(vObject : Kind)
     → λ(cat : ./../Monoidal/Kind kCat vObject object)
     →     { unit = cat.unit }
         ∧ ./semigroupal
-          vObject
-          object
-          (./../Monoidal/extractSemigroupal kCat vObject object cat)
+            vObject
+            object
+            (./../Monoidal/extractSemigroupal kCat vObject object cat)
       : ./../Monoidal/Kind kCat vObject object

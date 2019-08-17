@@ -16,9 +16,13 @@ in    λ(cObject : Kind)
       
       let d =
             base
-            vObject
-            dObject
-            (monoidalBase vObject dObject ./../Category/Set/monoidal/cartesian)
+              vObject
+              dObject
+              ( monoidalBase
+                  vObject
+                  dObject
+                  ./../Category/Set/monoidal/cartesian
+              )
       
       let Ran = ./Type cObject cpObject cp
       
@@ -32,25 +36,25 @@ in    λ(cObject : Kind)
                   → λ(c : cObject)
                   → λ(k : cp.arrow { _1 = b, _2 = p c })
                   → ran
-                    c
-                    ( cpSemigroupoid.product
-                      { _1 = a, _2 = p c }
-                      (   λ(r : Type)
-                        → λ ( arrowsOut
-                            :   ∀(z : cpObject)
-                              → cp.arrow { _1 = z, _2 = p c }
-                              → cp.arrow { _1 = a, _2 = z }
-                              → r
-                            )
-                        → arrowsOut b k fn
+                      c
+                      ( cpSemigroupoid.product
+                          { _1 = a, _2 = p c }
+                          (   λ(r : Type)
+                            → λ ( arrowsOut
+                                :   ∀(z : cpObject)
+                                  → cp.arrow { _1 = z, _2 = p c }
+                                  → cp.arrow { _1 = a, _2 = z }
+                                  → r
+                                )
+                            → arrowsOut b k fn
+                          )
                       )
-                    )
               }
             : ./../Functor/Type
-              vObject
-              cpObject
-              dObject
-              (base Type vObject v)
-              cp
-              d
-              (Ran p f)
+                vObject
+                cpObject
+                dObject
+                (base Type vObject v)
+                cp
+                d
+                (Ran p f)

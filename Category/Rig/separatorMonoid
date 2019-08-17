@@ -24,16 +24,17 @@ in    λ(vObject : Kind)
             , product =
                   λ(a : kCat.product object object)
                 → add
-                  { _1 =
-                      add
-                      { _1 =
-                          mult { _1 = mult { _1 = a._1, _2 = s }, _2 = a._2 }
-                      , _2 =
-                          a._1
-                      }
-                  , _2 =
-                      a._2
-                  }
+                    { _1 =
+                        add
+                          { _1 =
+                              mult
+                                { _1 = mult { _1 = a._1, _2 = s }, _2 = a._2 }
+                          , _2 =
+                              a._1
+                          }
+                    , _2 =
+                        a._2
+                    }
             , unit =
                 cat.additive.unit
             }

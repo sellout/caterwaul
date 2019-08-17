@@ -13,9 +13,9 @@ in    λ(vObject : Kind)
             ∀(a : cObject)
           → ∀(b : cObject)
           → v.arrow
-            { _1 =
-                c.arrow { _1 = a, _2 = b }
-            , _2 =
-                d.arrow { _1 = f a, _2 = f b }
-            }
+              { _1 =
+                  c.arrow { _1 = a, _2 = b }
+              , _2 =
+                  d.arrow { _1 = f a, _2 = f b }
+              }
       }

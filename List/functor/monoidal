@@ -1,4 +1,4 @@
 ./../../Monad/impliedMonoidalFunctor
-List
-(./endo/star (./../../Identity/Type Type) ./../../Identity/functor/monoidal)
-./../monad
+  List
+  (./endo/star (./../../Identity/Type Type) ./../../Identity/functor/monoidal)
+  ./../monad

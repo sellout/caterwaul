@@ -14,26 +14,30 @@ in    λ(a : Type)
                 : Set.product { _1 = a, _2 = Set.product { _1 = a, _2 = b } }
                 )
             → merge
-              { Left =
-                  (Set.product { _1 = a, _2 = b }).Left
-              , Right =
-                  λ(e : Set.product { _1 = a, _2 = b }) → e
-              }
-              ( merge
                 { Left =
-                    (Set.product { _1 = a, _2 = Set.product { _1 = a, _2 = b } }).Left
+                    (Set.product { _1 = a, _2 = b }).Left
                 , Right =
-				    (Set.product { _1 = a, _2 = Set.product { _1 = a, _2 = b } }).Right
+                    λ(e : Set.product { _1 = a, _2 = b }) → e
                 }
-                fa
-              )
+                ( merge
+                    { Left =
+                        ( Set.product
+                            { _1 = a, _2 = Set.product { _1 = a, _2 = b } }
+                        ).Left
+                    , Right =
+                        ( Set.product
+                            { _1 = a, _2 = Set.product { _1 = a, _2 = b } }
+                        ).Right
+                    }
+                    fa
+                )
         }
       : ./../Monad/Type
-        Type
-        ( ./../Category/Monoidal/Cartesian/extractCategory
-          cat
-          vObject
           Type
-          ./../Category/Set/monoidal/cartesian
-        )
-        (λ(b : Type) → Set.product { _1 = a, _2 = b })
+          ( ./../Category/Monoidal/Cartesian/extractCategory
+              cat
+              vObject
+              Type
+              ./../Category/Set/monoidal/cartesian
+          )
+          (λ(b : Type) → Set.product { _1 = a, _2 = b })

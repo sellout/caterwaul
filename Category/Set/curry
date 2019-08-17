@@ -17,4 +17,4 @@ in    (   λ(a : Type)
           }
       )
     : ./../Monoidal/Closed/curry
-      (./../Monoidal/Cartesian/extractMonoidal cat Type Type Set)
+        (./../Monoidal/Cartesian/extractMonoidal cat Type Type Set)

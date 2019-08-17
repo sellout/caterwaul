@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let vBase = ./../Category/Monoidal/extractCategory kCat Type vObject v
 
@@ -31,51 +31,52 @@ in    λ(object : Kind)
                       → λ(fa : Semigroup a)
                       → { product =
                             semigroupoid.product
-                            { _1 = cat.product { _1 = b, _2 = b }, _2 = b }
-                            (   λ(r : Type)
-                              → λ ( arrowsOut
-                                  :   ∀(z : object)
-                                    → cat.arrow { _1 = z, _2 = b }
-                                    → cat.arrow
-                                      { _1 =
-                                          cat.product { _1 = b, _2 = b }
-                                      , _2 =
-                                          z
-                                      }
-                                    → r
-                                  )
-                              → arrowsOut
-                                a
-                                fn.to
-                                ( semigroupoid.product
-                                  { _1 =
-                                      cat.product { _1 = b, _2 = b }
-                                  , _2 =
-                                      a
-                                  }
-                                  (   λ(r : Type)
-                                    → λ ( arrowsOut
-                                        :   ∀(z : object)
-                                          → cat.arrow { _1 = z, _2 = a }
-                                          → cat.arrow
-                                            { _1 =
-                                                cat.product { _1 = b, _2 = b }
-                                            , _2 =
-                                                z
-                                            }
-                                          → r
+                              { _1 = cat.product { _1 = b, _2 = b }, _2 = b }
+                              (   λ(r : Type)
+                                → λ ( arrowsOut
+                                    :   ∀(z : object)
+                                      → cat.arrow { _1 = z, _2 = b }
+                                      → cat.arrow
+                                          { _1 =
+                                              cat.product { _1 = b, _2 = b }
+                                          , _2 =
+                                              z
+                                          }
+                                      → r
+                                    )
+                                → arrowsOut
+                                    a
+                                    fn.to
+                                    ( semigroupoid.product
+                                        { _1 =
+                                            cat.product { _1 = b, _2 = b }
+                                        , _2 =
+                                            a
+                                        }
+                                        (   λ(r : Type)
+                                          → λ ( arrowsOut
+                                              :   ∀(z : object)
+                                                → cat.arrow { _1 = z, _2 = a }
+                                                → cat.arrow
+                                                    { _1 =
+                                                        cat.product
+                                                          { _1 = b, _2 = b }
+                                                    , _2 =
+                                                        z
+                                                    }
+                                                → r
+                                              )
+                                          → arrowsOut
+                                              (cat.product { _1 = a, _2 = a })
+                                              fa.product
+                                              ( bifunctor.map
+                                                  { _1 = b, _2 = b }
+                                                  { _1 = a, _2 = a }
+                                                  { _1 = fn.from, _2 = fn.from }
+                                              )
                                         )
-                                    → arrowsOut
-                                      (cat.product { _1 = a, _2 = a })
-                                      fa.product
-                                      ( bifunctor.map
-                                        { _1 = b, _2 = b }
-                                        { _1 = a, _2 = a }
-                                        { _1 = fn.from, _2 = fn.from }
-                                      )
-                                  )
-                                )
-                            )
+                                    )
+                              )
                         }
                   }
                 : ./../Functor/SetValued object vBase Dagger Semigroup

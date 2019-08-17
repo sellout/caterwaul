@@ -8,9 +8,9 @@ let vObject = Type
 
 let v =
       base
-      Type
-      vObject
-      (monoidalBase Type vObject ./../Category/Set/monoidal/cartesian)
+        Type
+        vObject
+        (monoidalBase Type vObject ./../Category/Set/monoidal/cartesian)
 
 let cObject = Type
 

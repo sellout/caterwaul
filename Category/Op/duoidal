@@ -5,7 +5,7 @@ in    λ(vObject : Kind)
     → λ(cat : ./../Duoidal/Kind kCat vObject object)
     →     { diamond = cat.diamond, star = cat.star }
         ∧ ./Kind
-          vObject
-          object
-          (./../Duoidal/extractCategory kCat vObject object cat)
+            vObject
+            object
+            (./../Duoidal/extractCategory kCat vObject object cat)
       : ./../Duoidal/Kind kCat vObject object

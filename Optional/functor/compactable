@@ -9,13 +9,13 @@ let v = base Type vObject ./../../Category/Set/monoidal/cartesian
 let Set = base vObject Type ./../../Category/Set/monoidal/cartesian
 
 in    ./../../Monad/impliedStarfunctor
-      Type
-      Set
-      ./../../Category/Set/semigroupoid
-      Optional
-      ( ./../functor/endo/star
-        (./../../Identity/Type Type)
-        ./../../Identity/functor/monoidal
-      )
-      ./../monad
+        Type
+        Set
+        ./../../Category/Set/semigroupoid
+        Optional
+        ( ./../functor/endo/star
+            (./../../Identity/Type Type)
+            ./../../Identity/functor/monoidal
+        )
+        ./../monad
     : ./../../Functor/Star/Type vObject Type v Set Optional Optional

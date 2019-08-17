@@ -1,6 +1,6 @@
 
 lint:
-	./scripts/find-dhall-files.sh -type f -exec dhall lint --inplace {} \;
+	./scripts/find-dhall-files.sh -type f -exec ${DHALL} lint --inplace {} \;
 
 compile:
 	./scripts/compile.sh

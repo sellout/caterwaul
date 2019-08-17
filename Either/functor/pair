@@ -6,17 +6,17 @@ let vObject = Type
 
 let v =
       ./../../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../../Category/Set/monoidal/cartesian
 
 let Set =
       ./../../Category/Rig/extractAdditive
-      kCat
-      vObject
-      Type
-      ./../../Category/Set/rig
+        kCat
+        vObject
+        Type
+        ./../../Category/Set/rig
 
 let cat = base vObject Type Set
 
@@ -32,18 +32,18 @@ in    λ(m : Type → Type)
             → let E = Set.product b
               
               in  merge
-                  { Left =
-                        λ(x : a._1)
-                      → functor.map b._1 (Set.product b) E.Left (f._1 x)
-                  , Right =
-                        λ(x : a._2)
-                      → functor.map b._2 (Set.product b) E.Right (f._2 x)
-                  }
-                  e
+                    { Left =
+                          λ(x : a._1)
+                        → functor.map b._1 (Set.product b) E.Left (f._1 x)
+                    , Right =
+                          λ(x : a._2)
+                        → functor.map b._2 (Set.product b) E.Right (f._2 x)
+                    }
+                    e
         }
       : ./../../Functor/Pair/Type
-        vObject
-        Type
-        v
-        (./../../Category/Kleisli/category vObject Type cat m)
-        Set.product
+          vObject
+          Type
+          v
+          (./../../Category/Kleisli/category vObject Type cat m)
+          Set.product

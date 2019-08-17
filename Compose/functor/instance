@@ -8,14 +8,14 @@ in    λ(vObject : Kind)
     → λ(v : Category Type vObject)
     → λ ( vCategory
         : ./../../Category/Type
-          vObject
-          ( ./../../Category/Monoidal/Cartesian/extractMonoidal
-            cat
-            Type
-            Type
-            ./../../Category/Set/monoidal/cartesian
-          )
-          v
+            vObject
+            ( ./../../Category/Monoidal/Cartesian/extractMonoidal
+                cat
+                Type
+                Type
+                ./../../Category/Set/monoidal/cartesian
+            )
+            v
         )
     → λ(cObject : Kind)
     → λ(c : Category vObject cObject)
@@ -31,30 +31,34 @@ in    λ(vObject : Kind)
               λ(a : cObject)
             → λ(b : cObject)
             → vCategory.product
-              { _1 =
-                  c.arrow { _1 = a, _2 = b }
-              , _2 =
-                  e.arrow { _1 = f (g a), _2 = f (g b) }
-              }
-              (   λ(r : Type)
-                → λ ( arrowsOut
-                    :   ∀(z : vObject)
-                      → v.arrow
-                        { _1 = z, _2 = e.arrow { _1 = f (g a), _2 = f (g b) } }
-                      → v.arrow { _1 = c.arrow { _1 = a, _2 = b }, _2 = z }
-                      → r
-                    )
-                → arrowsOut
-                  (d.arrow { _1 = g a, _2 = g b })
-                  (fFunctor.map (g a) (g b))
-                  (gFunctor.map a b)
-              )
+                { _1 =
+                    c.arrow { _1 = a, _2 = b }
+                , _2 =
+                    e.arrow { _1 = f (g a), _2 = f (g b) }
+                }
+                (   λ(r : Type)
+                  → λ ( arrowsOut
+                      :   ∀(z : vObject)
+                        → v.arrow
+                            { _1 =
+                                z
+                            , _2 =
+                                e.arrow { _1 = f (g a), _2 = f (g b) }
+                            }
+                        → v.arrow { _1 = c.arrow { _1 = a, _2 = b }, _2 = z }
+                        → r
+                      )
+                  → arrowsOut
+                      (d.arrow { _1 = g a, _2 = g b })
+                      (fFunctor.map (g a) (g b))
+                      (gFunctor.map a b)
+                )
         }
       : Functor
-        vObject
-        cObject
-        eObject
-        v
-        c
-        e
-        (./../Type cObject dObject eObject { _1 = f, _2 = g })
+          vObject
+          cObject
+          eObject
+          v
+          c
+          e
+          (./../Type cObject dObject eObject { _1 = f, _2 = g })

@@ -22,9 +22,9 @@ in    λ(cObject : Kind)
             in      { unit =
                           λ(x : cObject)
                         → ./../../Functor/Constant/Type
-                          dObject
-                          cObject
-                          { _1 = d.unit, _2 = x }
+                            dObject
+                            cObject
+                            { _1 = d.unit, _2 = x }
                     , product =
                           λ(f : { _1 : object, _2 : object })
                         → λ(x : cObject)

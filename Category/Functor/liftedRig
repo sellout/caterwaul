@@ -23,9 +23,9 @@ in    λ(cObject : Kind)
                         { unit =
                               λ(x : cObject)
                             → ./../../Functor/Constant/Type
-                              dObject
-                              cObject
-                              { _1 = d.additive.unit, _2 = x }
+                                dObject
+                                cObject
+                                { _1 = d.additive.unit, _2 = x }
                         , product =
                               λ(f : { _1 : object, _2 : object })
                             → λ(x : cObject)
@@ -35,14 +35,14 @@ in    λ(cObject : Kind)
                         { unit =
                               λ(x : cObject)
                             → ./../../Functor/Constant/Type
-                              dObject
-                              cObject
-                              { _1 = d.multiplicative.unit, _2 = x }
+                                dObject
+                                cObject
+                                { _1 = d.multiplicative.unit, _2 = x }
                         , product =
                               λ(f : { _1 : object, _2 : object })
                             → λ(x : cObject)
                             → d.multiplicative.product
-                              { _1 = f._1 x, _2 = f._2 x }
+                                { _1 = f._1 x, _2 = f._2 x }
                         }
                     }
                   ∧ ./category cObject dObject v c (base dObject d)

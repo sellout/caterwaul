@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(object : Kind)
     → λ(cat : ./../Category/Kind kCat vObject object)
@@ -16,12 +16,12 @@ in    λ(object : Kind)
             ./monad object cat category
         , comonoid =
             ./monad
-            object
-            (./../Category/Op/Kind vObject object cat)
-            (./../Category/Op/category object cat category)
+              object
+              (./../Category/Op/Kind vObject object cat)
+              (./../Category/Op/category object cat category)
         }
       : ./../Bimonad/Type
-        object
-        (./../Category/Monoidal/extractCategory kCat Type vObject v)
-        cat
-        (./Type object)
+          object
+          (./../Category/Monoidal/extractCategory kCat Type vObject v)
+          cat
+          (./Type object)

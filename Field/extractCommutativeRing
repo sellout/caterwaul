@@ -10,9 +10,9 @@ in    λ(object : Kind)
             field.additive
         , multiplicative =
             ./../Group/Commutative/extractCommutativeMonoid
-            object
-            cat
-            m
-            field.multiplicative
+              object
+              cat
+              m
+              field.multiplicative
         }
       : ./../Ring/Commutative/Type object cat m

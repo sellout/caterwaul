@@ -6,8 +6,8 @@ in    λ ( m
     → λ(field : ./Type m)
     →   { additive =
             ./../../Group/OrderedCommutative/extractPartiallyOrderedCommutativeGroup
-            m
-            field.additive
+              m
+              field.additive
         , multiplicative =
             field.multiplicative
         }

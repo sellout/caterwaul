@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let base = ./../Category/Monoidal/extractCategory kCat vObject
 
@@ -26,34 +26,34 @@ in    λ(cObject : Kind)
                   → λ(fn : c.arrow { _1 = a, _2 = b })
                   → λ(day : Day { _1 = f, _2 = g } a)
                   → day
-                    (Day { _1 = f, _2 = g } b)
-                    (   λ(d : { _1 : cObject, _2 : cObject })
-                      → λ(fn2 : c.arrow { _1 = c.product d, _2 = a })
-                      → λ(e : v.product { _1 = f d._1, _2 = g d._2 })
-                      → λ(r0 : vObject)
-                      → λ(day0 : ./convolution cObject v c f g b r0)
-                      → day0
-                        d
-                        ( semigroupoid.product
-                          { _1 = c.product d, _2 = b }
-                          (   λ(r : Type)
-                            → λ ( arrowsOut
-                                :   ∀(z : cObject)
-                                  → c.arrow { _1 = z, _2 = b }
-                                  → c.arrow { _1 = c.product d, _2 = z }
-                                  → r
+                      (Day { _1 = f, _2 = g } b)
+                      (   λ(d : { _1 : cObject, _2 : cObject })
+                        → λ(fn2 : c.arrow { _1 = c.product d, _2 = a })
+                        → λ(e : v.product { _1 = f d._1, _2 = g d._2 })
+                        → λ(r0 : vObject)
+                        → λ(day0 : ./convolution cObject v c f g b r0)
+                        → day0
+                            d
+                            ( semigroupoid.product
+                                { _1 = c.product d, _2 = b }
+                                (   λ(r : Type)
+                                  → λ ( arrowsOut
+                                      :   ∀(z : cObject)
+                                        → c.arrow { _1 = z, _2 = b }
+                                        → c.arrow { _1 = c.product d, _2 = z }
+                                        → r
+                                      )
+                                  → arrowsOut a fn fn2
                                 )
-                            → arrowsOut a fn fn2
-                          )
-                        )
-                        e
-                    )
+                            )
+                            e
+                      )
               }
             : ./../Functor/Type
-              vObject
-              cObject
-              vObject
-              (base vObject v)
-              (base cObject c)
-              (base vObject v)
-              (Day { _1 = f, _2 = g })
+                vObject
+                cObject
+                vObject
+                (base vObject v)
+                (base cObject c)
+                (base vObject v)
+                (Day { _1 = f, _2 = g })

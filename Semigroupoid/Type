@@ -17,6 +17,6 @@ in    λ(object : Kind)
       
       in    { hom : ./../Functor/Profunctor/Type object object v cat cat m }
           ⩓ ./../Semigroup/Type
-            profunctor
-            (./../Category/Profunctor/semigroupal object v cat)
-            m
+              profunctor
+              (./../Category/Profunctor/semigroupal object v cat)
+              m

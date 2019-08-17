@@ -15,6 +15,6 @@ in    λ(a : Type)
             → { _1 = tup._1, _2 = tup }
         }
       : ./../Comonad/Type
-        Type
-        base
-        (λ(b : Type) → Set.product { _1 = a, _2 = b })
+          Type
+          base
+          (λ(b : Type) → Set.product { _1 = a, _2 = b })

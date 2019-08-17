@@ -8,6 +8,6 @@ in    λ(object : Kind)
     → λ(monoid : ./Type object cat m)
     →   monoid.{ product }
       : ./../../Semigroup/Type
-        object
-        (./../../Category/Monoidal/extractSemigroupal kCat vObject object cat)
-        m
+          object
+          (./../../Category/Monoidal/extractSemigroupal kCat vObject object cat)
+          m

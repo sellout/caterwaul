@@ -12,12 +12,12 @@ in    λ(cObject : Kind)
     → λ(c : Category vObject cObject)
     → λ(d : Category vObject dObject)
     → ./../types.dhall
-      { _1 : cObject, _2 : dObject }
-      v
-      ( ./Kind
-        cObject
-        dObject
-        (./../Monoidal/extractSemigroupal cat Type vObject v)
-        c
-        d
-      )
+        { _1 : cObject, _2 : dObject }
+        v
+        ( ./Kind
+            cObject
+            dObject
+            (./../Monoidal/extractSemigroupal cat Type vObject v)
+            c
+            d
+        )

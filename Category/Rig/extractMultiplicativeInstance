@@ -8,6 +8,6 @@ in    λ(object : Kind)
     → λ(rig : ./Type object v cat)
     →   rig.multiplicative
       : ./../Monoidal/Type
-        object
-        v
-        (./extractMultiplicative kCat vObject object cat)
+          object
+          v
+          (./extractMultiplicative kCat vObject object cat)

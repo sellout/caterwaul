@@ -8,7 +8,7 @@ in    λ(object : Kind)
     → λ(rig : ./Type object cat m)
     →   { zero = rig.additive.unit }
       ∧ ./../Semiring/terms.dhall
-        object
-        cat
-        m
-        (./extractSemiring object cat m rig)
+          object
+          cat
+          m
+          (./extractSemiring object cat m rig)

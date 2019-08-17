@@ -17,14 +17,14 @@ in    λ(cObject : Kind)
                 }
               )
           → ./../Lan/Type
-            { _1 : cObject, _2 : cObject }
-            cObject
-            (base vObject cObject c)
-            c.product
-            (   λ(p : { _1 : cObject, _2 : cObject })
-              → v.product { _1 = f._1 p._1, _2 = f._2 p._2 }
-            )
+              { _1 : cObject, _2 : cObject }
+              cObject
+              (base vObject cObject c)
+              c.product
+              (   λ(p : { _1 : cObject, _2 : cObject })
+                → v.product { _1 = f._1 p._1, _2 = f._2 p._2 }
+              )
         )
       : cat.arrow
-        (cat.product (cat.arrow cObject vObject) (cat.arrow cObject vObject))
-        (cat.arrow cObject vObject)
+          (cat.product (cat.arrow cObject vObject) (cat.arrow cObject vObject))
+          (cat.arrow cObject vObject)

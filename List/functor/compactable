@@ -4,10 +4,10 @@ let vObject = Type
 
 let Set =
       ./../../Category/Monoidal/Cartesian/extractCategory
-      cat
-      vObject
-      Type
-      ./../../Category/Set/monoidal/cartesian
+        cat
+        vObject
+        Type
+        ./../../Category/Set/monoidal/cartesian
 
 let v = Set
 
@@ -17,13 +17,13 @@ in    { map =
           → λ(f : a → Optional b)
           → λ(l : List a)
           → List/fold
-            a
-            l
-            (List b)
-            (   λ(x : a)
-              → λ(acc : List b)
-              → Optional/fold b (f x) (List b) (λ(y : b) → [ y ] # acc) acc
-            )
-            ([] : List b)
+              a
+              l
+              (List b)
+              (   λ(x : a)
+                → λ(acc : List b)
+                → Optional/fold b (f x) (List b) (λ(y : b) → [ y ] # acc) acc
+              )
+              ([] : List b)
       }
     : ./../../Functor/Star/Type vObject Type v Set Optional List

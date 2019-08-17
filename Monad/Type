@@ -7,13 +7,13 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractCategory
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(object : Kind)
     → λ(cat : ./../Category/Kind kCat vObject object)
     → ./../Monoid/Type
-      (kCat.arrow object object)
-      (./../Category/Endofunctor/monoidal/monadic object v cat)
+        (kCat.arrow object object)
+        (./../Category/Endofunctor/monoidal/monadic object v cat)

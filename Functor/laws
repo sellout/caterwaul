@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(cObject : Kind)
     → let dObject = Type
@@ -16,38 +16,38 @@ in    λ(cObject : Kind)
           → λ(cCategory : ./../Category/Type cObject v c)
           → let d =
                   ./../Category/Monoidal/Cartesian/extractCategory
-                  cat
-                  vObject
-                  dObject
-                  ./../Category/Set/monoidal/cartesian
+                    cat
+                    vObject
+                    dObject
+                    ./../Category/Set/monoidal/cartesian
             
             let dCategory = ./../Category/Set/category/instance
             
             in    λ(f : cat.arrow cObject dObject)
                 → λ ( functor
                     : ./Type
-                      vObject
-                      cObject
-                      dObject
-                      ( ./../Category/Monoidal/extractCategory
-                        cat
-                        Type
                         vObject
-                        v
-                      )
-                      c
-                      d
-                      f
+                        cObject
+                        dObject
+                        ( ./../Category/Monoidal/extractCategory
+                            cat
+                            Type
+                            vObject
+                            v
+                        )
+                        c
+                        d
+                        f
                     )
                 → { unit =
                         λ(a : cObject)
                       → λ(eq : ./../Eq/Type (f a))
                       → ./../Eq/eqfn
-                        (f a)
-                        (f a)
-                        eq
-                        (functor.map a a (cCategory.unit a))
-                        (dCategory.unit (f a))
+                          (f a)
+                          (f a)
+                          eq
+                          (functor.map a a (cCategory.unit a))
+                          (dCategory.unit (f a))
                   , composition =
                         λ(a : cObject)
                       → λ(b : cObject)
@@ -56,38 +56,38 @@ in    λ(cObject : Kind)
                       → λ(fn : c.arrow { _1 = b, _2 = e })
                       → λ(gn : c.arrow { _1 = a, _2 = b })
                       → ./../Eq/eqfn
-                        (f a)
-                        (f e)
-                        eq
-                        ( functor.map
-                          a
-                          e
-                          ( cCategory.product
-                            { _1 = a, _2 = e }
-                            (   λ(r : Type)
-                              → λ ( arrowsOut
-                                  :   ∀(z : cObject)
-                                    → c.arrow { _1 = z, _2 = e }
-                                    → c.arrow { _1 = a, _2 = z }
-                                    → r
+                          (f a)
+                          (f e)
+                          eq
+                          ( functor.map
+                              a
+                              e
+                              ( cCategory.product
+                                  { _1 = a, _2 = e }
+                                  (   λ(r : Type)
+                                    → λ ( arrowsOut
+                                        :   ∀(z : cObject)
+                                          → c.arrow { _1 = z, _2 = e }
+                                          → c.arrow { _1 = a, _2 = z }
+                                          → r
+                                        )
+                                    → arrowsOut b fn gn
                                   )
-                              → arrowsOut b fn gn
-                            )
+                              )
                           )
-                        )
-                        ( dCategory.product
-                          { _1 = f a, _2 = f e }
-                          (   λ(r : Type)
-                            → λ ( arrowsOut
-                                :   ∀(z : dObject)
-                                  → d.arrow { _1 = z, _2 = f e }
-                                  → d.arrow { _1 = f a, _2 = z }
-                                  → r
-                                )
-                            → arrowsOut
-                              (f b)
-                              (functor.map b e fn)
-                              (functor.map a b gn)
+                          ( dCategory.product
+                              { _1 = f a, _2 = f e }
+                              (   λ(r : Type)
+                                → λ ( arrowsOut
+                                    :   ∀(z : dObject)
+                                      → d.arrow { _1 = z, _2 = f e }
+                                      → d.arrow { _1 = f a, _2 = z }
+                                      → r
+                                    )
+                                → arrowsOut
+                                    (f b)
+                                    (functor.map b e fn)
+                                    (functor.map a b gn)
+                              )
                           )
-                        )
                   }

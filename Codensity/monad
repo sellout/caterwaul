@@ -4,19 +4,19 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let object = Type
 
 let cat =
       ./../Category/Monoidal/Cartesian/extractCategory
-      kCat
-      vObject
-      object
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        vObject
+        object
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(category : ./../Category/Type object v cat)
     → let Codensity = ./Type object cat
@@ -34,7 +34,9 @@ in    λ(category : ./../Category/Type object v cat)
                   → λ(c : object)
                   → λ(l : cat.arrow { _1 = a, _2 = m c })
                   → codensity
-                    c
-                    (λ(x : Codensity m a) → category.unit (Codensity m a) x c l)
+                      c
+                      (   λ(x : Codensity m a)
+                        → category.unit (Codensity m a) x c l
+                      )
               }
             : ./../Monad/Type object cat (Codensity m)

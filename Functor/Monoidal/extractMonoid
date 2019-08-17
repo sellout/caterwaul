@@ -14,6 +14,6 @@ in    λ(cObject : Kind)
           → λ(monoidal : ./Type cObject v c d f)
           →   monoidal.{ unit, product }
             : ./../../Monoid/Type
-              (cat.arrow cObject dObject)
-              (./../../Category/Functor/monoidal cObject v c d)
-              f
+                (cat.arrow cObject dObject)
+                (./../../Category/Functor/monoidal cObject v c d)
+                f

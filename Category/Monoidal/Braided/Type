@@ -9,10 +9,10 @@ in    λ(object : Kind)
               ∀(x : object)
             → ∀(y : object)
             → cat.arrow
-              { _1 =
-                  cat.product { _1 = x, _2 = y }
-              , _2 =
-                  cat.product { _1 = y, _2 = x }
-              }
+                { _1 =
+                    cat.product { _1 = x, _2 = y }
+                , _2 =
+                    cat.product { _1 = y, _2 = x }
+                }
         }
       ⩓ ./../Type object v cat

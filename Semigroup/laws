@@ -6,10 +6,10 @@ let object = Type
 
 let cat =
       ./../Category/Monoidal/Cartesian/extractSemigroupal
-      kCat
-      vObject
-      object
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        vObject
+        object
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(m : object)
     → λ(eq : ./../Eq/Type m)
@@ -19,10 +19,10 @@ in    λ(m : object)
           → λ(b : m)
           → λ(c : m)
           → eq.eq
-            ( semigroup.product
-              { _1 = semigroup.product { _1 = a, _2 = b }, _2 = c }
-            )
-            ( semigroup.product
-              { _1 = a, _2 = semigroup.product { _1 = b, _2 = c } }
-            )
+              ( semigroup.product
+                  { _1 = semigroup.product { _1 = a, _2 = b }, _2 = c }
+              )
+              ( semigroup.product
+                  { _1 = a, _2 = semigroup.product { _1 = b, _2 = c } }
+              )
       }

@@ -14,5 +14,5 @@ in    λ(cObject : Kind)
           → f._1 (f._2 a)
         )
       : cat.arrow
-        (cat.product (cat.arrow dObject eObject) (cat.arrow cObject dObject))
-        (cat.arrow cObject eObject)
+          (cat.product (cat.arrow dObject eObject) (cat.arrow cObject dObject))
+          (cat.arrow cObject eObject)

@@ -6,8 +6,8 @@ in    λ ( m
     → λ(ring : ./Type m)
     →   { additive =
             ./../../Group/OrderedCommutative/extractPartiallyOrderedCommutativeGroup
-            m
-            ring.additive
+              m
+              ring.additive
         , multiplicative =
             ring.multiplicative
         }

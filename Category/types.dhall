@@ -13,14 +13,14 @@ in    λ(object : Kind)
               ./../Adjunction/Type object object vBase cat cat
           , Bifunctor =
               ./../Functor/Bifunctor/Type
-              vObject
-              object
-              object
-              object
-              v
-              cat
-              cat
-              cat
+                vObject
+                object
+                object
+                object
+                v
+                cat
+                cat
+                cat
           , Category =
               ./Type object
           , Codensity =
@@ -60,9 +60,9 @@ in    λ(object : Kind)
           , Traversable =
                 λ(m : kCat.arrow object object)
               → Endofunctor
-                object
-                vBase
-                (./Kleisli/category vObject object cat m)
+                  object
+                  vBase
+                  (./Kleisli/category vObject object cat m)
           , Yoneda =
               ./../Yoneda/Type object cat
           }

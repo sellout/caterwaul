@@ -18,10 +18,10 @@ in    λ(vObject : Kind)
             , arrow =
                   λ(a : { _1 : object, _2 : object })
                 → v.product
-                  { _1 =
-                      c.arrow { _1 = a._1._1, _2 = a._2._1 }
-                  , _2 =
-                      d.arrow { _1 = a._1._2, _2 = a._2._2 }
-                  }
+                    { _1 =
+                        c.arrow { _1 = a._1._1, _2 = a._2._1 }
+                    , _2 =
+                        d.arrow { _1 = a._1._2, _2 = a._2._2 }
+                    }
             }
           : Category vObject object

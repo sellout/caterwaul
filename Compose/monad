@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractCategory
-      cat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let Category = ./../Category/Kind cat vObject
 
@@ -26,6 +26,6 @@ in    λ(cObject : Kind)
             → gFunctor.map (f (g (f a))) (f a) (adjunction.counit (f a))
         }
       : ./../Monad/Type
-        dObject
-        d
-        (./Type dObject cObject dObject { _1 = g, _2 = f })
+          dObject
+          d
+          (./Type dObject cObject dObject { _1 = g, _2 = f })

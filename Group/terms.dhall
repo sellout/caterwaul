@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(object : Kind)
     → λ(cat : ./../Category/Monoidal/Kind kCat vObject object)
@@ -22,7 +22,7 @@ in    λ(object : Kind)
             ./rightQuotient object cat category m group
         }
       ∧ ./../Monoid/terms.dhall
-        object
-        cat
-        m
-        (./extractMonoid object cat m group)
+          object
+          cat
+          m
+          (./extractMonoid object cat m group)

@@ -2,21 +2,14 @@ let kCat = ./../../Category/Cat/semigroupal
 
 let vObject = Type
 
-let v =
-      ./../../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      Type
-      vObject
-      ./../../Category/Set/monoidal/cartesian
-
 let object = Type
 
 let cat =
       ./../../Category/Monoidal/Cartesian/extractCategory
-      kCat
-      vObject
-      object
-      ./../../Category/Set/monoidal/cartesian
+        kCat
+        vObject
+        object
+        ./../../Category/Set/monoidal/cartesian
 
 let category = ./../../Category/Set/category/instance
 
@@ -24,6 +17,6 @@ let semigroupoid = ./../../Category/Set/semigroupoid
 
 in    λ(m : kCat.arrow object object)
     → ./../../Monad/impliedMonoidalFunctor
-      (./../Type object cat m)
-      (./../../Ran/functor object object cat semigroupoid m m)
-      (./../monad category m)
+        (./../Type object cat m)
+        (./../../Ran/functor object object cat semigroupoid m m)
+        (./../monad category m)

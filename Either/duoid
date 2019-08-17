@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractCategory
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let object = Type
 
@@ -17,8 +17,8 @@ let cat = ./../Category/Rig/extractMultiplicative kCat vObject object Set
 
 let CommutativeSemigroup =
       ./../Semigroup/Commutative/Type
-      object
-      (./../Category/Monoidal/extractSemigroupal kCat vObject object cat)
+        object
+        (./../Category/Monoidal/extractSemigroupal kCat vObject object cat)
 
 let extractMonoid = ./../Functor/Monoidal/extractMonoid object v cat cat
 
@@ -26,14 +26,14 @@ in    λ(a : object)
     → λ(semigroup : CommutativeSemigroup a)
     →   { additive =
             extractMonoid
-            (λ(b : object) → Set.additive.product { _1 = a, _2 = b })
-            (./functor/monoidal/parallel a semigroup)
+              (λ(b : object) → Set.additive.product { _1 = a, _2 = b })
+              (./functor/monoidal/parallel a semigroup)
         , multiplicative =
             extractMonoid
-            (λ(b : object) → Set.additive.product { _1 = a, _2 = b })
-            (./functor/monoidal/sequential a)
+              (λ(b : object) → Set.additive.product { _1 = a, _2 = b })
+              (./functor/monoidal/sequential a)
         }
       : ./../Duoid/Type
-        (kCat.arrow object object)
-        (./../Category/Endofunctor/monoidal/functor v cat)
-        (λ(b : object) → Set.additive.product { _1 = a, _2 = b })
+          (kCat.arrow object object)
+          (./../Category/Endofunctor/monoidal/functor v cat)
+          (λ(b : object) → Set.additive.product { _1 = a, _2 = b })

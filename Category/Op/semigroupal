@@ -5,7 +5,12 @@ in    λ(vObject : Kind)
     → λ(cat : ./../Semigroupal/Kind kCat vObject object)
     →     { product = cat.product }
         ∧ ./Kind
-          vObject
-          object
-          (./../../Category/Semigroupal/extractCategory kCat vObject object cat)
+            vObject
+            object
+            ( ./../../Category/Semigroupal/extractCategory
+                kCat
+                vObject
+                object
+                cat
+            )
       : ./../Semigroupal/Kind kCat vObject object

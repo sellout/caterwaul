@@ -4,17 +4,17 @@ let vObject = Type
 
 let v =
       ./../../../Category/Monoidal/Cartesian/extractCategory
-      cat
-      Type
-      vObject
-      ./../../../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../../../Category/Set/monoidal/cartesian
 
 let Set =
       ./../../../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      vObject
-      Type
-      ./../../../Category/Set/monoidal/cartesian
+        cat
+        vObject
+        Type
+        ./../../../Category/Set/monoidal/cartesian
 
 in    λ(m : cat.arrow Type Type)
     → λ(monoidal : ./../../../Functor/Monoidal/Type Type v Set Set m)
@@ -27,35 +27,35 @@ in    λ(m : cat.arrow Type Type)
                       λ(mb : m b)
                     → λ(mlb : m (List b))
                     → monoidal.product
-                      (List b)
-                      (   λ(r : Type)
-                        → λ ( day
-                            : ./../../../Day/convolution
-                              Type
-                              Set
-                              Set
-                              m
-                              m
-                              (List b)
-                              r
-                            )
-                        → day
-                          { _1 = b, _2 = List b }
-                          (λ(p : { _1 : b, _2 : List b }) → [ p._1 ] # p._2)
-                          { _1 = mb, _2 = mlb }
-                      )
+                        (List b)
+                        (   λ(r : Type)
+                          → λ ( day
+                              : ./../../../Day/convolution
+                                  Type
+                                  Set
+                                  Set
+                                  m
+                                  m
+                                  (List b)
+                                  r
+                              )
+                          → day
+                              { _1 = b, _2 = List b }
+                              (λ(p : { _1 : b, _2 : List b }) → [ p._1 ] # p._2)
+                              { _1 = mb, _2 = mlb }
+                        )
               
               in  List/fold
-                  a
-                  fa
-                  (m (List b))
-                  (λ(x : a) → liftCons (f x))
-                  (monoidal.unit (List b) (λ(_ : Set.unit) → [] : List b))
+                    a
+                    fa
+                    (m (List b))
+                    (λ(x : a) → liftCons (f x))
+                    (monoidal.unit (List b) (λ(_ : Set.unit) → [] : List b))
         }
       : ./../../../Functor/Endo/Star/Type
-        vObject
-        Type
-        v
-        (./../../../Category/Monoidal/extractCategory cat vObject Type Set)
-        m
-        List
+          vObject
+          Type
+          v
+          (./../../../Category/Monoidal/extractCategory cat vObject Type Set)
+          m
+          List

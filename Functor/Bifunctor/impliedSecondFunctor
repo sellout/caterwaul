@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      Type
-      vObject
-      ./../../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../../Category/Set/monoidal/cartesian
 
 let Category = ./../../Category/Kind cat vObject
 
@@ -26,15 +26,15 @@ in    λ(cObject : Kind)
             → λ(c : dObject)
             → λ(fn : d.arrow { _1 = b, _2 = c })
             → bifunctor.map
-              { _1 = a, _2 = b }
-              { _1 = a, _2 = c }
-              { _1 = cCategory.unit a, _2 = fn }
+                { _1 = a, _2 = b }
+                { _1 = a, _2 = c }
+                { _1 = cCategory.unit a, _2 = fn }
         }
       : ./../Type
-        vObject
-        dObject
-        eObject
-        (./../../Category/Monoidal/extractCategory cat Type vObject v)
-        d
-        e
-        (λ(b : dObject) → f { _1 = a, _2 = b })
+          vObject
+          dObject
+          eObject
+          (./../../Category/Monoidal/extractCategory cat Type vObject v)
+          d
+          e
+          (λ(b : dObject) → f { _1 = a, _2 = b })

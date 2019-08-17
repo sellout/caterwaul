@@ -5,10 +5,10 @@ let vObject = Type
 in    λ(v : ./../Monoidal/Kind cat Type vObject)
     → let Set =
             ./../Monoidal/Cartesian/extractMonoidal
-            cat
-            vObject
-            Type
-            ./monoidal/cartesian
+              cat
+              vObject
+              Type
+              ./monoidal/cartesian
       
       in    { Eq =
                 ./../../Eq/Type

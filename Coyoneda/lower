@@ -17,11 +17,11 @@ in    λ(cObject : Kind)
       in    λ(f : cat.arrow cObject dObject)
           → λ(functor : ./../Functor/Type vObject cObject dObject v c d f)
           → ./../Lan/lower
-            cObject
-            cObject
-            c
-            f
-            functor
-            (./../Identity/Type cObject)
-            f
-            (λ(b : cObject) → dCategory.unit (f b))
+              cObject
+              cObject
+              c
+              f
+              functor
+              (./../Identity/Type cObject)
+              f
+              (λ(b : cObject) → dCategory.unit (f b))

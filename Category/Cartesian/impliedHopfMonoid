@@ -21,10 +21,10 @@ in    λ(object : Kind)
     → λ(group : Group object cat m)
     →     { antipode = group.inverse }
         ∧ ./impliedBimonoid
-          object
-          v
-          cat
-          m
-          cartesian
-          (extractMonoid object cat m group)
+            object
+            v
+            cat
+            m
+            cartesian
+            (extractMonoid object cat m group)
       : HopfMonoid object cat m

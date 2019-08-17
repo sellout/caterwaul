@@ -18,9 +18,14 @@ in    λ(v : ./../../Category/Kind kCat Type vObject)
       
       let monadic =
             ./monoidal/monadic
-            object
-            v
-            (./../../Category/Monoidal/extractCategory kCat vObject object cat)
+              object
+              v
+              ( ./../../Category/Monoidal/extractCategory
+                  kCat
+                  vObject
+                  object
+                  cat
+              )
       
       in    { constraint =
                 monadic.constraint

@@ -14,10 +14,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(cObject : Kind)
     → λ(c : ./../Category/Kind cat vObject cObject)
@@ -46,22 +46,22 @@ in    λ(cObject : Kind)
                       )
                   → λ(f : cat.arrow cObject dObject)
                   → dCategory.product
-                    { _1 = f a._1, _2 = f a._2 }
-                    (   λ(r : Type)
-                      → λ ( arrowsOut
-                          :   ∀(z : dObject)
-                            → d.arrow { _1 = z, _2 = f a._2 }
-                            → d.arrow { _1 = f a._1, _2 = z }
-                            → r
-                          )
-                      → p
-                        r
-                        (   λ(z : cObject)
-                          → λ(g : Leibniz.arrow { _1 = z, _2 = a._2 })
-                          → λ(h : Leibniz.arrow { _1 = a._1, _2 = z })
-                          → arrowsOut (f z) (g f) (h f)
-                        )
-                    )
+                      { _1 = f a._1, _2 = f a._2 }
+                      (   λ(r : Type)
+                        → λ ( arrowsOut
+                            :   ∀(z : dObject)
+                              → d.arrow { _1 = z, _2 = f a._2 }
+                              → d.arrow { _1 = f a._1, _2 = z }
+                              → r
+                            )
+                        → p
+                            r
+                            (   λ(z : cObject)
+                              → λ(g : Leibniz.arrow { _1 = z, _2 = a._2 })
+                              → λ(h : Leibniz.arrow { _1 = a._1, _2 = z })
+                              → arrowsOut (f z) (g f) (h f)
+                            )
+                      )
             
             in    { unit =
                       refl
@@ -73,44 +73,46 @@ in    λ(cObject : Kind)
                           → λ(b : cat.product cObject cObject)
                           → λ ( f
                               : v.product
-                                { _1 =
-                                    Leibniz.arrow { _1 = b._1, _2 = a._1 }
-                                , _2 =
-                                    Leibniz.arrow { _1 = a._2, _2 = b._2 }
-                                }
+                                  { _1 =
+                                      Leibniz.arrow { _1 = b._1, _2 = a._1 }
+                                  , _2 =
+                                      Leibniz.arrow { _1 = a._2, _2 = b._2 }
+                                  }
                               )
                           → λ(fn : Leibniz.arrow a)
                           → trans
-                            { _1 = b._1, _2 = b._2 }
-                            (   λ(r : Type)
-                              → λ ( arrowsOut
-                                  :   ∀(z : cObject)
-                                    → Leibniz.arrow { _1 = z, _2 = b._2 }
-                                    → Leibniz.arrow { _1 = b._1, _2 = z }
-                                    → r
-                                  )
-                              → arrowsOut
-                                a._1
-                                ( trans
-                                  { _1 = a._1, _2 = b._2 }
-                                  (   λ(r : Type)
-                                    → λ ( arrowsOut
-                                        :   ∀(z : cObject)
-                                          → Leibniz.arrow { _1 = z, _2 = b._2 }
-                                          → Leibniz.arrow { _1 = a._1, _2 = z }
-                                          → r
+                              { _1 = b._1, _2 = b._2 }
+                              (   λ(r : Type)
+                                → λ ( arrowsOut
+                                    :   ∀(z : cObject)
+                                      → Leibniz.arrow { _1 = z, _2 = b._2 }
+                                      → Leibniz.arrow { _1 = b._1, _2 = z }
+                                      → r
+                                    )
+                                → arrowsOut
+                                    a._1
+                                    ( trans
+                                        { _1 = a._1, _2 = b._2 }
+                                        (   λ(r : Type)
+                                          → λ ( arrowsOut
+                                              :   ∀(z : cObject)
+                                                → Leibniz.arrow
+                                                    { _1 = z, _2 = b._2 }
+                                                → Leibniz.arrow
+                                                    { _1 = a._1, _2 = z }
+                                                → r
+                                              )
+                                          → arrowsOut a._2 f._2 fn
                                         )
-                                    → arrowsOut a._2 f._2 fn
-                                  )
-                                )
-                                f._1
-                            )
+                                    )
+                                    f._1
+                              )
                       }
                   , inverse =
                         λ(a : cat.product cObject cObject)
                       → λ(subst : Leibniz.arrow a)
                       → subst
-                        (λ(x : cObject) → Leibniz.arrow { _1 = x, _2 = a._1 })
-                        (refl a._1)
+                          (λ(x : cObject) → Leibniz.arrow { _1 = x, _2 = a._1 })
+                          (refl a._1)
                   }
                 : ./../Groupoid/Type cObject v Leibniz

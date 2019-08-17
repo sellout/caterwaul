@@ -7,10 +7,10 @@ in    λ(object : Kind)
     → λ(cat : ./Kind kCat vObject object)
     → let Set =
             ./Cartesian/extractMonoidal
-            kCat
-            vObject
-            Type
-            ./../Set/monoidal/cartesian
+              kCat
+              vObject
+              Type
+              ./../Set/monoidal/cartesian
       
       let vBase = ./extractcategory kCat Type vObject v
       
@@ -38,6 +38,6 @@ in    λ(object : Kind)
                 ./../../Functor/Strong/Type object vBase cat
             }
           ∧ ./../Semigroupal/types.dhall
-            object
-            v
-            (./extractSemigroupal kCat vObject object cat)
+              object
+              v
+              (./extractSemigroupal kCat vObject object cat)

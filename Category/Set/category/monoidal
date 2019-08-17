@@ -4,9 +4,9 @@ let vObject = Type
 
 let v =
       ./../../Monoidal/Cartesian/extractMonoidal
-      Cat
-      Type
-      vObject
-      ./../monoidal/cartesian
+        Cat
+        Type
+        vObject
+        ./../monoidal/cartesian
 
 in  ./../../Rig/extractMultiplicativeInstance Type v ./../rig ./rig

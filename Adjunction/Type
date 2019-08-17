@@ -19,18 +19,18 @@ in    λ(cObject : Kind)
             ∀(a : dObject)
           → ∀(b : cObject)
           → v.arrow
-            { _1 =
-                c.arrow { _1 = f a, _2 = b }
-            , _2 =
-                d.arrow { _1 = a, _2 = g b }
-            }
+              { _1 =
+                  c.arrow { _1 = f a, _2 = b }
+              , _2 =
+                  d.arrow { _1 = a, _2 = g b }
+              }
       , rightAdjunct :
             ∀(a : dObject)
           → ∀(b : cObject)
           → v.arrow
-            { _1 =
-                d.arrow { _1 = a, _2 = g b }
-            , _2 =
-                c.arrow { _1 = f a, _2 = b }
-            }
+              { _1 =
+                  d.arrow { _1 = a, _2 = g b }
+              , _2 =
+                  c.arrow { _1 = f a, _2 = b }
+              }
       }

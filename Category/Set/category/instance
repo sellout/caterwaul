@@ -4,16 +4,16 @@ let vObject = Type
 
 let v =
       ./../../Monoidal/Cartesian/extractMonoidal
-      Cat
-      Type
-      vObject
-      ./../monoidal/cartesian
+        Cat
+        Type
+        vObject
+        ./../monoidal/cartesian
 
 let Set =
       ./../../Monoidal/Cartesian/extractMonoidal
-      Cat
-      vObject
-      Type
-      ./../monoidal/cartesian
+        Cat
+        vObject
+        Type
+        ./../monoidal/cartesian
 
 in  ./../../Monoidal/extractCategoryInstance Type v Set ./monoidal

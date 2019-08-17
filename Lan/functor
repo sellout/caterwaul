@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      cat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(cObject : Kind)
     → λ(cpObject : Kind)
@@ -17,10 +17,10 @@ in    λ(cObject : Kind)
       
       let d =
             ./../Category/Monoidal/Cartesian/extractCategory
-            cat
-            vObject
-            dObject
-            ./../Category/Set/monoidal/cartesian
+              cat
+              vObject
+              dObject
+              ./../Category/Set/monoidal/cartesian
       
       let Lan = ./Type cObject cpObject cp
       
@@ -38,30 +38,30 @@ in    λ(cObject : Kind)
                         → d.arrow { _1 = g c, _2 = r }
                       )
                   → lan
-                    r
-                    (   λ(c : cObject)
-                      → λ(x : cp.arrow { _1 = f c, _2 = a })
-                      → k
-                        c
-                        ( cpSemigroupoid.product
-                          { _1 = f c, _2 = b }
-                          (   λ(r : Type)
-                            → λ ( arrowsOut
-                                :   ∀(z : cpObject)
-                                  → cp.arrow { _1 = z, _2 = b }
-                                  → cp.arrow { _1 = f c, _2 = z }
-                                  → r
+                      r
+                      (   λ(c : cObject)
+                        → λ(x : cp.arrow { _1 = f c, _2 = a })
+                        → k
+                            c
+                            ( cpSemigroupoid.product
+                                { _1 = f c, _2 = b }
+                                (   λ(r : Type)
+                                  → λ ( arrowsOut
+                                      :   ∀(z : cpObject)
+                                        → cp.arrow { _1 = z, _2 = b }
+                                        → cp.arrow { _1 = f c, _2 = z }
+                                        → r
+                                      )
+                                  → arrowsOut a h x
                                 )
-                            → arrowsOut a h x
-                          )
-                        )
-                    )
+                            )
+                      )
               }
             : ./../Functor/Type
-              vObject
-              cpObject
-              dObject
-              (./../Category/Monoidal/extractCategory cat Type vObject v)
-              cp
-              d
-              (Lan f g)
+                vObject
+                cpObject
+                dObject
+                (./../Category/Monoidal/extractCategory cat Type vObject v)
+                cp
+                d
+                (Lan f g)

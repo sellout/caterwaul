@@ -15,6 +15,6 @@ let cat = base vObject object ./../../Category/Set/monoidal/cartesian
 let category = ./../../Category/Set/category/instance
 
 in  ./../../Monad/impliedMonoidalFunctor
-    (./../Type object)
-    (./endo vObject object v vCategory cat)
-    (./../monad object cat category)
+      (./../Type object)
+      (./endo vObject object v vCategory cat)
+      (./../monad object cat category)

@@ -8,9 +8,9 @@ in    λ(vObject : Kind)
     → λ(cat : ./../../Category/Kind kCat vObject object)
     → λ(m : kCat.arrow object object)
     → ./../Type
-      vObject
-      object
-      object
-      v
-      (./../../Category/Kleisli/category vObject object cat m)
-      cat
+        vObject
+        object
+        object
+        v
+        (./../../Category/Kleisli/category vObject object cat m)
+        cat

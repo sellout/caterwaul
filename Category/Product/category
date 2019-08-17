@@ -4,10 +4,10 @@ let vObject = Type
 
 let v =
       ./../Monoidal/Cartesian/extractMonoidal
-      cat
-      Type
-      vObject
-      ./../Set/monoidal/cartesian
+        cat
+        Type
+        vObject
+        ./../Set/monoidal/cartesian
 
 in    λ(cObject : Kind)
     → λ(c : ./../Kind cat vObject cObject)
@@ -35,40 +35,40 @@ in    λ(cObject : Kind)
                     )
                 → { _1 =
                       cCategory.product
-                      { _1 = a._1._1, _2 = a._2._1 }
-                      (   λ(r : Type)
-                        → λ ( arrowsOut
-                            :   ∀(z : cObject)
-                              → c.arrow { _1 = z, _2 = a._2._1 }
-                              → c.arrow { _1 = a._1._1, _2 = z }
-                              → r
-                            )
-                        → p
-                          r
-                          (   λ(z : object)
-                            → λ(f : prod.arrow { _1 = z, _2 = a._2 })
-                            → λ(g : prod.arrow { _1 = a._1, _2 = z })
-                            → arrowsOut z._1 f._1 g._1
-                          )
-                      )
+                        { _1 = a._1._1, _2 = a._2._1 }
+                        (   λ(r : Type)
+                          → λ ( arrowsOut
+                              :   ∀(z : cObject)
+                                → c.arrow { _1 = z, _2 = a._2._1 }
+                                → c.arrow { _1 = a._1._1, _2 = z }
+                                → r
+                              )
+                          → p
+                              r
+                              (   λ(z : object)
+                                → λ(f : prod.arrow { _1 = z, _2 = a._2 })
+                                → λ(g : prod.arrow { _1 = a._1, _2 = z })
+                                → arrowsOut z._1 f._1 g._1
+                              )
+                        )
                   , _2 =
                       dCategory.product
-                      { _1 = a._1._2, _2 = a._2._2 }
-                      (   λ(r : Type)
-                        → λ ( arrowsOut
-                            :   ∀(z : dObject)
-                              → d.arrow { _1 = z, _2 = a._2._2 }
-                              → d.arrow { _1 = a._1._2, _2 = z }
-                              → r
-                            )
-                        → p
-                          r
-                          (   λ(z : object)
-                            → λ(f : prod.arrow { _1 = z, _2 = a._2 })
-                            → λ(g : prod.arrow { _1 = a._1, _2 = z })
-                            → arrowsOut z._2 f._2 g._2
-                          )
-                      )
+                        { _1 = a._1._2, _2 = a._2._2 }
+                        (   λ(r : Type)
+                          → λ ( arrowsOut
+                              :   ∀(z : dObject)
+                                → d.arrow { _1 = z, _2 = a._2._2 }
+                                → d.arrow { _1 = a._1._2, _2 = z }
+                                → r
+                              )
+                          → p
+                              r
+                              (   λ(z : object)
+                                → λ(f : prod.arrow { _1 = z, _2 = a._2 })
+                                → λ(g : prod.arrow { _1 = a._1, _2 = z })
+                                → arrowsOut z._2 f._2 g._2
+                              )
+                        )
                   }
             , hom =
                 { map =
@@ -84,16 +84,16 @@ in    λ(cObject : Kind)
                     → λ(f : prod.arrow a)
                     → { _1 =
                           cCategory.hom.map
-                          { _1 = a._1._1, _2 = a._2._1 }
-                          { _1 = b._1._1, _2 = b._2._1 }
-                          { _1 = fn._1._1, _2 = fn._2._1 }
-                          f._1
+                            { _1 = a._1._1, _2 = a._2._1 }
+                            { _1 = b._1._1, _2 = b._2._1 }
+                            { _1 = fn._1._1, _2 = fn._2._1 }
+                            f._1
                       , _2 =
                           dCategory.hom.map
-                          { _1 = a._1._2, _2 = a._2._2 }
-                          { _1 = b._1._2, _2 = b._2._2 }
-                          { _1 = fn._1._2, _2 = fn._2._2 }
-                          f._2
+                            { _1 = a._1._2, _2 = a._2._2 }
+                            { _1 = b._1._2, _2 = b._2._2 }
+                            { _1 = fn._1._2, _2 = fn._2._2 }
+                            f._2
                       }
                 }
             }

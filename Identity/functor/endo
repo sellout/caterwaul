@@ -5,14 +5,14 @@ in    λ(vObject : Kind)
     → λ(v : ./../../Category/Kind kCat Type vObject)
     → λ ( vCategory
         : ./../../Category/Type
-          vObject
-          ( ./../../Category/Monoidal/Cartesian/extractMonoidal
-            kCat
-            Type
-            Type
-            ./../../Category/Set/monoidal/cartesian
-          )
-          v
+            vObject
+            ( ./../../Category/Monoidal/Cartesian/extractMonoidal
+                kCat
+                Type
+                Type
+                ./../../Category/Set/monoidal/cartesian
+            )
+            v
         )
     → λ(cat : ./../../Category/Kind kCat vObject object)
     →   { map =

@@ -14,13 +14,13 @@ in    λ(object : Kind)
                 → ∀(b : object)
                 → ∀(c : object)
                 → Isomorphism
-                  { _1 =
-                      cat.product
-                      { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
-                  , _2 =
-                      cat.product
-                      { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
-                  }
+                    { _1 =
+                        cat.product
+                          { _1 = cat.product { _1 = a, _2 = b }, _2 = c }
+                    , _2 =
+                        cat.product
+                          { _1 = a, _2 = cat.product { _1 = b, _2 = c } }
+                    }
             , tensor :
                 ./../../Functor/Pair/Type vObject object v base cat.product
             }

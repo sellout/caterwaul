@@ -10,10 +10,10 @@ in    λ(vObject : Kind)
     → λ(functor : ./Type vObject cObject dObject v c d f)
     →   { map = λ(a : cObject) → λ(b : cObject) → functor.map b a }
       : ./Type
-        vObject
-        cObject
-        dObject
-        v
-        (./../Category/Op/Kind vObject cObject c)
-        (./../Category/Op/Kind vObject dObject d)
-        f
+          vObject
+          cObject
+          dObject
+          v
+          (./../Category/Op/Kind vObject cObject c)
+          (./../Category/Op/Kind vObject dObject d)
+          f

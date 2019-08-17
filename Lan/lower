@@ -23,18 +23,21 @@ in    λ(cObject : Kind)
           → λ(a : cpObject)
           → λ(lan : ./Type cObject cpObject cp f g a)
           → lan
-            (h a)
-            (   λ(b : cObject)
-              → λ(k : cp.arrow { _1 = f b, _2 = a })
-              → dSemigroupoid.product
-                { _1 = g b, _2 = h a }
-                (   λ(r : Type)
-                  → λ ( arrowsOut
-                      :   ∀(z : dObject)
-                        → d.arrow { _1 = z, _2 = h a }
-                        → d.arrow { _1 = g b, _2 = z }
-                        → r
-                      )
-                  → arrowsOut (h (f b)) (functor.map (f b) a k) (duplicate b)
-                )
-            )
+              (h a)
+              (   λ(b : cObject)
+                → λ(k : cp.arrow { _1 = f b, _2 = a })
+                → dSemigroupoid.product
+                    { _1 = g b, _2 = h a }
+                    (   λ(r : Type)
+                      → λ ( arrowsOut
+                          :   ∀(z : dObject)
+                            → d.arrow { _1 = z, _2 = h a }
+                            → d.arrow { _1 = g b, _2 = z }
+                            → r
+                          )
+                      → arrowsOut
+                          (h (f b))
+                          (functor.map (f b) a k)
+                          (duplicate b)
+                    )
+              )

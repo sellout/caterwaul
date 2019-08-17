@@ -15,9 +15,9 @@ in    λ(cObject : Kind)
     → λ(v : ./../../Category/Kind cat Type vObject)
     → λ ( vCategory
         : ./../../Category/Type
-          vObject
-          (base vObject Type ./../../Category/Set/monoidal/cartesian)
-          v
+            vObject
+            (base vObject Type ./../../Category/Set/monoidal/cartesian)
+            v
         )
     → λ(c : ./../../Category/Monoidal/Kind cat vObject cObject)
     → let dObject = Type
@@ -42,29 +42,29 @@ in    λ(cObject : Kind)
                     λ(a : cObject)
                   → λ(b : cObject)
                   → vCategory.product
-                    { _1 =
-                        c.arrow { _1 = a, _2 = b }
-                    , _2 =
-                        e.arrow { _1 = f (g a), _2 = f (g b) }
-                    }
-                    (   λ(r : Type)
-                      → λ ( arrowsOut
-                          :   ∀(z : vObject)
-                            → v.arrow
-                              { _1 =
-                                  z
-                              , _2 =
-                                  e.arrow { _1 = f (g a), _2 = f (g b) }
-                              }
-                            → v.arrow
-                              { _1 = c.arrow { _1 = a, _2 = b }, _2 = z }
-                            → r
-                          )
-                      → arrowsOut
-                        (d.arrow { _1 = g a, _2 = g b })
-                        (fMonoidal.map (g a) (g b))
-                        (gMonoidal.map a b)
-                    )
+                      { _1 =
+                          c.arrow { _1 = a, _2 = b }
+                      , _2 =
+                          e.arrow { _1 = f (g a), _2 = f (g b) }
+                      }
+                      (   λ(r : Type)
+                        → λ ( arrowsOut
+                            :   ∀(z : vObject)
+                              → v.arrow
+                                  { _1 =
+                                      z
+                                  , _2 =
+                                      e.arrow { _1 = f (g a), _2 = f (g b) }
+                                  }
+                              → v.arrow
+                                  { _1 = c.arrow { _1 = a, _2 = b }, _2 = z }
+                              → r
+                            )
+                        → arrowsOut
+                            (d.arrow { _1 = g a, _2 = g b })
+                            (fMonoidal.map (g a) (g b))
+                            (gMonoidal.map a b)
+                      )
               , unit =
                     λ(a : cObject)
                   → λ(fn : c.arrow { _1 = c.unit, _2 = a })
@@ -73,36 +73,45 @@ in    λ(cObject : Kind)
                     λ(i : cObject)
                   → λ ( day
                       : Day
-                        { _1 =
-                            Compose { _1 = f, _2 = g }
-                        , _2 =
-                            Compose { _1 = f, _2 = g }
-                        }
-                        i
+                          { _1 =
+                              Compose { _1 = f, _2 = g }
+                          , _2 =
+                              Compose { _1 = f, _2 = g }
+                          }
+                          i
                       )
                   → day
-                    (f (g i))
-                    (   λ(b : { _1 : cObject, _2 : cObject })
-                      → λ(fn : c.arrow { _1 = c.product b, _2 = i })
-                      → λ(a : { _1 : f (g b._1), _2 : f (g b._2) })
-                      → fMonoidal.product
-                        (g i)
-                        (   λ(fr : eObject)
-                          → λ(fDay : Day/convolution dObject e d f f (g i) fr)
-                          → fDay
-                            { _1 = g b._1, _2 = g b._2 }
-                            (   λ(p : { _1 : g b._1, _2 : g b._2 })
-                              → gMonoidal.product
-                                i
-                                (   λ(gr : dObject)
-                                  → λ ( gDay
-                                      : Day/convolution cObject d c g g i gr
-                                      )
-                                  → gDay b fn p
-                                )
+                      (f (g i))
+                      (   λ(b : { _1 : cObject, _2 : cObject })
+                        → λ(fn : c.arrow { _1 = c.product b, _2 = i })
+                        → λ(a : { _1 : f (g b._1), _2 : f (g b._2) })
+                        → fMonoidal.product
+                            (g i)
+                            (   λ(fr : eObject)
+                              → λ ( fDay
+                                  : Day/convolution dObject e d f f (g i) fr
+                                  )
+                              → fDay
+                                  { _1 = g b._1, _2 = g b._2 }
+                                  (   λ(p : { _1 : g b._1, _2 : g b._2 })
+                                    → gMonoidal.product
+                                        i
+                                        (   λ(gr : dObject)
+                                          → λ ( gDay
+                                              : Day/convolution
+                                                  cObject
+                                                  d
+                                                  c
+                                                  g
+                                                  g
+                                                  i
+                                                  gr
+                                              )
+                                          → gDay b fn p
+                                        )
+                                  )
+                                  a
                             )
-                            a
-                        )
-                    )
+                      )
               }
             : MonoidalFunctor cObject v c e (Compose { _1 = f, _2 = g })

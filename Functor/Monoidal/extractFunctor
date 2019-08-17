@@ -16,10 +16,10 @@ in    λ(cObject : Kind)
             
             in    monoidal.{ map }
                 : ./../../Functor/Type
-                  vObject
-                  cObject
-                  dObject
-                  v
-                  (base cObject c)
-                  (base dObject d)
-                  f
+                    vObject
+                    cObject
+                    dObject
+                    v
+                    (base cObject c)
+                    (base dObject d)
+                    f

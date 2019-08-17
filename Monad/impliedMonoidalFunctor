@@ -6,19 +6,19 @@ let vObject = Type
 
 let v =
       ./../Category/Monoidal/Cartesian/extractCategory
-      kCat
-      Type
-      vObject
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        Type
+        vObject
+        ./../Category/Set/monoidal/cartesian
 
 let object = Type
 
 let cat =
       ./../Category/Monoidal/Cartesian/extractMonoidal
-      kCat
-      vObject
-      object
-      ./../Category/Set/monoidal/cartesian
+        kCat
+        vObject
+        object
+        ./../Category/Set/monoidal/cartesian
 
 in    λ(f : kCat.arrow object object)
     → λ ( functor
@@ -37,25 +37,28 @@ in    λ(f : kCat.arrow object object)
                 : ∀(r : Type) → ./../Day/convolution object cat cat f f i r → r
                 )
             → day
-              (f i)
-              (   λ(b : { _1 : object, _2 : object })
-                → λ(fn : cat.arrow { _1 = cat.product b, _2 = i })
-                → λ(d : { _1 : f b._1, _2 : f b._2 })
-                → monad.product
-                  i
-                  ( functor.map
-                    (cat.arrow { _1 = b._2, _2 = i })
-                    (f i)
-                    (   λ(fn : cat.arrow { _1 = b._2, _2 = i })
-                      → functor.map b._2 i fn d._2
-                    )
-                    ( functor.map
-                      b._1
-                      (cat.arrow { _1 = b._2, _2 = i })
-                      (λ(x : b._1) → λ(y : b._2) → fn { _1 = x, _2 = y })
-                      d._1
-                    )
-                  )
-              )
+                (f i)
+                (   λ(b : { _1 : object, _2 : object })
+                  → λ(fn : cat.arrow { _1 = cat.product b, _2 = i })
+                  → λ(d : { _1 : f b._1, _2 : f b._2 })
+                  → monad.product
+                      i
+                      ( functor.map
+                          (cat.arrow { _1 = b._2, _2 = i })
+                          (f i)
+                          (   λ(fn : cat.arrow { _1 = b._2, _2 = i })
+                            → functor.map b._2 i fn d._2
+                          )
+                          ( functor.map
+                              b._1
+                              (cat.arrow { _1 = b._2, _2 = i })
+                              (   λ(x : b._1)
+                                → λ(y : b._2)
+                                → fn { _1 = x, _2 = y }
+                              )
+                              d._1
+                          )
+                      )
+                )
         }
       : ./../Functor/Monoidal/Type object v cat cat f

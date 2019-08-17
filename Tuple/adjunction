@@ -28,10 +28,10 @@ in    λ(s : Type)
             → f t._2 t._1
         }
       : ./../Adjunction/Type
-        Type
-        Type
-        v
-        (base vObject Type Set)
-        (base vObject Type Set)
-        (λ(a : Type) → Set.product { _1 = s, _2 = a })
-        (λ(a : Type) → Set.arrow { _1 = s, _2 = a })
+          Type
+          Type
+          v
+          (base vObject Type Set)
+          (base vObject Type Set)
+          (λ(a : Type) → Set.product { _1 = s, _2 = a })
+          (λ(a : Type) → Set.arrow { _1 = s, _2 = a })
