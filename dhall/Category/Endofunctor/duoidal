@@ -1,10 +1,12 @@
-{- NB: This is defined in terms of the monoidal categories instead of the other
-       way around because this is more restrictive than either monoidal
-       category.
-     • Applicative requires that the target category is **Set** and
-     • monadic requires an endofunctor`object`.
-       When you combine these two restrictions, you end up only being able to
-       support endofunctors in **Set**.
+{-|
+
+**NB**: This is defined in terms of the monoidal categories instead of the other
+way around because this is more restrictive than either monoidal category.
+- Applicative requires that the target category is **Set** and
+- monadic requires an endofunctor`object`.
+
+When you combine these two restrictions, you end up only being able to support
+endofunctors in **Set**.
 -}
 let kCat = ../Cat/semigroupal
 

@@ -1,5 +1,6 @@
-{- When defining properties, you almost always are trying to show the
-   equivalence of two functions. This makes that easier.
+{-|
+When defining properties, you almost always are trying to show the equivalence
+of two functions. This makes that easier.
 -}
 λ(a : Type) →
 λ(b : Type) →

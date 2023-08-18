@@ -1,5 +1,6 @@
-{- Like the semiring/rig distinction, this is often “semigroup with monus” or
-  “m-semigroup”, but here it’s “rig with monus”.
+{-|
+Like the semiring/rig distinction, this is often “semigroup with monus” or
+“m-semigroup”, but here it’s “rig with monus”.
 -}
 let kCat = ../../Category/Cat/semigroupal
 

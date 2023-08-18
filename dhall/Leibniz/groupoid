@@ -1,12 +1,12 @@
-{- Leibniz equality forms a groupoid, with
- • unit = reflexivity,
- • product = transitivity, and
- • inverse = symmetry.
+{-|
+Leibniz equality forms a groupoid, with
+- unit = reflexivity,
+- product = transitivity, and
+- inverse = symmetry.
 
-   FIXME: The implementation of `inverse` forces the target of the functor to be
-          the enriching category. I don’t know if this is fundamentally
-          required, or just a consequence of the common formulations being where
-          everything is 𝐒𝐞𝐭.
+ **FIXME**: The implementation of `inverse` forces the target of the functor to
+ be the enriching category. I don’t know if this is fundamentally required, or
+ just a consequence of the common formulations being where everything is 𝐒𝐞𝐭.
 -}
 let cat = ../Category/Cat/semigroupal
 

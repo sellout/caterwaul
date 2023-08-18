@@ -1,6 +1,8 @@
-{- TODO: Ideally, the additive and multiplicative monoids shouldn’t _also_ have
-         the category members (as they just duplicate the ones on the rig), but
-  	     it was more trouble to avoid them for the time being.
+{-|
+
+**TODO**: Ideally, the additive and multiplicative monoids shouldn’t _also_ have
+the category members (as they just duplicate the ones on the rig), but it was
+more trouble to avoid them for the time being.
 -}
 let kCat = ../Cat/semigroupal
 

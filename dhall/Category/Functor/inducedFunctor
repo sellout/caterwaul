@@ -1,5 +1,6 @@
-{- Any functor `p : C → C'` induces a functor between functor categories
-  `[C', D] → [C, D]`.
+{-|
+Any functor `p : C → C'` induces a functor between functor categories
+`[C', D] → [C, D]`.
 -}
 let cat = ../Cat/semigroupal
 

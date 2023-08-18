@@ -1,5 +1,7 @@
-{- NB: This doesn’t use `Duoidal/extractMultiplicative` because that has a fixed
-      `object`.
+{-|
+
+**NB**: This doesn’t use `Duoidal/extractMultiplicative` because that has a
+fixed `object`.
 -}
 let kCat = ../../Cat/semigroupal
 

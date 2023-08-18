@@ -1,4 +1,7 @@
-{- TODO: Should be a Rig/Commutative -}
+{-|
+
+**TODO**: Should be a Rig/Commutative
+-}
 let cat = ../Category/Cat/semigroupal
 
 let vObject = Type

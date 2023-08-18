@@ -1,6 +1,8 @@
-{- TODO: This would be `./../Group/Type … (./../Category/Monoidal/Profunctor
-         object morphism)`, but `Category` isn’t defined via `Monoid`, so we
-		 prefer compatibility with that.
+{-|
+
+**TODO**: This would be `./../Group/Type … (./../Category/Monoidal/Profunctor
+object morphism)`, but `Category` isn’t defined via `Monoid`, so we prefer
+compatibility with that.
 -}
 let kCat = ../Category/Cat/semigroupal
 

@@ -1,6 +1,7 @@
-{- A profunctor `𝒞 ↛ 𝒟` is represented as the bifunctor `(𝒟^op, 𝒞) → 𝒱`. This is
-   much more general than Haskell’s `Profunctor`. It also requires that 𝒱 is
-   closed.
+{-|
+A profunctor `𝒞 ↛ 𝒟` is represented as the bifunctor `(𝒟^op, 𝒞) → 𝒱`. This is
+much more general than Haskell’s `Profunctor`. It also requires that 𝒱 is
+closed.
 -}
 let cat = ../../Category/Cat/semigroupal
 

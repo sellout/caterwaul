@@ -1,5 +1,6 @@
-{- A duoid (also known as a “united monoid”) is actually a pair of monoids with
-   a shared `unit`.
+{-|
+A duoid (also known as a “united monoid”) is actually a pair of monoids with a
+shared `unit`.
 -}
 λ(cat : ../Category/Monoidal/Sort) →
 λ(m : Kind) →

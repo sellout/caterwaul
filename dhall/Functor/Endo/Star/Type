@@ -1,6 +1,7 @@
-{- This is very similar to Haskell’s `Traversable`, except that it can be
-   implemented for an arbitrary `m`, doesn’t necessarily require an
-  `Applicative` instance, and also may be _more_ constrained than `Applicative`.
+{-|
+This is very similar to Haskell’s `Traversable`, except that it can be
+implemented for an arbitrary `m`, doesn’t necessarily require an `Applicative`
+instance, and also may be _more_ constrained than `Applicative`.
 -}
 let kCat = ../../../Category/Cat/semigroupal
 

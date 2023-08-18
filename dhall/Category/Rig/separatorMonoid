@@ -1,11 +1,12 @@
-{- Every rig category has an additional family of “separator”-based monoidal
-   structures. That is, for any object `s` there is a generalization of the
-   additive monoidal structure:
+{-|
+Every rig category has an additional family of “separator”-based monoidal
+structures. That is, for any object `s` there is a generalization of the
+additive monoidal structure:
 
-   > (a ⊗ s ⊗ b) ⊕ a ⊕ b
+> (a ⊗ s ⊗ b) ⊕ a ⊕ b
 
-   When `s` is the additive unit, this structure is isomorphic to the additive
-   product.
+When `s` is the additive unit, this structure is isomorphic to the additive
+product.
 -}
 let kCat = ../Cat/semigroupal
 

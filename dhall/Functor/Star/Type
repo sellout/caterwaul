@@ -1,4 +1,5 @@
-{- A functor from a Kleisli category to the underlying non-Kleisli category.
+{-|
+A functor from a Kleisli category to the underlying non-Kleisli category.
 -}
 let kCat = ../../Category/Cat/semigroupal
 

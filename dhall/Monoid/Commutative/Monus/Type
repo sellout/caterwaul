@@ -1,9 +1,10 @@
-{- Monus (`∸`, to illustrate its similarity to subtraction) is an operation on
-   some commutative monoids that aren’t groups. It has the following laws:
- • a + (b ∸ a) = b + (a ∸ b)
- • (a ∸ b) ∸ c = a ∸ (b + c)
- • a ∸ a = unit
- • unit ∸ a = unit
+{-|
+Monus (`∸`, to illustrate its similarity to subtraction) is an operation on some
+commutative monoids that aren’t groups. It has the following laws:
+- a + (b ∸ a) = b + (a ∸ b)
+- (a ∸ b) ∸ c = a ∸ (b + c)
+- a ∸ a = unit
+- unit ∸ a = unit
 -}
 let kCat = ../../../Category/Cat/semigroupal
 

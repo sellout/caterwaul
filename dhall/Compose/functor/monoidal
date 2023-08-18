@@ -1,7 +1,9 @@
-{- NB: Since this is currently forced to be in *Set*, it’s quite possible that
-       some of the uses of _C_ and _D_ are wrong, since the type system can’t
-       distinguish them. So take them with a grain of salt if you’re editing
-       this file.
+{-|
+
+**NB**: Since this is currently forced to be in **Set**, it’s quite possible
+that some of the uses of 𝒞 and 𝒟 are wrong, since the type system can’t
+distinguish them. So take them with a grain of salt if you’re editing this file.
+
 -}
 let cat = ../../Category/Cat/semigroupal
 

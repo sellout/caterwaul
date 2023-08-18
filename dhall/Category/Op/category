@@ -1,6 +1,8 @@
-{- TODO: This currently forces 𝒱 = 𝐒𝐞𝐭, because of the Hom instance. It would be
-         good to abstract that via composition with some symmetric category,
-         like `category.product (hom.map a b) flip`.
+{-|
+
+**TODO**: This currently forces 𝒱 = 𝐒𝐞𝐭, because of the Hom instance. It would
+be good to abstract that via composition with some symmetric category, like
+`category.product (hom.map a b) flip`.
 -}
 let kCat = ../Cat/semigroupal
 

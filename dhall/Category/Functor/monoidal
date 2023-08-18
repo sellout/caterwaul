@@ -1,5 +1,6 @@
-{- This cheats a bit on the unit, since `dObject` is Type, we don’t need a
-   functor **Set** → 𝒟.
+{-|
+This cheats a bit on the unit, since `dObject` is Type, we don’t need a functor
+**Set** → 𝒟.
 -}
 let cat = ../../Category/Cat/semigroupal
 

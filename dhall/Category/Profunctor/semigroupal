@@ -1,5 +1,7 @@
-{- This doesn’t use `extractSemigroupal` because I don’t know how to apply the
-  `morphism` in the monoidal category instance.
+{-|
+
+This doesn’t use `extractSemigroupal` because I don’t know how to apply the
+`morphism` in the monoidal category instance.
 -}
 let kCat = ../../Category/Cat/semigroupal
 

@@ -1,5 +1,6 @@
-{- A monad on a category C is a monoid object in the category of
-   endofunctors in C induced by composition.
+{-|
+A monad on a category C is a monoid object in the category of endofunctors in C
+induced by composition.
 -}
 let kCat = ../Category/Cat/semigroupal
 

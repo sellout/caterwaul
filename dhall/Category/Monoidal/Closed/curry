@@ -1,10 +1,10 @@
-{- The currying isomorphism is defined for any closed monoidal (semigroupal?)
-   category (semigroupoid?), based on the – ⊗ X ⊣ Hom(X, –) odjunction.
+{-
+The currying isomorphism is defined for any closed monoidal (semigroupal?)
+category (semigroupoid?), based on the – ⊗ X ⊣ Hom(X, –) odjunction.
 
-   FIXME: Because closed categories are self-enriched and `Isomorphism`
-          currently has to be enriched by a category where the objects are
-          types, this is currently restricted to categories where the objects
-          are types.
+**FIXME**: Because closed categories are self-enriched and `Isomorphism`
+ currently has to be enriched by a category where the objects are types, this is
+ currently restricted to categories where the objects are types.
 -}
 let kCat = ../../Cat/semigroupal
 

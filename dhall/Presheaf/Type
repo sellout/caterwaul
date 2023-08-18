@@ -1,4 +1,5 @@
-{- A presheaf on a category 𝒞 is a functor 𝒞^op → 𝐒𝐞𝐭.
+{-|
+A presheaf on a category 𝒞 is a functor 𝒞 ^op^ → 𝐒𝐞𝐭.
 -}
 let cat = ../Category/Cat/semigroupal
 

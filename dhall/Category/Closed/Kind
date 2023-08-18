@@ -1,3 +1,4 @@
-{- A category enriched over itself.
+{-|
+A category enriched over itself.
 -}
 λ(cat : ../Semigroupal/Sort) → λ(object : Kind) → ../Kind cat object object

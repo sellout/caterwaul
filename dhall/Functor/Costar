@@ -1,4 +1,6 @@
-{- A functor from a Cokleisli category to the underlying category -}
+{-|
+A functor from a Cokleisli category to the underlying category.
+-}
 let kCat = ../Category/Cat/semigroupal
 
 in  λ(vObject : Kind) →

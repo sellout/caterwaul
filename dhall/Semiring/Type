@@ -1,7 +1,8 @@
-{- This is different from what is often called a “semiring” as it lacks
-   additive unit, but here we follow the convention described in
-   https://ncatlab.org/nlab/show/rig, using the name “rig” for what would
-   traditionally be a semiring.
+{-|
+This is different from what is often called a “semiring” as it lacks additive
+unit, but here we follow the convention described in
+https://ncatlab.org/nlab/show/rig, using the name “rig” for what would
+traditionally be a semiring.
 -}
 let kCat = ../Category/Cat/semigroupal
 

@@ -1,4 +1,7 @@
-{- Can’t define `augmentation` at this level, because we have no unit `Kind`.
+{-|
+
+**NB**: Can’t define `augmentation` at this level, because we have no unit
+`Kind`.
 -}
 λ(cat : ../Monoidal/Sort) →
 λ(vObject : Kind) →

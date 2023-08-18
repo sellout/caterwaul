@@ -1,4 +1,5 @@
-{- The 2-morphism in the 2-category 𝐂𝐚𝐭.
+{-|
+The 2-morphism in the 2-category 𝐂𝐚𝐭.
 -}
 let kCat = ../Category/Cat/semigroupal
 

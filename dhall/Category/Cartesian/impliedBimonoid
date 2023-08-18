@@ -1,4 +1,6 @@
-{- Every monoid in a cartesian category is a bimonoid in a unique way. -}
+{-|
+Every monoid in a cartesian category is a bimonoid in a unique way.
+-}
 let kCat = ../Cat/semigroupal
 
 let Bimonoid = ../../Bimonoid/Type

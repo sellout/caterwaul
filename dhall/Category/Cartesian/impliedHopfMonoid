@@ -1,4 +1,6 @@
-{- Every group in a cartesian category is a Hopf monoid in a unique way. -}
+{-|
+Every group in a cartesian category is a Hopf monoid in a unique way.
+-}
 let kCat = ../../Category/Cat/semigroupal
 
 let CartesianCategory = ./Type

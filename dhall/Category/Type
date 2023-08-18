@@ -1,8 +1,10 @@
-{- FIXME: This should use `./../Monoid/Type … (./../Category/Monoidal/Profunctor
-          object morphism)`, but the unit in that monoidal category
-          definition isn’t correct (or, if it is, I can’t figure out how to use
-          it). So instead, we just build the `Semigroup`, and then write a
-          custom unit. But this means we’re not structurally a `Monoid`.
+{-|
+
+**FIXME**: This should use `./../Monoid/Type …
+(./../Category/Monoidal/Profunctor object morphism)`, but the unit in that
+monoidal category definition isn’t correct (or, if it is, I can’t figure out how
+to use it). So instead, we just build the `Semigroup`, and then write a custom
+unit. But this means we’re not structurally a `Monoid`.
 -}
 let kCat = ./Cat/semigroupal
 

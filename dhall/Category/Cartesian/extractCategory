@@ -1,5 +1,7 @@
-{- FIXME: Should be able to do `cartesian.{ arrow, product }`, but Dhall doesn’t like
-          that for some reason.
+{-|
+
+**FIXME**: Should be able to do `cartesian.{ arrow, product }`, but Dhall
+doesn’t like that for some reason.
 -}
 λ(cat : ../Monoidal/Sort) →
 λ(vObject : Kind) →

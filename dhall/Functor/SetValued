@@ -1,4 +1,5 @@
-{- A functor to *Set* from some other category.
+{-|
+A functor to **Set** from some other category.
 -}
 let kCat = ../Category/Cat/semigroupal
 

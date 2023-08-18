@@ -1,8 +1,10 @@
-{- FIXME: The `hom` profunctor should be implementable generically, however I
-          can‘t currently get it to compile with Dhall, so it’s a member here,
-          and every implementation is basically a copy/paste of
-         `compose (compose f g) h`. Embedding the definition here also basically
-          forces every category to be enriched over 𝐒𝐞𝐭.
+{-|
+
+**FIXME**: The `hom` profunctor should be implementable generically, however I
+can‘t currently get it to compile with Dhall, so it’s a member here, and every
+implementation is basically a copy/paste of `compose (compose f g) h`. Embedding
+the definition here also basically forces every category to be enriched over
+𝐒𝐞𝐭.
 -}
 let kCat = ../Category/Cat/semigroupal
 

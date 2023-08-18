@@ -1,5 +1,6 @@
-{- Should use ../Monoid/Commutative/Monus/Type, but `monus` is complicated with
-   recursion, so need to figure out how dada ties into this.
+{-|
+Should use ../Monoid/Commutative/Monus/Type, but `monus` is complicated with
+recursion, so need to figure out how dada ties into this.
 -}
 let cat = ../Category/Cat/semigroupal
 

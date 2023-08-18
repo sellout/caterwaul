@@ -1,5 +1,6 @@
--- {- `bool` is some sort of `Const` functor in the correct category that can be
---     converted to a `Bool`.
+-- {-|
+-- `bool` is some sort of `Const` functor in the correct category that can be
+-- converted to a `Bool`.
 -- -}
 --   λ(object : Kind)
 -- → λ(cat : ./../Category/Monoidal/Kind kCat object)

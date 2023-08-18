@@ -1,5 +1,6 @@
-{- For any rig category 𝒞, any 𝒞-valued functor category is a rig category in
-   the same way by “lifting” the rig structure of 𝒞.
+{-|
+For any rig category 𝒞, any 𝒞-valued functor category is a rig category in the
+same way by “lifting” the rig structure of 𝒞.
 -}
 let cat = ../Cat/semigroupal
 

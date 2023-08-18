@@ -1,5 +1,5 @@
-{- A contravariant functor `C → D` is equivalent to a covariant functor
-  `C^op → D`.
+{-|
+A contravariant functor `C → D` is equivalent to a covariant functor `C^op → D`.
 -}
 let cat = ../Category/Cat/semigroupal
 

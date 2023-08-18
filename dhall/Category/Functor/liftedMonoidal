@@ -1,5 +1,6 @@
-{- For any monoidal category 𝒞, any 𝒞-valued functor category is monoidal in the
-   same way by “lifting” the monoidal structure of 𝒞.
+{-|
+For any monoidal category 𝒞, any 𝒞-valued functor category is monoidal in the
+same way by “lifting” the monoidal structure of 𝒞.
 -}
 let cat = ../Cat/semigroupal
 

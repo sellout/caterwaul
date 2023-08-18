@@ -1,5 +1,6 @@
-{- If there is a natural transformation from `n` to `m`, then a m-Star functor
-   can be made into an n-Star functor.
+{-|
+If there is a natural transformation from `n` to `m`, then a m-Star functor can
+be made into an n-Star functor.
 -}
 let kCat = ../../Category/Cat/semigroupal
 
