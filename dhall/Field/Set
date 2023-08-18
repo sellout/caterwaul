@@ -1,0 +1,6 @@
+let object = Type
+
+in  λ(m : object) →
+      { additive : ../Group/Commutative/Set m
+      , multiplicative : ../Group/Commutative/Set m
+      }

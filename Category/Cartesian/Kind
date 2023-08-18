@@ -1,7 +1,0 @@
-{- Can’t define `augmentation` at this level, because we have no unit `Kind`.
--}
-  λ(cat : ./../Monoidal/Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→   { diagonal : cat.arrow object (cat.product object object) }
-  ⩓ ./../Monoidal/Kind cat vObject object

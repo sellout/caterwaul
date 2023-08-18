@@ -1,5 +1,0 @@
-let object = Type
-
-in    λ(m : object)
-    →   { compare : m → m → ./../Ordered/Order }
-      ⩓ ./../PartiallyOrderedCommutative/Type m

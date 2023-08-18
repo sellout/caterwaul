@@ -1,8 +1,0 @@
-let kCat = ./../../Category/Cat/semigroupal
-
-let vObject = Type
-
-in    λ(object : Kind)
-    → λ(cat : ./../../Category/Semigroupal/Kind kCat vObject object)
-    → λ(m : object)
-    → { inverse : cat.arrow { _1 = m, _2 = m } } ⩓ ./../Type object cat m

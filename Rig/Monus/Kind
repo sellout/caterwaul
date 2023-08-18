@@ -1,7 +1,0 @@
-  λ(cat : ./../../Category/Monoidal/Sort)
-→ λ(m : Kind)
-→ { additive :
-      ./../../Monoid/Commutative/Monus/Kind cat m
-  , multiplicative :
-      ./../../Monoid/Kind cat m
-  }

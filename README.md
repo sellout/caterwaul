@@ -32,6 +32,7 @@ or ways of combining other types
 - `Semiring`, `Rig`, `Ring`, and `Field`.
 
 As much as possible, these are defined at multiple levels. E.g.
+
 - `./Monoid/Type` is a kind-polymorphic monoid at the type level, where instances are defined for specific types (or type constructors), like `0`/`+` or `Some`/`join`;
 - `./Monoid/Kind` is kind-level monoid, where instances are defined for specific kinds, like `{}`/`./Tuple/Type` for the kind `Type`; and
 - `kProduct` at the top of most files is a sort-level monoid (well, a semigroup, since we have no unit kind), which is usually `./Tuple/Kind`, but may also be `./Either/Kind`.

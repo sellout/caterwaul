@@ -1,2 +1,0 @@
-  λ(cat : ./../Category/Monoidal/Sort)
-→ ./../Monoid/Kind (./../Category/Op/semigroupalSort cat)

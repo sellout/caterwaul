@@ -1,0 +1,4 @@
+{ Type = ./Type
+, extractPartiallyOrderedCommutativeGroup =
+    ./extractPartiallyOrderedCommutativeGroup
+}

@@ -1,0 +1,1 @@
+{ Type = ./Type, extractPartiallyOrderedRing = ./extractPartiallyOrderedRing }

@@ -1,4 +1,0 @@
-{- `compare` exists to distinguish this from a Group/PartiallyOrdered, since
-   `compare` requires a total order.
--}
-λ(m : Type) → { compare : m → m → ./Order } ⩓ ./../PartiallyOrdered/Type m

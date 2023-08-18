@@ -1,7 +1,0 @@
-let kCat = ./../../Category/Cat/semigroupal
-
-in    λ(vObject : Kind)
-    → λ(object : Kind)
-    → λ(v : ./../../Category/Monoidal/Kind kCat Type vObject)
-    → λ(cat : ./../../Category/Kind kCat vObject object)
-    → ./../Bifunctor/Type vObject object object object v cat cat cat

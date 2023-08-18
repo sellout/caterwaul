@@ -1,0 +1,1 @@
+{ endo = ./endo, monoidal = ./monoidal }

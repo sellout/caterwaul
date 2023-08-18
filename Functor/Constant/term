@@ -1,4 +1,0 @@
-  λ(cObject : Type)
-→ λ(dObject : Type)
-→ λ(a : { _1 : cObject, _2 : dObject })
-→ a._1

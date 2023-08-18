@@ -1,0 +1,1 @@
+λ(cat : ../../Sort) → λ(object : Kind) → ../../Cartesian/Kind cat object object

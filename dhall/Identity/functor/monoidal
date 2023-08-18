@@ -1,0 +1,20 @@
+let kCat = ../../Category/Cat/semigroupal
+
+let vCategory = ../../Category/Set/category/instance
+
+let category = ../../Category/Set/category/instance
+
+let base = ../../Category/Monoidal/Cartesian/extractCategory kCat
+
+let vObject = Type
+
+let v = base Type vObject ../../Category/Set/monoidal/cartesian
+
+let object = Type
+
+let cat = base vObject object ../../Category/Set/monoidal/cartesian
+
+in  ../../Monad/impliedMonoidalFunctor
+      (../Type object)
+      (./endo vObject object v vCategory cat)
+      (../monad object cat category)

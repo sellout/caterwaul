@@ -1,9 +1,0 @@
-{- FIXME: Should be able to do `semigroupal.{ arrow, product }`, but Dhall doesn’t like
-          that for some reason.
--}
-  λ(cat : ./Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ λ(semigroupal : ./Kind cat vObject object)
-→   { constraint = semigroupal.constraint, arrow = semigroupal.arrow }
-  : ./../Kind cat vObject object

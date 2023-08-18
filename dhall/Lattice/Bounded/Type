@@ -1,0 +1,10 @@
+let kCat = ../../Category/Cat/semigroupal
+
+let vObject = Type
+
+in  λ(object : Kind) →
+    λ(cat : ../../Category/Monoidal/Kind kCat vObject object) →
+    λ(m : object) →
+      { join : ../../Semilattice/Bounded/Type object cat m
+      , meet : ../../Semilattice/Bounded/Type object cat m
+      }

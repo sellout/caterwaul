@@ -1,7 +1,0 @@
-  λ(cat : ./../Monoidal/Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ λ(rig : ./Kind cat vObject object)
-→     { unit = rig.multiplicative.unit, product = rig.multiplicative.product }
-    ∧ ./extractCategory cat vObject object rig
-  : ./../Monoidal/Kind cat vObject object

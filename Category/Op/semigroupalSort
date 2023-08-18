@@ -1,3 +1,0 @@
-  λ(cat : ./../Semigroupal/Sort)
-→   { arrow = λ(a : Kind) → λ(b : Kind) → cat.arrow b a, product = cat.product }
-  : ./../Semigroupal/Sort

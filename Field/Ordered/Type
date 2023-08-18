@@ -1,8 +1,0 @@
-let object = Type
-
-in    λ(m : object)
-    → { additive :
-          ./../../Group/OrderedCommutative/Type m
-      , multiplicative :
-          ./../../Group/Commutative/Set m
-      }

@@ -1,0 +1,11 @@
+let kCat = ../Cat/semigroupal
+
+in  λ(vObject : Kind) →
+    λ(object : Kind) →
+    λ(cat : ../Duoidal/Kind kCat vObject object) →
+          { diamond = cat.diamond, star = cat.star }
+        ∧ ./Kind
+            vObject
+            object
+            (../Duoidal/extractCategory kCat vObject object cat)
+      : ../Duoidal/Kind kCat vObject object

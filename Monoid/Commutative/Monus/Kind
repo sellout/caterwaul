@@ -1,3 +1,0 @@
-  λ(cat : ./../../../Category/Monoidal/Sort)
-→ λ(m : Kind)
-→ { monus : cat.arrow (cat.product m m) m } ⩓ ./../Kind cat m

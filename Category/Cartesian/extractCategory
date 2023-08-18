@@ -1,9 +1,0 @@
-{- FIXME: Should be able to do `cartesian.{ arrow, product }`, but Dhall doesn’t like
-          that for some reason.
--}
-  λ(cat : ./../Monoidal/Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ λ(cartesian : ./Kind cat vObject object)
-→   { constraint = cartesian.constraint, arrow = cartesian.arrow }
-  : ./../Kind cat vObject object

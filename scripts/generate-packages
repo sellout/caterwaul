@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+function generate_package () {
+  package_dir="${1}"
+  package_file="${package_dir}/package.dhall"
+
+  echo "{ " > "${package_file}"
+
+  for file in $(ls "${package_dir}"); do
+    if [[ $file != "package.dhall" ]]; then
+      if [[ -d "${package_dir}/${file}" ]]; then
+        (generate_package "${package_dir}/${file}")
+        echo "${file} = ./${file}/package.dhall, " >> "${package_file}"
+      else
+        ## Can’t inclued `Sort`s in a record.
+        type=$(dhall resolve <<< "${package_dir}/${file}" | dhall type)
+        if [[ "${type}" =~ Sort$ ]]; then
+          echo "skipping Sort ${package_dir}/${file}"
+        else
+          echo "${file} = ./${file}, " >> "${package_file}"
+        fi
+      fi
+    fi
+  done
+
+  echo "}" >> "${package_file}"
+
+  dhall lint "${package_file}"
+}
+
+generate_package ./dhall

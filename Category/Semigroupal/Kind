@@ -1,4 +1,0 @@
-  λ(cat : ./../../Category/Semigroupal/Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ ./../Kind cat vObject object ⩓ ./../../Semigroup/Kind cat object

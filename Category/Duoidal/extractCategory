@@ -1,9 +1,0 @@
-{- FIXME: Should be able to do `duoidal.{ arrow, product }`, but Dhall doesn’t like
-          that for some reason.
--}
-  λ(cat : ./../Monoidal/Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ λ(duoidal : ./Kind cat vObject object)
-→   { constraint = duoidal.constraint, arrow = duoidal.arrow }
-  : ./../Kind cat vObject object

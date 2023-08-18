@@ -1,0 +1,29 @@
+let P =
+      https://prelude.dhall-lang.org/v20.1.0/package.dhall
+        sha256:26b0ef498663d269e4dc6a82b0ee289ec565d683ef4c00d0ebdd25333a5a3c98
+
+let cat = ../Category/Cat/semigroupal
+
+let category = ../Category/Set/category/instance
+
+let vObject = Type
+
+let Set =
+      ../Category/Monoidal/Cartesian/extractCategory
+        cat
+        vObject
+        Type
+        ../Category/Set/monoidal/cartesian
+
+in    { unit = λ(a : Type) → λ(x : a) → Some x
+      , product =
+          λ(a : Type) →
+          λ(mma : Optional (Optional a)) →
+            P.Optional.fold
+              (Optional a)
+              mma
+              (Optional a)
+              (category.unit (Optional a))
+              (None a)
+      }
+    : ../Monad/Type Type Set Optional

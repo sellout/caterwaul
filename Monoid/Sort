@@ -1,6 +1,0 @@
-{- TODO: Unfortunately, we don’t have the common kind-level units available. So
-         rather than making a type that can’t be used, we just stick with
-         Semigroup, and let the desired type be _named_ even if it can’t be
-         implemented yet.
--}
-./../Semigroup/Sort

@@ -1,6 +1,0 @@
-{- NB: `unit` would ideally be defined with `: cat.arrow cat.unit m`, but
-       there’s no Kind-level `{}` to use there.
--}
-  λ(cat : ./../Category/Monoidal/Sort)
-→ λ(m : Kind)
-→ { unit : m } ⩓ ./../Semigroup/Kind cat m

@@ -1,4 +1,0 @@
-  λ(cat : ./../Monoidal/Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ ./../Kind cat vObject object ⩓ ./../../Duoid/Kind cat object

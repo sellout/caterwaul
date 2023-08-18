@@ -1,0 +1,1 @@
+{ semigroupal = ./semigroupal }

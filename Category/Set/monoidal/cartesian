@@ -1,5 +1,0 @@
-let cat = ./../../Cat/semigroupal
-
-in      { diagonal = λ(a : Type) → { _1 = a, _2 = a } }
-      ∧ ./../../Rig/extractMultiplicative cat Type Type ./../rig
-    : ./../../../Category/Monoidal/Closed/Cartesian/Kind cat Type

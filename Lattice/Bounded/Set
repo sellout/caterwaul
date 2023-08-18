@@ -1,6 +1,0 @@
-  λ(m : Type)
-→ { join :
-      ./../../Semilattice/Bounded/Set m
-  , meet :
-      ./../../Semilattice/Bounded/Set m
-  }

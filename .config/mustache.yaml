@@ -1,0 +1,12 @@
+{
+  project:
+    {
+      description:
+        "Attempting to push the limits of Dhall’s abstractions.",
+      name: "caterwaul",
+      repo: "sellout/caterwaul",
+      summary: "Wailing into the primordial ooze of category theory",
+      version: "0.1.0",
+    },
+  type: { name: "dhall" },
+}

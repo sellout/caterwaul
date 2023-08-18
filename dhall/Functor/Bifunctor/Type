@@ -1,0 +1,23 @@
+let cat = ../../Category/Cat/semigroupal
+
+let Functor = ../Type
+
+let Category/Product = ../../Category/Product/Type
+
+let Category = ../../Category/Kind cat
+
+let MonoidalCategory = ../../Category/Monoidal/Kind cat
+
+in  λ(vObject : Kind) →
+    λ(cObject : Kind) →
+    λ(dObject : Kind) →
+    λ(eObject : Kind) →
+    λ(v : MonoidalCategory Type vObject) →
+    λ(c : Category vObject cObject) →
+    λ(d : Category vObject dObject) →
+      Functor
+        vObject
+        (cat.product cObject dObject)
+        eObject
+        (../../Category/Monoidal/extractCategory cat Type vObject v)
+        (Category/Product vObject cObject dObject v c d)

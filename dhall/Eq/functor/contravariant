@@ -1,0 +1,20 @@
+let cat = ../../Category/Cat/semigroupal
+
+let Eq = ../Type
+
+let base = ../../Category/Monoidal/Cartesian/extractCategory cat
+
+let vObject = Type
+
+let v = base Type vObject ../../Category/Set/monoidal/cartesian
+
+let Set = base vObject Type ../../Category/Set/monoidal/cartesian
+
+in    { map =
+          λ(a : Type) →
+          λ(b : Type) →
+          λ(fn : b → a) →
+          λ(fa : Eq a) →
+            { eq = λ(x : b) → λ(y : b) → fa.eq (fn x) (fn y) }
+      }
+    : ../../Functor/Contravariant vObject Type Type v Set Set Eq

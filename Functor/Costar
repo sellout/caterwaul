@@ -1,8 +1,0 @@
-{- A functor from a Cokleisli category to the underlying category -}
-let kCat = ./../Category/Cat/semigroupal
-
-in    λ(vObject : Kind)
-    → λ(object : Kind)
-    → λ(v : ./../Category/Kind kCat Type vObject)
-    → λ(cat : ./../Category/Kind kCat vObject object)
-    → ./Star/Type vObject object v (./../Category/Op/Kind vObject object cat)

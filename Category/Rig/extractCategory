@@ -1,6 +1,0 @@
-  λ(cat : ./../Monoidal/Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ λ(rig : ./Kind cat vObject object)
-→   { constraint = rig.constraint, arrow = rig.arrow }
-  : ./../Kind cat vObject object

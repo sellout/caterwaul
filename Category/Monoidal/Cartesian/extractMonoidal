@@ -1,5 +1,0 @@
-  λ(cat : ./../Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ λ(cartesian : ./Kind cat vObject object)
-→ cartesian.{ constraint, arrow, unit, product } : ./../Kind cat vObject object

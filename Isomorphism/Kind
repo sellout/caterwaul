@@ -1,4 +1,0 @@
-  λ(cat : ./../Category/Sort)
-→ λ(a : Kind)
-→ λ(b : Kind)
-→ { to : cat.arrow a b, from : cat.arrow b a }

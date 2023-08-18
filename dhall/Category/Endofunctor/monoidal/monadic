@@ -1,0 +1,20 @@
+{- NB: This doesn’t use `Duoidal/extractMultiplicative` because that has a fixed
+      `object`.
+-}
+let kCat = ../../Cat/semigroupal
+
+let Endofunctor = ../../../Functor/Endo/Type
+
+let Category = ../../Kind kCat
+
+let vObject = Type
+
+in  λ(object : Kind) →
+    λ(v : Category Type vObject) →
+    λ(cat : Category vObject object) →
+        { constraint = Endofunctor vObject object v cat
+        , arrow = ../../../NaturalTransformation/Type object object cat
+        , unit = ../../../Identity/Type object
+        , product = ../../../Compose/Type object object object
+        }
+      : ../../Monoidal/Kind kCat vObject (kCat.arrow object object)

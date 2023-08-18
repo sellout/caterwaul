@@ -1,3 +1,0 @@
-  λ(f : Kind → Kind)
-→ λ(g : Kind → Kind)
-→ (λ(a : Kind) → f a → g a) : Kind → Kind

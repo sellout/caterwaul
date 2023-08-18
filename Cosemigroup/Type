@@ -1,9 +1,0 @@
-let kCat = ./../Category/Cat/semigroupal
-
-let vObject = Type
-
-in    λ(object : Kind)
-    → λ(cat : ./../Category/Semigroupal/Kind kCat vObject object)
-    → ./../Semigroup/Type
-        object
-        (./../Category/Op/semigroupal vObject object cat)

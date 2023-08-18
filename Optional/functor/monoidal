@@ -1,4 +1,0 @@
-./../../Monad/impliedMonoidalFunctor
-  Optional
-  (./endo/star (./../../Identity/Type Type) ./../../Identity/functor/monoidal)
-  ./../monad

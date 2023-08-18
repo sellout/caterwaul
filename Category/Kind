@@ -1,8 +1,0 @@
-  λ(cat : ./Semigroupal/Sort)
-→ λ(vObject : Kind)
-→ λ(object : Kind)
-→ { constraint :
-      object → Type
-  , arrow :
-      cat.arrow (cat.product object object) vObject
-  }

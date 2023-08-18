@@ -1,0 +1,1 @@
+{ endo = ./endo/package.dhall }

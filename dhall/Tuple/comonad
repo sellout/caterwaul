@@ -1,0 +1,16 @@
+let cat = ../Category/Cat/semigroupal
+
+let Set = ../Category/Set/monoidal/cartesian
+
+let vObject = Type
+
+let base = ../Category/Monoidal/Cartesian/extractCategory cat vObject Type Set
+
+in  λ(a : Type) →
+        { unit = λ(b : Type) → λ(tup : Set.product { _1 = a, _2 = b }) → tup._2
+        , product =
+            λ(b : Type) →
+            λ(tup : Set.product { _1 = a, _2 = b }) →
+              { _1 = tup._1, _2 = tup }
+        }
+      : ../Comonad/Type Type base (λ(b : Type) → Set.product { _1 = a, _2 = b })
