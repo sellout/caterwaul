@@ -8,5 +8,5 @@
 , extractMonoid = ./extractMonoid
 , leftQuotient = ./leftQuotient
 , rightQuotient = ./rightQuotient
-, terms.dhall = ./terms.dhall
+, terms = ./terms.dhall
 }

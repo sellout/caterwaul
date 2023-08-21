@@ -1,4 +1,1 @@
-{ monoidal = ./monoidal
-, semigroupal = ./semigroupal
-, types.dhall = ./types.dhall
-}
+{ monoidal = ./monoidal, semigroupal = ./semigroupal, types = ./types.dhall }

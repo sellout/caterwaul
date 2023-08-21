@@ -7,5 +7,5 @@
 , extractCategory = ./extractCategory
 , extractCategoryInstance = ./extractCategoryInstance
 , extractSemigroupal = ./extractSemigroupal
-, types.dhall = ./types.dhall
+, types = ./types.dhall
 }

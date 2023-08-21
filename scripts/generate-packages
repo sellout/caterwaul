@@ -19,7 +19,7 @@ function generate_package () {
         if [[ "${type}" =~ Sort$ ]]; then
           echo "skipping Sort ${package_dir}/${file}"
         else
-          echo "${file} = ./${file}, " >> "${package_file}"
+          echo "${file/%.dhall} = ./${file}, " >> "${package_file}"
         fi
       fi
     fi

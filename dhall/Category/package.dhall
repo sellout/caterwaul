@@ -18,5 +18,5 @@
 , extractSemigroupoid = ./extractSemigroupoid
 , postcomposition = ./postcomposition
 , precomposition = ./precomposition
-, types.dhall = ./types.dhall
+, types = ./types.dhall
 }

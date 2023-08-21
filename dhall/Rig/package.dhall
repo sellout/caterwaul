@@ -4,5 +4,5 @@
 , Set = ./Set
 , Type = ./Type
 , extractSemiring = ./extractSemiring
-, terms.dhall = ./terms.dhall
+, terms = ./terms.dhall
 }

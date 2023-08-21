@@ -1,5 +1,1 @@
-{ Kind = ./Kind
-, Type = ./Type
-, category = ./category
-, types.dhall = ./types.dhall
-}
+{ Kind = ./Kind, Type = ./Type, category = ./category, types = ./types.dhall }

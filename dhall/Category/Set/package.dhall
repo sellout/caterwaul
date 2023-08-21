@@ -4,5 +4,5 @@
 , monoidal = ./monoidal/package.dhall
 , rig = ./rig
 , semigroupoid = ./semigroupoid
-, types.dhall = ./types.dhall
+, types = ./types.dhall
 }

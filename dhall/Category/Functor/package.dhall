@@ -4,5 +4,5 @@
 , liftedMonoidal = ./liftedMonoidal
 , liftedRig = ./liftedRig
 , monoidal = ./monoidal
-, types.dhall = ./types.dhall
+, types = ./types.dhall
 }

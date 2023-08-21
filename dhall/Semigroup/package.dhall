@@ -4,5 +4,5 @@
 , Type = ./Type
 , functor = ./functor
 , laws = ./laws
-, terms.dhall = ./terms.dhall
+, terms = ./terms.dhall
 }

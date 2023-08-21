@@ -1,1 +1,1 @@
-{ Type = ./Type, extractField = ./extractField, terms.dhall = ./terms.dhall }
+{ Type = ./Type, extractField = ./extractField, terms = ./terms.dhall }

@@ -4,5 +4,5 @@
 , Type = ./Type
 , extractSemigroup = ./extractSemigroup
 , laws = ./laws
-, terms.dhall = ./terms.dhall
+, terms = ./terms.dhall
 }

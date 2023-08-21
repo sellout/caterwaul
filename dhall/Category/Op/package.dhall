@@ -5,5 +5,5 @@
 , monoidal = ./monoidal
 , semigroupal = ./semigroupal
 , semigroupalSort = ./semigroupalSort
-, types.dhall = ./types.dhall
+, types = ./types.dhall
 }

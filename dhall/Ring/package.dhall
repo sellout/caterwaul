@@ -7,5 +7,5 @@
 , Type = ./Type
 , extractRig = ./extractRig
 , subtract = ./subtract
-, terms.dhall = ./terms.dhall
+, terms = ./terms.dhall
 }
