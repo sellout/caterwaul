@@ -12,7 +12,7 @@ in  λ(object : Kind) →
               Type
               ../Set/monoidal/cartesian
 
-      let vBase = ./extractcategory kCat Type vObject v
+      let vBase = ./extractCategory kCat Type vObject v
 
       in    { CommutativeGroup = ../../Group/Commutative/Type object cat
             , CommutativeMonoid = ../../Monoid/Commutative/Type object cat
