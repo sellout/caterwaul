@@ -2,104 +2,110 @@
   description = "Wailing into the primordial ooze of category theory";
 
   nixConfig = {
+    ## NB: This is a consequence of using `self.pkgsLib.runEmptyCommand`, which
+    ##     allows us to sandbox derivations that otherwise can’t be.
+    allow-import-from-derivation = true;
     ## https://github.com/NixOS/rfcs/blob/master/rfcs/0045-deprecate-url-syntax.md
     extra-experimental-features = ["no-url-literals"];
     extra-substituters = [
       "https://cache.dhall-lang.org"
       "https://cache.garnix.io"
       "https://dhall.cachix.org"
+      "https://sellout.cachix.org"
     ];
     extra-trusted-public-keys = [
       "cache.dhall-lang.org:I9/H18WHd60olG5GsIjolp7CtepSgJmM2CsO813VTmM="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "dhall.cachix.org-1:8laGciue2JBwD49ICFtg+cIF8ddDaW7OFBjDb/dHEAo="
+      "sellout.cachix.org-1:v37cTpWBEycnYxSPAgSQ57Wiqd3wjljni2aC0Xry1DE="
     ];
     ## Isolate the build.
-    registries = false;
-    sandbox = true;
+    sandbox = "relaxed";
+    use-registries = false;
   };
 
-  outputs = inputs: let
+  outputs = {
+    flake-utils,
+    flaky,
+    nixpkgs,
+    self,
+    systems,
+  }: let
     pname = "caterwaul";
+
+    supportedSystems = import systems;
   in
     {
+      schemas = {
+        inherit
+          (flaky.schemas)
+          overlays
+          homeConfigurations
+          packages
+          devShells
+          projectConfigurations
+          checks
+          formatter
+          ;
+      };
+
       overlays = {
         default = final: prev: {
           dhallPackages = prev.dhallPackages.override (old: {
             overrides =
               final.lib.composeExtensions
               (old.overrides or (_: _: {}))
-              (inputs.self.overlays.dhall final prev);
+              (self.overlays.dhall final prev);
           });
         };
 
         dhall = final: prev: dfinal: dprev: {
-          ${pname} = inputs.self.packages.${final.system}.${pname};
+          ${pname} = self.packages.${final.system}.${pname};
         };
       };
 
       homeConfigurations =
         builtins.listToAttrs
         (builtins.map
-          (inputs.flaky.lib.homeConfigurations.example
-            pname
-            inputs.self
-            [
-              ({pkgs, ...}: {
-                ## TODO: Is there something more like `dhallWithPackages`?
-                home.packages = [pkgs.dhallPackages.${pname}];
-              })
-            ])
-          inputs.flake-utils.lib.defaultSystems);
+          (flaky.lib.homeConfigurations.example self
+            ## TODO: Is there something more like `dhallWithPackages`?
+            [({pkgs, ...}: {home.packages = [pkgs.dhallPackages.${pname}];})])
+          supportedSystems);
     }
-    // inputs.flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import inputs.nixpkgs {inherit system;};
+    // flake-utils.lib.eachSystem supportedSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [
+        flaky.overlays.default
+      ];
 
       src = pkgs.lib.cleanSource ./.;
-
-      format = inputs.flaky.lib.format pkgs {
-        ## subsumes dhall (format)
-        ## TODO: Add an option like `programs.dhall.lint = true;` to treefmt-nix
-        settings.formatter.dhall-lint = {
-          command = pkgs.dhall;
-          includes = ["dhall/*"];
-          options = ["lint"];
-        };
-      };
     in {
       packages = {
-        default = inputs.self.packages.${system}.${pname};
+        default = self.packages.${system}.${pname};
 
-        "${pname}" = pkgs.dhallPackages.buildDhallDirectoryPackage {
+        "${pname}" = pkgs.checkedDrv (pkgs.dhallPackages.buildDhallDirectoryPackage {
           src = "${src}/dhall";
           name = pname;
           dependencies = [pkgs.dhallPackages.Prelude];
           document = true;
-        };
+        });
       };
 
-      devShells.default =
-        inputs.flaky.lib.devShells.default
-        pkgs
-        inputs.self
-        [pkgs.dhall pkgs.dhall-docs]
-        "";
+      projectConfigurations =
+        flaky.lib.projectConfigurations.dhall {inherit pkgs self;};
 
-      checks.format = format.check inputs.self;
-
-      formatter = format.wrapper;
+      devShells =
+        self.projectConfigurations.${system}.devShells
+        // {default = flaky.lib.devShells.default system self [] "";};
+      checks = self.projectConfigurations.${system}.checks;
+      formatter = self.projectConfigurations.${system}.formatter;
     });
 
   inputs = {
-    bash-strict-mode = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:sellout/bash-strict-mode";
-    };
-
-    flake-utils.url = "github:numtide/flake-utils";
-
+    ## Flaky should generally be the source of truth for its inputs.
     flaky.url = "github:sellout/flaky";
 
-    nixpkgs.url = "github:NixOS/nixpkgs/release-23.05";
+    flake-utils.follows = "flaky/flake-utils";
+    nixpkgs.follows = "flaky/nixpkgs";
+    systems.follows = "flaky/systems";
   };
 }

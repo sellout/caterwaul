@@ -1,10 +1,16 @@
-# [Caterwaul](http://github.com/sellout/caterwaul)
+# Caterwaul
 
-Wailing into the primordial ooze of category theory.
+[![built with garnix](https://img.shields.io/endpoint?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Fsellout%2Fcaterwaul)](https://garnix.io/repo/sellout/caterwaul)
+[![Nix CI](https://nix-ci.com/badge/gh:sellout:caterwaul)](https://nix-ci.com/gh:sellout:caterwaul)
+[![Project Manager](https://img.shields.io/badge/%20-Project%20Manager-%235277C3?logo=nixos&labelColor=%23cccccc)](https://sellout.github.io/project-manager/)
+
+Wailing into the primordial ooze of category theory
+
+Attempting to push the limits of Dhall’s abstractions.
 
 This requires either Dhall 1.18 or 1.20+ (it will not work on Dhall 1.19).
 
-## Overview
+## overview
 
 Fundamentally, there are very few things here
 
@@ -43,6 +49,36 @@ As that last sentence implies, everything lives within a “`Kind`-level” mono
 
 We also use a `v…` convention when talking about enriched categories – like `vObject`, `vArrow`, etc. At least so far, the enriching category is always **Set**, so `vObject = Type` and `v = ./Category/Set`, but the convention helps us keep track of _why_ we’re using those types.
 
-## Documentation
+## documentation
 
-Types as documentation: https://sellout.github.io/caterwaul/ (there actually are _some_ docs there, but pretty minimal at the moment.)
+API docs are on [GitHub Pages](https://sellout.github.io/caterwaul).
+
+## development environment
+
+We recommend the following steps to make working in this repository as easy as possible.
+
+### `direnv allow`
+
+This command ensures that any work you do within this repository happens within a consistent reproducible environment. That environment provides various debugging tools, etc. When you leave this directory, you will leave that environment behind, so it doesn’t impact anything else on your system.
+
+### `git config --local include.path ../.cache/git/config`
+
+This will apply our repository-specific Git configuration to `git` commands run against this repository. It’s lightweight (you should definitely look at it before applying this command) – it does things like telling `git blame` to ignore formatting-only commits.
+
+## building & development
+
+Especially if you are unfamiliar with the dhall ecosystem, there is a Nix build (both with and without a flake). If you are unfamiliar with Nix, [Nix adjacent](...) can help you get things working in the shortest time and least effort possible.
+
+### if you have `nix` installed
+
+`nix build` will build and test the project fully.
+
+`nix develop` will put you into an environment where the traditional build tooling works. If you also have `direnv` installed, then you should automatically be in that environment when you're in a directory in this project.
+
+## versioning
+
+In the absolute, almost every change is a breaking change. This section describes how we mitigate that to offer minor updates and revisions.
+
+## comparisons
+
+Other projects similar to this one, and how they differ.
