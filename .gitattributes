@@ -1,9 +1,18 @@
-*	linguist-language=Dhall
-
-# The rest of this is just un-Dhalling the other bits of the repo.
-.*	-linguist-language
-LICENSE	-linguist-language
-README.md	-linguist-language
-docs/*	-linguist-language
-scripts/*	-linguist-language
-shell.nix	-linguist-language
+/.cache/git/config linguist-generated
+/.cache/git/hooks/pre-push linguist-generated
+/.cache/vale/Vocab/caterwaul/accept.txt linguist-generated
+/.cache/vale/config/vocabularies/caterwaul/accept.txt linguist-generated
+/.dir-locals.el linguist-generated
+/.editorconfig linguist-generated
+/.envrc linguist-generated
+/.gitattributes linguist-generated
+/.github/renovate.json linguist-generated
+/.github/settings.yml linguist-generated
+/.github/workflows/flakehub-publish.yml linguist-generated
+/.github/workflows/pages.yml linguist-generated
+/.github/workflows/switch-pm-generation.yml linguist-generated
+/.gitignore linguist-generated
+/.vale.ini linguist-generated
+/dhall/** linguist-language=Dhall
+/garnix.yaml linguist-generated
+/nix-ci.nix linguist-generated
