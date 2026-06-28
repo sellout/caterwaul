@@ -9,6 +9,7 @@
 /.github/renovate.json linguist-generated
 /.github/settings.yml linguist-generated
 /.github/workflows/flakehub-publish.yml linguist-generated
+/.github/workflows/flakestry-publish.yml linguist-generated
 /.github/workflows/pages.yml linguist-generated
 /.github/workflows/switch-pm-generation.yml linguist-generated
 /.gitignore linguist-generated
